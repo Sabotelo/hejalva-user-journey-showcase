@@ -7,50 +7,53 @@ import {
   Smartphone, 
   Workflow 
 } from "lucide-react";
-
-const features = [
-  {
-    icon: Zap,
-    title: "Lightning Fast",
-    description: "Instant interactions with zero loading time for seamless user experiences."
-  },
-  {
-    icon: Users,
-    title: "User-Centric Design",
-    description: "Adaptive interfaces that learn and evolve with user behavior patterns."
-  },
-  {
-    icon: BarChart3,
-    title: "Advanced Analytics",
-    description: "Deep insights into user journeys and interaction patterns."
-  },
-  {
-    icon: Shield,
-    title: "Enterprise Security",
-    description: "Bank-level security with end-to-end encryption and compliance."
-  },
-  {
-    icon: Smartphone,
-    title: "Mobile Optimized",
-    description: "Perfect experience across all devices and screen sizes."
-  },
-  {
-    icon: Workflow,
-    title: "Workflow Integration",
-    description: "Seamlessly integrates with your existing tools and workflows."
-  }
-];
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const FeatureShowcase = () => {
+  const { t } = useLanguage();
+  
+  const features = [
+    {
+      icon: Zap,
+      title: t('feature.lightning.title'),
+      description: t('feature.lightning.desc')
+    },
+    {
+      icon: Users,
+      title: t('feature.userCentric.title'),
+      description: t('feature.userCentric.desc')
+    },
+    {
+      icon: BarChart3,
+      title: t('feature.analytics.title'),
+      description: t('feature.analytics.desc')
+    },
+    {
+      icon: Shield,
+      title: t('feature.security.title'),
+      description: t('feature.security.desc')
+    },
+    {
+      icon: Smartphone,
+      title: t('feature.mobile.title'),
+      description: t('feature.mobile.desc')
+    },
+    {
+      icon: Workflow,
+      title: t('feature.workflow.title'),
+      description: t('feature.workflow.desc')
+    }
+  ];
+
   return (
     <section id="features" className="py-20 bg-background">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-5xl font-bold mb-4">
-            Powerful <span className="text-gradient">Features</span>
+            {t('features.title')} <span className="text-gradient">{t('features.titleHighlight')}</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Everything you need to create engaging, interactive experiences that convert visitors into customers.
+            {t('features.subtitle')}
           </p>
         </div>
 
@@ -63,10 +66,10 @@ const FeatureShowcase = () => {
             >
               <div className="space-y-4">
                 <div className="relative">
-                  <div className="h-12 w-12 rounded-lg bg-gradient-primary flex items-center justify-center shadow-primary group-hover:shadow-elevated group-hover:scale-110 transition-all duration-300">
+                  <div className="h-12 w-12 rounded-lg bg-gradient-alva flex items-center justify-center shadow-primary group-hover:shadow-elevated group-hover:scale-110 transition-all duration-300">
                     <feature.icon className="h-6 w-6 text-white" />
                   </div>
-                  <div className="absolute inset-0 rounded-lg bg-gradient-primary opacity-20 blur-xl group-hover:opacity-40 transition-opacity duration-300"></div>
+                  <div className="absolute inset-0 rounded-lg bg-gradient-alva opacity-20 blur-xl group-hover:opacity-40 transition-opacity duration-300"></div>
                 </div>
                 
                 <div>

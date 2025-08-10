@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { ChevronRight, CheckCircle, Play, MousePointer2 } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface DemoStep {
   id: number;
@@ -12,34 +13,35 @@ interface DemoStep {
 }
 
 const InteractiveDemo = () => {
+  const { t } = useLanguage();
   const [currentStep, setCurrentStep] = useState(0);
   const [demoSteps, setDemoSteps] = useState<DemoStep[]>([
     {
       id: 1,
-      title: "Welcome to HejaLva",
-      description: "Let's start your personalized interactive journey",
-      action: "Click to begin",
+      title: t('step1.title'),
+      description: t('step1.description'),
+      action: t('step1.action'),
       completed: false
     },
     {
       id: 2,
-      title: "Smart Onboarding",
-      description: "Experience intelligent user guidance",
-      action: "Try the smart onboarding",
+      title: t('step2.title'),
+      description: t('step2.description'),
+      action: t('step2.action'),
       completed: false
     },
     {
       id: 3,
-      title: "Interactive Features",
-      description: "Explore dynamic content adaptation",
-      action: "Interact with features",
+      title: t('step3.title'),
+      description: t('step3.description'),
+      action: t('step3.action'),
       completed: false
     },
     {
       id: 4,
-      title: "Personalized Experience",
-      description: "See how content adapts to your preferences",
-      action: "Complete personalization",
+      title: t('step4.title'),
+      description: t('step4.description'),
+      action: t('step4.action'),
       completed: false
     }
   ]);
@@ -58,7 +60,12 @@ const InteractiveDemo = () => {
 
   const resetDemo = () => {
     setCurrentStep(0);
-    setDemoSteps(steps => steps.map(step => ({ ...step, completed: false })));
+    setDemoSteps([
+      { id: 1, title: t('step1.title'), description: t('step1.description'), action: t('step1.action'), completed: false },
+      { id: 2, title: t('step2.title'), description: t('step2.description'), action: t('step2.action'), completed: false },
+      { id: 3, title: t('step3.title'), description: t('step3.description'), action: t('step3.action'), completed: false },
+      { id: 4, title: t('step4.title'), description: t('step4.description'), action: t('step4.action'), completed: false }
+    ]);
   };
 
   return (
@@ -66,10 +73,10 @@ const InteractiveDemo = () => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-5xl font-bold mb-4">
-            Try the <span className="text-gradient">Interactive Demo</span>
+            {t('demo.title')} <span className="text-gradient">{t('demo.titleHighlight')}</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Experience how HejaLva creates personalized user journeys. Click through the steps below to see the magic in action.
+            {t('demo.subtitle')}
           </p>
         </div>
 
@@ -78,14 +85,14 @@ const InteractiveDemo = () => {
             {/* Demo Steps */}
             <div className="space-y-4">
               <div className="flex items-center justify-between mb-6">
-                <h3 className="text-xl font-semibold">Interactive Journey</h3>
+                <h3 className="text-xl font-semibold">{t('demo.interactiveJourney')}</h3>
                 <Button 
                   variant="outline" 
                   size="sm" 
                   onClick={resetDemo}
                   className="text-xs"
                 >
-                  Reset Demo
+                  {t('demo.resetDemo')}
                 </Button>
               </div>
               
@@ -134,18 +141,18 @@ const InteractiveDemo = () => {
             <div className="relative">
               <Card className="demo-card p-8 min-h-[400px] flex items-center justify-center bg-gradient-card border-2">
                 <div className="text-center space-y-6">
-                  <div className="relative mx-auto w-32 h-32 rounded-full bg-gradient-hero flex items-center justify-center shadow-elevated animate-glow">
+                  <div className="relative mx-auto w-32 h-32 rounded-full bg-gradient-alva flex items-center justify-center shadow-elevated animate-glow">
                     <Play className="h-12 w-12 text-white" />
                   </div>
                   
                   <div className="space-y-2">
                     <h3 className="text-2xl font-bold">
-                      {demoSteps[currentStep]?.title || "Demo Complete!"}
+                      {demoSteps[currentStep]?.title || t('demo.complete')}
                     </h3>
                     <p className="text-muted-foreground">
                       {currentStep < demoSteps.length 
                         ? demoSteps[currentStep]?.description 
-                        : "Congratulations! You've completed the interactive demo."}
+                        : t('demo.congratulations')}
                     </p>
                   </div>
                   
@@ -154,7 +161,7 @@ const InteractiveDemo = () => {
                       className="bg-gradient-secondary shadow-secondary hover:shadow-elevated transition-all duration-300"
                       onClick={resetDemo}
                     >
-                      Try Again
+                      {t('demo.tryAgain')}
                     </Button>
                   )}
                 </div>
@@ -163,7 +170,7 @@ const InteractiveDemo = () => {
               {/* Floating indicator */}
               {currentStep < demoSteps.length && (
                 <div className="absolute -top-4 -right-4 bg-primary text-white text-xs px-3 py-1 rounded-full shadow-primary animate-bounce-subtle">
-                  Step {currentStep + 1} of {demoSteps.length}
+                  {t('demo.step')} {currentStep + 1} {t('demo.of')} {demoSteps.length}
                 </div>
               )}
             </div>
