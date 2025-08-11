@@ -43,10 +43,18 @@ const Navigation = () => {
             <Globe className="h-4 w-4 mr-1" />
             {language.toUpperCase()}
           </Button>
-          <Button variant="ghost" size="sm">
+          <Button 
+            variant="ghost" 
+            size="sm"
+            onClick={() => window.open('https://signin.hejalva.com', '_blank')}
+          >
             {t('nav.signIn')}
           </Button>
-          <Button size="sm" className="bg-gradient-alva shadow-primary hover:shadow-elevated transition-all duration-300">
+          <Button 
+            size="sm" 
+            className="bg-gradient-alva shadow-primary hover:shadow-elevated transition-all duration-300"
+            onClick={() => window.open('https://app.hejalva.com', '_blank')}
+          >
             {t('nav.getStarted')}
           </Button>
         </div>

@@ -37,6 +37,7 @@ const HeroSection = () => {
             <Button 
               size="lg" 
               className="bg-gradient-alva shadow-primary hover:shadow-elevated hover:scale-105 transition-all duration-300 text-lg px-8 py-3"
+              onClick={() => document.getElementById('demo')?.scrollIntoView({ behavior: 'smooth' })}
             >
               {t('hero.startDemo')}
             </Button>
@@ -45,6 +46,7 @@ const HeroSection = () => {
               variant="outline" 
               size="lg" 
               className="group text-lg px-8 py-3 border-2 border-primary/20 hover:border-primary/40 hover:bg-primary/5"
+              onClick={() => window.open('https://preview.hejalva.com', '_blank')}
             >
               <Play className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform" />
               {t('hero.watchPreview')}

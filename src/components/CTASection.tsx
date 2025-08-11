@@ -31,6 +31,7 @@ const CTASection = () => {
                 <Button 
                   size="lg" 
                   className="bg-gradient-alva shadow-primary hover:shadow-elevated hover:scale-105 transition-all duration-300 text-lg px-8 py-4 group"
+                  onClick={() => window.open('https://app.hejalva.com/trial', '_blank')}
                 >
                   {t('cta.startTrial')}
                   <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
@@ -40,6 +41,7 @@ const CTASection = () => {
                   variant="outline" 
                   size="lg" 
                   className="text-lg px-8 py-4 border-2 border-primary/20 hover:border-primary/40 hover:bg-primary/5"
+                  onClick={() => window.open('https://calendar.hejalva.com', '_blank')}
                 >
                   {t('cta.scheduleDemo')}
                 </Button>
