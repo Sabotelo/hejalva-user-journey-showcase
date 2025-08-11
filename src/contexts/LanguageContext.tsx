@@ -106,6 +106,38 @@ const translations: Translations = {
   'cta.freeTrial': { sv: 'Gratis 14-dagars provperiod', en: 'Free 14-day trial' },
   'cta.noCard': { sv: 'Inget kreditkort krävs', en: 'No credit card required' },
   'cta.setupMinutes': { sv: 'Installation på minuter', en: 'Setup in minutes' },
+
+  // Contact Page
+  'nav.contact': { sv: 'Kontakt', en: 'Contact' },
+  'contact.title': { sv: 'Kontakta', en: 'Get in Touch' },
+  'contact.titleHighlight': { sv: 'Alva', en: 'with Alva' },
+  'contact.subtitle': { 
+    sv: 'Har du frågor? Vill se en demo? Eller redo att börja? Vi skulle gärna höra från dig.', 
+    en: 'Have questions? Want to see a demo? Or ready to get started? We\'d love to hear from you.' 
+  },
+  'contact.form.title': { sv: 'Skicka oss ett meddelande', en: 'Send us a message' },
+  'contact.form.name': { sv: 'Namn', en: 'Name' },
+  'contact.form.namePlaceholder': { sv: 'Ditt fullständiga namn', en: 'Your full name' },
+  'contact.form.email': { sv: 'E-post', en: 'Email' },
+  'contact.form.emailPlaceholder': { sv: 'din.epost@foretag.se', en: 'your.email@company.com' },
+  'contact.form.company': { sv: 'Företag', en: 'Company' },
+  'contact.form.companyPlaceholder': { sv: 'Ditt företagsnamn', en: 'Your company name' },
+  'contact.form.subject': { sv: 'Ämne', en: 'Subject' },
+  'contact.form.subjectPlaceholder': { sv: 'Vad kan vi hjälpa dig med?', en: 'What can we help you with?' },
+  'contact.form.message': { sv: 'Meddelande', en: 'Message' },
+  'contact.form.messagePlaceholder': { sv: 'Berätta mer om dina behov...', en: 'Tell us more about your needs...' },
+  'contact.form.send': { sv: 'Skicka meddelande', en: 'Send Message' },
+  'contact.form.success': { sv: 'Meddelande skickat!', en: 'Message Sent!' },
+  'contact.form.successMessage': { sv: 'Tack för ditt meddelande. Vi återkommer snart.', en: 'Thank you for your message. We\'ll get back to you soon.' },
+  'contact.info.title': { sv: 'Kontaktinformation', en: 'Contact Information' },
+  'contact.info.email': { sv: 'E-post', en: 'Email' },
+  'contact.info.phone': { sv: 'Telefon', en: 'Phone' },
+  'contact.info.location': { sv: 'Plats', en: 'Location' },
+  'contact.support.title': { sv: 'Supporttider', en: 'Support Hours' },
+  'contact.support.description': { sv: 'Vårt team är här för att hjälpa dig lyckas med Alva.', en: 'Our team is here to help you succeed with Alva.' },
+  'contact.support.hours': { sv: 'Arbetstider', en: 'Business Hours' },
+  'contact.support.response': { sv: 'Svarstid', en: 'Response Time' },
+  'contact.support.languages': { sv: 'Språk', en: 'Languages' }
 };
 
 interface LanguageContextType {

@@ -31,6 +31,9 @@ const Navigation = () => {
           <a href="#pricing" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
             {t('nav.pricing')}
           </a>
+          <a href="/contact" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+            {t('nav.contact')}
+          </a>
         </div>
         
         <div className="flex items-center space-x-3">
