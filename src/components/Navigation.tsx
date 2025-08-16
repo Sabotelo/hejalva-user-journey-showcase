@@ -1,12 +1,34 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Globe } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useAuth } from "@/contexts/AuthContext";
+import { AuthModal } from "@/components/auth/AuthModal";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { Menu, X, Globe, User, Settings, LogOut } from "lucide-react";
 
 const Navigation = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [authModalOpen, setAuthModalOpen] = useState(false);
   const { language, setLanguage, t } = useLanguage();
+  const { user, profile, signOut } = useAuth();
 
   const toggleLanguage = () => {
     setLanguage(language === 'sv' ? 'en' : 'sv');
+  };
+
+  const handleSignOut = async () => {
+    await signOut();
+    window.location.href = '/';
+  };
+
+  const getInitials = (name: string) => {
+    return name
+      .split(' ')
+      .map(word => word[0])
+      .join('')
+      .toUpperCase()
+      .slice(0, 2);
   };
 
   return (
@@ -62,6 +84,8 @@ const Navigation = () => {
           </Button>
         </div>
       </div>
+      
+      <AuthModal open={authModalOpen} onOpenChange={setAuthModalOpen} />
     </nav>
   );
 };
