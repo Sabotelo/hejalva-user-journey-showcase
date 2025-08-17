@@ -16,8 +16,12 @@ const translations: Translations = {
   'nav.demo': { sv: 'Demo', en: 'Demo' },
   'nav.features': { sv: 'Funktioner', en: 'Features' },
   'nav.pricing': { sv: 'Priser', en: 'Pricing' },
+  'nav.contact': { sv: 'Kontakt', en: 'Contact' },
   'nav.signIn': { sv: 'Logga in', en: 'Sign In' },
   'nav.getStarted': { sv: 'Kom igång', en: 'Get Started' },
+  'nav.dashboard': { sv: 'Dashboard', en: 'Dashboard' },
+  'nav.settings': { sv: 'Inställningar', en: 'Settings' },
+  'nav.signOut': { sv: 'Logga ut', en: 'Sign Out' },
 
   // Hero Section
   'hero.title': { 
@@ -108,7 +112,6 @@ const translations: Translations = {
   'cta.setupMinutes': { sv: 'Installation på minuter', en: 'Setup in minutes' },
 
   // Contact Page
-  'nav.contact': { sv: 'Kontakt', en: 'Contact' },
   'contact.title': { sv: 'Kontakta', en: 'Get in Touch' },
   'contact.titleHighlight': { sv: 'Alva', en: 'with Alva' },
   'contact.subtitle': { 
