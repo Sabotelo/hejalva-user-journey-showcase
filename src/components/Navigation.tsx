@@ -68,20 +68,51 @@ const Navigation = () => {
             <Globe className="h-4 w-4 mr-1" />
             {language.toUpperCase()}
           </Button>
-          <Button 
-            variant="ghost" 
-            size="sm"
-            onClick={() => window.open('https://signin.hejalva.com', '_blank')}
-          >
-            {t('nav.signIn')}
-          </Button>
-          <Button 
-            size="sm" 
-            className="bg-gradient-alva shadow-primary hover:shadow-elevated transition-all duration-300"
-            onClick={() => window.open('https://app.hejalva.com', '_blank')}
-          >
-            {t('nav.getStarted')}
-          </Button>
+          
+          {user ? (
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" className="relative h-8 w-8 rounded-full">
+                  <Avatar className="h-8 w-8">
+                    <AvatarFallback className="bg-primary text-primary-foreground">
+                      {profile?.full_name ? getInitials(profile.full_name) : 'U'}
+                    </AvatarFallback>
+                  </Avatar>
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="w-56" align="end" forceMount>
+                <DropdownMenuItem className="flex items-center" onClick={() => window.location.href = '/dashboard'}>
+                  <User className="mr-2 h-4 w-4" />
+                  <span>{t('nav.dashboard')}</span>
+                </DropdownMenuItem>
+                <DropdownMenuItem className="flex items-center" onClick={() => window.location.href = '/dashboard'}>
+                  <Settings className="mr-2 h-4 w-4" />
+                  <span>{t('nav.settings')}</span>
+                </DropdownMenuItem>
+                <DropdownMenuItem className="flex items-center" onClick={handleSignOut}>
+                  <LogOut className="mr-2 h-4 w-4" />
+                  <span>{t('nav.signOut')}</span>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          ) : (
+            <>
+              <Button 
+                variant="ghost" 
+                size="sm"
+                onClick={() => setAuthModalOpen(true)}
+              >
+                {t('nav.signIn')}
+              </Button>
+              <Button 
+                size="sm" 
+                className="bg-gradient-alva shadow-primary hover:shadow-elevated transition-all duration-300"
+                onClick={() => setAuthModalOpen(true)}
+              >
+                {t('nav.getStarted')}
+              </Button>
+            </>
+          )}
         </div>
       </div>
       
