@@ -26,10 +26,10 @@ const ContactSection = () => {
             </div>
             <h3 className="font-semibold mb-2">{t('contact.info.email')}</h3>
             <a 
-              href="mailto:dev@heyalva.com" 
+              href="mailto:dev@hejalva.com" 
               className="text-primary hover:underline"
             >
-              dev@heyalva.com
+              dev@hejalva.com
             </a>
           </Card>
 
