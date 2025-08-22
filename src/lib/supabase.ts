@@ -9,17 +9,35 @@ console.log('Supabase environment check:', {
   url: supabaseUrl?.substring(0, 20) + '...' || 'undefined'
 });
 
+// Create a mock supabase client when environment variables are missing
+let supabase: any;
+
 if (!supabaseUrl || !supabaseAnonKey) {
-  console.error('Missing Supabase environment variables:', {
-    VITE_SUPABASE_URL: !!supabaseUrl,
-    VITE_SUPABASE_ANON_KEY: !!supabaseAnonKey
-  });
-  // Don't throw in development, just log the error
-  if (import.meta.env.DEV) {
-    console.warn('Supabase will not work without environment variables');
-  } else {
-    throw new Error('Missing Supabase environment variables');
-  }
+  console.warn('Supabase environment variables not found - using mock client');
+  
+  // Create a mock client that won't cause errors
+  supabase = {
+    auth: {
+      getSession: () => Promise.resolve({ data: { session: null }, error: null }),
+      onAuthStateChange: () => ({ data: { subscription: { unsubscribe: () => {} } } }),
+      signUp: () => Promise.resolve({ data: null, error: { message: 'Supabase not configured' } }),
+      signInWithPassword: () => Promise.resolve({ data: null, error: { message: 'Supabase not configured' } }),
+      signOut: () => Promise.resolve({ error: null })
+    },
+    from: () => ({
+      select: () => ({
+        eq: () => ({
+          single: () => Promise.resolve({ data: null, error: { message: 'Supabase not configured' } })
+        })
+      }),
+      insert: () => Promise.resolve({ error: { message: 'Supabase not configured' } }),
+      update: () => ({
+        eq: () => Promise.resolve({ error: { message: 'Supabase not configured' } })
+      })
+    })
+  };
+} else {
+  supabase = createClient(supabaseUrl, supabaseAnonKey);
 }
 
-export const supabase = createClient(supabaseUrl, supabaseAnonKey);
+export { supabase };
