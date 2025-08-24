@@ -16,9 +16,13 @@ const ContactSection = () => {
     email: '',
     message: ''
   });
+  const [isOpen, setIsOpen] = useState(false);
+
+  console.log('ContactSection rendered, messageForm:', messageForm);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    console.log('Form submitted:', messageForm);
     
     // Here you would typically send the message to your backend
     toast({
@@ -26,12 +30,14 @@ const ContactSection = () => {
       description: "Thank you for your message. We'll get back to you soon.",
     });
     
-    // Reset form
+    // Reset form and close dialog
     setMessageForm({ name: '', email: '', message: '' });
+    setIsOpen(false);
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
+    console.log('Input changed:', name, value);
     setMessageForm(prev => ({ ...prev, [name]: value }));
   };
 
@@ -49,7 +55,7 @@ const ContactSection = () => {
         </div>
 
         <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto mb-12">
-          <Dialog>
+          <Dialog open={isOpen} onOpenChange={setIsOpen}>
             <DialogTrigger asChild>
               <Card className="demo-card p-6 text-center cursor-pointer hover:shadow-lg transition-shadow">
                 <div className="h-12 w-12 rounded-full bg-gradient-alva flex items-center justify-center mx-auto mb-4">
@@ -74,6 +80,7 @@ const ContactSection = () => {
                     value={messageForm.name}
                     onChange={handleInputChange}
                     required
+                    className="w-full"
                   />
                 </div>
                 <div>
@@ -84,6 +91,7 @@ const ContactSection = () => {
                     value={messageForm.email}
                     onChange={handleInputChange}
                     required
+                    className="w-full"
                   />
                 </div>
                 <div>
@@ -94,6 +102,7 @@ const ContactSection = () => {
                     onChange={handleInputChange}
                     required
                     rows={4}
+                    className="w-full resize-none"
                   />
                 </div>
                 <Button type="submit" className="w-full">
