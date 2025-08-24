@@ -72,15 +72,19 @@ const ContactSection = () => {
               <DialogHeader>
                 <DialogTitle>Send us a message</DialogTitle>
               </DialogHeader>
-              <form onSubmit={handleSubmit} className="space-y-4">
+              <form onSubmit={handleSubmit} className="space-y-4" onClick={(e) => console.log('Form clicked', e.target)}>
                 <div>
                   <Input
                     name="name"
                     placeholder="Your name"
                     value={messageForm.name}
                     onChange={handleInputChange}
+                    onFocus={() => console.log('Name input focused')}
+                    onBlur={() => console.log('Name input blurred')}
+                    onClick={() => console.log('Name input clicked')}
                     required
                     className="w-full"
+                    autoComplete="off"
                   />
                 </div>
                 <div>
@@ -90,8 +94,12 @@ const ContactSection = () => {
                     placeholder="Your email"
                     value={messageForm.email}
                     onChange={handleInputChange}
+                    onFocus={() => console.log('Email input focused')}
+                    onBlur={() => console.log('Email input blurred')}
+                    onClick={() => console.log('Email input clicked')}
                     required
                     className="w-full"
+                    autoComplete="off"
                   />
                 </div>
                 <div>
@@ -100,6 +108,9 @@ const ContactSection = () => {
                     placeholder="Your message"
                     value={messageForm.message}
                     onChange={handleInputChange}
+                    onFocus={() => console.log('Message textarea focused')}
+                    onBlur={() => console.log('Message textarea blurred')}
+                    onClick={() => console.log('Message textarea clicked')}
                     required
                     rows={4}
                     className="w-full resize-none"
