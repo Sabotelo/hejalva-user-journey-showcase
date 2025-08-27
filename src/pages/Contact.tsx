@@ -56,9 +56,9 @@ const Contact = () => {
 
           <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
             {/* Contact Form */}
-            <Card className="demo-card p-8">
+            <Card className="demo-card p-8" style={{ pointerEvents: 'auto', zIndex: 1 }}>
               <h2 className="text-2xl font-bold mb-6">{t('contact.form.title')}</h2>
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form onSubmit={handleSubmit} className="space-y-6" style={{ pointerEvents: 'auto' }}>
                 <div className="grid md:grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <Label htmlFor="name">{t('contact.form.name')}</Label>
