@@ -19,6 +19,7 @@ const ContactSection = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   console.log('ContactSection rendered, messageForm:', messageForm);
+  console.log('ContactSection isOpen state:', isOpen);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -55,7 +56,10 @@ const ContactSection = () => {
         </div>
 
         <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto mb-12">
-          <Card className="demo-card p-6 text-center cursor-pointer hover:shadow-lg transition-shadow" onClick={() => setIsOpen(true)}>
+          <Card className="demo-card p-6 text-center cursor-pointer hover:shadow-lg transition-shadow" onClick={() => {
+            console.log('Email card clicked!');
+            setIsOpen(true);
+          }}>
             <div className="h-12 w-12 rounded-full bg-gradient-alva flex items-center justify-center mx-auto mb-4">
               <Mail className="h-6 w-6 text-white" />
             </div>

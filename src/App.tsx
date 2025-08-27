@@ -16,23 +16,8 @@ const queryClient = new QueryClient();
 const App = () => {
   console.log('App component rendering');
   
-  // Add a test div to see if anything renders
-  const TestComponent = () => (
-    <div style={{ 
-      padding: '20px', 
-      backgroundColor: 'white', 
-      color: 'black',
-      border: '2px solid red',
-      margin: '20px'
-    }}>
-      <h1>Test Component - App is working!</h1>
-      <p>If you can see this, React is rendering correctly.</p>
-    </div>
-  );
-  
   return (
     <ErrorBoundary>
-      <TestComponent />
       <QueryClientProvider client={queryClient}>
         <ErrorBoundary>
           <AuthProvider>
