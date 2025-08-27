@@ -42,7 +42,9 @@ export default function BusinessMeetingScheduler() {
 
   const handleButtonClick = () => {
     console.log('Schedule meeting button clicked!');
+    console.log('Current isOpen state:', isOpen);
     setIsOpen(true);
+    console.log('Setting isOpen to true');
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -175,7 +177,9 @@ export default function BusinessMeetingScheduler() {
     <>
       <button 
         onClick={handleButtonClick}
-        className="inline-flex items-center justify-center px-8 py-4 text-lg font-medium border-2 border-blue-200 hover:border-blue-400 hover:bg-blue-50 rounded-lg transition-colors bg-white text-gray-900"
+        onMouseEnter={() => console.log('Button hover')}
+        className="inline-flex items-center justify-center px-8 py-4 text-lg font-medium border-2 border-blue-200 hover:border-blue-400 hover:bg-blue-50 rounded-lg transition-colors bg-white text-gray-900 cursor-pointer z-10 relative"
+        style={{ pointerEvents: 'auto' }}
       >
         <Clock className="mr-2 h-5 w-5" />
         Schedule Business Meeting
