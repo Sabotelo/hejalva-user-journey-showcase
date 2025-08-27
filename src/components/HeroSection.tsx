@@ -1,5 +1,4 @@
 import { Button } from "@/components/ui/button";
-import { Play } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 const HeroSection = () => {
@@ -40,16 +39,6 @@ const HeroSection = () => {
               onClick={() => document.getElementById('demo')?.scrollIntoView({ behavior: 'smooth' })}
             >
               {t('hero.startDemo')}
-            </Button>
-            
-            <Button 
-              variant="outline" 
-              size="lg" 
-              className="group text-lg px-8 py-3 border-2 border-primary/20 hover:border-primary/40 hover:bg-primary/5"
-              onClick={() => window.open('https://preview.hejalva.com', '_blank')}
-            >
-              <Play className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform" />
-              {t('hero.watchPreview')}
             </Button>
           </div>
           
