@@ -2,9 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { ArrowRight, Sparkles } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
-import UserProfileForm from "@/components/UserProfileForm";
-import DemoScheduler from "@/components/DemoScheduler";
-import SimpleDialog from "@/components/SimpleDialog";
+import MeetingScheduler from "@/components/MeetingScheduler";
 
 const CTASection = () => {
   const { t } = useLanguage();
@@ -31,9 +29,7 @@ const CTASection = () => {
             </div>
             
               <div className="flex flex-col sm:flex-row gap-4 justify-center">    
-                <UserProfileForm />
-                <DemoScheduler />
-                <SimpleDialog />
+                <MeetingScheduler />
             </div>
               
               <div className="flex items-center justify-center space-x-8 text-sm text-muted-foreground">
