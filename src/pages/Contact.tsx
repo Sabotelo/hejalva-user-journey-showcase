@@ -56,56 +56,60 @@ const Contact = () => {
 
           <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
             {/* Contact Form */}
-            <Card className="demo-card p-8" style={{ pointerEvents: 'auto', zIndex: 1 }}>
+            <Card className="p-8 bg-card border rounded-2xl">
               <h2 className="text-2xl font-bold mb-6">{t('contact.form.title')}</h2>
-              <form onSubmit={handleSubmit} className="space-y-6" style={{ pointerEvents: 'auto' }}>
+              <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <Label htmlFor="name">{t('contact.form.name')}</Label>
-                    <Input
-                      id="name"
-                      name="name"
-                      value={formData.name}
-                      onChange={handleInputChange}
-                      placeholder={t('contact.form.namePlaceholder')}
-                      required
-                    />
+                     <Input
+                       id="name"
+                       name="name"
+                       value={formData.name}
+                       onChange={handleInputChange}
+                       placeholder={t('contact.form.namePlaceholder')}
+                       required
+                       autoComplete="off"
+                     />
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="email">{t('contact.form.email')}</Label>
-                    <Input
-                      id="email"
-                      name="email"
-                      type="email"
-                      value={formData.email}
-                      onChange={handleInputChange}
-                      placeholder={t('contact.form.emailPlaceholder')}
-                      required
-                    />
+                     <Input
+                       id="email"
+                       name="email"
+                       type="email"
+                       value={formData.email}
+                       onChange={handleInputChange}
+                       placeholder={t('contact.form.emailPlaceholder')}
+                       required
+                       autoComplete="off"
+                     />
                   </div>
                 </div>
                 
                 <div className="grid md:grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <Label htmlFor="company">{t('contact.form.company')}</Label>
-                    <Input
-                      id="company"
-                      name="company"
-                      value={formData.company}
-                      onChange={handleInputChange}
-                      placeholder={t('contact.form.companyPlaceholder')}
-                    />
+                     <Input
+                       id="company"
+                       name="company"
+                       value={formData.company}
+                       onChange={handleInputChange}
+                       placeholder={t('contact.form.companyPlaceholder')}
+                       autoComplete="off"
+                     />
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="subject">{t('contact.form.subject')}</Label>
-                    <Input
-                      id="subject"
-                      name="subject"
-                      value={formData.subject}
-                      onChange={handleInputChange}
-                      placeholder={t('contact.form.subjectPlaceholder')}
-                      required
-                    />
+                     <Input
+                       id="subject"
+                       name="subject"
+                       value={formData.subject}
+                       onChange={handleInputChange}
+                       placeholder={t('contact.form.subjectPlaceholder')}
+                       required
+                       autoComplete="off"
+                     />
                   </div>
                 </div>
 
