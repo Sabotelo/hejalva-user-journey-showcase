@@ -55,74 +55,67 @@ const ContactSection = () => {
         </div>
 
         <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto mb-12">
-          <Dialog open={isOpen} onOpenChange={setIsOpen}>
-            <DialogTrigger asChild>
-              <Card className="demo-card p-6 text-center cursor-pointer hover:shadow-lg transition-shadow">
-                <div className="h-12 w-12 rounded-full bg-gradient-alva flex items-center justify-center mx-auto mb-4">
-                  <Mail className="h-6 w-6 text-white" />
-                </div>
-                <h3 className="font-semibold mb-2">{t('contact.info.email')}</h3>
-                <p className="text-primary hover:underline">
-                  dev@hejalva.com
-                </p>
-                <p className="text-sm text-muted-foreground mt-2">Click to send message</p>
-              </Card>
-            </DialogTrigger>
-            <DialogContent className="sm:max-w-md">
-              <DialogHeader>
-                <DialogTitle>Send us a message</DialogTitle>
-              </DialogHeader>
-              <form onSubmit={handleSubmit} className="space-y-4" onClick={(e) => console.log('Form clicked', e.target)}>
-                <div>
-                  <Input
-                    name="name"
-                    placeholder="Your name"
-                    value={messageForm.name}
-                    onChange={handleInputChange}
-                    onFocus={() => console.log('Name input focused')}
-                    onBlur={() => console.log('Name input blurred')}
-                    onClick={() => console.log('Name input clicked')}
-                    required
-                    className="w-full"
-                    autoComplete="off"
-                  />
-                </div>
-                <div>
-                  <Input
-                    name="email"
-                    type="email"
-                    placeholder="Your email"
-                    value={messageForm.email}
-                    onChange={handleInputChange}
-                    onFocus={() => console.log('Email input focused')}
-                    onBlur={() => console.log('Email input blurred')}
-                    onClick={() => console.log('Email input clicked')}
-                    required
-                    className="w-full"
-                    autoComplete="off"
-                  />
-                </div>
-                <div>
-                  <Textarea
-                    name="message"
-                    placeholder="Your message"
-                    value={messageForm.message}
-                    onChange={handleInputChange}
-                    onFocus={() => console.log('Message textarea focused')}
-                    onBlur={() => console.log('Message textarea blurred')}
-                    onClick={() => console.log('Message textarea clicked')}
-                    required
-                    rows={4}
-                    className="w-full resize-none"
-                  />
-                </div>
-                <Button type="submit" className="w-full">
-                  <Send className="mr-2 h-4 w-4" />
-                  Send Message
-                </Button>
-              </form>
-            </DialogContent>
-          </Dialog>
+          <Card className="demo-card p-6 text-center cursor-pointer hover:shadow-lg transition-shadow" onClick={() => setIsOpen(true)}>
+            <div className="h-12 w-12 rounded-full bg-gradient-alva flex items-center justify-center mx-auto mb-4">
+              <Mail className="h-6 w-6 text-white" />
+            </div>
+            <h3 className="font-semibold mb-2">{t('contact.info.email')}</h3>
+            <p className="text-primary hover:underline">
+              dev@hejalva.com
+            </p>
+            <p className="text-sm text-muted-foreground mt-2">Click to send message</p>
+          </Card>
+
+          {isOpen && (
+            <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50" onClick={() => setIsOpen(false)}>
+              <div className="bg-background p-6 rounded-lg shadow-lg max-w-md w-full mx-4" onClick={(e) => e.stopPropagation()}>
+                <h3 className="text-lg font-semibold mb-4">Send us a message</h3>
+                <form onSubmit={handleSubmit} className="space-y-4">
+                  <div>
+                    <input
+                      name="name"
+                      placeholder="Your name"
+                      value={messageForm.name}
+                      onChange={handleInputChange}
+                      required
+                      className="w-full px-3 py-2 border border-input rounded-md bg-background"
+                    />
+                  </div>
+                  <div>
+                    <input
+                      name="email"
+                      type="email"
+                      placeholder="Your email"
+                      value={messageForm.email}
+                      onChange={handleInputChange}
+                      required
+                      className="w-full px-3 py-2 border border-input rounded-md bg-background"
+                    />
+                  </div>
+                  <div>
+                    <textarea
+                      name="message"
+                      placeholder="Your message"
+                      value={messageForm.message}
+                      onChange={handleInputChange}
+                      required
+                      rows={4}
+                      className="w-full px-3 py-2 border border-input rounded-md bg-background resize-none"
+                    />
+                  </div>
+                  <div className="flex gap-2">
+                    <Button type="submit" className="flex-1">
+                      <Send className="mr-2 h-4 w-4" />
+                      Send Message
+                    </Button>
+                    <Button type="button" variant="outline" onClick={() => setIsOpen(false)}>
+                      Cancel
+                    </Button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          )}
 
           <Card className="demo-card p-6 text-center">
             <div className="h-12 w-12 rounded-full bg-gradient-alva flex items-center justify-center mx-auto mb-4">
