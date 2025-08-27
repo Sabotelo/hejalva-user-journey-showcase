@@ -56,10 +56,16 @@ const ContactSection = () => {
         </div>
 
         <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto mb-12">
-          <Card className="demo-card p-6 text-center cursor-pointer hover:shadow-lg transition-shadow" onClick={() => {
-            console.log('Email card clicked!');
-            setIsOpen(true);
-          }}>
+          <Card 
+            className="demo-card p-6 text-center cursor-pointer hover:shadow-lg transition-shadow" 
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              console.log('Email card clicked!');
+              setIsOpen(true);
+            }}
+            style={{ pointerEvents: 'auto', zIndex: 1 }}
+          >
             <div className="h-12 w-12 rounded-full bg-gradient-alva flex items-center justify-center mx-auto mb-4">
               <Mail className="h-6 w-6 text-white" />
             </div>
@@ -69,57 +75,6 @@ const ContactSection = () => {
             </p>
             <p className="text-sm text-muted-foreground mt-2">Click to send message</p>
           </Card>
-
-          {isOpen && (
-            <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50" onClick={() => setIsOpen(false)}>
-              <div className="bg-background p-6 rounded-lg shadow-lg max-w-md w-full mx-4" onClick={(e) => e.stopPropagation()}>
-                <h3 className="text-lg font-semibold mb-4">Send us a message</h3>
-                <form onSubmit={handleSubmit} className="space-y-4">
-                  <div>
-                    <input
-                      name="name"
-                      placeholder="Your name"
-                      value={messageForm.name}
-                      onChange={handleInputChange}
-                      required
-                      className="w-full px-3 py-2 border border-input rounded-md bg-background"
-                    />
-                  </div>
-                  <div>
-                    <input
-                      name="email"
-                      type="email"
-                      placeholder="Your email"
-                      value={messageForm.email}
-                      onChange={handleInputChange}
-                      required
-                      className="w-full px-3 py-2 border border-input rounded-md bg-background"
-                    />
-                  </div>
-                  <div>
-                    <textarea
-                      name="message"
-                      placeholder="Your message"
-                      value={messageForm.message}
-                      onChange={handleInputChange}
-                      required
-                      rows={4}
-                      className="w-full px-3 py-2 border border-input rounded-md bg-background resize-none"
-                    />
-                  </div>
-                  <div className="flex gap-2">
-                    <Button type="submit" className="flex-1">
-                      <Send className="mr-2 h-4 w-4" />
-                      Send Message
-                    </Button>
-                    <Button type="button" variant="outline" onClick={() => setIsOpen(false)}>
-                      Cancel
-                    </Button>
-                  </div>
-                </form>
-              </div>
-            </div>
-          )}
 
           <Card className="demo-card p-6 text-center">
             <div className="h-12 w-12 rounded-full bg-gradient-alva flex items-center justify-center mx-auto mb-4">
@@ -154,6 +109,66 @@ const ContactSection = () => {
           </Button>
         </div>
       </div>
+
+      {/* Modal rendered outside the main content for proper z-index */}
+      {isOpen && (
+        <div 
+          className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/50" 
+          onClick={() => setIsOpen(false)}
+        >
+          <div 
+            className="bg-background p-6 rounded-lg shadow-lg max-w-md w-full mx-4 relative z-[10000]" 
+            onClick={(e) => e.stopPropagation()}
+          >
+            <h3 className="text-lg font-semibold mb-4">Send us a message</h3>
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div>
+                <input
+                  name="name"
+                  placeholder="Your name"
+                  value={messageForm.name}
+                  onChange={handleInputChange}
+                  required
+                  className="w-full px-3 py-2 border border-input rounded-md bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
+                  autoComplete="off"
+                />
+              </div>
+              <div>
+                <input
+                  name="email"
+                  type="email"
+                  placeholder="Your email"
+                  value={messageForm.email}
+                  onChange={handleInputChange}
+                  required
+                  className="w-full px-3 py-2 border border-input rounded-md bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
+                  autoComplete="off"
+                />
+              </div>
+              <div>
+                <textarea
+                  name="message"
+                  placeholder="Your message"
+                  value={messageForm.message}
+                  onChange={handleInputChange}
+                  required
+                  rows={4}
+                  className="w-full px-3 py-2 border border-input rounded-md bg-background text-foreground resize-none focus:outline-none focus:ring-2 focus:ring-primary"
+                />
+              </div>
+              <div className="flex gap-2">
+                <Button type="submit" className="flex-1">
+                  <Send className="mr-2 h-4 w-4" />
+                  Send Message
+                </Button>
+                <Button type="button" variant="outline" onClick={() => setIsOpen(false)}>
+                  Cancel
+                </Button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </section>
   );
 };
