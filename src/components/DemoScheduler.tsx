@@ -43,6 +43,8 @@ export default function DemoScheduler() {
     message: ""
   });
 
+  console.log('DemoScheduler state:', { isOpen, isLoading });
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({
@@ -130,18 +132,25 @@ export default function DemoScheduler() {
   };
 
   return (
-    <Dialog open={isOpen} onOpenChange={setIsOpen}>
+    <Dialog open={isOpen} onOpenChange={(open) => {
+      console.log('Dialog state changing:', open);
+      setIsOpen(open);
+    }}>
       <DialogTrigger asChild>
         <Button 
           variant="outline" 
           size="lg" 
           className="text-lg px-8 py-4 border-2 border-primary/20 hover:border-primary/40 hover:bg-primary/5"
+          onClick={() => {
+            console.log('Button clicked!');
+            setIsOpen(true);
+          }}
         >
           <Clock className="mr-2 h-5 w-5" />
           Schedule Business Meeting
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[700px] max-h-[90vh] overflow-y-auto">
+      <DialogContent className="sm:max-w-[700px] max-h-[90vh] overflow-y-auto bg-background border shadow-xl z-50">
         <DialogHeader>
           <DialogTitle className="flex items-center text-2xl">
             <Clock className="mr-2 h-6 w-6" />
