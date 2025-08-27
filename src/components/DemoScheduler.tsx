@@ -32,6 +32,7 @@ const timeSlots = [
 export default function DemoScheduler() {
   const [isOpen, setIsOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [isCalendarOpen, setIsCalendarOpen] = useState(false);
   const [formData, setFormData] = useState<DemoScheduleData>({
     name: "",
     email: "",
@@ -97,8 +98,8 @@ export default function DemoScheduler() {
       if (error) throw error;
 
       toast({
-        title: "Demo Scheduled!",
-        description: "Your demo request has been submitted. We'll confirm your appointment shortly!",
+        title: "Meeting Scheduled!",
+        description: "Your business meeting request has been submitted. We'll contact you at +46 737 587 867 to confirm your appointment!",
       });
 
       setFormData({
@@ -137,15 +138,18 @@ export default function DemoScheduler() {
           className="text-lg px-8 py-4 border-2 border-primary/20 hover:border-primary/40 hover:bg-primary/5"
         >
           <Clock className="mr-2 h-5 w-5" />
-          Schedule Demo
+          Schedule Business Meeting
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[700px] max-h-[90vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle className="flex items-center text-2xl">
             <Clock className="mr-2 h-6 w-6" />
-            Schedule Your Demo
+            Schedule Business Meeting with Alva
           </DialogTitle>
+          <p className="text-muted-foreground mt-2">
+            We'll contact you at <strong>+46 737 587 867</strong> to confirm your meeting details.
+          </p>
         </DialogHeader>
         
         <Card className="p-6">
@@ -208,7 +212,7 @@ export default function DemoScheduler() {
             <div className="grid md:grid-cols-2 gap-4">
               <div className="space-y-2">
                 <Label>Preferred Date *</Label>
-                <Popover>
+                <Popover open={isCalendarOpen} onOpenChange={setIsCalendarOpen}>
                   <PopoverTrigger asChild>
                     <Button
                       variant="outline"
@@ -216,19 +220,23 @@ export default function DemoScheduler() {
                         "w-full justify-start text-left font-normal",
                         !formData.date && "text-muted-foreground"
                       )}
+                      onClick={() => setIsCalendarOpen(true)}
                     >
                       <CalendarIcon className="mr-2 h-4 w-4" />
                       {formData.date ? format(formData.date, "PPP") : "Pick a date"}
                     </Button>
                   </PopoverTrigger>
-                  <PopoverContent className="w-auto p-0" align="start">
+                  <PopoverContent className="w-auto p-0 bg-background border shadow-lg z-[100]" align="start">
                     <Calendar
                       mode="single"
                       selected={formData.date}
-                      onSelect={handleDateSelect}
+                      onSelect={(date) => {
+                        handleDateSelect(date);
+                        setIsCalendarOpen(false);
+                      }}
                       disabled={isDateDisabled}
                       initialFocus
-                      className="p-3 pointer-events-auto"
+                      className="p-3 pointer-events-auto bg-background"
                     />
                   </PopoverContent>
                 </Popover>
@@ -250,18 +258,18 @@ export default function DemoScheduler() {
               </div>
             </div>
             
-            <div className="space-y-2">
-              <Label htmlFor="message">Additional Message</Label>
-              <textarea
-                id="message"
-                name="message"
-                value={formData.message}
-                onChange={handleInputChange}
-                placeholder="Tell us about your business and what you'd like to see in the demo..."
-                className="flex min-h-[100px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                rows={4}
-              />
-            </div>
+              <div className="space-y-2">
+                <Label htmlFor="message">Additional Message</Label>
+                <textarea
+                  id="message"
+                  name="message"
+                  value={formData.message}
+                  onChange={handleInputChange}
+                  placeholder="Tell us about your business and what you'd like to discuss in our meeting..."
+                  className="flex min-h-[100px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                  rows={4}
+                />
+              </div>
             
             <div className="flex justify-end space-x-4 pt-4">
               <Button 
@@ -277,7 +285,7 @@ export default function DemoScheduler() {
                 disabled={isLoading}
                 className="bg-gradient-alva"
               >
-                {isLoading ? "Scheduling..." : "Schedule Demo"}
+                {isLoading ? "Scheduling..." : "Schedule Meeting"}
               </Button>
             </div>
           </form>
