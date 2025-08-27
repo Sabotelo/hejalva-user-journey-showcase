@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { ArrowRight, Sparkles } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
-import MeetingScheduler from "@/components/MeetingScheduler";
+import BusinessMeetingScheduler from "@/components/BusinessMeetingScheduler";
 
 const CTASection = () => {
   const { t } = useLanguage();
@@ -29,7 +29,7 @@ const CTASection = () => {
             </div>
             
               <div className="flex flex-col sm:flex-row gap-4 justify-center">    
-                <MeetingScheduler />
+                <BusinessMeetingScheduler />
             </div>
               
               <div className="flex items-center justify-center space-x-8 text-sm text-muted-foreground">
