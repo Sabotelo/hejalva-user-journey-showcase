@@ -7,6 +7,7 @@ import { Mail, Phone, MapPin, ArrowRight, Send } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useToast } from "@/hooks/use-toast";
 import { useState } from "react";
+import { supabase } from "@/lib/supabase";
 
 const ContactSection = () => {
   const { t } = useLanguage();
@@ -14,26 +15,68 @@ const ContactSection = () => {
   const [messageForm, setMessageForm] = useState({
     name: '',
     email: '',
+    phone: '',
     message: ''
   });
+  const [isLoading, setIsLoading] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
   console.log('ContactSection rendered, messageForm:', messageForm);
   console.log('ContactSection isOpen state:', isOpen);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     console.log('Form submitted:', messageForm);
     
-    // Here you would typically send the message to your backend
-    toast({
-      title: "Message sent!",
-      description: "Thank you for your message. We'll get back to you soon.",
-    });
-    
-    // Reset form and close dialog
-    setMessageForm({ name: '', email: '', message: '' });
-    setIsOpen(false);
+    if (!messageForm.name || !messageForm.email || !messageForm.message) {
+      toast({
+        title: "Error",
+        description: "Please fill in all required fields.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    setIsLoading(true);
+
+    try {
+      // Call the Supabase Edge Function to send email
+      const { data, error } = await supabase.functions.invoke('send-contact-email', {
+        body: {
+          name: messageForm.name,
+          email: messageForm.email,
+          phone: messageForm.phone,
+          message: messageForm.message,
+        },
+      });
+
+      if (error) {
+        console.error('Supabase function error:', error);
+        throw error;
+      }
+
+      if (data?.success) {
+        toast({
+          title: "Message sent!",
+          description: "Thank you for your message. We'll get back to you soon.",
+        });
+        
+        // Reset form and close dialog
+        setMessageForm({ name: '', email: '', phone: '', message: '' });
+        setIsOpen(false);
+      } else {
+        throw new Error(data?.error || 'Failed to send message');
+      }
+    } catch (error) {
+      console.error('Error sending message:', error);
+      toast({
+        title: "Error",
+        description: "Failed to send message. Please try again or contact us directly.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -125,43 +168,58 @@ const ContactSection = () => {
               <div>
                 <input
                   name="name"
-                  placeholder="Your name"
+                  placeholder="Your name *"
                   value={messageForm.name}
                   onChange={handleInputChange}
                   required
-                  className="w-full px-3 py-2 border border-input rounded-md bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
-                  autoComplete="off"
+                  disabled={isLoading}
+                  className="w-full px-3 py-2 border border-input rounded-md bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary disabled:opacity-50"
+                  autoComplete="name"
                 />
               </div>
               <div>
                 <input
                   name="email"
                   type="email"
-                  placeholder="Your email"
+                  placeholder="Your email *"
                   value={messageForm.email}
                   onChange={handleInputChange}
                   required
-                  className="w-full px-3 py-2 border border-input rounded-md bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
-                  autoComplete="off"
+                  disabled={isLoading}
+                  className="w-full px-3 py-2 border border-input rounded-md bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary disabled:opacity-50"
+                  autoComplete="email"
+                />
+              </div>
+              <div>
+                <input
+                  name="phone"
+                  type="tel"
+                  placeholder="Your phone (optional)"
+                  value={messageForm.phone}
+                  onChange={handleInputChange}
+                  disabled={isLoading}
+                  className="w-full px-3 py-2 border border-input rounded-md bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary disabled:opacity-50"
+                  autoComplete="tel"
                 />
               </div>
               <div>
                 <textarea
                   name="message"
-                  placeholder="Your message"
+                  placeholder="Your message *"
                   value={messageForm.message}
                   onChange={handleInputChange}
                   required
+                  disabled={isLoading}
                   rows={4}
-                  className="w-full px-3 py-2 border border-input rounded-md bg-background text-foreground resize-none focus:outline-none focus:ring-2 focus:ring-primary"
+                  className="w-full px-3 py-2 border border-input rounded-md bg-background text-foreground resize-none focus:outline-none focus:ring-2 focus:ring-primary disabled:opacity-50"
                 />
               </div>
               <div className="flex gap-2">
-                <Button type="submit" className="flex-1">
+                <Button type="submit" className="flex-1" disabled={isLoading}>
                   <Send className="mr-2 h-4 w-4" />
-                  Send Message
+                  {isLoading ? 'Sending...' : 'Send Message'}
                 </Button>
-                <Button type="button" variant="outline" onClick={() => setIsOpen(false)}>
+                <Button type="button" variant="outline" onClick={() => setIsOpen(false)} disabled={isLoading}>
                   Cancel
                 </Button>
               </div>
