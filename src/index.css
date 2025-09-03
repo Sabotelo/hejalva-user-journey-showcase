@@ -15,40 +15,40 @@
     --popover: 0 0% 100%;
     --popover-foreground: 230 15% 15%;
 
-    /* Alva brand colors - modern blue/teal palette */
-    --primary: 210 100% 65%;
+    /* Alva brand colors - rose gold palette matching logo */
+    --primary: 15 75% 70%;
     --primary-foreground: 0 0% 100%;
-    --primary-glow: 195 100% 70%;
-    --primary-dark: 225 85% 55%;
+    --primary-glow: 25 85% 80%;
+    --primary-dark: 10 65% 60%;
 
-    /* Accent - vibrant teal */
-    --secondary: 180 100% 60%;
+    /* Accent - warm rose */
+    --secondary: 345 70% 75%;
     --secondary-foreground: 0 0% 100%;
 
     --muted: 240 9% 89%;
     --muted-foreground: 240 5% 41%;
 
-    --accent: 210 30% 96%;
-    --accent-foreground: 210 100% 65%;
+    --accent: 15 30% 96%;
+    --accent-foreground: 15 75% 70%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
     --border: 240 6% 90%;
     --input: 240 6% 90%;
-    --ring: 210 100% 65%;
+    --ring: 15 75% 70%;
 
     /* Design system tokens - Alva rose gold theme */
     --radius: 0.75rem;
     
-    /* Modern blue/teal gradients */
+    /* Rose gold gradients matching logo */
     --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
-    --gradient-secondary: linear-gradient(135deg, hsl(var(--secondary)), hsl(180 100% 75%));
-    --gradient-alva: linear-gradient(135deg, hsl(225 85% 55%) 0%, hsl(210 100% 65%) 50%, hsl(195 100% 70%) 100%);
+    --gradient-secondary: linear-gradient(135deg, hsl(var(--secondary)), hsl(25 85% 80%));
+    --gradient-alva: linear-gradient(135deg, hsl(10 65% 60%) 0%, hsl(15 75% 70%) 50%, hsl(25 85% 80%) 100%);
     --gradient-card: linear-gradient(145deg, hsl(0 0% 100% / 0.9), hsl(210 30% 99% / 0.6));
     --gradient-subtle: linear-gradient(180deg, hsl(var(--background)), hsl(var(--accent) / 0.1));
     
-    /* Refined shadows with blue tint */
+    /* Refined shadows with rose gold tint */
     --shadow-primary: 0 10px 40px -10px hsl(var(--primary) / 0.3);
     --shadow-secondary: 0 10px 40px -10px hsl(var(--secondary) / 0.3);
     --shadow-card: 0 4px 20px -4px hsl(210 20% 20% / 0.1);
@@ -85,18 +85,18 @@
     --popover: 230 10% 12%;
     --popover-foreground: 340 30% 96%;
 
-    --primary: 210 100% 65%;
+    --primary: 15 75% 70%;
     --primary-foreground: 230 15% 9%;
-    --primary-glow: 195 100% 70%;
-    --primary-dark: 225 85% 55%;
+    --primary-glow: 25 85% 80%;
+    --primary-dark: 10 65% 60%;
 
-    --secondary: 180 100% 60%;
+    --secondary: 345 70% 75%;
     --secondary-foreground: 230 15% 9%;
 
     --muted: 230 10% 18%;
     --muted-foreground: 240 5% 64%;
 
-    --accent: 210 100% 65%;
+    --accent: 15 75% 70%;
     --accent-foreground: 230 15% 9%;
 
     --destructive: 0 62.8% 30.6%;
@@ -104,12 +104,12 @@
 
     --border: 230 10% 18%;
     --input: 230 10% 18%;
-    --ring: 210 100% 65%;
+    --ring: 15 75% 70%;
     
-    /* Dark mode gradients - blue/teal */
+    /* Dark mode gradients - rose gold */
     --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
-    --gradient-secondary: linear-gradient(135deg, hsl(var(--secondary)), hsl(180 100% 75%));
-    --gradient-alva: linear-gradient(135deg, hsl(225 85% 55%) 0%, hsl(210 100% 65%) 50%, hsl(195 100% 70%) 100%);
+    --gradient-secondary: linear-gradient(135deg, hsl(var(--secondary)), hsl(25 85% 80%));
+    --gradient-alva: linear-gradient(135deg, hsl(10 65% 60%) 0%, hsl(15 75% 70%) 50%, hsl(25 85% 80%) 100%);
     --gradient-card: linear-gradient(145deg, hsl(230 10% 12% / 0.9), hsl(230 10% 18% / 0.6));
     --gradient-subtle: linear-gradient(180deg, hsl(var(--background)), hsl(var(--accent) / 0.1));
     
