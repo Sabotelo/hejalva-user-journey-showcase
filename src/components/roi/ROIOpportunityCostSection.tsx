@@ -21,51 +21,39 @@ const ROIOpportunityCostSection = () => {
           </div>
 
           <Card className="demo-card p-8 md:p-12 bg-gradient-card animate-fade-in" style={{ animationDelay: '0.2s' }}>
-            <div className="space-y-6">
-              <div className="grid md:grid-cols-2 gap-6 text-muted-foreground">
+            <div className="space-y-8">
+              <p className="text-center text-xl text-muted-foreground">
+                {t('roi.opportunity.scenario')}
+              </p>
+
+              <div className="grid md:grid-cols-3 gap-6 text-center">
                 <div className="space-y-2">
-                  <p className="text-sm uppercase tracking-wide text-primary font-semibold">{t('roi.opportunity.assumption')}</p>
-                  <p>{t('roi.opportunity.assumptionText')} <span className="font-bold text-foreground text-2xl">3,000 SEK</span></p>
+                  <div className="text-4xl font-bold text-primary">4</div>
+                  <p className="text-sm text-muted-foreground">{t('roi.opportunity.missedPerDay')}</p>
                 </div>
                 <div className="space-y-2">
-                  <p className="text-sm uppercase tracking-wide text-primary font-semibold">{t('roi.opportunity.missedCalls')}</p>
-                  <p>{t('roi.opportunity.missedCallsText')} <span className="font-bold text-foreground text-2xl">4 {t('roi.opportunity.callsPerDay')}</span></p>
+                  <div className="text-4xl font-bold text-primary">84</div>
+                  <p className="text-sm text-muted-foreground">{t('roi.opportunity.perMonth')}</p>
+                </div>
+                <div className="space-y-2">
+                  <div className="text-4xl font-bold text-primary">5%</div>
+                  <p className="text-sm text-muted-foreground">{t('roi.opportunity.conversionRate')}</p>
                 </div>
               </div>
 
-              <div className="border-t border-border pt-6">
-                <div className="space-y-4 mb-6">
-                  <div className="flex items-center justify-center gap-2">
-                    <TrendingUp className="h-5 w-5 text-primary" />
-                    <p className="font-semibold text-foreground">
-                      <span className="text-primary">4 × 21 {t('roi.opportunity.workdays')}</span> <strong className="text-lg">{t('roi.opportunity.monthlyOpportunities')}</strong>
-                    </p>
-                  </div>
-                  
-                  <p className="text-center text-lg text-muted-foreground">
-                    {t('roi.opportunity.conversion')} <strong className="text-green-600 text-xl">5%</strong> {t('roi.opportunity.conversionSuffix')}
-                  </p>
-                  
-                  <div className="text-center space-y-2">
-                    <p className="text-lg text-muted-foreground">
-                      84 × 5% = <strong className="text-foreground text-xl">4 {t('roi.opportunity.newCustomers')}</strong>
-                    </p>
-                    <p className="text-lg text-muted-foreground">
-                      4 × 3,000 SEK = <strong className="text-foreground text-xl">12,000 SEK/{t('roi.opportunity.month')}</strong>
-                    </p>
-                    <p className="text-lg text-muted-foreground">
-                      12,000 × 12 {t('roi.opportunity.months')} =
-                    </p>
-                  </div>
-                </div>
+              <div className="text-center">
+                <TrendingUp className="h-8 w-8 text-primary mx-auto mb-4" />
+                <p className="text-lg text-muted-foreground mb-6">
+                  {t('roi.opportunity.impact')}
+                </p>
+              </div>
                 
-                <div className="text-center p-8 rounded-lg bg-gradient-alva relative overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-primary-glow/20 animate-pulse-slow"></div>
-                  <p className="relative text-5xl md:text-6xl font-bold text-white drop-shadow-lg">
-                    144,000 SEK
-                  </p>
-                  <p className="relative text-white/90 text-lg mt-2">{t('roi.opportunity.perYear')}</p>
-                </div>
+              <div className="text-center p-8 rounded-lg bg-gradient-alva relative overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-primary-glow/20 animate-pulse-slow"></div>
+                <p className="relative text-5xl md:text-6xl font-bold text-white drop-shadow-lg">
+                  144,000 SEK
+                </p>
+                <p className="relative text-white/90 text-lg mt-2">{t('roi.opportunity.additionalRevenue')}</p>
               </div>
             </div>
           </Card>
