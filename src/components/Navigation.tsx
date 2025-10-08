@@ -46,8 +46,8 @@ const Navigation = () => {
           <a href="#features" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
             {t('nav.features')}
           </a>
-          <a href="#pricing" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
-            {t('nav.pricing')}
+          <a href="/roi" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+            {t('nav.roi')}
           </a>
           <a href="/contact" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
             {t('nav.contact')}

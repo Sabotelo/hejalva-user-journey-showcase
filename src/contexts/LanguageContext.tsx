@@ -15,7 +15,7 @@ const translations: Translations = {
   // Navigation
   'nav.demo': { sv: 'Demo', en: 'Demo' },
   'nav.features': { sv: 'Funktioner', en: 'Features' },
-  'nav.pricing': { sv: 'Priser', en: 'Pricing' },
+  'nav.roi': { sv: 'ROI & Värde', en: 'ROI & Value' },
   'nav.contact': { sv: 'Kontakt', en: 'Contact' },
   'nav.signIn': { sv: 'Logga in', en: 'Sign In' },
   'nav.getStarted': { sv: 'Kom igång', en: 'Get Started' },

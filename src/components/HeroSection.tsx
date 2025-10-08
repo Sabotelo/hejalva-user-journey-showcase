@@ -30,6 +30,14 @@ const HeroSection = () => {
             >
               {t('hero.startDemo')}
             </Button>
+            <Button 
+              variant="outline" 
+              size="lg" 
+              className="text-lg px-8 py-3"
+              onClick={() => window.location.href = '/roi'}
+            >
+              See the ROI
+            </Button>
           </div>
           
           <div className="text-sm text-muted-foreground">

@@ -28,8 +28,16 @@ const CTASection = () => {
                 </p>
             </div>
             
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">    
-                <BusinessMeetingScheduler />
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">    
+              <BusinessMeetingScheduler />
+              <Button 
+                variant="outline" 
+                size="lg"
+                onClick={() => window.location.href = '/roi'}
+                className="text-lg"
+              >
+                View ROI Analysis
+              </Button>
             </div>
               
               <div className="flex items-center justify-center space-x-8 text-sm text-muted-foreground">
