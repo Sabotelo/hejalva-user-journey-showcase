@@ -233,7 +233,15 @@ const translations: Translations = {
     sv: 'Vad kostar missade samtal egentligen din verksamhet?', 
     en: 'What are missed calls actually costing your business?' 
   },
-  'roi.opportunity.scenario': { 
+  'roi.opportunity.assumption': { 
+    sv: 'Antagande', 
+    en: 'Assumption' 
+  },
+  'roi.opportunity.assumptionText': { 
+    sv: 'Genomsnittligt kundvärde:', 
+    en: 'Average customer value:' 
+  },
+  'roi.opportunity.scenario': {
     sv: 'Om din verksamhet missar bara 4 samtal per dag (84 per månad) och du konverterar bara 5% av dessa till kunder till 3,000 SEK vardera:', 
     en: 'If your business misses just 4 calls per day (84 per month) and you convert only 5% of these into customers at 3,000 SEK each:' 
   },

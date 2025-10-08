@@ -22,6 +22,15 @@ const ROIOpportunityCostSection = () => {
 
           <Card className="demo-card p-8 md:p-12 bg-gradient-card animate-fade-in" style={{ animationDelay: '0.2s' }}>
             <div className="space-y-8">
+              <div className="text-center pb-6 border-b border-border">
+                <p className="text-sm uppercase tracking-wide text-primary font-semibold mb-2">
+                  {t('roi.opportunity.assumption')}
+                </p>
+                <p className="text-lg text-muted-foreground">
+                  {t('roi.opportunity.assumptionText')} <span className="font-bold text-foreground text-2xl">3,000 SEK</span>
+                </p>
+              </div>
+
               <p className="text-center text-xl text-muted-foreground">
                 {t('roi.opportunity.scenario')}
               </p>
