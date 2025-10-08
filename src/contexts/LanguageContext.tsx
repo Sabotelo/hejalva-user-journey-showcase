@@ -140,7 +140,301 @@ const translations: Translations = {
   'contact.support.description': { sv: 'Vårt team är här för att hjälpa dig lyckas med Alva.', en: 'Our team is here to help you succeed with Alva.' },
   'contact.support.hours': { sv: 'Arbetstider', en: 'Business Hours' },
   'contact.support.response': { sv: 'Svarstid', en: 'Response Time' },
-  'contact.support.languages': { sv: 'Språk', en: 'Languages' }
+  'contact.support.languages': { sv: 'Språk', en: 'Languages' },
+
+  // ROI Page - Hero
+  'roi.hero.title': { 
+    sv: 'Frigör den fulla potentialen av', 
+    en: 'Unlock the Full Potential of' 
+  },
+  'roi.hero.titleHighlight': { 
+    sv: 'din företagstelefon', 
+    en: 'Your Business Phone' 
+  },
+  'roi.hero.subtitle': { 
+    sv: 'En guide för ambitiösa små och medelstora företag.', 
+    en: 'A guide for ambitious small and medium-sized businesses.' 
+  },
+
+  // ROI Page - Intro
+  'roi.intro.title': { 
+    sv: 'Introduktion: SME-ägarens dilemma', 
+    en: 'Introduction: The SME Owner\'s Dilemma' 
+  },
+  'roi.intro.p1': { 
+    sv: 'Som företagare är din telefon ett tveeggat svärd. Det är din direkta linje till nya kunder och kritiska möjligheter. Men det är också din största källa till avbrott, som drar dig bort från det kärnarbete som driver din verksamhet framåt.', 
+    en: 'As a business owner, your phone is a double-edged sword. It\'s your direct line to new customers and critical opportunities. But it\'s also your biggest source of interruptions, pulling you away from the core work that drives your business forward.' 
+  },
+  'roi.intro.p2': { 
+    sv: 'Du tvingas ständigt välja: svara på samtalet och förlora fokus, eller ignorera det och riskera att förlora en kund för alltid.', 
+    en: 'You\'re constantly forced to choose: answer the call and lose focus, or ignore it and risk losing a customer forever.' 
+  },
+  'roi.intro.p3': { 
+    sv: 'Denna rapport kvantifierar den verkliga kostnaden för detta dilemma och introducerar ett nytt sätt att arbeta. Ett sätt där du kan fånga varje möjlighet utan att offra ditt fokus, och förvandla din telefon från en stressfaktor till din mest värdefulla tillgång.', 
+    en: 'This report quantifies the real cost of this dilemma and introduces a new way to operate. A way where you can capture every opportunity without sacrificing your focus, turning your phone from a source of stress into your most valuable asset.' 
+  },
+
+  // ROI Page - Challenge
+  'roi.challenge.title': { 
+    sv: 'Utmaningen: Den verkliga kostnaden av ett missat samtal', 
+    en: 'The Challenge: The True Cost of a Missed Call' 
+  },
+  'roi.challenge.intro': { 
+    sv: 'Branschdata är tydlig:', 
+    en: 'Industry data is clear:' 
+  },
+  'roi.challenge.stat': { 
+    sv: 'över 60% av samtalen till småföretag förblir obesvarade', 
+    en: 'over 60% of calls to small businesses go unanswered' 
+  },
+  'roi.challenge.statSuffix': { 
+    sv: '. Vart och ett av dessa samtal är inte bara en missad kontakt; det är en påtaglig förlust.', 
+    en: '. Each one of those calls isn\'t just a missed connection; it\'s a tangible loss.' 
+  },
+  'roi.challenge.lostRevenue': { 
+    sv: 'Förlorad intäkt', 
+    en: 'Lost Revenue' 
+  },
+  'roi.challenge.lostRevenueDesc': { 
+    sv: 'En ny kund som omedelbart ringer din konkurrent.', 
+    en: 'A new customer who immediately calls your competitor.' 
+  },
+  'roi.challenge.damagedRep': { 
+    sv: 'Skadat rykte', 
+    en: 'Damaged Reputation' 
+  },
+  'roi.challenge.damagedRepDesc': { 
+    sv: 'En befintlig kund som känner att deras affärer inte värderas.', 
+    en: 'An existing customer who feels their business isn\'t valued.' 
+  },
+  'roi.challenge.interruptions': { 
+    sv: 'Konstanta avbrott', 
+    en: 'Constant Interruptions' 
+  },
+  'roi.challenge.interruptionsDesc': { 
+    sv: 'Din egen värdefulla tid och fokus, splittrad av behovet att vara din egen receptionist.', 
+    en: 'Your own valuable time and focus, shattered by the need to be your own receptionist.' 
+  },
+  'roi.challenge.footer': { 
+    sv: 'Din telefonoperatör ser till att samtalet kommer fram.', 
+    en: 'Your phone service ensures the call gets through.' 
+  },
+  'roi.challenge.footerHighlight': { 
+    sv: 'Alva ser till att möjligheten fångas.', 
+    en: 'Alva ensures the opportunity is captured.' 
+  },
+
+  // ROI Page - Opportunity Cost
+  'roi.opportunity.title': { 
+    sv: 'Kvantifiera möjlighetskostnaden', 
+    en: 'Quantifying the Opportunity Cost' 
+  },
+  'roi.opportunity.subtitle': { 
+    sv: 'Låt oss sätta riktiga siffror på detta. Vad kostar ett missat samtal egentligen din verksamhet?', 
+    en: 'Let\'s put real numbers on this. What is a missed call actually costing your business?' 
+  },
+  'roi.opportunity.assumption': { 
+    sv: 'Antagande', 
+    en: 'Assumption' 
+  },
+  'roi.opportunity.assumptionText': { 
+    sv: 'Det genomsnittliga värdet av en ny kund är', 
+    en: 'The average value of a new customer is' 
+  },
+  'roi.opportunity.missedCalls': { 
+    sv: 'Missade samtal', 
+    en: 'Missed Calls' 
+  },
+  'roi.opportunity.missedCallsText': { 
+    sv: 'Din verksamhet missar bara', 
+    en: 'Your business misses just' 
+  },
+  'roi.opportunity.callsPerDay': { 
+    sv: 'samtal per dag', 
+    en: 'calls per day' 
+  },
+  'roi.opportunity.calculation': { 
+    sv: 'missade samtal/dag', 
+    en: 'missed calls/day' 
+  },
+  'roi.opportunity.workdays': { 
+    sv: '21 arbetsdagar =', 
+    en: '21 workdays =' 
+  },
+  'roi.opportunity.monthlyOpportunities': { 
+    sv: '84 missade möjligheter per månad', 
+    en: '84 missed opportunities per month' 
+  },
+  'roi.opportunity.conversion': { 
+    sv: 'Om du kunde konvertera bara', 
+    en: 'If you could convert just' 
+  },
+  'roi.opportunity.conversionSuffix': { 
+    sv: 'av dessa missade samtal (cirka 4 nya kunder per månad), skulle det bli:', 
+    en: 'of those missed calls (about 4 new customers a month), that would be:' 
+  },
+  'roi.opportunity.annualRevenue': { 
+    sv: 'i ytterligare årlig intäkt', 
+    en: 'in additional annual revenue' 
+  },
+
+  // ROI Page - Solution
+  'roi.solution.title': { 
+    sv: 'Lösningen:', 
+    en: 'The Solution:' 
+  },
+  'roi.solution.titleHighlight': { 
+    sv: 'Alva – Din intelligenta AI-receptionist', 
+    en: 'Alva – Your Intelligent AI Receptionist' 
+  },
+  'roi.solution.subtitle': { 
+    sv: 'Alva är en AI-driven receptionist särskilt utformad för SME. Hon integreras med ditt befintliga företagsnummer för att ge ett omedelbart, intelligent och professionellt svar på varje enskilt samtal, 24/7.', 
+    en: 'Alva is an AI-driven receptionist designed specifically for SMEs. She integrates with your existing business number to provide an immediate, intelligent, and professional response to every single call, 24/7.' 
+  },
+  'roi.solution.callCapture': { 
+    sv: '100% Samtalsupptagning', 
+    en: '100% Call Capture' 
+  },
+  'roi.solution.callCaptureDesc': { 
+    sv: 'Missa aldrig ett samtal igen. Alva svarar omedelbart, varje gång.', 
+    en: 'Never miss a call again. Alva answers instantly, every time.' 
+  },
+  'roi.solution.booking': { 
+    sv: 'Automatisk mötesbokning', 
+    en: 'Automated Appointment Booking' 
+  },
+  'roi.solution.bookingDesc': { 
+    sv: 'Alva kollar din kalender och bokar möten åt dig, sparar timmar av administrativt arbete.', 
+    en: 'Alva checks your calendar and books appointments for you, saving hours of admin time.' 
+  },
+  'roi.solution.impression': { 
+    sv: 'Professionellt första intryck', 
+    en: 'Professional First Impression' 
+  },
+  'roi.solution.impressionDesc': { 
+    sv: 'Hälsa varje kund med en tydlig, artig och hjälpsam röst som speglar kvaliteten på din verksamhet.', 
+    en: 'Greet every customer with a clear, polite, and helpful voice that reflects the quality of your business.' 
+  },
+  'roi.solution.summaries': { 
+    sv: 'Samtalssammanfattningar', 
+    en: 'Call Summaries' 
+  },
+  'roi.solution.summariesDesc': { 
+    sv: 'Få en koncis sammanfattning av varje konversation skickad direkt till din e-post, så att du alltid är uppdaterad.', 
+    en: 'Get a concise summary of every conversation sent directly to your email, so you\'re always in the loop.' 
+  },
+
+  // ROI Page - Comparison
+  'roi.comparison.title': { 
+    sv: 'Automatiseringens ROI:', 
+    en: 'The ROI of Automation:' 
+  },
+  'roi.comparison.titleHighlight': { 
+    sv: 'En direkt jämförelse', 
+    en: 'A Direct Comparison' 
+  },
+  'roi.comparison.subtitle': { 
+    sv: 'Se skillnaden Alva gör för din verksamhet', 
+    en: 'See the difference Alva makes for your business' 
+  },
+  'roi.comparison.customerExp': { 
+    sv: 'Kundupplevelse', 
+    en: 'Customer Experience' 
+  },
+  'roi.comparison.customerExpOld': { 
+    sv: 'Frustrerande röstbrevlåda, förseningar, missade samtal', 
+    en: 'Frustrating voicemail, delays, missed calls' 
+  },
+  'roi.comparison.customerExpNew': { 
+    sv: 'Omedelbar, professionell, 24/7 service', 
+    en: 'Instant, professional, 24/7 service' 
+  },
+  'roi.comparison.focus': { 
+    sv: 'Ditt fokus', 
+    en: 'Your Focus' 
+  },
+  'roi.comparison.focusOld': { 
+    sv: 'Konstant avbruten, delad uppmärksamhet', 
+    en: 'Constantly interrupted, split attention' 
+  },
+  'roi.comparison.focusNew': { 
+    sv: 'Oavbrutet fokus på kärnarbete', 
+    en: 'Uninterrupted focus on core work' 
+  },
+  'roi.comparison.leadCapture': { 
+    sv: 'Lead-fångst', 
+    en: 'Lead Capture' 
+  },
+  'roi.comparison.leadCaptureOld': { 
+    sv: 'Hög risk att förlora leads till konkurrenter', 
+    en: 'High risk of losing leads to competitors' 
+  },
+  'roi.comparison.leadCaptureNew': { 
+    sv: '100% av inkommande möjligheter fångade', 
+    en: '100% of inbound opportunities captured' 
+  },
+  'roi.comparison.data': { 
+    sv: 'Data & insikter', 
+    en: 'Data & Insights' 
+  },
+  'roi.comparison.dataOld': { 
+    sv: 'Ingen data, bara en lista över missade samtal', 
+    en: 'No data, just a list of missed calls' 
+  },
+  'roi.comparison.dataNew': { 
+    sv: 'Automatiska sammanfattningar & insikter', 
+    en: 'Automated summaries & insights' 
+  },
+  'roi.comparison.footer': { 
+    sv: 'ROI är omedelbar. Genom att fånga bara', 
+    en: 'The ROI is immediate. By capturing just' 
+  },
+  'roi.comparison.footerHighlight': { 
+    sv: 'en ytterligare kund', 
+    en: 'one additional customer' 
+  },
+  'roi.comparison.footerSuffix': { 
+    sv: 'som annars skulle ha varit ett missat samtal, har Alva redan betalat för sin månatliga prenumeration flera gånger om.', 
+    en: 'that would have otherwise been a missed call, Alva has already paid for its monthly subscription several times over.' 
+  },
+
+  // ROI Page - Conclusion
+  'roi.conclusion.title': { 
+    sv: 'Förvandla din telefonlinje till', 
+    en: 'Turn Your Phone Line into' 
+  },
+  'roi.conclusion.titleHighlight': { 
+    sv: 'din bästa anställda', 
+    en: 'Your Best Employee' 
+  },
+  'roi.conclusion.subtitle': { 
+    sv: 'Din företagstelefon är mer än bara ett verktyg—det är din primära tillväxtmotor. Det är dags att utrusta den med den intelligens den förtjänar.', 
+    en: 'Your business phone is more than just a utility—it\'s your primary engine for growth. It\'s time to equip it with the intelligence it deserves.' 
+  },
+  'roi.conclusion.cta': { 
+    sv: 'Sluta förlora kunder till din röstbrevlåda. Låt Alva förvandla varje samtal till en affärsmöjlighet.', 
+    en: 'Stop losing customers to your voicemail. Let Alva turn every call into a business opportunity.' 
+  },
+  'roi.conclusion.demoButton': { 
+    sv: 'Boka en 15-minuters demo', 
+    en: 'Request a 15-Minute Demo' 
+  },
+  'roi.conclusion.contactButton': { 
+    sv: 'Kontakta oss', 
+    en: 'Contact Us' 
+  },
+  'roi.conclusion.freeTrial': { 
+    sv: 'Gratis 14-dagars provperiod', 
+    en: 'Free 14-day trial' 
+  },
+  'roi.conclusion.noCard': { 
+    sv: 'Inget kreditkort krävs', 
+    en: 'No credit card required' 
+  },
+  'roi.conclusion.setupMinutes': { 
+    sv: 'Installation på minuter', 
+    en: 'Setup in minutes' 
+  }
 };
 
 interface LanguageContextType {

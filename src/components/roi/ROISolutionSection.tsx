@@ -1,27 +1,30 @@
 import { Card } from "@/components/ui/card";
 import { Phone, Calendar, Mail, Star, Sparkles } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const ROISolutionSection = () => {
+  const { t } = useLanguage();
+  
   const features = [
     {
       icon: Phone,
-      title: "100% Call Capture",
-      description: "Never miss a call again. Alva answers instantly, every time."
+      title: t('roi.solution.callCapture'),
+      description: t('roi.solution.callCaptureDesc')
     },
     {
       icon: Calendar,
-      title: "Automated Appointment Booking",
-      description: "Alva checks your calendar and books appointments for you, saving hours of admin time."
+      title: t('roi.solution.booking'),
+      description: t('roi.solution.bookingDesc')
     },
     {
       icon: Star,
-      title: "Professional First Impression",
-      description: "Greet every customer with a clear, polite, and helpful voice that reflects the quality of your business."
+      title: t('roi.solution.impression'),
+      description: t('roi.solution.impressionDesc')
     },
     {
       icon: Mail,
-      title: "Call Summaries",
-      description: "Get a concise summary of every conversation sent directly to your email, so you're always in the loop."
+      title: t('roi.solution.summaries'),
+      description: t('roi.solution.summariesDesc')
     }
   ];
 
@@ -34,10 +37,10 @@ const ROISolutionSection = () => {
               <Sparkles className="h-8 w-8 text-white" />
             </div>
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              The Solution: <span className="text-gradient">Alva – Your Intelligent AI Receptionist</span>
+              {t('roi.solution.title')} <span className="text-gradient">{t('roi.solution.titleHighlight')}</span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Alva is an AI-driven receptionist designed specifically for SMEs. She integrates with your existing business number to provide an immediate, intelligent, and professional response to every single call, 24/7.
+              {t('roi.solution.subtitle')}
             </p>
           </div>
 

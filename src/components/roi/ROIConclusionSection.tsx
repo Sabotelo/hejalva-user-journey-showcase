@@ -1,8 +1,10 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { ArrowRight, Sparkles } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const ROIConclusionSection = () => {
+  const { t } = useLanguage();
   return (
     <section className="py-20 bg-gradient-to-br from-accent/10 via-background to-primary/5">
       <div className="container mx-auto px-4">
@@ -16,15 +18,15 @@ const ROIConclusionSection = () => {
               </div>
               
               <h2 className="text-3xl md:text-5xl font-bold">
-                Turn Your Phone Line into <span className="text-gradient">Your Best Employee</span>
+                {t('roi.conclusion.title')} <span className="text-gradient">{t('roi.conclusion.titleHighlight')}</span>
               </h2>
               
               <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-                Your business phone is more than just a utility—it's your primary engine for growth. It's time to equip it with the intelligence it deserves.
+                {t('roi.conclusion.subtitle')}
               </p>
 
               <p className="text-primary text-xl font-semibold max-w-2xl mx-auto">
-                Stop losing customers to your voicemail. Let Alva turn every call into a business opportunity.
+                {t('roi.conclusion.cta')}
               </p>
             </div>
             
@@ -34,7 +36,7 @@ const ROIConclusionSection = () => {
                 className="bg-gradient-alva shadow-primary hover:shadow-elevated hover:scale-105 transition-all duration-300 text-lg px-8 py-3"
                 onClick={() => window.location.href = '/#demo'}
               >
-                Request a 15-Minute Demo
+                {t('roi.conclusion.demoButton')}
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
               
@@ -44,22 +46,22 @@ const ROIConclusionSection = () => {
                 className="text-lg px-8 py-3"
                 onClick={() => window.location.href = '/contact'}
               >
-                Contact Us
+                {t('roi.conclusion.contactButton')}
               </Button>
             </div>
             
             <div className="flex items-center justify-center space-x-8 text-sm text-muted-foreground">
               <div className="flex items-center">
                 <div className="w-2 h-2 bg-green-500 rounded-full mr-2"></div>
-                Free 14-day trial
+                {t('roi.conclusion.freeTrial')}
               </div>
               <div className="flex items-center">
                 <div className="w-2 h-2 bg-blue-500 rounded-full mr-2"></div>
-                No credit card required
+                {t('roi.conclusion.noCard')}
               </div>
               <div className="flex items-center">
                 <div className="w-2 h-2 bg-purple-500 rounded-full mr-2"></div>
-                Setup in minutes
+                {t('roi.conclusion.setupMinutes')}
               </div>
             </div>
           </div>

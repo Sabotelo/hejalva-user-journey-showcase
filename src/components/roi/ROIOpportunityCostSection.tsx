@@ -1,7 +1,9 @@
 import { Card } from "@/components/ui/card";
 import { Calculator, TrendingUp } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const ROIOpportunityCostSection = () => {
+  const { t } = useLanguage();
   return (
     <section className="py-20 bg-background">
       <div className="container mx-auto px-4">
@@ -11,10 +13,10 @@ const ROIOpportunityCostSection = () => {
               <Calculator className="h-8 w-8 text-primary" />
             </div>
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Quantifying the <span className="text-gradient">Opportunity Cost</span>
+              {t('roi.opportunity.title')}
             </h2>
             <p className="text-xl text-muted-foreground">
-              Let's put real numbers on this. What is a missed call actually costing your business?
+              {t('roi.opportunity.subtitle')}
             </p>
           </div>
 
@@ -22,12 +24,12 @@ const ROIOpportunityCostSection = () => {
             <div className="space-y-6">
               <div className="grid md:grid-cols-2 gap-6 text-muted-foreground">
                 <div className="space-y-2">
-                  <p className="text-sm uppercase tracking-wide text-primary font-semibold">Assumption</p>
-                  <p>The average value of a new customer is <span className="font-bold text-foreground text-2xl">3,000 SEK</span></p>
+                  <p className="text-sm uppercase tracking-wide text-primary font-semibold">{t('roi.opportunity.assumption')}</p>
+                  <p>{t('roi.opportunity.assumptionText')} <span className="font-bold text-foreground text-2xl">3,000 SEK</span></p>
                 </div>
                 <div className="space-y-2">
-                  <p className="text-sm uppercase tracking-wide text-primary font-semibold">Missed Calls</p>
-                  <p>Your business misses just <span className="font-bold text-foreground text-2xl">4 calls per day</span></p>
+                  <p className="text-sm uppercase tracking-wide text-primary font-semibold">{t('roi.opportunity.missedCalls')}</p>
+                  <p>{t('roi.opportunity.missedCallsText')} <span className="font-bold text-foreground text-2xl">4 {t('roi.opportunity.callsPerDay')}</span></p>
                 </div>
               </div>
 
@@ -35,12 +37,12 @@ const ROIOpportunityCostSection = () => {
                 <div className="flex items-center justify-center gap-2 mb-4">
                   <TrendingUp className="h-5 w-5 text-primary" />
                   <p className="font-semibold text-foreground">
-                    <span className="text-primary">4 missed calls/day</span> × 21 workdays = <strong className="text-lg">84 missed opportunities per month</strong>
+                    <span className="text-primary">4 {t('roi.opportunity.calculation')}</span> × {t('roi.opportunity.workdays')} <strong className="text-lg">{t('roi.opportunity.monthlyOpportunities')}</strong>
                   </p>
                 </div>
                 
                 <p className="text-center text-lg mb-6 text-muted-foreground">
-                  If you could convert just <strong className="text-green-600 text-xl">5%</strong> of those missed calls (about 4 new customers a month), that would be:
+                  {t('roi.opportunity.conversion')} <strong className="text-green-600 text-xl">5%</strong> {t('roi.opportunity.conversionSuffix')}
                 </p>
                 
                 <div className="text-center p-8 rounded-lg bg-gradient-alva relative overflow-hidden">
@@ -48,7 +50,7 @@ const ROIOpportunityCostSection = () => {
                   <p className="relative text-5xl md:text-6xl font-bold text-white drop-shadow-lg">
                     144,000 SEK
                   </p>
-                  <p className="relative text-white/90 text-lg mt-2">in additional annual revenue</p>
+                  <p className="relative text-white/90 text-lg mt-2">{t('roi.opportunity.annualRevenue')}</p>
                 </div>
               </div>
             </div>

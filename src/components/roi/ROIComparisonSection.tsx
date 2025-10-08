@@ -1,27 +1,30 @@
 import { Card } from "@/components/ui/card";
 import { Check, X } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const ROIComparisonSection = () => {
+  const { t } = useLanguage();
+  
   const comparisons = [
     {
-      feature: "Customer Experience",
-      oldWay: "Frustrating voicemail, delays, missed calls",
-      alvaWay: "Instant, professional, 24/7 service"
+      feature: t('roi.comparison.customerExp'),
+      oldWay: t('roi.comparison.customerExpOld'),
+      alvaWay: t('roi.comparison.customerExpNew')
     },
     {
-      feature: "Your Focus",
-      oldWay: "Constantly interrupted, split attention",
-      alvaWay: "Uninterrupted focus on core work"
+      feature: t('roi.comparison.focus'),
+      oldWay: t('roi.comparison.focusOld'),
+      alvaWay: t('roi.comparison.focusNew')
     },
     {
-      feature: "Lead Capture",
-      oldWay: "High risk of losing leads to competitors",
-      alvaWay: "100% of inbound opportunities captured"
+      feature: t('roi.comparison.leadCapture'),
+      oldWay: t('roi.comparison.leadCaptureOld'),
+      alvaWay: t('roi.comparison.leadCaptureNew')
     },
     {
-      feature: "Data & Insights",
-      oldWay: "No data, just a list of missed calls",
-      alvaWay: "Automated summaries & insights"
+      feature: t('roi.comparison.data'),
+      oldWay: t('roi.comparison.dataOld'),
+      alvaWay: t('roi.comparison.dataNew')
     }
   ];
 
@@ -31,10 +34,10 @@ const ROIComparisonSection = () => {
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-12 animate-fade-in">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              The ROI of Automation: <span className="text-gradient">A Direct Comparison</span>
+              {t('roi.comparison.title')} <span className="text-gradient">{t('roi.comparison.titleHighlight')}</span>
             </h2>
             <p className="text-xl text-muted-foreground">
-              See the difference Alva makes for your business
+              {t('roi.comparison.subtitle')}
             </p>
           </div>
 
@@ -75,7 +78,7 @@ const ROIComparisonSection = () => {
           <Card className="demo-card mt-8 p-8 bg-gradient-to-br from-green-50 to-green-100 dark:from-green-950 dark:to-green-900 border-green-200 dark:border-green-800 animate-fade-in" style={{ animationDelay: '0.4s' }}>
             <div className="text-center">
               <p className="text-lg text-muted-foreground leading-relaxed">
-                The ROI is immediate. By capturing just <strong className="text-green-700 dark:text-green-400 text-xl">one additional customer</strong> that would have otherwise been a missed call, Alva has already paid for its monthly subscription several times over.
+                {t('roi.comparison.footer')} <strong className="text-green-700 dark:text-green-400 text-xl">{t('roi.comparison.footerHighlight')}</strong> {t('roi.comparison.footerSuffix')}
               </p>
             </div>
           </Card>

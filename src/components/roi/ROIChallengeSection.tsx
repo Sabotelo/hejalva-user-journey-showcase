@@ -1,22 +1,25 @@
 import { Card } from "@/components/ui/card";
 import { PhoneOff, TrendingDown, Clock, AlertTriangle } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const ROIChallengeSection = () => {
+  const { t } = useLanguage();
+  
   const challenges = [
     {
       icon: TrendingDown,
-      title: "Lost Revenue",
-      description: "A new customer who immediately calls your competitor."
+      title: t('roi.challenge.lostRevenue'),
+      description: t('roi.challenge.lostRevenueDesc')
     },
     {
       icon: AlertTriangle,
-      title: "Damaged Reputation",
-      description: "An existing customer who feels their business isn't valued."
+      title: t('roi.challenge.damagedRep'),
+      description: t('roi.challenge.damagedRepDesc')
     },
     {
       icon: Clock,
-      title: "Constant Interruptions",
-      description: "Your own valuable time and focus, shattered by the need to be your own receptionist."
+      title: t('roi.challenge.interruptions'),
+      description: t('roi.challenge.interruptionsDesc')
     }
   ];
 
@@ -29,10 +32,10 @@ const ROIChallengeSection = () => {
               <PhoneOff className="h-8 w-8 text-destructive" />
             </div>
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              The Challenge: <span className="text-gradient">The True Cost of a Missed Call</span>
+              {t('roi.challenge.title')}
             </h2>
             <p className="text-xl text-muted-foreground">
-              Industry data is clear: <strong className="text-destructive">over 60% of calls to small businesses go unanswered</strong>. Each one of those calls isn't just a missed connection; it's a tangible loss.
+              {t('roi.challenge.intro')} <strong className="text-destructive">{t('roi.challenge.stat')}</strong>{t('roi.challenge.statSuffix')}
             </p>
           </div>
 
@@ -54,7 +57,7 @@ const ROIChallengeSection = () => {
 
           <Card className="demo-card p-6 bg-accent/50 border-primary/20 animate-fade-in" style={{ animationDelay: '0.3s' }}>
             <p className="text-center text-muted-foreground leading-relaxed">
-              Your phone service ensures the call gets through. <strong className="text-primary text-lg">Alva ensures the opportunity is captured.</strong>
+              {t('roi.challenge.footer')} <strong className="text-primary text-lg">{t('roi.challenge.footerHighlight')}</strong>
             </p>
           </Card>
         </div>

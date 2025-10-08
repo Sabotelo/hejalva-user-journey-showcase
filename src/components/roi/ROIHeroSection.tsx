@@ -1,6 +1,8 @@
 import AlvaLogo from "@/components/AlvaLogo";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const ROIHeroSection = () => {
+  const { t } = useLanguage();
   return (
     <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-background via-accent/20 to-background">
       {/* Animated background elements */}
@@ -17,11 +19,11 @@ const ROIHeroSection = () => {
           </div>
           
           <h1 className="mb-6 text-4xl font-bold leading-tight md:text-5xl lg:text-6xl animate-fade-in">
-            Unlock the Full Potential of <span className="text-gradient">Your Business Phone</span>
+            {t('roi.hero.title')} <span className="text-gradient">{t('roi.hero.titleHighlight')}</span>
           </h1>
           
           <p className="text-xl text-muted-foreground md:text-2xl max-w-2xl mx-auto animate-fade-in" style={{ animationDelay: '0.2s' }}>
-            A guide for ambitious small and medium-sized businesses.
+            {t('roi.hero.subtitle')}
           </p>
         </div>
       </div>

@@ -1,7 +1,9 @@
 import { Card } from "@/components/ui/card";
 import { AlertCircle } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const ROIIntroSection = () => {
+  const { t } = useLanguage();
   return (
     <section className="py-20 bg-background">
       <div className="container mx-auto px-4">
@@ -12,20 +14,20 @@ const ROIIntroSection = () => {
             </div>
             <div>
               <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
-                Introduction: The SME Owner's Dilemma
+                {t('roi.intro.title')}
               </h2>
             </div>
           </div>
           
           <div className="space-y-4 text-muted-foreground leading-relaxed">
             <p>
-              As a business owner, your phone is a double-edged sword. It's your direct line to new customers and critical opportunities. But it's also your biggest source of interruptions, pulling you away from the core work that drives your business forward.
+              {t('roi.intro.p1')}
             </p>
             <p>
-              You're constantly forced to choose: answer the call and lose focus, or ignore it and risk losing a customer forever.
+              {t('roi.intro.p2')}
             </p>
             <p className="font-semibold text-foreground">
-              This report quantifies the real cost of this dilemma and introduces a new way to operate. A way where you can capture every opportunity without sacrificing your focus, turning your phone from a source of stress into your most valuable asset.
+              {t('roi.intro.p3')}
             </p>
           </div>
         </Card>
