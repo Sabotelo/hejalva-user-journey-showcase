@@ -35,15 +35,15 @@ const Navigation = () => {
   return (
     <nav className="fixed top-0 z-50 w-full border-b border-border/40 bg-background/80 backdrop-blur-md">
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
-        <div className="flex items-center">
+        <a href="/" className="flex items-center cursor-pointer hover:opacity-80 transition-opacity">
           <AlvaLogo size={40} />
-        </div>
+        </a>
         
         <div className="hidden md:flex items-center space-x-6">
-          <a href="#demo" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+          <a href="/#demo" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
             {t('nav.demo')}
           </a>
-          <a href="#features" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+          <a href="/#features" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
             {t('nav.features')}
           </a>
           <a href="/roi" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
