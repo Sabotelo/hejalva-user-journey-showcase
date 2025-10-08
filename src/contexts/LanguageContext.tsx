@@ -266,12 +266,24 @@ const translations: Translations = {
     en: 'If you could convert just' 
   },
   'roi.opportunity.conversionSuffix': { 
-    sv: 'av dessa missade samtal (cirka 4 nya kunder per månad), skulle det bli:', 
-    en: 'of those missed calls (about 4 new customers a month), that would be:' 
+    sv: 'av dessa missade samtal skulle det leda till:', 
+    en: 'of those missed calls, that would lead to:' 
   },
-  'roi.opportunity.annualRevenue': { 
-    sv: 'i ytterligare årlig intäkt', 
-    en: 'in additional annual revenue' 
+  'roi.opportunity.newCustomers': { 
+    sv: 'nya kunder/månad', 
+    en: 'new customers/month' 
+  },
+  'roi.opportunity.month': { 
+    sv: 'månad', 
+    en: 'month' 
+  },
+  'roi.opportunity.months': { 
+    sv: 'månader', 
+    en: 'months' 
+  },
+  'roi.opportunity.perYear': { 
+    sv: 'per år', 
+    en: 'per year' 
   },
 
   // ROI Page - Solution
