@@ -430,7 +430,56 @@ const translations: Translations = {
   'roi.conclusion.setupMinutes': { 
     sv: 'Installation på minuter', 
     en: 'Setup in minutes' 
-  }
+  },
+
+  // Demo Page
+  'demoPage.title': { 
+    sv: 'Boka en demo med Alva', 
+    en: 'Request a Demo with Alva' 
+  },
+  'demoPage.subtitle': { 
+    sv: 'Fyll i formuläret nedan så kontaktar vi dig för att schemalägga en 15-minuters demo där vi visar hur Alva kan hjälpa din verksamhet.', 
+    en: 'Fill out the form below and we\'ll get in touch to schedule a 15-minute demo showing how Alva can help your business.' 
+  },
+  'demoPage.formTitle': { 
+    sv: 'Boka din demo', 
+    en: 'Schedule Your Demo' 
+  },
+  'demoPage.contactNote': { 
+    sv: 'Vi kontaktar dig på +46 737 587 867 för att bekräfta din mötesbokning.', 
+    en: 'We\'ll contact you at +46 737 587 867 to confirm your meeting details.' 
+  },
+  'demoPage.name': { sv: 'Namn', en: 'Full Name' },
+  'demoPage.namePlaceholder': { sv: 'Ange ditt fullständiga namn', en: 'Enter your full name' },
+  'demoPage.email': { sv: 'E-post', en: 'Email Address' },
+  'demoPage.emailPlaceholder': { sv: 'Ange din e-postadress', en: 'Enter your email address' },
+  'demoPage.phone': { sv: 'Telefon', en: 'Phone Number' },
+  'demoPage.phonePlaceholder': { sv: 'Ange ditt telefonnummer', en: 'Enter your phone number' },
+  'demoPage.business': { sv: 'Företagsnamn', en: 'Business Name' },
+  'demoPage.businessPlaceholder': { sv: 'Ange ditt företagsnamn', en: 'Enter your business name' },
+  'demoPage.date': { sv: 'Önskat datum', en: 'Preferred Date' },
+  'demoPage.pickDate': { sv: 'Välj ett datum', en: 'Pick a date' },
+  'demoPage.time': { sv: 'Önskad tid', en: 'Preferred Time' },
+  'demoPage.pickTime': { sv: 'Välj en tid', en: 'Choose a time' },
+  'demoPage.message': { sv: 'Meddelande', en: 'Additional Message' },
+  'demoPage.messagePlaceholder': { 
+    sv: 'Berätta om din verksamhet och vad du vill diskutera under mötet...', 
+    en: 'Tell us about your business and what you\'d like to discuss in our meeting...' 
+  },
+  'demoPage.cancel': { sv: 'Avbryt', en: 'Cancel' },
+  'demoPage.submit': { sv: 'Skicka förfrågan', en: 'Submit Request' },
+  'demoPage.submitting': { sv: 'Skickar...', en: 'Submitting...' },
+  'demoPage.dateRequired': { sv: 'Datum krävs', en: 'Date Required' },
+  'demoPage.dateRequiredDesc': { sv: 'Välj ett datum för din demo.', en: 'Please select a date for your demo.' },
+  'demoPage.timeRequired': { sv: 'Tid krävs', en: 'Time Required' },
+  'demoPage.timeRequiredDesc': { sv: 'Välj en tid för din demo.', en: 'Please select a time for your demo.' },
+  'demoPage.success': { sv: 'Demo bokad!', en: 'Demo Requested!' },
+  'demoPage.successDesc': { 
+    sv: 'Din demoförfrågan har skickats. Vi kontaktar dig på +46 737 587 867 för att bekräfta din bokning!', 
+    en: 'Your demo request has been submitted. We\'ll contact you at +46 737 587 867 to confirm your appointment!' 
+  },
+  'demoPage.error': { sv: 'Fel', en: 'Error' },
+  'demoPage.errorDesc': { sv: 'Kunde inte skicka demoförfrågan. Försök igen.', en: 'Failed to submit demo request. Please try again.' }
 };
 
 interface LanguageContextType {

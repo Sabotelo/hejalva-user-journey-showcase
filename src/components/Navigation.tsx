@@ -40,7 +40,7 @@ const Navigation = () => {
         </a>
         
         <div className="hidden md:flex items-center space-x-6">
-          <a href="/#demo" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+          <a href="/demo" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
             {t('nav.demo')}
           </a>
           <a href="/#features" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
