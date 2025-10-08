@@ -6,6 +6,7 @@ import { AuthModal } from "@/components/auth/AuthModal";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Menu, X, Globe, User, Settings, LogOut } from "lucide-react";
+import AlvaLogo from "@/components/AlvaLogo";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -34,13 +35,8 @@ const Navigation = () => {
   return (
     <nav className="fixed top-0 z-50 w-full border-b border-border/40 bg-background/80 backdrop-blur-md">
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
-        <div className="flex items-center space-x-3">
-          <img 
-            src="/lovable-uploads/5b8a0a00-5db6-4567-9a99-84d428737d59.png" 
-            alt="Alva Logo" 
-            className="h-8 w-8 object-contain"
-          />
-          <span className="text-xl font-bold text-gradient">alva</span>
+        <div className="flex items-center">
+          <AlvaLogo size={40} />
         </div>
         
         <div className="hidden md:flex items-center space-x-6">

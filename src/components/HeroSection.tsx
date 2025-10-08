@@ -15,17 +15,7 @@ const HeroSection = () => {
       <div className="container relative z-10 mx-auto px-4 text-center">
         <div className="mx-auto max-w-4xl">
           <h1 className="mb-6 text-4xl font-bold leading-tight md:text-6xl lg:text-7xl">
-            {t('hero.title').split('interaktiva demos').length > 1 ? (
-              <>
-                {t('hero.title').split('interaktiva demos')[0]}
-                <span className="text-gradient">interaktiva demos</span>
-              </>
-            ) : (
-              <>
-                {t('hero.title').split('Interactive Demos')[0]}
-                <span className="text-gradient">Interactive Demos</span>
-              </>
-            )}
+            {t('hero.title')}
           </h1>
           
           <p className="mb-8 text-lg text-muted-foreground md:text-xl lg:text-2xl max-w-2xl mx-auto">

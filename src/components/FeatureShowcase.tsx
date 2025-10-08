@@ -1,11 +1,11 @@
 import { Card } from "@/components/ui/card";
 import { 
-  Zap, 
-  Users, 
-  BarChart3, 
-  Shield, 
-  Smartphone, 
-  Workflow 
+  Phone, 
+  Calendar, 
+  Mail, 
+  Star, 
+  Clock, 
+  CalendarCheck 
 } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 
@@ -14,32 +14,32 @@ const FeatureShowcase = () => {
   
   const features = [
     {
-      icon: Zap,
+      icon: Phone,
       title: t('feature.lightning.title'),
       description: t('feature.lightning.desc')
     },
     {
-      icon: Users,
+      icon: CalendarCheck,
       title: t('feature.userCentric.title'),
       description: t('feature.userCentric.desc')
     },
     {
-      icon: BarChart3,
+      icon: Mail,
       title: t('feature.analytics.title'),
       description: t('feature.analytics.desc')
     },
     {
-      icon: Shield,
+      icon: Star,
       title: t('feature.security.title'),
       description: t('feature.security.desc')
     },
     {
-      icon: Smartphone,
+      icon: Clock,
       title: t('feature.mobile.title'),
       description: t('feature.mobile.desc')
     },
     {
-      icon: Workflow,
+      icon: Calendar,
       title: t('feature.workflow.title'),
       description: t('feature.workflow.desc')
     }

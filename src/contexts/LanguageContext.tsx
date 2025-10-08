@@ -25,16 +25,16 @@ const translations: Translations = {
 
   // Hero Section
   'hero.title': { 
-    sv: 'Upplev framtiden för interaktiva demos', 
-    en: 'Experience the Future of Interactive Demos' 
+    sv: 'Din AI-receptionist som aldrig missar ett samtal', 
+    en: 'Your AI Receptionist That Never Misses a Call' 
   },
   'hero.subtitle': { 
-    sv: 'Upptäck hur Alva transformerar användarupplevelser genom intelligenta, interaktiva demonstrationer som anpassar sig till dina behov.', 
-    en: 'Discover how Alva transforms user experiences through intelligent, interactive demonstrations that adapt to your needs.' 
+    sv: 'Alva svarar automatiskt på alla dina affärssamtal 24/7, bokar möten och fångar varje möjlighet - så att du kan fokusera på det som verkligen driver din verksamhet framåt.', 
+    en: 'Alva automatically answers all your business calls 24/7, books appointments, and captures every opportunity - so you can focus on what truly drives your business forward.' 
   },
-  'hero.startDemo': { sv: 'Starta interaktiv demo', en: 'Start Interactive Demo' },
+  'hero.startDemo': { sv: 'Boka en 15-minuters demo', en: 'Request a 15-Minute Demo' },
   'hero.watchPreview': { sv: 'Se förhandsvisning', en: 'Watch Preview' },
-  'hero.noSignup': { sv: '✨ Ingen registrering krävs • Interaktiv upplevelse på 2 minuter', en: '✨ No signup required • Interactive experience in 2 minutes' },
+  'hero.noSignup': { sv: '✨ Ingen registrering krävs • Se Alva i aktion', en: '✨ No signup required • See Alva in action' },
 
   // Interactive Demo
   'demo.title': { sv: 'Prova den', en: 'Try the' },
@@ -72,41 +72,41 @@ const translations: Translations = {
   'step4.action': { sv: 'Slutför personalisering', en: 'Complete personalization' },
 
   // Features
-  'features.title': { sv: 'Kraftfulla', en: 'Powerful' },
-  'features.titleHighlight': { sv: 'Funktioner', en: 'Features' },
+  'features.title': { sv: 'Kraftfulla', en: 'Turn Your Phone Into' },
+  'features.titleHighlight': { sv: 'Funktioner', en: 'Your Best Employee' },
   'features.subtitle': { 
-    sv: 'Allt du behöver för att skapa engagerande, interaktiva upplevelser som konverterar besökare till kunder.', 
-    en: 'Everything you need to create engaging, interactive experiences that convert visitors into customers.' 
+    sv: 'Allt du behöver för att aldrig missa en kund igen. Automatisk svarsservice, mötesbokning och sammanfattningar - dygnet runt.', 
+    en: 'Everything you need to never miss a customer again. Automated answering, appointment booking, and call summaries - 24/7.' 
   },
 
   // Feature Items
-  'feature.lightning.title': { sv: 'Blixtsnabb', en: 'Lightning Fast' },
-  'feature.lightning.desc': { sv: 'Omedelbara interaktioner utan laddningstid för sömlösa användarupplevelser.', en: 'Instant interactions with zero loading time for seamless user experiences.' },
+  'feature.lightning.title': { sv: '100% Samtalsupptagning', en: '100% Call Capture' },
+  'feature.lightning.desc': { sv: 'Alva svarar omedelbart på varje samtal, varje gång. Inga missade möjligheter någonsin.', en: 'Alva answers instantly, every time. No missed opportunities ever.' },
 
-  'feature.userCentric.title': { sv: 'Användarcentrerad design', en: 'User-Centric Design' },
-  'feature.userCentric.desc': { sv: 'Adaptiva gränssnitt som lär sig och utvecklas med användarbeteendemönster.', en: 'Adaptive interfaces that learn and evolve with user behavior patterns.' },
+  'feature.userCentric.title': { sv: 'Automatisk Mötesbokning', en: 'Automated Appointment Booking' },
+  'feature.userCentric.desc': { sv: 'Alva kollar din kalender och bokar möten åt dig, sparar timmar av administrativt arbete.', en: 'Alva checks your calendar and books appointments for you, saving hours of admin time.' },
 
-  'feature.analytics.title': { sv: 'Avancerad analys', en: 'Advanced Analytics' },
-  'feature.analytics.desc': { sv: 'Djupa insikter i användarresor och interaktionsmönster.', en: 'Deep insights into user journeys and interaction patterns.' },
+  'feature.analytics.title': { sv: 'Samtalssammanfattningar', en: 'Call Summaries' },
+  'feature.analytics.desc': { sv: 'Få en koncis sammanfattning av varje konversation skickad direkt till din e-post.', en: 'Get a concise summary of every conversation sent directly to your email.' },
 
-  'feature.security.title': { sv: 'Företagssäkerhet', en: 'Enterprise Security' },
-  'feature.security.desc': { sv: 'Banknivå säkerhet med end-to-end kryptering och efterlevnad.', en: 'Bank-level security with end-to-end encryption and compliance.' },
+  'feature.security.title': { sv: 'Professionellt Intryck', en: 'Professional First Impression' },
+  'feature.security.desc': { sv: 'Hälsa varje kund med en tydlig, artig röst som speglar kvaliteten på din verksamhet.', en: 'Greet every customer with a clear, polite voice that reflects the quality of your business.' },
 
-  'feature.mobile.title': { sv: 'Mobiloptimerad', en: 'Mobile Optimized' },
-  'feature.mobile.desc': { sv: 'Perfekt upplevelse på alla enheter och skärmstorlekar.', en: 'Perfect experience across all devices and screen sizes.' },
+  'feature.mobile.title': { sv: '24/7 Tillgänglighet', en: '24/7 Availability' },
+  'feature.mobile.desc': { sv: 'Aldrig stängt. Alva arbetar dygnet runt, även när du sover eller är upptagen.', en: 'Never closed. Alva works round the clock, even when you\'re asleep or busy.' },
 
-  'feature.workflow.title': { sv: 'Arbetsflödesintegration', en: 'Workflow Integration' },
-  'feature.workflow.desc': { sv: 'Integreras sömlöst med dina befintliga verktyg och arbetsflöden.', en: 'Seamlessly integrates with your existing tools and workflows.' },
+  'feature.workflow.title': { sv: 'Kalenderintegration', en: 'Calendar Integration' },
+  'feature.workflow.desc': { sv: 'Integreras sömlöst med din befintliga kalender och arbetsflöden.', en: 'Seamlessly integrates with your existing calendar and workflows.' },
 
   // CTA Section
-  'cta.title': { sv: 'Redo att transformera din', en: 'Ready to Transform Your' },
-  'cta.titleHighlight': { sv: 'Användarupplevelse?', en: 'User Experience?' },
+  'cta.title': { sv: 'Redo att förvandla din telefon till', en: 'Ready to Turn Your Phone Into' },
+  'cta.titleHighlight': { sv: 'din bästa anställda?', en: 'Your Best Employee?' },
   'cta.subtitle': { 
-    sv: 'Gå med tusentals företag som redan använder Alva för att skapa engagerande, interaktiva upplevelser som ger resultat.', 
-    en: 'Join thousands of companies already using Alva to create engaging, interactive experiences that drive results.' 
+    sv: 'Sluta förlora kunder till din röstbrevlåda. Låt Alva förvandla varje samtal till en affärsmöjlighet.', 
+    en: 'Stop losing customers to your voicemail. Let Alva turn every call into a business opportunity.' 
   },
   'cta.startTrial': { sv: 'Starta din kostnadsfria provperiod', en: 'Start Your Free Trial' },
-  'cta.scheduleDemo': { sv: 'Boka en demo', en: 'Schedule a Demo' },
+  'cta.scheduleDemo': { sv: 'Boka en demo', en: 'Request a Demo' },
   'cta.freeTrial': { sv: 'Gratis 14-dagars provperiod', en: 'Free 14-day trial' },
   'cta.noCard': { sv: 'Inget kreditkort krävs', en: 'No credit card required' },
   'cta.setupMinutes': { sv: 'Installation på minuter', en: 'Setup in minutes' },
