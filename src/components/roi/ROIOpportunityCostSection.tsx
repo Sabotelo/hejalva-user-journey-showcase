@@ -37,7 +37,7 @@ const ROIOpportunityCostSection = () => {
                 <div className="flex items-center justify-center gap-2 mb-4">
                   <TrendingUp className="h-5 w-5 text-primary" />
                   <p className="font-semibold text-foreground">
-                    <span className="text-primary">4 {t('roi.opportunity.calculation')}</span> × {t('roi.opportunity.workdays')} <strong className="text-lg">{t('roi.opportunity.monthlyOpportunities')}</strong>
+                    <span className="text-primary">4 × 21 {t('roi.opportunity.workdays')}</span> <strong className="text-lg">{t('roi.opportunity.monthlyOpportunities')}</strong>
                   </p>
                 </div>
                 

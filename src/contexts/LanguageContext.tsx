@@ -253,13 +253,9 @@ const translations: Translations = {
     sv: 'samtal per dag', 
     en: 'calls per day' 
   },
-  'roi.opportunity.calculation': { 
-    sv: 'missade samtal/dag', 
-    en: 'missed calls/day' 
-  },
   'roi.opportunity.workdays': { 
-    sv: '21 arbetsdagar =', 
-    en: '21 workdays =' 
+    sv: 'arbetsdagar =', 
+    en: 'workdays =' 
   },
   'roi.opportunity.monthlyOpportunities': { 
     sv: '84 missade möjligheter per månad', 
