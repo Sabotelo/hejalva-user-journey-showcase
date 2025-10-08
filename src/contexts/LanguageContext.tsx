@@ -226,42 +226,50 @@ const translations: Translations = {
 
   // ROI Page - Opportunity Cost
   'roi.opportunity.title': { 
-    sv: 'Möjlighetskostnaden', 
-    en: 'The Opportunity Cost' 
+    sv: 'Kvantifiera möjlighetskostnaden', 
+    en: 'Quantifying the Opportunity Cost' 
   },
   'roi.opportunity.subtitle': { 
-    sv: 'Vad kostar missade samtal egentligen din verksamhet?', 
-    en: 'What are missed calls actually costing your business?' 
+    sv: 'Låt oss sätta riktiga siffror på detta. Vad kostar ett missat samtal egentligen din verksamhet?', 
+    en: 'Let\'s put real numbers on this. What is a missed call actually costing your business?' 
   },
   'roi.opportunity.assumption': { 
     sv: 'Antagande', 
     en: 'Assumption' 
   },
   'roi.opportunity.assumptionText': { 
-    sv: 'Genomsnittligt kundvärde:', 
-    en: 'Average customer value:' 
+    sv: 'Det genomsnittliga värdet av en ny kund är', 
+    en: 'The average value of a new customer is' 
   },
-  'roi.opportunity.scenario': {
-    sv: 'Om din verksamhet missar bara 4 samtal per dag (84 per månad) och du konverterar bara 5% av dessa till kunder till 3,000 SEK vardera:', 
-    en: 'If your business misses just 4 calls per day (84 per month) and you convert only 5% of these into customers at 3,000 SEK each:' 
+  'roi.opportunity.missedCalls': { 
+    sv: 'Missade samtal', 
+    en: 'Missed Calls' 
   },
-  'roi.opportunity.missedPerDay': { 
-    sv: 'missade samtal/dag', 
-    en: 'missed calls/day' 
+  'roi.opportunity.missedCallsText': { 
+    sv: 'Din verksamhet missar bara', 
+    en: 'Your business misses just' 
   },
-  'roi.opportunity.perMonth': { 
-    sv: 'per månad', 
-    en: 'per month' 
+  'roi.opportunity.callsPerDay': { 
+    sv: 'samtal per dag', 
+    en: 'calls per day' 
   },
-  'roi.opportunity.conversionRate': { 
-    sv: 'konverteringsgrad', 
-    en: 'conversion rate' 
+  'roi.opportunity.workdays': { 
+    sv: 'arbetsdagar =', 
+    en: 'workdays =' 
   },
-  'roi.opportunity.impact': { 
-    sv: 'Det blir 4 nya kunder per månad × 3,000 SEK × 12 månader =', 
-    en: 'That\'s 4 new customers per month × 3,000 SEK × 12 months =' 
+  'roi.opportunity.monthlyOpportunities': { 
+    sv: '84 missade möjligheter per månad', 
+    en: '84 missed opportunities per month' 
   },
-  'roi.opportunity.additionalRevenue': { 
+  'roi.opportunity.conversion': { 
+    sv: 'Om du kunde konvertera bara', 
+    en: 'If you could convert just' 
+  },
+  'roi.opportunity.conversionSuffix': { 
+    sv: 'av dessa missade samtal (cirka 4 nya kunder per månad), skulle det bli:', 
+    en: 'of those missed calls (about 4 new customers a month), that would be:' 
+  },
+  'roi.opportunity.annualRevenue': { 
     sv: 'i ytterligare årlig intäkt', 
     en: 'in additional annual revenue' 
   },
