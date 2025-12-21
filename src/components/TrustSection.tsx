@@ -76,43 +76,6 @@ const TrustSection = () => {
 
   return (
     <section className="py-20 bg-gradient-to-b from-primary-dark to-primary relative overflow-hidden">
-      {/* Animated floating elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <motion.div 
-          className="absolute top-20 left-10 h-3 w-3 rounded-full bg-secondary/40"
-          animate={{ 
-            y: [0, -20, 0],
-            opacity: [0.4, 0.8, 0.4]
-          }}
-          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-        />
-        <motion.div 
-          className="absolute top-40 right-20 h-4 w-4 rounded-full bg-gold/30"
-          animate={{ 
-            y: [0, -30, 0],
-            opacity: [0.3, 0.6, 0.3]
-          }}
-          transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-        />
-        <motion.div 
-          className="absolute bottom-40 left-1/4 h-2 w-2 rounded-full bg-primary-glow/50"
-          animate={{ 
-            y: [0, -15, 0],
-            opacity: [0.5, 0.9, 0.5]
-          }}
-          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-        />
-        <motion.div 
-          className="absolute top-60 right-1/3 h-5 w-5 rounded-full bg-secondary/20"
-          animate={{ 
-            y: [0, -25, 0],
-            scale: [1, 1.2, 1],
-            opacity: [0.2, 0.5, 0.2]
-          }}
-          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-        />
-      </div>
-      
       <div className="container mx-auto px-4 relative z-10">
         {/* Header */}
         <div className="text-center mb-16">
