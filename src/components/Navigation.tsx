@@ -63,11 +63,6 @@ const Navigation = () => {
           }`}>
             {t('nav.features')}
           </a>
-          <a href="/roi" className={`text-sm font-medium transition-colors ${
-            isScrolled ? 'text-muted-foreground hover:text-foreground' : 'text-white/80 hover:text-white'
-          }`}>
-            {t('nav.roi')}
-          </a>
           <a href="/contact" className={`text-sm font-medium transition-colors ${
             isScrolled ? 'text-muted-foreground hover:text-foreground' : 'text-white/80 hover:text-white'
           }`}>
