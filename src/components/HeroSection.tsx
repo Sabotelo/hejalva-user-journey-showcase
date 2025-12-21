@@ -52,21 +52,7 @@ const HeroSection = () => {
       </div>
       
       <div className="container relative z-10 mx-auto px-4 pt-20">
-        <div className="mx-auto max-w-4xl text-center">
-          {/* Logo */}
-          <div 
-            className="mb-6 flex justify-center transition-all duration-300"
-            style={{ 
-              opacity: scrollOpacity,
-              transform: `translateY(${(1 - scrollOpacity) * -30}px)`
-            }}
-          >
-            <img 
-              src={mimerLogo} 
-              alt="Mimer Technologies" 
-              className="h-20 md:h-24 w-auto"
-            />
-          </div>
+      <div className="mx-auto max-w-4xl text-center">
 
           {/* Pain-focused pre-headline */}
           <div className="inline-flex items-center gap-2 bg-destructive/20 text-white/90 px-4 py-2 rounded-full mb-6 text-sm md:text-base animate-fade-in">
