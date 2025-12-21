@@ -34,7 +34,7 @@ const translations: Translations = {
   },
   'hero.startDemo': { sv: 'Boka en 15-minuters demo', en: 'Request a 15-Minute Demo' },
   'hero.watchPreview': { sv: 'Se förhandsvisning', en: 'Watch Preview' },
-  'hero.noSignup': { sv: '✨ Ingen registrering krävs • Se Alva i aktion', en: '✨ No signup required • See Alva in action' },
+  'hero.noSignup': { sv: 'Ingen registrering krävs - Se Alva i aktion', en: 'No signup required - See Alva in action' },
 
   // Interactive Demo
   'demo.title': { sv: 'Prova den', en: 'Try the' },
