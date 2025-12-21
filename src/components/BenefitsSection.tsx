@@ -1,4 +1,4 @@
-import { Clock, Users, Globe, MessageSquare, Sparkles, Headphones } from "lucide-react";
+import { TrendingUp, Clock, Users, DollarSign, Brain, Shield } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 const BenefitsSection = () => {
@@ -6,46 +6,52 @@ const BenefitsSection = () => {
   
   const benefits = [
     {
-      icon: Clock,
-      title: language === 'sv' ? 'Tillgänglig 24/7' : 'Available 24/7',
+      icon: TrendingUp,
+      title: language === 'sv' ? 'Fånga varje lead' : 'Capture Every Lead',
       description: language === 'sv' 
-        ? 'Alltid där för dina kunder – även utanför era öppettider. Service som jobbar dygnet runt.' 
-        : 'Always there for your customers – even outside business hours. Service that works around the clock.',
+        ? 'Varje missat samtal är en kund som ringer din konkurrent. Alva ser till att det aldrig händer.' 
+        : 'Every missed call is a customer calling your competitor. Alva ensures that never happens.',
+      stat: language === 'sv' ? '+40% fler bokningar' : '+40% more bookings'
+    },
+    {
+      icon: Clock,
+      title: language === 'sv' ? 'Spara tid varje dag' : 'Save Time Every Day',
+      description: language === 'sv' 
+        ? 'Sluta avbryta ditt arbete för att svara i telefon. Fokusera på det du gör bäst.' 
+        : 'Stop interrupting your work to answer the phone. Focus on what you do best.',
+      stat: language === 'sv' ? '2+ timmar/dag' : '2+ hours/day'
     },
     {
       icon: Users,
-      title: language === 'sv' ? 'Flera samtal samtidigt' : 'Multiple Calls at Once',
+      title: language === 'sv' ? 'Nöjdare kunder' : 'Happier Customers',
       description: language === 'sv' 
-        ? 'Ingen väntetid – varje samtal besvaras direkt, oavsett hur många som ringer.' 
-        : 'No waiting time – every call is answered immediately, no matter how many are calling.',
+        ? 'Ingen väntetid, alltid svar. Kunder älskar att alltid nå fram direkt.' 
+        : 'No wait time, always answered. Customers love always getting through.',
+      stat: language === 'sv' ? '24/7 tillgänglighet' : '24/7 availability'
     },
     {
-      icon: Globe,
-      title: language === 'sv' ? 'Flerspråkig' : 'Multilingual',
+      icon: DollarSign,
+      title: language === 'sv' ? 'Öka din omsättning' : 'Increase Your Revenue',
       description: language === 'sv' 
-        ? 'Tillgänglig på flera språk, alltid anpassad för att skapa en naturlig kontakt.' 
-        : 'Available in multiple languages, always adapted to create natural connection.',
+        ? 'Varje samtal är en möjlighet. Fler samtal besvarade = fler kunder = mer intäkter.' 
+        : 'Every call is an opportunity. More calls answered = more customers = more revenue.',
+      stat: language === 'sv' ? 'Upp till 200k kr/år' : 'Up to $20k/year'
     },
     {
-      icon: MessageSquare,
-      title: language === 'sv' ? 'Mer än bara prat' : 'More Than Just Talk',
+      icon: Brain,
+      title: language === 'sv' ? 'Tränad på ditt företag' : 'Trained on Your Business',
       description: language === 'sv' 
-        ? 'Inte bara dialog – bokar möten och hanterar reservationer automatiskt.' 
-        : 'Not just dialogue – books appointments and handles reservations automatically.',
+        ? 'Alva lär sig allt om dina tjänster, priser och processer. Som en riktig kollega.' 
+        : 'Alva learns everything about your services, prices, and processes. Like a real colleague.',
+      stat: language === 'sv' ? 'Personlig anpassning' : 'Personalized'
     },
     {
-      icon: Sparkles,
-      title: language === 'sv' ? 'Mänsklig touch' : 'Human Touch',
-      description: language === 'sv' 
-        ? 'Anpassa Alva efter era behov så att samtalen blir personliga och engagerande.' 
-        : 'Customize Alva to your needs so conversations feel personal and engaging.',
-    },
-    {
-      icon: Headphones,
+      icon: Shield,
       title: language === 'sv' ? 'Professionellt intryck' : 'Professional Impression',
       description: language === 'sv' 
-        ? 'Hälsa varje kund med en tydlig, artig röst som speglar kvaliteten på din verksamhet.' 
-        : 'Greet every customer with a clear, polite voice that reflects your business quality.',
+        ? 'Varje kund möts av en varm, professionell röst. Ditt företag får det intryck det förtjänar.' 
+        : 'Every customer is greeted with a warm, professional voice. Your business gets the impression it deserves.',
+      stat: language === 'sv' ? 'Alltid perfekt service' : 'Always perfect service'
     }
   ];
 
@@ -53,13 +59,16 @@ const BenefitsSection = () => {
     <section className="py-24 bg-gradient-to-b from-accent/30 to-background">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
+          <div className="inline-block bg-secondary/20 text-foreground text-sm font-semibold px-4 py-2 rounded-full mb-4">
+            {language === 'sv' ? 'Varför företag väljer Alva' : 'Why Businesses Choose Alva'}
+          </div>
           <h2 className="text-3xl md:text-5xl font-bold mb-4">
-            {language === 'sv' ? 'Service som aldrig sover' : 'Service That Never Sleeps'}
+            {language === 'sv' ? 'Sluta förlora pengar på missade samtal' : 'Stop Losing Money on Missed Calls'}
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
             {language === 'sv' 
-              ? 'Alva är din virtuella kollega som alltid är redo att hjälpa dina kunder.' 
-              : 'Alva is your virtual colleague who is always ready to help your customers.'}
+              ? 'Varje samtal du missar kostar dig pengar. Alva ser till att det aldrig händer igen.' 
+              : 'Every call you miss costs you money. Alva ensures that never happens again.'}
           </p>
         </div>
 
@@ -74,13 +83,18 @@ const BenefitsSection = () => {
                   <benefit.icon className="h-6 w-6 text-white" />
                 </div>
                 
-                <div>
-                  <h3 className="text-xl font-semibold mb-2 group-hover:text-primary transition-colors">
-                    {benefit.title}
-                  </h3>
-                  <p className="text-muted-foreground leading-relaxed">
+                <div className="flex-1">
+                  <div className="flex items-center justify-between mb-2">
+                    <h3 className="text-xl font-semibold group-hover:text-primary transition-colors">
+                      {benefit.title}
+                    </h3>
+                  </div>
+                  <p className="text-muted-foreground leading-relaxed mb-3">
                     {benefit.description}
                   </p>
+                  <div className="inline-block bg-secondary/10 text-secondary text-sm font-semibold px-3 py-1 rounded-full">
+                    {benefit.stat}
+                  </div>
                 </div>
               </div>
             </div>
