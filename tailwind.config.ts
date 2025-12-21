@@ -73,13 +73,13 @@ export default {
 				md: 'calc(var(--radius) - 2px)',
 				sm: 'calc(var(--radius) - 4px)'
 			},
-			backgroundImage: {
-				'gradient-primary': 'var(--gradient-primary)',
-				'gradient-secondary': 'var(--gradient-secondary)',
-				'gradient-alva': 'var(--gradient-alva)',
-				'gradient-card': 'var(--gradient-card)',
-				'gradient-subtle': 'var(--gradient-subtle)'
-			},
+		backgroundImage: {
+			'gradient-primary': 'var(--gradient-primary)',
+			'gradient-secondary': 'var(--gradient-secondary)',
+			'gradient-mimer': 'var(--gradient-mimer)',
+			'gradient-card': 'var(--gradient-card)',
+			'gradient-subtle': 'var(--gradient-subtle)'
+		},
 			boxShadow: {
 				'primary': 'var(--shadow-primary)',
 				'secondary': 'var(--shadow-secondary)',

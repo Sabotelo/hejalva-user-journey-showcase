@@ -5,9 +5,9 @@ const HeroSection = () => {
   const { t } = useLanguage();
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-background via-accent/20 to-background">
-      {/* Animated background elements - rose gold theme */}
+      {/* Animated background elements - teal/navy theme */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-40 -right-40 h-80 w-80 rounded-full bg-gradient-alva opacity-20 blur-3xl animate-float"></div>
+        <div className="absolute -top-40 -right-40 h-80 w-80 rounded-full bg-gradient-mimer opacity-20 blur-3xl animate-float"></div>
         <div className="absolute -bottom-40 -left-40 h-80 w-80 rounded-full bg-gradient-secondary opacity-20 blur-3xl animate-float" style={{ animationDelay: '2s' }}></div>
         <div className="absolute top-1/2 left-1/2 h-60 w-60 rounded-full bg-gradient-primary opacity-10 blur-2xl animate-pulse-slow"></div>
       </div>
@@ -25,7 +25,7 @@ const HeroSection = () => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
             <Button 
               size="lg" 
-              className="bg-gradient-alva shadow-primary hover:shadow-elevated hover:scale-105 transition-all duration-300 text-lg px-8 py-3"
+              className="bg-gradient-mimer shadow-primary hover:shadow-elevated hover:scale-105 transition-all duration-300 text-lg px-8 py-3"
               onClick={() => document.getElementById('demo')?.scrollIntoView({ behavior: 'smooth' })}
             >
               {t('hero.startDemo')}

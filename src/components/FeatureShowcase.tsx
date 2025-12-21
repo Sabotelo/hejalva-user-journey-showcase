@@ -66,10 +66,10 @@ const FeatureShowcase = () => {
             >
               <div className="space-y-4">
                 <div className="relative">
-                  <div className="h-12 w-12 rounded-lg bg-gradient-alva flex items-center justify-center shadow-primary group-hover:shadow-elevated group-hover:scale-110 transition-all duration-300">
+                  <div className="h-12 w-12 rounded-lg bg-gradient-mimer flex items-center justify-center shadow-primary group-hover:shadow-elevated group-hover:scale-110 transition-all duration-300">
                     <feature.icon className="h-6 w-6 text-white" />
                   </div>
-                  <div className="absolute inset-0 rounded-lg bg-gradient-alva opacity-20 blur-xl group-hover:opacity-40 transition-opacity duration-300"></div>
+                  <div className="absolute inset-0 rounded-lg bg-gradient-mimer opacity-20 blur-xl group-hover:opacity-40 transition-opacity duration-300"></div>
                 </div>
                 
                 <div>
