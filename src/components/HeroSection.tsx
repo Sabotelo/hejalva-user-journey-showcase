@@ -20,14 +20,14 @@ const HeroSection = () => {
           <div className="glass-panel rounded-3xl p-8 md:p-12 mb-8">
             <h1 className="mb-6 text-4xl font-bold leading-tight text-white md:text-5xl lg:text-6xl animate-fade-in">
               {language === 'sv' 
-                ? 'Missa inte fler kunder klockan 17:05.' 
-                : "Don't lose another customer at 5:05 PM."}
+                ? 'Varje Missat Samtal är en Förlorad Kund.' 
+                : 'Every Missed Call is a Lost Customer.'}
             </h1>
             
             <p className="mb-8 text-lg text-white/80 md:text-xl max-w-2xl mx-auto animate-fade-in" style={{ animationDelay: '0.1s' }}>
               {language === 'sv' 
-                ? 'Varje missat samtal kostar dig 2000 kr. Alva svarar dygnet runt, talar flytande svenska och bokar möten medan du sover.' 
-                : 'Every missed call costs you $200. Alva answers 24/7, speaks fluent Swedish, and books appointments while you sleep.'}
+                ? 'Möt Alva. AI-receptionisten som svarar dygnet runt, talar flytande svenska och bokar möten medan du sover.' 
+                : 'Meet Alva. The AI receptionist who answers 24/7, speaks fluent Swedish, and books appointments while you sleep.'}
             </p>
           </div>
 
