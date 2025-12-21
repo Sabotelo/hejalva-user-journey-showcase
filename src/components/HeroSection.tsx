@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { Phone } from "lucide-react";
+import { Phone, Sparkles } from "lucide-react";
 
 const HeroSection = () => {
   const { language } = useLanguage();
@@ -9,24 +9,27 @@ const HeroSection = () => {
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-primary via-primary-dark to-primary">
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-40 -right-40 h-[600px] w-[600px] rounded-full bg-gradient-to-br from-secondary/30 to-primary-glow/20 blur-3xl"></div>
-        <div className="absolute -bottom-40 -left-40 h-[500px] w-[500px] rounded-full bg-gradient-to-tr from-primary-glow/30 to-secondary/20 blur-3xl"></div>
+        <div className="absolute -top-40 -right-40 h-[600px] w-[600px] rounded-full bg-gradient-to-br from-secondary/30 to-primary-glow/20 blur-3xl animate-pulse-slow"></div>
+        <div className="absolute -bottom-40 -left-40 h-[500px] w-[500px] rounded-full bg-gradient-to-tr from-primary-glow/30 to-secondary/20 blur-3xl animate-pulse-slow" style={{ animationDelay: '2s' }}></div>
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[800px] w-[800px] rounded-full bg-gradient-to-br from-secondary/10 to-transparent blur-3xl"></div>
       </div>
       
       <div className="container relative z-10 mx-auto px-4 pt-20">
         <div className="mx-auto max-w-4xl text-center">
-          <h1 className="mb-6 text-4xl font-bold leading-tight text-white md:text-5xl lg:text-6xl animate-fade-in">
-            {language === 'sv' 
-              ? 'Varje Missat Samtal är en Förlorad Kund.' 
-              : 'Every Missed Call is a Lost Customer.'}
-          </h1>
-          
-          <p className="mb-12 text-lg text-white/80 md:text-xl max-w-2xl mx-auto animate-fade-in" style={{ animationDelay: '0.1s' }}>
-            {language === 'sv' 
-              ? 'Möt Alva. AI-receptionisten som svarar dygnet runt, talar flytande svenska och bokar möten medan du sover.' 
-              : 'Meet Alva. The AI receptionist who answers 24/7, speaks fluent Swedish, and books appointments while you sleep.'}
-          </p>
+          {/* Glassmorphism container for better readability */}
+          <div className="glass-panel rounded-3xl p-8 md:p-12 mb-8">
+            <h1 className="mb-6 text-4xl font-bold leading-tight text-white md:text-5xl lg:text-6xl animate-fade-in">
+              {language === 'sv' 
+                ? 'Missa inte fler kunder klockan 17:05.' 
+                : "Don't lose another customer at 5:05 PM."}
+            </h1>
+            
+            <p className="mb-8 text-lg text-white/80 md:text-xl max-w-2xl mx-auto animate-fade-in" style={{ animationDelay: '0.1s' }}>
+              {language === 'sv' 
+                ? 'Varje missat samtal kostar dig 2000 kr. Alva svarar dygnet runt, talar flytande svenska och bokar möten medan du sover.' 
+                : 'Every missed call costs you $200. Alva answers 24/7, speaks fluent Swedish, and books appointments while you sleep.'}
+            </p>
+          </div>
 
           {/* 3D Sound Wave Visualization */}
           <div className="relative h-48 md:h-64 mb-12 animate-fade-in" style={{ animationDelay: '0.2s' }}>
@@ -75,19 +78,22 @@ const HeroSection = () => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8 animate-fade-in" style={{ animationDelay: '0.3s' }}>
             <Button 
               size="lg" 
-              className="bg-secondary text-primary-dark hover:bg-secondary/90 shadow-[0_0_30px_rgba(0,255,255,0.4)] hover:shadow-[0_0_40px_rgba(0,255,255,0.6)] transition-all duration-300 text-lg px-8 py-6 font-semibold"
+              className="group relative bg-secondary text-primary-dark hover:bg-secondary/90 shadow-[0_0_30px_rgba(0,255,255,0.4)] hover:shadow-[0_0_50px_rgba(0,255,255,0.7)] transition-all duration-300 text-lg px-8 py-6 font-semibold overflow-hidden"
               onClick={() => window.location.href = 'tel:+46737587867'}
             >
-              <Phone className="mr-2 h-5 w-5" />
-              {language === 'sv' ? 'Lyssna på Alva' : 'Listen to Alva'}
+              <span className="relative z-10 flex items-center">
+                <Phone className="mr-2 h-5 w-5 group-hover:animate-bounce" />
+                {language === 'sv' ? 'Ring Alva Nu' : 'Call Alva Now'}
+              </span>
+              <span className="absolute inset-0 bg-gradient-to-r from-secondary via-primary-glow to-secondary bg-[length:200%_100%] animate-shimmer opacity-0 group-hover:opacity-30" />
             </Button>
             <Button 
-              variant="outline" 
               size="lg" 
-              className="text-lg px-8 py-6 border-white/30 text-white bg-transparent hover:bg-white/10 hover:border-white/50"
+              className="group relative text-lg px-8 py-6 border-2 border-gold/50 text-gold bg-gold/10 hover:bg-gold/20 hover:border-gold transition-all duration-300 shadow-[0_0_20px_rgba(255,215,0,0.2)] hover:shadow-[0_0_30px_rgba(255,215,0,0.4)]"
               onClick={() => window.location.href = '/demo'}
             >
-              {language === 'sv' ? 'Få tidig tillgång' : 'Get Early Access'}
+              <Sparkles className="mr-2 h-5 w-5 group-hover:animate-spin" style={{ animationDuration: '2s' }} />
+              {language === 'sv' ? 'Boka Demo' : 'Book a Demo'}
             </Button>
           </div>
         </div>
