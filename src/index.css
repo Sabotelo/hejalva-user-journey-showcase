@@ -189,3 +189,14 @@
   0%, 100% { transform: translateY(0px); }
   50% { transform: translateY(-20px); }
 }
+
+@keyframes soundWave {
+  0%, 100% { 
+    transform: scaleY(1);
+    opacity: 1;
+  }
+  50% { 
+    transform: scaleY(1.4);
+    opacity: 0.8;
+  }
+}
