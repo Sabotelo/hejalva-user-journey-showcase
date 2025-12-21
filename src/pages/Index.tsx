@@ -1,8 +1,10 @@
 import Navigation from "@/components/Navigation";
 import HeroSection from "@/components/HeroSection";
-import InteractiveDemo from "@/components/InteractiveDemo";
-import FeatureShowcase from "@/components/FeatureShowcase";
-import ContactSection from "@/components/ContactSection";
+import FeatureCards from "@/components/FeatureCards";
+import BenefitsSection from "@/components/BenefitsSection";
+import UseCasesSection from "@/components/UseCasesSection";
+import IntegrationsSection from "@/components/IntegrationsSection";
+import PricingSection from "@/components/PricingSection";
 import CTASection from "@/components/CTASection";
 
 const Index = () => {
@@ -10,9 +12,11 @@ const Index = () => {
     <div className="min-h-screen">
       <Navigation />
       <HeroSection />
-      <InteractiveDemo />
-      <FeatureShowcase />
-      <ContactSection />
+      <FeatureCards />
+      <BenefitsSection />
+      <UseCasesSection />
+      <IntegrationsSection />
+      <PricingSection />
       <CTASection />
     </div>
   );

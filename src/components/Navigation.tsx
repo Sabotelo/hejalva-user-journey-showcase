@@ -1,18 +1,27 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useAuth } from "@/contexts/AuthContext";
 import { AuthModal } from "@/components/auth/AuthModal";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
-import { Menu, X, Globe, User, Settings, LogOut } from "lucide-react";
+import { Globe, User, Settings, LogOut } from "lucide-react";
 import MimerLogo from "@/components/MimerLogo";
 
 const Navigation = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const [authModalOpen, setAuthModalOpen] = useState(false);
   const { language, setLanguage, t } = useLanguage();
   const { user, profile, signOut } = useAuth();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const toggleLanguage = () => {
     setLanguage(language === 'sv' ? 'en' : 'sv');
@@ -33,23 +42,35 @@ const Navigation = () => {
   };
 
   return (
-    <nav className="fixed top-0 z-50 w-full border-b border-border/40 bg-background/80 backdrop-blur-md">
+    <nav className={`fixed top-0 z-50 w-full transition-all duration-300 ${
+      isScrolled 
+        ? 'bg-background/95 backdrop-blur-md border-b border-border/40 shadow-sm' 
+        : 'bg-transparent'
+    }`}>
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
         <a href="/" className="flex items-center cursor-pointer hover:opacity-80 transition-opacity">
           <MimerLogo size={40} />
         </a>
         
         <div className="hidden md:flex items-center space-x-6">
-          <a href="/demo" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+          <a href="/demo" className={`text-sm font-medium transition-colors ${
+            isScrolled ? 'text-muted-foreground hover:text-foreground' : 'text-white/80 hover:text-white'
+          }`}>
             {t('nav.demo')}
           </a>
-          <a href="/#features" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+          <a href="/#benefits" className={`text-sm font-medium transition-colors ${
+            isScrolled ? 'text-muted-foreground hover:text-foreground' : 'text-white/80 hover:text-white'
+          }`}>
             {t('nav.features')}
           </a>
-          <a href="/roi" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+          <a href="/roi" className={`text-sm font-medium transition-colors ${
+            isScrolled ? 'text-muted-foreground hover:text-foreground' : 'text-white/80 hover:text-white'
+          }`}>
             {t('nav.roi')}
           </a>
-          <a href="/contact" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+          <a href="/contact" className={`text-sm font-medium transition-colors ${
+            isScrolled ? 'text-muted-foreground hover:text-foreground' : 'text-white/80 hover:text-white'
+          }`}>
             {t('nav.contact')}
           </a>
         </div>
@@ -59,7 +80,7 @@ const Navigation = () => {
             variant="ghost" 
             size="sm" 
             onClick={toggleLanguage}
-            className="text-xs"
+            className={`text-xs ${isScrolled ? '' : 'text-white hover:bg-white/10'}`}
           >
             <Globe className="h-4 w-4 mr-1" />
             {language.toUpperCase()}
@@ -70,7 +91,7 @@ const Navigation = () => {
               <DropdownMenuTrigger asChild>
                 <Button variant="ghost" className="relative h-8 w-8 rounded-full">
                   <Avatar className="h-8 w-8">
-                    <AvatarFallback className="bg-primary text-primary-foreground">
+                    <AvatarFallback className="bg-secondary text-white">
                       {profile?.full_name ? getInitials(profile.full_name) : 'U'}
                     </AvatarFallback>
                   </Avatar>
@@ -96,13 +117,14 @@ const Navigation = () => {
               <Button 
                 variant="ghost" 
                 size="sm"
+                className={isScrolled ? '' : 'text-white hover:bg-white/10'}
                 onClick={() => setAuthModalOpen(true)}
               >
                 {t('nav.signIn')}
               </Button>
               <Button 
                 size="sm" 
-                className="bg-gradient-mimer shadow-primary hover:shadow-elevated transition-all duration-300"
+                className="bg-secondary hover:bg-secondary/90 text-white shadow-lg"
                 onClick={() => setAuthModalOpen(true)}
               >
                 {t('nav.getStarted')}
