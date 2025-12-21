@@ -1,4 +1,4 @@
-import { Check } from "lucide-react";
+import { Check, Phone, Calendar, User, Clock, MessageSquare } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -6,118 +6,105 @@ import { useLanguage } from "@/contexts/LanguageContext";
 const PricingSection = () => {
   const { language } = useLanguage();
   
-  const plans = [
+  const features = [
     {
-      name: 'Essential',
-      price: language === 'sv' ? '999 kr' : '€99',
-      period: language === 'sv' ? '/mån' : '/mo',
-      description: language === 'sv' 
-        ? 'För företag som vill komma igång med AI-receptionist' 
-        : 'For businesses getting started with AI receptionist',
-      features: [
-        language === 'sv' ? 'Samtalsvidarekoppling' : 'Call forwarding',
-        language === 'sv' ? 'Anpassad efter ert företag' : 'Customized for your business',
-        language === 'sv' ? 'Samtalssammanfattningar via e-post' : 'Call summaries via email',
-        language === 'sv' ? '1 språk' : '1 language',
-      ],
-      highlighted: false
+      icon: Phone,
+      text: language === 'sv' ? '24/7 samtalshantering med mänsklig touch' : '24/7 call handling with human touch'
     },
     {
-      name: 'Pro',
-      price: language === 'sv' ? '2 999 kr' : '€299',
-      period: language === 'sv' ? '/mån' : '/mo',
-      description: language === 'sv' 
-        ? 'För företag som behöver daglig service och support' 
-        : 'For businesses needing daily service and support',
-      features: [
-        language === 'sv' ? 'Allt i Essential' : 'Everything in Essential',
-        language === 'sv' ? 'Kalenderintegration' : 'Calendar integration',
-        language === 'sv' ? 'Automatisk mötesbokning' : 'Automatic appointment booking',
-        language === 'sv' ? '3 språk' : '3 languages',
-        language === 'sv' ? 'Prioriterad support' : 'Priority support',
-      ],
-      highlighted: true
+      icon: Calendar,
+      text: language === 'sv' ? 'Automatisk mötesbokning synkad med din kalender' : 'Automatic appointment booking synced with your calendar'
     },
     {
-      name: 'Enterprise',
-      price: language === 'sv' ? 'Enligt avtal' : 'Custom',
-      period: '',
-      description: language === 'sv' 
-        ? 'För större företag med specifika behov' 
-        : 'For larger businesses with specific needs',
-      features: [
-        language === 'sv' ? 'Allt i Pro' : 'Everything in Pro',
-        language === 'sv' ? 'Anpassade integrationer' : 'Custom integrations',
-        language === 'sv' ? 'Obegränsat antal språk' : 'Unlimited languages',
-        language === 'sv' ? 'Dedikerad support' : 'Dedicated support',
-        language === 'sv' ? 'SLA-avtal' : 'SLA agreement',
-      ],
-      highlighted: false
-    }
+      icon: User,
+      text: language === 'sv' ? 'Personligt konto med samtalsdata och insikter' : 'Personal account with call data and insights'
+    },
+    {
+      icon: Clock,
+      text: language === 'sv' ? '500 samtalsminuter ingår' : '500 call minutes included'
+    },
+    {
+      icon: MessageSquare,
+      text: language === 'sv' ? 'Svarar på frågor om era tjänster och öppettider' : 'Answers questions about your services and hours'
+    },
   ];
+
+  const industries = language === 'sv' 
+    ? ['Bilverkstäder', 'Restauranger', 'Frisörer', 'Tandläkare', 'Butiker']
+    : ['Auto shops', 'Restaurants', 'Hair salons', 'Dental clinics', 'Retail stores'];
 
   return (
     <section className="py-24 bg-gradient-to-b from-background to-accent/20">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
+        <div className="text-center mb-12">
           <h2 className="text-3xl md:text-5xl font-bold mb-4">
-            {language === 'sv' ? 'Enkel och transparent prissättning' : 'Simple and Transparent Pricing'}
+            {language === 'sv' ? 'En enkel plan för din verksamhet' : 'One Simple Plan for Your Business'}
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
             {language === 'sv' 
-              ? 'Välj den plan som passar ditt företags behov.' 
-              : 'Choose the plan that fits your business needs.'}
+              ? 'Alva tränas specifikt för att bli som en kollega-receptionist för just din verksamhet.' 
+              : 'Alva is trained specifically to become a co-worker receptionist for your business.'}
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          {plans.map((plan, index) => (
-            <Card 
-              key={index}
-              className={`relative p-8 ${plan.highlighted 
-                ? 'border-2 border-secondary shadow-elevated bg-gradient-to-b from-card to-accent/30' 
-                : 'border border-border/50'
-              }`}
-            >
-              {plan.highlighted && (
-                <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-secondary text-white px-4 py-1 rounded-full text-sm font-medium">
-                  {language === 'sv' ? 'Populärast' : 'Most Popular'}
+        <Card className="max-w-2xl mx-auto p-10 border-2 border-secondary/30 shadow-elevated bg-gradient-to-b from-card to-accent/20">
+          <div className="text-center mb-8">
+            <div className="inline-block bg-secondary/20 text-secondary px-4 py-1 rounded-full text-sm font-medium mb-4">
+              {language === 'sv' ? 'Allt du behöver' : 'Everything you need'}
+            </div>
+            <h3 className="text-3xl font-bold mb-2">Alva Pro</h3>
+            <div className="flex items-baseline justify-center gap-1 mb-2">
+              <span className="text-5xl font-bold">2 999 kr</span>
+              <span className="text-muted-foreground">{language === 'sv' ? '/mån' : '/mo'}</span>
+            </div>
+            <p className="text-muted-foreground">
+              {language === 'sv' 
+                ? 'Din AI-receptionist som alltid levererar fantastisk service' 
+                : 'Your AI receptionist that always delivers amazing service'}
+            </p>
+          </div>
+          
+          <ul className="space-y-4 mb-8">
+            {features.map((feature, index) => (
+              <li key={index} className="flex items-center gap-4">
+                <div className="h-10 w-10 rounded-xl bg-secondary/20 flex items-center justify-center flex-shrink-0">
+                  <feature.icon className="h-5 w-5 text-secondary" />
                 </div>
-              )}
-              
-              <div className="text-center mb-8">
-                <h3 className="text-2xl font-bold mb-2">{plan.name}</h3>
-                <div className="flex items-baseline justify-center gap-1">
-                  <span className="text-4xl font-bold">{plan.price}</span>
-                  <span className="text-muted-foreground">{plan.period}</span>
-                </div>
-                <p className="text-muted-foreground mt-2">{plan.description}</p>
-              </div>
-              
-              <ul className="space-y-4 mb-8">
-                {plan.features.map((feature, featureIndex) => (
-                  <li key={featureIndex} className="flex items-center gap-3">
-                    <div className="h-5 w-5 rounded-full bg-secondary/20 flex items-center justify-center flex-shrink-0">
-                      <Check className="h-3 w-3 text-secondary" />
-                    </div>
-                    <span className="text-muted-foreground">{feature}</span>
-                  </li>
-                ))}
-              </ul>
-              
-              <Button 
-                className={`w-full ${plan.highlighted 
-                  ? 'bg-gradient-mimer hover:opacity-90' 
-                  : ''
-                }`}
-                variant={plan.highlighted ? 'default' : 'outline'}
-                onClick={() => window.location.href = '/contact'}
-              >
-                {language === 'sv' ? 'Kontakta oss' : 'Contact Us'}
-              </Button>
-            </Card>
-          ))}
-        </div>
+                <span className="text-foreground">{feature.text}</span>
+              </li>
+            ))}
+          </ul>
+
+          <div className="border-t border-border/50 pt-6 mb-8">
+            <p className="text-sm text-muted-foreground text-center mb-3">
+              {language === 'sv' ? 'Perfekt för serviceföretag:' : 'Perfect for service businesses:'}
+            </p>
+            <div className="flex flex-wrap justify-center gap-2">
+              {industries.map((industry, index) => (
+                <span 
+                  key={index}
+                  className="bg-muted/50 text-muted-foreground px-3 py-1 rounded-full text-sm"
+                >
+                  {industry}
+                </span>
+              ))}
+            </div>
+          </div>
+          
+          <Button 
+            size="lg"
+            className="w-full bg-gradient-mimer hover:opacity-90 text-lg py-6"
+            onClick={() => window.location.href = '/demo'}
+          >
+            {language === 'sv' ? 'Boka en demo' : 'Book a Demo'}
+          </Button>
+          
+          <p className="text-center text-sm text-muted-foreground mt-4">
+            {language === 'sv' 
+              ? '14 dagars gratis provperiod • Ingen bindningstid' 
+              : '14-day free trial • No commitment'}
+          </p>
+        </Card>
       </div>
     </section>
   );
