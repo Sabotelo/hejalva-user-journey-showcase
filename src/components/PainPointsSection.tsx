@@ -2,13 +2,40 @@ import { useEffect, useState } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Clock, Wrench, Phone, CheckCircle, XCircle } from "lucide-react";
 
+const STORAGE_KEY = 'alva_revenue_saved';
+
+const getStoredRevenue = () => {
+  try {
+    const stored = localStorage.getItem(STORAGE_KEY);
+    if (stored) {
+      const { value, timestamp } = JSON.parse(stored);
+      // Reset weekly (7 days)
+      const weekInMs = 7 * 24 * 60 * 60 * 1000;
+      if (Date.now() - timestamp < weekInMs) {
+        return value;
+      }
+    }
+  } catch {
+    // Ignore localStorage errors
+  }
+  return 24750;
+};
+
 const PainPointsSection = () => {
   const { language } = useLanguage();
-  const [revenueSaved, setRevenueSaved] = useState(24750);
+  const [revenueSaved, setRevenueSaved] = useState(() => getStoredRevenue());
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setRevenueSaved(prev => prev + Math.floor(Math.random() * 50) + 10);
+      setRevenueSaved(prev => {
+        const newValue = prev + Math.floor(Math.random() * 50) + 10;
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify({ value: newValue, timestamp: Date.now() }));
+        } catch {
+          // Ignore localStorage errors
+        }
+        return newValue;
+      });
     }, 2000);
     return () => clearInterval(interval);
   }, []);
@@ -77,11 +104,11 @@ const PainPointsSection = () => {
         </div>
 
         {/* Pain Points Grid */}
-        <div className="grid md:grid-cols-3 gap-6 mb-16">
+        <div className="grid md:grid-cols-3 gap-6 mb-16 items-stretch">
           {painPoints.map((point, index) => (
             <div 
               key={index}
-              className="group relative rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl p-6 transition-all duration-300 hover:bg-white/10 hover:border-white/20"
+              className="group relative rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl p-6 transition-all duration-300 hover:bg-white/10 hover:border-white/20 flex flex-col"
             >
               {/* Icon */}
               <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-secondary/20 to-secondary/5 border border-secondary/30">
@@ -90,7 +117,7 @@ const PainPointsSection = () => {
 
               {/* Title */}
               <h3 className="text-xl font-bold text-white mb-2">{point.title}</h3>
-              <p className="text-white/60 text-sm mb-6">{point.description}</p>
+              <p className="text-white/60 text-sm mb-6 flex-grow">{point.description}</p>
 
               {/* Comparison */}
               <div className="space-y-3">
