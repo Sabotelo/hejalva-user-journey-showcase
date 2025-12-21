@@ -1,31 +1,9 @@
-import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/contexts/LanguageContext";
-import mimerLogo from "@/assets/mimer-logo.png";
 import { Phone } from "lucide-react";
 
 const HeroSection = () => {
   const { language } = useLanguage();
-  const [scrollOpacity, setScrollOpacity] = useState(1);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollY = window.scrollY;
-      const fadeStart = 100;
-      const fadeEnd = 400;
-      
-      if (scrollY <= fadeStart) {
-        setScrollOpacity(1);
-      } else if (scrollY >= fadeEnd) {
-        setScrollOpacity(0);
-      } else {
-        setScrollOpacity(1 - (scrollY - fadeStart) / (fadeEnd - fadeStart));
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-primary via-primary-dark to-primary">
@@ -33,18 +11,7 @@ const HeroSection = () => {
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute -top-40 -right-40 h-[600px] w-[600px] rounded-full bg-gradient-to-br from-secondary/30 to-primary-glow/20 blur-3xl"></div>
         <div className="absolute -bottom-40 -left-40 h-[500px] w-[500px] rounded-full bg-gradient-to-tr from-primary-glow/30 to-secondary/20 blur-3xl"></div>
-      </div>
-
-      {/* Large centered logo that fades on scroll */}
-      <div 
-        className="absolute inset-0 flex items-center justify-center pointer-events-none transition-opacity duration-300"
-        style={{ opacity: scrollOpacity * 0.15 }}
-      >
-        <img 
-          src={mimerLogo} 
-          alt="Mimer Technologies" 
-          className="w-[600px] md:w-[800px] lg:w-[1000px] max-w-[90vw] opacity-50 blur-sm"
-        />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[800px] w-[800px] rounded-full bg-gradient-to-br from-secondary/10 to-transparent blur-3xl"></div>
       </div>
       
       <div className="container relative z-10 mx-auto px-4 pt-20">
