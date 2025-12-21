@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { Play, Pause, RotateCcw, MessageSquare, Cpu, Phone, Calendar, Clock } from "lucide-react";
+import { Play, Pause, RotateCcw, Cpu, Phone, Scissors, Car, Stethoscope, Info } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 interface TranscriptLine {
@@ -11,8 +11,9 @@ interface TranscriptLine {
 }
 
 interface ActionLog {
-  action: string;
-  status: "processing" | "success" | "info";
+  label: string;
+  value: string;
+  status: "processing" | "success" | "info" | "pending";
   timestamp: number;
 }
 
@@ -20,6 +21,8 @@ interface Scenario {
   id: string;
   titleSv: string;
   titleEn: string;
+  subtitleSv: string;
+  subtitleEn: string;
   icon: typeof Phone;
   transcript: TranscriptLine[];
   actions: ActionLog[];
@@ -36,100 +39,84 @@ const scenarios: Scenario[] = [
   {
     id: "booking",
     titleSv: "Boka Tid",
-    titleEn: "Booking",
-    icon: Calendar,
+    titleEn: "The Booking",
+    subtitleSv: "Frisör",
+    subtitleEn: "Hairdresser",
+    icon: Scissors,
     transcript: [
-      { speaker: "caller", text: "Hej, jag skulle vilja boka en tid hos er.", timestamp: 0 },
-      { speaker: "alva", text: "Hej och välkommen! Självklart kan jag hjälpa dig med det. Vilken dag passar dig bäst?", timestamp: 3 },
-      { speaker: "caller", text: "Har ni något på tisdag nästa vecka?", timestamp: 8 },
-      { speaker: "alva", text: "Jag kollar direkt... Ja, vi har ledigt klockan 10:00 och 14:00 på tisdag. Vilken tid föredrar du?", timestamp: 11 },
-      { speaker: "caller", text: "Klockan 14 passar perfekt.", timestamp: 17 },
-      { speaker: "alva", text: "Utmärkt! Jag bokar in dig tisdag klockan 14:00. Du får en bekräftelse via SMS inom kort. Något mer jag kan hjälpa dig med?", timestamp: 20 },
-      { speaker: "caller", text: "Nej, det var allt. Tack så mycket!", timestamp: 27 },
-      { speaker: "alva", text: "Tack för att du ringde! Vi ses på tisdag. Ha en fin dag!", timestamp: 30 },
+      { speaker: "caller", text: "Hej, har ni tid för klippning på fredag?", timestamp: 0 },
+      { speaker: "alva", text: "Hej! Fredag ser fullbokad ut i systemet, men jag ser en lucka klockan 10:00 på torsdag. Skulle den tiden passa dig?", timestamp: 3 },
+      { speaker: "caller", text: "Ja, torsdag blir bra.", timestamp: 10 },
+      { speaker: "alva", text: "Utmärkt. Jag skickar en förfrågan till frisören om torsdag klockan 10:00. Så fort de har godkänt bokningen får du en bekräftelse via SMS!", timestamp: 13 },
     ],
     actions: [
-      { action: "Inkommande samtal identifierat", status: "info", timestamp: 0 },
-      { action: "Startar bokningsflöde", status: "processing", timestamp: 3 },
-      { action: "Söker lediga tider: Tisdag", status: "processing", timestamp: 11 },
-      { action: "2 tider tillgängliga", status: "success", timestamp: 13 },
-      { action: "Bokar tid: Tisdag 14:00", status: "processing", timestamp: 20 },
-      { action: "Bokning bekräftad ✓", status: "success", timestamp: 22 },
-      { action: "Skickar SMS-bekräftelse", status: "processing", timestamp: 24 },
-      { action: "SMS levererat ✓", status: "success", timestamp: 26 },
+      { label: "User Input", value: "Thursday 10:00", status: "info", timestamp: 0 },
+      { label: "Action", value: "Check Availability", status: "processing", timestamp: 3 },
+      { label: "Result", value: "→ Slot Open", status: "success", timestamp: 6 },
+      { label: "Output", value: "Create Request #402", status: "processing", timestamp: 13 },
+      { label: "Status", value: "Pending SME Approval", status: "pending", timestamp: 16 },
     ],
     outcome: {
       type: "sms",
       titleSv: "SMS Bekräftelse",
       titleEn: "SMS Confirmation",
-      contentSv: "Hej! Din tid är bokad för tisdag kl 14:00. Välkommen! /Kliniken",
-      contentEn: "Hi! Your appointment is booked for Tuesday at 2:00 PM. Welcome! /The Clinic",
+      contentSv: "Hej! Din bokningsförfrågan för torsdag kl 10:00 har skickats. Du får bekräftelse så fort frisören godkänner. /Salongen",
+      contentEn: "Hi! Your booking request for Thursday at 10:00 has been sent. You'll receive confirmation once the stylist approves. /The Salon",
     },
   },
   {
     id: "difficult",
     titleSv: "Svår Kund",
     titleEn: "Tricky Customer",
-    icon: MessageSquare,
+    subtitleSv: "Bilverkstad",
+    subtitleEn: "Auto Workshop",
+    icon: Car,
     transcript: [
-      { speaker: "caller", text: "Hallå? Jag har väntat i evigheter på att någon ska svara!", timestamp: 0 },
-      { speaker: "alva", text: "Jag förstår din frustration och ber om ursäkt för väntetiden. Jag är Alva och ska göra mitt bästa för att hjälpa dig. Vad gäller ditt ärende?", timestamp: 3 },
-      { speaker: "caller", text: "Jag fick helt fel tid förra veckan. Det är inte acceptabelt!", timestamp: 10 },
-      { speaker: "alva", text: "Det låter verkligen jobbigt, och jag beklagar att det blev fel. Låt mig se vad jag kan göra för att rätta till det. Kan du ge mig ditt namn så kollar jag din bokning?", timestamp: 14 },
-      { speaker: "caller", text: "Erik Svensson. Men jag vill prata med en chef!", timestamp: 22 },
-      { speaker: "alva", text: "Jag noterar det, Erik. Jag ser här att det blev en dubbel bokning. Jag kan erbjuda dig en ny tid redan imorgon kl 09:00 med 20% rabatt som kompensation. Eller så ber jag chefen återkomma inom 2 timmar. Vad föredrar du?", timestamp: 26 },
-      { speaker: "caller", text: "Okej... Imorgon kl 9 funkar. Och rabatten låter bra.", timestamp: 38 },
-      { speaker: "alva", text: "Perfekt, Erik! Du är nu bokad imorgon kl 09:00 med 20% rabatt. Jag skickar en bekräftelse. Tack för ditt tålamod!", timestamp: 42 },
+      { speaker: "caller", text: "Öh, bilen låter konstigt. Hur mycket kostar det?", timestamp: 0 },
+      { speaker: "alva", text: "Jag förstår att det är stressigt med bilen. Eftersom priset beror på felet behöver verkstaden titta på den först. Jag kan skicka en förfrågan om felsökning imorgon bitti?", timestamp: 3 },
+      { speaker: "caller", text: "Ja, gör det.", timestamp: 12 },
+      { speaker: "alva", text: "Fixat. Jag har skickat ärendet till mekanikern. Om tiden fungerar för dem får du ett SMS med bokningsbekräftelse strax.", timestamp: 15 },
     ],
     actions: [
-      { action: "Missnöjd kund detekterad", status: "info", timestamp: 0 },
-      { action: "Aktiverar empati-protokoll", status: "processing", timestamp: 3 },
-      { action: "Söker kundhistorik: Erik Svensson", status: "processing", timestamp: 22 },
-      { action: "Hittat: Bokningskonflikt 15/12", status: "info", timestamp: 24 },
-      { action: "Genererar kompensationserbjudande", status: "processing", timestamp: 26 },
-      { action: "Rabattkod skapad: 20%", status: "success", timestamp: 28 },
-      { action: "Ny bokning: Imorgon 09:00", status: "success", timestamp: 42 },
-      { action: "Ärendet löst ✓", status: "success", timestamp: 44 },
+      { label: "Intent", value: "Price Inquiry", status: "info", timestamp: 0 },
+      { label: "Action", value: "Explain Policy", status: "processing", timestamp: 3 },
+      { label: "Note", value: "(Diagnostics first)", status: "info", timestamp: 6 },
+      { label: "Output", value: "Draft Case Request", status: "processing", timestamp: 15 },
+      { label: "Status", value: "Sent to Workshop Dashboard", status: "success", timestamp: 18 },
     ],
     outcome: {
       type: "email",
-      titleSv: "Ärenderapport till Ägaren",
-      titleEn: "Case Report to Owner",
-      contentSv: "Kund: Erik Svensson\nÄrende: Bokningsfel (löst)\nKompensation: 20% rabatt\nNy tid: Imorgon 09:00",
-      contentEn: "Customer: Erik Svensson\nIssue: Booking error (resolved)\nCompensation: 20% discount\nNew time: Tomorrow 09:00",
+      titleSv: "Ärende till Verkstaden",
+      titleEn: "Case to Workshop",
+      contentSv: "Nytt ärende: Felsökning\nKund: Inkommande samtal\nBeskrivning: Bilen låter konstigt\nFöreslagen tid: Imorgon bitti\nStatus: Väntar på godkännande",
+      contentEn: "New Case: Diagnostics\nCustomer: Incoming call\nDescription: Car making strange noise\nSuggested time: Tomorrow morning\nStatus: Awaiting approval",
     },
   },
   {
     id: "afterhours",
     titleSv: "Efter Stängning",
     titleEn: "After Hours",
-    icon: Clock,
+    subtitleSv: "Tandläkare",
+    subtitleEn: "Dentist",
+    icon: Stethoscope,
     transcript: [
-      { speaker: "caller", text: "Hej, är ni öppna? Jag behöver verkligen boka en tid.", timestamp: 0 },
-      { speaker: "alva", text: "Hej! Tack för att du ringer. Våra kontor är stängda just nu, men jag är Alva och kan hjälpa dig med bokning dygnet runt. Vad kan jag göra för dig?", timestamp: 3 },
-      { speaker: "caller", text: "Åh, vad skönt! Jag jobbar dagtid så det är svårt att ringa. Har ni något på fredag eftermiddag?", timestamp: 10 },
-      { speaker: "alva", text: "Självklart, jag förstår. Låt mig kolla fredagens tider... Vi har 15:30 och 16:00 ledigt. Passar någon av de?", timestamp: 17 },
-      { speaker: "caller", text: "15:30 är perfekt!", timestamp: 24 },
-      { speaker: "alva", text: "Toppen! Jag bokar dig på fredag kl 15:30. Kan jag få ditt namn och telefonnummer för bekräftelsen?", timestamp: 27 },
-      { speaker: "caller", text: "Lisa Andersson, 070-123 45 67.", timestamp: 33 },
-      { speaker: "alva", text: "Tack Lisa! Din bokning är klar. Du får SMS-bekräftelse nu direkt. Sov gott och välkommen på fredag!", timestamp: 36 },
+      { speaker: "caller", text: "Har ni öppet nu? Jag har så ont i tanden.", timestamp: 0 },
+      { speaker: "alva", text: "Kliniken är stängd för kvällen, men jag ser en möjlig akuttid imorgon klockan 07:30. Ska jag skicka en akut-förfrågan till tandläkaren om den tiden?", timestamp: 3 },
+      { speaker: "caller", text: "Ja snälla.", timestamp: 12 },
+      { speaker: "alva", text: "Det är ordnat. Jag har flaggat detta som akut. Håll utkik i mobilen, du får bekräftelse så fort personalen är på plats imorgon bitti.", timestamp: 15 },
     ],
     actions: [
-      { action: "Samtal utanför öppettider", status: "info", timestamp: 0 },
-      { action: "24/7 Bokningsläge aktivt", status: "success", timestamp: 3 },
-      { action: "Söker tider: Fredag eftermiddag", status: "processing", timestamp: 17 },
-      { action: "2 tider tillgängliga", status: "success", timestamp: 19 },
-      { action: "Registrerar ny kund", status: "processing", timestamp: 33 },
-      { action: "Kund skapad: Lisa Andersson", status: "success", timestamp: 34 },
-      { action: "Bokning: Fredag 15:30 ✓", status: "success", timestamp: 36 },
-      { action: "SMS-bekräftelse skickad", status: "success", timestamp: 38 },
+      { label: "Time", value: "23:15 (After Hours)", status: "info", timestamp: 0 },
+      { label: "Priority", value: "HIGH (Acute pain)", status: "pending", timestamp: 3 },
+      { label: "Action", value: "Provisional Booking 07:30", status: "processing", timestamp: 12 },
+      { label: "Status", value: "Awaiting Morning Approval", status: "pending", timestamp: 18 },
     ],
     outcome: {
       type: "sms",
-      titleSv: "SMS Bekräftelse (23:47)",
-      titleEn: "SMS Confirmation (11:47 PM)",
-      contentSv: "Hej Lisa! Din tid är bokad för fredag kl 15:30. Välkommen! /Kliniken 🌙",
-      contentEn: "Hi Lisa! Your appointment is booked for Friday at 3:30 PM. Welcome! /The Clinic 🌙",
+      titleSv: "SMS Bekräftelse (23:15)",
+      titleEn: "SMS Confirmation (11:15 PM)",
+      contentSv: "Hej! Din akut-förfrågan för imorgon kl 07:30 har registrerats. Du får bekräftelse så fort kliniken öppnar. /Tandkliniken 🦷",
+      contentEn: "Hi! Your urgent request for tomorrow at 07:30 has been registered. You'll receive confirmation when the clinic opens. /The Dental Clinic 🦷",
     },
   },
 ];
@@ -251,14 +238,19 @@ const LiveDemoSection = () => {
             <button
               key={s.id}
               onClick={() => setActiveScenario(index)}
-              className={`flex items-center gap-2 px-5 py-3 rounded-full font-medium transition-all duration-300 ${
+              className={`flex flex-col items-center gap-1 px-6 py-4 rounded-xl font-medium transition-all duration-300 min-w-[140px] ${
                 activeScenario === index
                   ? 'bg-[#00F5FF] text-[#0A2342] shadow-[0_0_30px_rgba(0,245,255,0.4)]'
                   : 'bg-white/5 text-white/70 border border-white/10 hover:bg-white/10 hover:text-white'
               }`}
             >
-              <s.icon className="h-4 w-4" />
-              {language === 'sv' ? s.titleSv : s.titleEn}
+              <s.icon className="h-5 w-5" />
+              <span className="text-sm font-semibold">
+                {language === 'sv' ? s.titleSv : s.titleEn}
+              </span>
+              <span className={`text-xs ${activeScenario === index ? 'text-[#0A2342]/70' : 'text-white/50'}`}>
+                {language === 'sv' ? s.subtitleSv : s.subtitleEn}
+              </span>
             </button>
           ))}
         </div>
@@ -392,8 +384,8 @@ const LiveDemoSection = () => {
                     </span>
                   </div>
                   
-                  {/* Action log entries */}
-                  <div className="p-4 h-80 overflow-y-auto font-mono text-xs space-y-2">
+                  {/* Action log entries - structured format */}
+                  <div className="p-4 h-80 overflow-y-auto font-mono text-xs space-y-3">
                     <AnimatePresence>
                       {scenario.actions.map((action, index) => (
                         <motion.div
@@ -404,14 +396,26 @@ const LiveDemoSection = () => {
                             x: visibleActions.includes(index) ? 0 : -10
                           }}
                           transition={{ duration: 0.3 }}
-                          className={`flex items-start gap-2 ${!visibleActions.includes(index) && 'hidden'}`}
+                          className={`${!visibleActions.includes(index) && 'hidden'}`}
                         >
-                          <span className={`mt-0.5 h-2 w-2 rounded-full flex-shrink-0 ${
-                            action.status === 'success' ? 'bg-green-400' :
-                            action.status === 'processing' ? 'bg-yellow-400 animate-pulse' :
-                            'bg-[#00F5FF]'
-                          }`} />
-                          <span className="text-white/70 leading-relaxed">{action.action}</span>
+                          <div className="flex items-start gap-2">
+                            <span className={`mt-1 h-2 w-2 rounded-full flex-shrink-0 ${
+                              action.status === 'success' ? 'bg-green-400' :
+                              action.status === 'processing' ? 'bg-yellow-400 animate-pulse' :
+                              action.status === 'pending' ? 'bg-orange-400' :
+                              'bg-[#00F5FF]'
+                            }`} />
+                            <div className="flex-1">
+                              <span className="text-white/50">{action.label}:</span>
+                              <span className={`ml-2 ${
+                                action.status === 'success' ? 'text-green-400' :
+                                action.status === 'pending' ? 'text-orange-400' :
+                                'text-white/80'
+                              }`}>
+                                {action.value}
+                              </span>
+                            </div>
+                          </div>
                         </motion.div>
                       ))}
                     </AnimatePresence>
@@ -442,24 +446,24 @@ const LiveDemoSection = () => {
                       </div>
                       {/* Phone mockup for SMS */}
                       {scenario.outcome.type === 'sms' ? (
-                        <div className="w-48 rounded-2xl bg-gradient-to-b from-gray-800 to-gray-900 p-2 shadow-xl">
+                        <div className="w-52 rounded-2xl bg-gradient-to-b from-gray-800 to-gray-900 p-2 shadow-xl">
                           <div className="rounded-xl bg-white p-3">
                             <div className="text-[10px] text-gray-500 mb-1">
                               {language === 'sv' ? scenario.outcome.titleSv : scenario.outcome.titleEn}
                             </div>
-                            <div className="bg-[#00F5FF]/10 rounded-lg p-2 text-xs text-gray-700">
+                            <div className="bg-[#00F5FF]/10 rounded-lg p-2 text-xs text-gray-700 leading-relaxed">
                               {language === 'sv' ? scenario.outcome.contentSv : scenario.outcome.contentEn}
                             </div>
                           </div>
                         </div>
                       ) : (
-                        <div className="w-64 rounded-lg bg-white shadow-xl overflow-hidden">
+                        <div className="w-72 rounded-lg bg-white shadow-xl overflow-hidden">
                           <div className="bg-gray-100 px-3 py-2 border-b">
                             <div className="text-[10px] text-gray-500">
                               {language === 'sv' ? scenario.outcome.titleSv : scenario.outcome.titleEn}
                             </div>
                           </div>
-                          <div className="p-3 text-xs text-gray-700 whitespace-pre-line font-mono">
+                          <div className="p-3 text-xs text-gray-700 whitespace-pre-line font-mono leading-relaxed">
                             {language === 'sv' ? scenario.outcome.contentSv : scenario.outcome.contentEn}
                           </div>
                         </div>
@@ -469,8 +473,8 @@ const LiveDemoSection = () => {
                     <div className="flex-grow text-center md:text-left">
                       <p className="text-white/60 text-sm max-w-md">
                         {language === 'sv' 
-                          ? 'Alva hanterade samtalet, bokade tiden och skickade bekräftelse – helt automatiskt, dygnet runt.'
-                          : 'Alva handled the call, booked the appointment, and sent confirmation – fully automatic, 24/7.'}
+                          ? 'Alva hanterade samtalet och skickade förfrågan till företaget. Du godkänner eller ombokar – du har alltid kontrollen.'
+                          : 'Alva handled the call and sent the request to the business. You approve or reschedule – you\'re always in control.'}
                       </p>
                       <Button 
                         className="mt-4 bg-[#00F5FF] text-[#0A2342] hover:bg-[#00F5FF]/90 shadow-[0_0_20px_rgba(0,245,255,0.3)]"
@@ -485,6 +489,21 @@ const LiveDemoSection = () => {
               )}
             </AnimatePresence>
           </div>
+
+          {/* Marketing Tip - Control Message */}
+          <motion.div 
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5 }}
+            className="mt-6 flex items-start gap-3 p-4 rounded-xl bg-white/5 border border-white/10 max-w-3xl mx-auto"
+          >
+            <Info className="h-5 w-5 text-[#00F5FF] flex-shrink-0 mt-0.5" />
+            <p className="text-white/70 text-sm leading-relaxed">
+              {language === 'sv' 
+                ? 'Alva skriver inte över ditt schema. Hon förhandlar tiden, fångar kunduppgifterna och skickar en förfrågan till dig. Du klickar bara "Godkänn" eller "Omboka". Du har alltid kontrollen.'
+                : 'Alva doesn\'t overwrite your schedule. She negotiates the time, captures the customer details, and sends you a request. You simply click "Accept" or "Reschedule". You are always in control.'}
+            </p>
+          </motion.div>
         </div>
       </div>
     </section>
