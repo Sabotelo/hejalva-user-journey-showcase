@@ -1,13 +1,17 @@
 import type { Config } from "tailwindcss";
 
 export default {
-	darkMode: ["class"],
-	content: [
-		"./pages/**/*.{ts,tsx}",
-		"./components/**/*.{ts,tsx}",
-		"./app/**/*.{ts,tsx}",
-		"./src/**/*.{ts,tsx}",
-	],
+  darkMode: ["class"],
+  content: [
+    "./pages/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx}",
+    "./src/**/*.{ts,tsx}",
+  ],
+  safelist: [
+    'animate-bounce',
+    'animate-spin',
+  ],
 	prefix: "",
 	theme: {
 		container: {
@@ -36,6 +40,11 @@ export default {
 				secondary: {
 					DEFAULT: 'hsl(var(--secondary))',
 					foreground: 'hsl(var(--secondary-foreground))'
+				},
+				gold: {
+					DEFAULT: 'hsl(45 100% 50%)',
+					light: 'hsl(45 100% 60%)',
+					dark: 'hsl(45 100% 40%)'
 				},
 				destructive: {
 					DEFAULT: 'hsl(var(--destructive))',

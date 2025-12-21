@@ -169,6 +169,25 @@
   .glass-effect {
     @apply border border-white/20 bg-white/10 backdrop-blur-md;
   }
+  
+  /* Glassmorphism panel for dark backgrounds */
+  .glass-panel {
+    @apply border border-white/10 bg-white/5 backdrop-blur-xl shadow-[0_8px_32px_rgba(0,0,0,0.3)];
+  }
+  
+  /* Animated button shimmer */
+  .animate-shimmer {
+    animation: shimmer 2s linear infinite;
+  }
+  
+  /* Floating animation for elements */
+  .animate-float-slow {
+    animation: floatSlow 8s ease-in-out infinite;
+  }
+  
+  .animate-float-medium {
+    animation: floatMedium 6s ease-in-out infinite;
+  }
 }
 
 @layer utilities {
@@ -188,6 +207,21 @@
 @keyframes float {
   0%, 100% { transform: translateY(0px); }
   50% { transform: translateY(-20px); }
+}
+
+@keyframes floatSlow {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-15px) rotate(2deg); }
+}
+
+@keyframes floatMedium {
+  0%, 100% { transform: translateY(0px) scale(1); }
+  50% { transform: translateY(-10px) scale(1.02); }
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
 }
 
 @keyframes soundWave {
