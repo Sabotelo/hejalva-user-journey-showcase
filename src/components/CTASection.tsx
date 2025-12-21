@@ -13,7 +13,7 @@ const CTASection = () => {
           <div className="space-y-8">
               <div className="space-y-4">
                 <div className="flex justify-center">
-                  <div className="h-16 w-16 rounded-full bg-gradient-alva flex items-center justify-center shadow-elevated animate-bounce-subtle">
+                  <div className="h-16 w-16 rounded-full bg-gradient-mimer flex items-center justify-center shadow-elevated animate-bounce-subtle">
                   <Sparkles className="h-8 w-8 text-white" />
                 </div>
               </div>

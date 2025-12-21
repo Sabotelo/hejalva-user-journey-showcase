@@ -6,7 +6,7 @@ import { AuthModal } from "@/components/auth/AuthModal";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Menu, X, Globe, User, Settings, LogOut } from "lucide-react";
-import AlvaLogo from "@/components/AlvaLogo";
+import MimerLogo from "@/components/MimerLogo";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -36,7 +36,7 @@ const Navigation = () => {
     <nav className="fixed top-0 z-50 w-full border-b border-border/40 bg-background/80 backdrop-blur-md">
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
         <a href="/" className="flex items-center cursor-pointer hover:opacity-80 transition-opacity">
-          <AlvaLogo size={40} />
+          <MimerLogo size={40} />
         </a>
         
         <div className="hidden md:flex items-center space-x-6">
@@ -102,7 +102,7 @@ const Navigation = () => {
               </Button>
               <Button 
                 size="sm" 
-                className="bg-gradient-alva shadow-primary hover:shadow-elevated transition-all duration-300"
+                className="bg-gradient-mimer shadow-primary hover:shadow-elevated transition-all duration-300"
                 onClick={() => setAuthModalOpen(true)}
               >
                 {t('nav.getStarted')}

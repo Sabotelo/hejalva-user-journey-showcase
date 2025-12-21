@@ -29,19 +29,19 @@ const translations: Translations = {
     en: 'Your AI Receptionist That Never Misses a Call' 
   },
   'hero.subtitle': { 
-    sv: 'Alva svarar automatiskt på alla dina affärssamtal 24/7, bokar möten och fångar varje möjlighet - så att du kan fokusera på det som verkligen driver din verksamhet framåt.', 
-    en: 'Alva automatically answers all your business calls 24/7, books appointments, and captures every opportunity - so you can focus on what truly drives your business forward.' 
+    sv: 'Mimer svarar automatiskt på alla dina affärssamtal 24/7, bokar möten och fångar varje möjlighet - så att du kan fokusera på det som verkligen driver din verksamhet framåt.', 
+    en: 'Mimer automatically answers all your business calls 24/7, books appointments, and captures every opportunity - so you can focus on what truly drives your business forward.' 
   },
   'hero.startDemo': { sv: 'Boka en 15-minuters demo', en: 'Request a 15-Minute Demo' },
   'hero.watchPreview': { sv: 'Se förhandsvisning', en: 'Watch Preview' },
-  'hero.noSignup': { sv: '✨ Ingen registrering krävs • Se Alva i aktion', en: '✨ No signup required • See Alva in action' },
+  'hero.noSignup': { sv: '✨ Ingen registrering krävs • Se Mimer i aktion', en: '✨ No signup required • See Mimer in action' },
 
   // Interactive Demo
   'demo.title': { sv: 'Prova den', en: 'Try the' },
   'demo.titleHighlight': { sv: 'Interaktiva demon', en: 'Interactive Demo' },
   'demo.subtitle': { 
-    sv: 'Upplev hur Alva skapar personliga användarresor. Klicka igenom stegen nedan för att se magin i aktion.', 
-    en: 'Experience how Alva creates personalized user journeys. Click through the steps below to see the magic in action.' 
+    sv: 'Upplev hur Mimer skapar personliga användarresor. Klicka igenom stegen nedan för att se magin i aktion.', 
+    en: 'Experience how Mimer creates personalized user journeys. Click through the steps below to see the magic in action.' 
   },
   'demo.interactiveJourney': { sv: 'Interaktiv resa', en: 'Interactive Journey' },
   'demo.resetDemo': { sv: 'Återställ demo', en: 'Reset Demo' },
@@ -55,7 +55,7 @@ const translations: Translations = {
   'demo.tryAgain': { sv: 'Prova igen', en: 'Try Again' },
 
   // Demo Steps
-  'step1.title': { sv: 'Välkommen till Alva', en: 'Welcome to Alva' },
+  'step1.title': { sv: 'Välkommen till Mimer', en: 'Welcome to Mimer' },
   'step1.description': { sv: 'Låt oss börja din personliga interaktiva resa', en: 'Let\'s start your personalized interactive journey' },
   'step1.action': { sv: 'Klicka för att börja', en: 'Click to begin' },
 
@@ -81,10 +81,10 @@ const translations: Translations = {
 
   // Feature Items
   'feature.lightning.title': { sv: '100% Samtalsupptagning', en: '100% Call Capture' },
-  'feature.lightning.desc': { sv: 'Alva svarar omedelbart på varje samtal, varje gång. Inga missade möjligheter någonsin.', en: 'Alva answers instantly, every time. No missed opportunities ever.' },
+  'feature.lightning.desc': { sv: 'Mimer svarar omedelbart på varje samtal, varje gång. Inga missade möjligheter någonsin.', en: 'Mimer answers instantly, every time. No missed opportunities ever.' },
 
   'feature.userCentric.title': { sv: 'Automatisk Mötesbokning', en: 'Automated Appointment Booking' },
-  'feature.userCentric.desc': { sv: 'Alva kollar din kalender och bokar möten åt dig, sparar timmar av administrativt arbete.', en: 'Alva checks your calendar and books appointments for you, saving hours of admin time.' },
+  'feature.userCentric.desc': { sv: 'Mimer kollar din kalender och bokar möten åt dig, sparar timmar av administrativt arbete.', en: 'Mimer checks your calendar and books appointments for you, saving hours of admin time.' },
 
   'feature.analytics.title': { sv: 'Samtalssammanfattningar', en: 'Call Summaries' },
   'feature.analytics.desc': { sv: 'Få en koncis sammanfattning av varje konversation skickad direkt till din e-post.', en: 'Get a concise summary of every conversation sent directly to your email.' },
@@ -93,7 +93,7 @@ const translations: Translations = {
   'feature.security.desc': { sv: 'Hälsa varje kund med en tydlig, artig röst som speglar kvaliteten på din verksamhet.', en: 'Greet every customer with a clear, polite voice that reflects the quality of your business.' },
 
   'feature.mobile.title': { sv: '24/7 Tillgänglighet', en: '24/7 Availability' },
-  'feature.mobile.desc': { sv: 'Aldrig stängt. Alva arbetar dygnet runt, även när du sover eller är upptagen.', en: 'Never closed. Alva works round the clock, even when you\'re asleep or busy.' },
+  'feature.mobile.desc': { sv: 'Aldrig stängt. Mimer arbetar dygnet runt, även när du sover eller är upptagen.', en: 'Never closed. Mimer works round the clock, even when you\'re asleep or busy.' },
 
   'feature.workflow.title': { sv: 'Kalenderintegration', en: 'Calendar Integration' },
   'feature.workflow.desc': { sv: 'Integreras sömlöst med din befintliga kalender och arbetsflöden.', en: 'Seamlessly integrates with your existing calendar and workflows.' },
@@ -102,8 +102,8 @@ const translations: Translations = {
   'cta.title': { sv: 'Redo att förvandla din telefon till', en: 'Ready to Turn Your Phone Into' },
   'cta.titleHighlight': { sv: 'din bästa anställda?', en: 'Your Best Employee?' },
   'cta.subtitle': { 
-    sv: 'Sluta förlora kunder till din röstbrevlåda. Låt Alva förvandla varje samtal till en affärsmöjlighet.', 
-    en: 'Stop losing customers to your voicemail. Let Alva turn every call into a business opportunity.' 
+    sv: 'Sluta förlora kunder till din röstbrevlåda. Låt Mimer förvandla varje samtal till en affärsmöjlighet.', 
+    en: 'Stop losing customers to your voicemail. Let Mimer turn every call into a business opportunity.' 
   },
   'cta.startTrial': { sv: 'Starta din kostnadsfria provperiod', en: 'Start Your Free Trial' },
   'cta.scheduleDemo': { sv: 'Boka en demo', en: 'Request a Demo' },
@@ -113,7 +113,7 @@ const translations: Translations = {
 
   // Contact Page
   'contact.title': { sv: 'Kontakta', en: 'Get in Touch' },
-  'contact.titleHighlight': { sv: 'Alva', en: 'with Alva' },
+  'contact.titleHighlight': { sv: 'Mimer', en: 'with Mimer' },
   'contact.subtitle': { 
     sv: 'Har du frågor? Vill se en demo? Eller redo att börja? Vi skulle gärna höra från dig.', 
     en: 'Have questions? Want to see a demo? Or ready to get started? We\'d love to hear from you.' 
@@ -137,7 +137,7 @@ const translations: Translations = {
   'contact.info.phone': { sv: 'Telefon', en: 'Phone' },
   'contact.info.location': { sv: 'Plats', en: 'Location' },
   'contact.support.title': { sv: 'Supporttider', en: 'Support Hours' },
-  'contact.support.description': { sv: 'Vårt team är här för att hjälpa dig lyckas med Alva.', en: 'Our team is here to help you succeed with Alva.' },
+  'contact.support.description': { sv: 'Vårt team är här för att hjälpa dig lyckas med Mimer.', en: 'Our team is here to help you succeed with Mimer.' },
   'contact.support.hours': { sv: 'Arbetstider', en: 'Business Hours' },
   'contact.support.response': { sv: 'Svarstid', en: 'Response Time' },
   'contact.support.languages': { sv: 'Språk', en: 'Languages' },
@@ -220,8 +220,8 @@ const translations: Translations = {
     en: 'Your phone service ensures the call gets through.' 
   },
   'roi.challenge.footerHighlight': { 
-    sv: 'Alva ser till att möjligheten fångas.', 
-    en: 'Alva ensures the opportunity is captured.' 
+    sv: 'Mimer ser till att möjligheten fångas.', 
+    en: 'Mimer ensures the opportunity is captured.' 
   },
 
   // ROI Page - Opportunity Cost
@@ -280,28 +280,28 @@ const translations: Translations = {
     en: 'The Solution:' 
   },
   'roi.solution.titleHighlight': { 
-    sv: 'Alva – Din intelligenta AI-receptionist', 
-    en: 'Alva – Your Intelligent AI Receptionist' 
+    sv: 'Mimer – Din intelligenta AI-receptionist', 
+    en: 'Mimer – Your Intelligent AI Receptionist' 
   },
   'roi.solution.subtitle': { 
-    sv: 'Alva är en AI-driven receptionist särskilt utformad för SME. Hon integreras med ditt befintliga företagsnummer för att ge ett omedelbart, intelligent och professionellt svar på varje enskilt samtal, 24/7.', 
-    en: 'Alva is an AI-driven receptionist designed specifically for SMEs. She integrates with your existing business number to provide an immediate, intelligent, and professional response to every single call, 24/7.' 
+    sv: 'Mimer är en AI-driven receptionist särskilt utformad för SME. Hon integreras med ditt befintliga företagsnummer för att ge ett omedelbart, intelligent och professionellt svar på varje enskilt samtal, 24/7.', 
+    en: 'Mimer is an AI-driven receptionist designed specifically for SMEs. She integrates with your existing business number to provide an immediate, intelligent, and professional response to every single call, 24/7.' 
   },
   'roi.solution.callCapture': { 
     sv: '100% Samtalsupptagning', 
     en: '100% Call Capture' 
   },
   'roi.solution.callCaptureDesc': { 
-    sv: 'Missa aldrig ett samtal igen. Alva svarar omedelbart, varje gång.', 
-    en: 'Never miss a call again. Alva answers instantly, every time.' 
+    sv: 'Missa aldrig ett samtal igen. Mimer svarar omedelbart, varje gång.', 
+    en: 'Never miss a call again. Mimer answers instantly, every time.' 
   },
   'roi.solution.booking': { 
     sv: 'Automatisk mötesbokning', 
     en: 'Automated Appointment Booking' 
   },
   'roi.solution.bookingDesc': { 
-    sv: 'Alva kollar din kalender och bokar möten åt dig, sparar timmar av administrativt arbete.', 
-    en: 'Alva checks your calendar and books appointments for you, saving hours of admin time.' 
+    sv: 'Mimer kollar din kalender och bokar möten åt dig, sparar timmar av administrativt arbete.', 
+    en: 'Mimer checks your calendar and books appointments for you, saving hours of admin time.' 
   },
   'roi.solution.impression': { 
     sv: 'Professionellt första intryck', 
@@ -390,8 +390,8 @@ const translations: Translations = {
     en: 'one additional customer' 
   },
   'roi.comparison.footerSuffix': { 
-    sv: 'som annars skulle ha varit ett missat samtal, har Alva redan betalat för sin månatliga prenumeration flera gånger om.', 
-    en: 'that would have otherwise been a missed call, Alva has already paid for its monthly subscription several times over.' 
+    sv: 'som annars skulle ha varit ett missat samtal, har Mimer redan betalat för sin månatliga prenumeration flera gånger om.', 
+    en: 'that would have otherwise been a missed call, Mimer has already paid for its monthly subscription several times over.' 
   },
 
   // ROI Page - Conclusion
@@ -408,8 +408,8 @@ const translations: Translations = {
     en: 'Your business phone is more than just a utility—it\'s your primary engine for growth. It\'s time to equip it with the intelligence it deserves.' 
   },
   'roi.conclusion.cta': { 
-    sv: 'Sluta förlora kunder till din röstbrevlåda. Låt Alva förvandla varje samtal till en affärsmöjlighet.', 
-    en: 'Stop losing customers to your voicemail. Let Alva turn every call into a business opportunity.' 
+    sv: 'Sluta förlora kunder till din röstbrevlåda. Låt Mimer förvandla varje samtal till en affärsmöjlighet.', 
+    en: 'Stop losing customers to your voicemail. Let Mimer turn every call into a business opportunity.' 
   },
   'roi.conclusion.demoButton': { 
     sv: 'Boka en 15-minuters demo', 
@@ -434,12 +434,12 @@ const translations: Translations = {
 
   // Demo Page
   'demoPage.title': { 
-    sv: 'Boka en demo med Alva', 
-    en: 'Request a Demo with Alva' 
+    sv: 'Boka en demo med Mimer', 
+    en: 'Request a Demo with Mimer' 
   },
   'demoPage.subtitle': { 
-    sv: 'Fyll i formuläret nedan så kontaktar vi dig för att schemalägga en 15-minuters demo där vi visar hur Alva kan hjälpa din verksamhet.', 
-    en: 'Fill out the form below and we\'ll get in touch to schedule a 15-minute demo showing how Alva can help your business.' 
+    sv: 'Fyll i formuläret nedan så kontaktar vi dig för att schemalägga en 15-minuters demo där vi visar hur Mimer kan hjälpa din verksamhet.', 
+    en: 'Fill out the form below and we\'ll get in touch to schedule a 15-minute demo showing how Mimer can help your business.' 
   },
   'demoPage.formTitle': { 
     sv: 'Boka din demo', 
