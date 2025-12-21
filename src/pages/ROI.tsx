@@ -6,10 +6,11 @@ import ROIOpportunityCostSection from "@/components/roi/ROIOpportunityCostSectio
 import ROISolutionSection from "@/components/roi/ROISolutionSection";
 import ROIComparisonSection from "@/components/roi/ROIComparisonSection";
 import ROIConclusionSection from "@/components/roi/ROIConclusionSection";
+import Footer from "@/components/Footer";
 
 const ROI = () => {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen">
       <Navigation />
       <ROIHeroSection />
       <ROIIntroSection />
@@ -18,6 +19,7 @@ const ROI = () => {
       <ROISolutionSection />
       <ROIComparisonSection />
       <ROIConclusionSection />
+      <Footer />
     </div>
   );
 };

@@ -6,19 +6,19 @@ import { useLanguage } from "@/contexts/LanguageContext";
 const ROIConclusionSection = () => {
   const { t } = useLanguage();
   return (
-    <section className="py-20 bg-gradient-to-br from-accent/10 via-background to-primary/5">
+    <section className="py-20 bg-gradient-to-b from-primary-dark to-primary">
       <div className="container mx-auto px-4">
-        <Card className="demo-card max-w-4xl mx-auto p-8 md:p-12 text-center bg-gradient-card border-2 border-primary/10 animate-fade-in">
+        <Card className="max-w-4xl mx-auto p-8 md:p-12 text-center bg-white border-0 animate-fade-in">
           <div className="space-y-8">
             <div className="space-y-4">
               <div className="flex justify-center">
-                <div className="h-16 w-16 rounded-full bg-gradient-alva flex items-center justify-center shadow-elevated animate-bounce-subtle">
+                <div className="h-16 w-16 rounded-full bg-gradient-to-br from-secondary to-primary-glow flex items-center justify-center shadow-elevated">
                   <Sparkles className="h-8 w-8 text-white" />
                 </div>
               </div>
               
               <h2 className="text-3xl md:text-5xl font-bold">
-                {t('roi.conclusion.title')} <span className="text-gradient">{t('roi.conclusion.titleHighlight')}</span>
+                {t('roi.conclusion.title')} <span className="text-secondary">{t('roi.conclusion.titleHighlight')}</span>
               </h2>
               
               <p className="text-xl text-muted-foreground max-w-2xl mx-auto">

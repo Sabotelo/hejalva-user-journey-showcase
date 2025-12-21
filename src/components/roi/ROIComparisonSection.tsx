@@ -29,14 +29,14 @@ const ROIComparisonSection = () => {
   ];
 
   return (
-    <section className="py-20 bg-background">
+    <section className="py-20 bg-gradient-to-b from-primary to-primary-dark">
       <div className="container mx-auto px-4">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-12 animate-fade-in">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              {t('roi.comparison.title')} <span className="text-gradient">{t('roi.comparison.titleHighlight')}</span>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
+              {t('roi.comparison.title')} <span className="text-secondary">{t('roi.comparison.titleHighlight')}</span>
             </h2>
-            <p className="text-xl text-muted-foreground">
+            <p className="text-xl text-white/70">
               {t('roi.comparison.subtitle')}
             </p>
           </div>
@@ -45,7 +45,7 @@ const ROIComparisonSection = () => {
             {comparisons.map((item, index) => (
               <Card 
                 key={index}
-                className="demo-card overflow-hidden animate-fade-in"
+                className="overflow-hidden animate-fade-in bg-white border-0"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
                 <div className="grid md:grid-cols-3 gap-6 p-6">
@@ -75,10 +75,10 @@ const ROIComparisonSection = () => {
             ))}
           </div>
 
-          <Card className="demo-card mt-8 p-8 bg-gradient-to-br from-green-50 to-green-100 dark:from-green-950 dark:to-green-900 border-green-200 dark:border-green-800 animate-fade-in" style={{ animationDelay: '0.4s' }}>
+          <Card className="mt-8 p-8 bg-white border-0 animate-fade-in" style={{ animationDelay: '0.4s' }}>
             <div className="text-center">
               <p className="text-lg text-muted-foreground leading-relaxed">
-                {t('roi.comparison.footer')} <strong className="text-green-700 dark:text-green-400 text-xl">{t('roi.comparison.footerHighlight')}</strong> {t('roi.comparison.footerSuffix')}
+                {t('roi.comparison.footer')} <strong className="text-green-600 text-xl">{t('roi.comparison.footerHighlight')}</strong> {t('roi.comparison.footerSuffix')}
               </p>
             </div>
           </Card>

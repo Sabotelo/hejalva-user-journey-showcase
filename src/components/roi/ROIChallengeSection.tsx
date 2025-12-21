@@ -24,17 +24,17 @@ const ROIChallengeSection = () => {
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-br from-accent/5 via-background to-accent/5">
+    <section className="py-20 bg-gradient-to-b from-primary-dark to-primary">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12 animate-fade-in">
-            <div className="inline-flex items-center justify-center h-16 w-16 rounded-full bg-destructive/10 mb-4">
+            <div className="inline-flex items-center justify-center h-16 w-16 rounded-full bg-destructive/20 mb-4">
               <PhoneOff className="h-8 w-8 text-destructive" />
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
               {t('roi.challenge.title')}
             </h2>
-            <p className="text-xl text-muted-foreground">
+            <p className="text-xl text-white/70">
               {t('roi.challenge.intro')} <strong className="text-destructive">{t('roi.challenge.stat')}</strong>{t('roi.challenge.statSuffix')}
             </p>
           </div>
@@ -43,10 +43,10 @@ const ROIChallengeSection = () => {
             {challenges.map((challenge, index) => (
               <Card 
                 key={index}
-                className="demo-card p-6 text-center animate-fade-in"
+                className="p-6 text-center animate-fade-in bg-white border-0"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
-                <div className="h-12 w-12 rounded-lg bg-gradient-secondary flex items-center justify-center shadow-secondary mx-auto mb-4">
+                <div className="h-12 w-12 rounded-lg bg-gradient-to-br from-secondary to-primary-glow flex items-center justify-center mx-auto mb-4">
                   <challenge.icon className="h-6 w-6 text-white" />
                 </div>
                 <h3 className="text-lg font-semibold mb-2">{challenge.title}</h3>
@@ -55,7 +55,7 @@ const ROIChallengeSection = () => {
             ))}
           </div>
 
-          <Card className="demo-card p-6 bg-accent/50 border-primary/20 animate-fade-in" style={{ animationDelay: '0.3s' }}>
+          <Card className="p-6 bg-white/90 border-0 animate-fade-in" style={{ animationDelay: '0.3s' }}>
             <p className="text-center text-muted-foreground leading-relaxed">
               {t('roi.challenge.footer')} <strong className="text-primary text-lg">{t('roi.challenge.footerHighlight')}</strong>
             </p>
