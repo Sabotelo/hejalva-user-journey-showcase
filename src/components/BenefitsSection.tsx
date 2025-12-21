@@ -56,16 +56,16 @@ const BenefitsSection = () => {
   ];
 
   return (
-    <section className="py-24 bg-gradient-to-b from-accent/30 to-background">
+    <section className="py-24 bg-gradient-to-b from-primary-dark to-primary">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <div className="inline-block bg-secondary/20 text-foreground text-sm font-semibold px-4 py-2 rounded-full mb-4">
+          <div className="inline-block bg-secondary/20 text-white text-sm font-semibold px-4 py-2 rounded-full mb-4">
             {language === 'sv' ? 'Varför företag väljer Alva' : 'Why Businesses Choose Alva'}
           </div>
-          <h2 className="text-3xl md:text-5xl font-bold mb-4">
+          <h2 className="text-3xl md:text-5xl font-bold mb-4 text-white">
             {language === 'sv' ? 'Sluta förlora pengar på missade samtal' : 'Stop Losing Money on Missed Calls'}
           </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-xl text-white/70 max-w-2xl mx-auto">
             {language === 'sv' 
               ? 'Varje samtal du missar kostar dig pengar. Alva ser till att det aldrig händer igen.' 
               : 'Every call you miss costs you money. Alva ensures that never happens again.'}
@@ -76,7 +76,7 @@ const BenefitsSection = () => {
           {benefits.map((benefit, index) => (
             <div 
               key={index}
-              className="group p-6 rounded-2xl bg-card hover:bg-gradient-to-br hover:from-card hover:to-accent/50 transition-all duration-300 border border-border/50 hover:border-secondary/30 hover:shadow-lg"
+              className="group p-6 rounded-2xl bg-white hover:shadow-lg transition-all duration-300 border border-white/50"
             >
               <div className="flex items-start gap-4">
                 <div className="h-12 w-12 rounded-xl bg-gradient-mimer flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">

@@ -74,14 +74,14 @@ const TrustSection = () => {
   };
 
   return (
-    <section className="py-20 bg-gradient-to-b from-muted/30 to-background relative overflow-hidden">
+    <section className="py-20 bg-gradient-to-b from-primary-dark to-primary relative overflow-hidden">
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
             {language === 'sv' ? 'Uråldrig visdom, modern hastighet.' : 'Ancient Wisdom, Modern Speed.'}
           </h2>
-          <p className="text-muted-foreground text-lg max-w-3xl mx-auto">
+          <p className="text-white/70 text-lg max-w-3xl mx-auto">
             {language === 'sv' 
               ? 'Alva är inte bara en chatbot. Hon är en kontextmedveten AI-agent som drivs av Mimer Technologies. Hon förstår din kalender, din prissättning och din ton.'
               : "Alva isn't just a chatbot. She is a Context-Aware Agent powered by Mimer Technologies. She understands your calendar, your pricing, and your tone of voice."}
@@ -93,7 +93,7 @@ const TrustSection = () => {
           {features.map((feature, index) => (
             <div 
               key={index}
-              className="text-center p-6 rounded-2xl border border-border/50 bg-card/50 backdrop-blur-sm hover:bg-card/80 transition-all duration-300"
+              className="text-center p-6 rounded-2xl border border-white/10 bg-white backdrop-blur-sm hover:bg-white/95 transition-all duration-300"
             >
               <div className="inline-flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-secondary/20 to-primary/10 border border-secondary/30 mb-4">
                 <feature.icon className="h-7 w-7 text-secondary" />
@@ -106,13 +106,13 @@ const TrustSection = () => {
 
         {/* Testimonials Carousel */}
         <div className="max-w-lg mx-auto">
-          <h3 className="text-center text-xl font-semibold text-foreground mb-8">
+          <h3 className="text-center text-xl font-semibold text-white mb-8">
             {language === 'sv' ? 'Vad våra kunder säger' : 'What Our Customers Say'}
           </h3>
           
           <div className="relative">
             {/* SMS-style testimonial */}
-            <div className="bg-card rounded-3xl border border-border/50 p-6 shadow-lg min-h-[200px] flex flex-col">
+            <div className="bg-white rounded-3xl border border-white/50 p-6 shadow-lg min-h-[200px] flex flex-col">
               {/* Header */}
               <div className="flex items-center gap-3 mb-4 pb-4 border-b border-border/30">
                 <div className="h-10 w-10 rounded-full bg-gradient-to-br from-secondary to-primary-glow flex items-center justify-center text-white font-semibold">
