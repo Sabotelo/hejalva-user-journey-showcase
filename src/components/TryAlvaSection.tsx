@@ -44,14 +44,14 @@ const TryAlvaSection = () => {
   };
 
   return (
-    <section className="py-20 bg-gradient-to-b from-background to-muted/30 relative overflow-hidden">
+    <section className="py-20 bg-gradient-to-b from-primary to-primary-dark relative overflow-hidden">
       <div className="container mx-auto px-4">
         {/* Section Header */}
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
             {language === 'sv' ? 'Testa Alva' : 'Try Alva'}
           </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+          <p className="text-white/70 text-lg max-w-2xl mx-auto">
             {language === 'sv' 
               ? 'Lyssna på Alva hantera en knepig bokningsförhandling på svenska.'
               : 'Listen to Alva handle a tricky booking negotiation in Swedish.'}
@@ -60,7 +60,7 @@ const TryAlvaSection = () => {
 
         {/* Media Player */}
         <div className="max-w-2xl mx-auto">
-          <div className="relative rounded-3xl border border-border/50 bg-card/80 backdrop-blur-xl p-8 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.2)]">
+          <div className="relative rounded-3xl border border-white/10 bg-white p-8 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.3)]">
             {/* Glow effect */}
             <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-secondary/10 via-transparent to-primary/10 pointer-events-none" />
             
@@ -145,7 +145,7 @@ const TryAlvaSection = () => {
 
           {/* Call to action */}
           <div className="text-center mt-8">
-            <p className="text-muted-foreground mb-4">
+            <p className="text-white/70 mb-4">
               {language === 'sv' 
                 ? 'Vill du testa live? Ring Alva direkt.'
                 : 'Want to try live? Call Alva directly.'}
@@ -154,7 +154,7 @@ const TryAlvaSection = () => {
               variant="outline" 
               size="lg"
               onClick={() => window.location.href = 'tel:+46737587867'}
-              className="border-secondary/50 text-secondary hover:bg-secondary/10"
+              className="border-white/30 text-white hover:bg-white/10"
             >
               +46 737 587 867
             </Button>

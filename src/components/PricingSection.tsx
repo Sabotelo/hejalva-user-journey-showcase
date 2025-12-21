@@ -34,20 +34,20 @@ const PricingSection = () => {
     : ['Auto shops', 'Restaurants', 'Hair salons', 'Dental clinics', 'Retail stores'];
 
   return (
-    <section className="py-24 bg-gradient-to-b from-background to-accent/20">
+    <section className="py-24 bg-gradient-to-b from-primary-dark to-primary">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-5xl font-bold mb-4">
+          <h2 className="text-3xl md:text-5xl font-bold mb-4 text-white">
             {language === 'sv' ? 'En enkel plan för din verksamhet' : 'One Simple Plan for Your Business'}
           </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-xl text-white/70 max-w-2xl mx-auto">
             {language === 'sv' 
               ? 'Alva tränas specifikt för att bli som en kollega-receptionist för just din verksamhet.' 
               : 'Alva is trained specifically to become a co-worker receptionist for your business.'}
           </p>
         </div>
 
-        <Card className="max-w-2xl mx-auto p-10 border-2 border-secondary/30 shadow-elevated bg-gradient-to-b from-card to-accent/20">
+        <Card className="max-w-2xl mx-auto p-10 border-0 shadow-elevated bg-white">
           <div className="text-center mb-8">
             <div className="inline-block bg-secondary/20 text-secondary px-4 py-1 rounded-full text-sm font-medium mb-4">
               {language === 'sv' ? 'Allt du behöver' : 'Everything you need'}

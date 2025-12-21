@@ -69,16 +69,16 @@ const UseCasesSection = () => {
   ];
 
   return (
-    <section className="py-24 bg-background">
+    <section className="py-24 bg-gradient-to-b from-primary to-primary-dark">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <div className="inline-block bg-secondary/20 text-foreground text-sm font-semibold px-4 py-2 rounded-full mb-4">
+          <div className="inline-block bg-secondary/20 text-white text-sm font-semibold px-4 py-2 rounded-full mb-4">
             {language === 'sv' ? 'Perfekt för serviceföretag' : 'Perfect for Service Businesses'}
           </div>
-          <h2 className="text-3xl md:text-5xl font-bold mb-4">
+          <h2 className="text-3xl md:text-5xl font-bold mb-4 text-white">
             {language === 'sv' ? 'Alva förstår din bransch' : 'Alva Understands Your Industry'}
           </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-xl text-white/70 max-w-2xl mx-auto">
             {language === 'sv' 
               ? 'Tränad specifikt för att bli som en kollega som förstår just ditt företag.' 
               : 'Trained specifically to become like a colleague who understands your exact business.'}
@@ -89,7 +89,7 @@ const UseCasesSection = () => {
           {useCases.map((useCase, index) => (
             <Card 
               key={index}
-              className="p-6 border border-border/50 hover:border-secondary/30 hover:shadow-lg transition-all duration-300 group"
+              className="p-6 border-0 bg-white hover:shadow-lg transition-all duration-300 group"
             >
               <div className="flex flex-col h-full">
                 <div className="flex items-start gap-4 mb-4">

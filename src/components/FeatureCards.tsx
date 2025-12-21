@@ -51,16 +51,16 @@ const FeatureCards = () => {
   ];
 
   return (
-    <section className="py-20 bg-background">
+    <section className="py-20 bg-gradient-to-b from-primary to-primary-dark">
       <div className="container mx-auto px-4">
         {/* Section Header */}
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
             {language === 'sv' 
               ? 'Alva blir din virtuella receptionist' 
               : 'Alva Becomes Your Virtual Receptionist'}
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-lg text-white/70 max-w-2xl mx-auto">
             {language === 'sv' 
               ? 'Som en kollega som alltid är tillgänglig, aldrig blir sjuk och ger fantastisk service varje gång.' 
               : 'Like a colleague who\'s always available, never gets sick, and delivers amazing service every time.'}
@@ -72,9 +72,9 @@ const FeatureCards = () => {
           {features.map((feature, index) => (
             <Card 
               key={index}
-              className={`relative overflow-hidden p-8 border-0 bg-gradient-to-br ${feature.gradient} hover:shadow-elevated transition-all duration-300 group`}
+              className="relative overflow-hidden p-8 border-0 bg-white hover:shadow-elevated transition-all duration-300 group"
             >
-              <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-secondary/20 to-transparent rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-secondary/10 to-transparent rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               
               <div className="relative z-10">
                 <div className="h-14 w-14 rounded-xl bg-gradient-mimer flex items-center justify-center mb-6 shadow-primary group-hover:scale-110 transition-transform duration-300">
@@ -100,7 +100,7 @@ const FeatureCards = () => {
         {/* Additional Benefits Bar */}
         <div className="flex flex-wrap justify-center gap-6 md:gap-12">
           {additionalBenefits.map((benefit, index) => (
-            <div key={index} className="flex items-center gap-2 text-muted-foreground">
+            <div key={index} className="flex items-center gap-2 text-white/80">
               <benefit.icon className="h-5 w-5 text-secondary" />
               <span className="font-medium">{benefit.text}</span>
             </div>
