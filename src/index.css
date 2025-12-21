@@ -141,16 +141,6 @@
   html {
     scroll-behavior: smooth;
   }
-
-  /* Serif headers - Mimer/History aesthetic */
-  h1, h2, h3 {
-    @apply font-serif;
-  }
-
-  /* Sans-serif for smaller headings and body - Alva/Future aesthetic */
-  h4, h5, h6, p, span, a, button, input, textarea, label {
-    @apply font-sans;
-  }
 }
 
 @layer components {
