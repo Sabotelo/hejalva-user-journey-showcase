@@ -52,7 +52,6 @@ const PricingSection = () => {
             <div className="inline-block bg-secondary/20 text-secondary px-4 py-1 rounded-full text-sm font-medium mb-4">
               {language === 'sv' ? 'Allt du behöver' : 'Everything you need'}
             </div>
-            <h3 className="text-3xl font-bold mb-2">Alva Pro</h3>
             <div className="flex items-baseline justify-center gap-1 mb-2">
               <span className="text-5xl font-bold">2 999 kr</span>
               <span className="text-muted-foreground">{language === 'sv' ? '/mån' : '/mo'}</span>
