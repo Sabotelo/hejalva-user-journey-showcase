@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/contexts/LanguageContext";
 import mimerLogo from "@/assets/mimer-logo.png";
-import { Phone, PhoneOff, TrendingDown } from "lucide-react";
+import { Phone } from "lucide-react";
 
 const HeroSection = () => {
   const { language } = useLanguage();
@@ -27,10 +27,6 @@ const HeroSection = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const painPoints = language === 'sv' 
-    ? ['Missade samtal = Förlorade kunder', 'Kunder ringer konkurrenten', 'Du jobbar, inte svarar']
-    : ['Missed calls = Lost customers', 'Customers call your competitor', 'You work, not answer phones'];
-
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-primary via-primary-dark to-primary">
       {/* Animated background elements */}
@@ -52,82 +48,81 @@ const HeroSection = () => {
       </div>
       
       <div className="container relative z-10 mx-auto px-4 pt-20">
-      <div className="mx-auto max-w-4xl text-center">
-
-          {/* Pain-focused pre-headline */}
-          <div className="inline-flex items-center gap-2 bg-destructive/20 text-white/90 px-4 py-2 rounded-full mb-6 text-sm md:text-base animate-fade-in">
-            <PhoneOff className="h-4 w-4" />
-            <span>
-              {language === 'sv' 
-                ? '62% av samtal till småföretag förblir obesvarade' 
-                : '62% of calls to small businesses go unanswered'}
-            </span>
-          </div>
-
-          <h1 className="mb-6 text-4xl font-bold leading-tight text-white md:text-5xl lg:text-6xl">
+        <div className="mx-auto max-w-4xl text-center">
+          <h1 className="mb-6 text-4xl font-bold leading-tight text-white md:text-5xl lg:text-6xl animate-fade-in">
             {language === 'sv' 
-              ? 'Sluta förlora kunder till din röstbrevlåda' 
-              : 'Stop Losing Customers to Your Voicemail'}
+              ? 'Varje Missat Samtal är en Förlorad Kund.' 
+              : 'Every Missed Call is a Lost Customer.'}
           </h1>
           
-          <p className="mb-8 text-lg text-white/80 md:text-xl max-w-2xl mx-auto">
+          <p className="mb-12 text-lg text-white/80 md:text-xl max-w-2xl mx-auto animate-fade-in" style={{ animationDelay: '0.1s' }}>
             {language === 'sv' 
-              ? 'Alva svarar på alla dina samtal 24/7, bokar möten och svarar på kundfrågor – så att du kan fokusera på att driva din verksamhet.' 
-              : 'Alva answers all your calls 24/7, books appointments, and answers customer questions – so you can focus on running your business.'}
+              ? 'Möt Alva. AI-receptionisten som svarar dygnet runt, talar flytande svenska och bokar möten medan du sover.' 
+              : 'Meet Alva. The AI receptionist who answers 24/7, speaks fluent Swedish, and books appointments while you sleep.'}
           </p>
 
-          {/* Pain points */}
-          <div className="flex flex-wrap justify-center gap-3 mb-10">
-            {painPoints.map((point, index) => (
-              <div 
-                key={index}
-                className="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 text-sm text-white/80"
-              >
-                <TrendingDown className="h-4 w-4 text-destructive" />
-                <span>{point}</span>
-              </div>
-            ))}
+          {/* 3D Sound Wave Visualization */}
+          <div className="relative h-48 md:h-64 mb-12 animate-fade-in" style={{ animationDelay: '0.2s' }}>
+            {/* Dark pool base */}
+            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full max-w-lg h-16 bg-gradient-to-t from-black/60 to-transparent rounded-[100%] blur-sm"></div>
+            
+            {/* Sound wave bars */}
+            <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex items-end justify-center gap-1 md:gap-2">
+              {[...Array(20)].map((_, i) => {
+                const height = Math.sin((i / 19) * Math.PI) * 100 + 20;
+                const delay = i * 0.05;
+                return (
+                  <div
+                    key={i}
+                    className="w-2 md:w-3 rounded-full bg-gradient-to-t from-secondary via-secondary to-white/80 shadow-[0_0_20px_rgba(0,255,255,0.5)]"
+                    style={{
+                      height: `${height}px`,
+                      animation: `soundWave 1.5s ease-in-out infinite`,
+                      animationDelay: `${delay}s`,
+                    }}
+                  />
+                );
+              })}
+            </div>
+            
+            {/* Reflection */}
+            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 flex items-start justify-center gap-1 md:gap-2 opacity-30 scale-y-[-0.5] blur-[2px]">
+              {[...Array(20)].map((_, i) => {
+                const height = Math.sin((i / 19) * Math.PI) * 100 + 20;
+                const delay = i * 0.05;
+                return (
+                  <div
+                    key={i}
+                    className="w-2 md:w-3 rounded-full bg-gradient-to-t from-secondary to-transparent"
+                    style={{
+                      height: `${height * 0.5}px`,
+                      animation: `soundWave 1.5s ease-in-out infinite`,
+                      animationDelay: `${delay}s`,
+                    }}
+                  />
+                );
+              })}
+            </div>
           </div>
           
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8 animate-fade-in" style={{ animationDelay: '0.3s' }}>
             <Button 
               size="lg" 
-              className="bg-white text-primary hover:bg-white/90 shadow-lg hover:shadow-xl transition-all duration-300 text-lg px-8 py-6"
-              onClick={() => window.location.href = '/demo'}
+              className="bg-secondary text-primary-dark hover:bg-secondary/90 shadow-[0_0_30px_rgba(0,255,255,0.4)] hover:shadow-[0_0_40px_rgba(0,255,255,0.6)] transition-all duration-300 text-lg px-8 py-6 font-semibold"
+              onClick={() => window.location.href = 'tel:+46737587867'}
             >
-              {language === 'sv' ? 'Boka en gratis demo' : 'Book a Free Demo'}
+              <Phone className="mr-2 h-5 w-5" />
+              {language === 'sv' ? 'Lyssna på Alva' : 'Listen to Alva'}
             </Button>
             <Button 
               variant="outline" 
               size="lg" 
-              className="text-lg px-8 py-6 border-white/50 text-white bg-white/10 hover:bg-white/20"
-              onClick={() => window.location.href = '/roi'}
+              className="text-lg px-8 py-6 border-white/30 text-white bg-transparent hover:bg-white/10 hover:border-white/50"
+              onClick={() => window.location.href = '/demo'}
             >
-              {language === 'sv' ? 'Se vad du förlorar' : 'See What You\'re Losing'}
+              {language === 'sv' ? 'Få tidig tillgång' : 'Get Early Access'}
             </Button>
           </div>
-          
-          <div className="text-sm text-white/60">
-            {language === 'sv' 
-              ? 'Perfekt för tandläkare, bilverkstäder, frisörer & servicebolag' 
-              : 'Perfect for dentists, mechanics, salons & service businesses'}
-          </div>
-        </div>
-      </div>
-
-      {/* Call Alva card */}
-      <div className="absolute bottom-8 right-8 hidden lg:block">
-        <div className="bg-primary-dark/80 backdrop-blur-sm rounded-2xl p-6 text-white border border-white/10">
-          <p className="text-sm font-medium mb-2">
-            {language === 'sv' ? 'Prova Alva nu' : 'Try Alva now'}
-          </p>
-          <a 
-            href="tel:+46737587867" 
-            className="flex items-center gap-2 text-lg font-semibold hover:text-secondary transition-colors"
-          >
-            <Phone className="h-5 w-5" />
-            +46 737 587 867
-          </a>
         </div>
       </div>
     </section>
