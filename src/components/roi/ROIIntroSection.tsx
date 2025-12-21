@@ -5,9 +5,9 @@ import { useLanguage } from "@/contexts/LanguageContext";
 const ROIIntroSection = () => {
   const { t } = useLanguage();
   return (
-    <section className="py-20 bg-background">
+    <section className="py-20 bg-gradient-to-b from-primary to-primary-dark">
       <div className="container mx-auto px-4">
-        <Card className="demo-card max-w-4xl mx-auto p-8 md:p-12 animate-fade-in">
+        <Card className="max-w-4xl mx-auto p-8 md:p-12 animate-fade-in bg-white border-0">
           <div className="flex items-start gap-4 mb-6">
             <div className="h-12 w-12 rounded-lg bg-gradient-alva flex items-center justify-center shadow-primary flex-shrink-0">
               <AlertCircle className="h-6 w-6 text-white" />

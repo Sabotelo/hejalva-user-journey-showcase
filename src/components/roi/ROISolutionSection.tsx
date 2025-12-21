@@ -29,17 +29,17 @@ const ROISolutionSection = () => {
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-br from-accent/10 via-background to-primary/5">
+    <section className="py-20 bg-gradient-to-b from-primary-dark to-primary">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12 animate-fade-in">
-            <div className="inline-flex items-center justify-center h-16 w-16 rounded-full bg-gradient-alva mb-4 animate-bounce-subtle shadow-primary">
-              <Sparkles className="h-8 w-8 text-white" />
+            <div className="inline-flex items-center justify-center h-16 w-16 rounded-full bg-secondary/20 mb-4">
+              <Sparkles className="h-8 w-8 text-secondary" />
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              {t('roi.solution.title')} <span className="text-gradient">{t('roi.solution.titleHighlight')}</span>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
+              {t('roi.solution.title')} <span className="text-secondary">{t('roi.solution.titleHighlight')}</span>
             </h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-xl text-white/70 max-w-2xl mx-auto">
               {t('roi.solution.subtitle')}
             </p>
           </div>
@@ -48,11 +48,11 @@ const ROISolutionSection = () => {
             {features.map((feature, index) => (
               <Card 
                 key={index}
-                className="demo-card p-6 group animate-fade-in"
+                className="p-6 group animate-fade-in bg-white border-0"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
                 <div className="flex items-start gap-4">
-                  <div className="h-12 w-12 rounded-lg bg-gradient-alva flex items-center justify-center shadow-primary group-hover:scale-110 transition-transform duration-300 flex-shrink-0">
+                  <div className="h-12 w-12 rounded-lg bg-gradient-to-br from-secondary to-primary-glow flex items-center justify-center group-hover:scale-110 transition-transform duration-300 flex-shrink-0">
                     <feature.icon className="h-6 w-6 text-white" />
                   </div>
                   <div>

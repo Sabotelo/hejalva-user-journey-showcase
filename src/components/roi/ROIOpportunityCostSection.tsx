@@ -5,22 +5,22 @@ import { useLanguage } from "@/contexts/LanguageContext";
 const ROIOpportunityCostSection = () => {
   const { t } = useLanguage();
   return (
-    <section className="py-20 bg-background">
+    <section className="py-20 bg-gradient-to-b from-primary to-primary-dark">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12 animate-fade-in">
-            <div className="inline-flex items-center justify-center h-16 w-16 rounded-full bg-primary/10 mb-4">
-              <Calculator className="h-8 w-8 text-primary" />
+            <div className="inline-flex items-center justify-center h-16 w-16 rounded-full bg-secondary/20 mb-4">
+              <Calculator className="h-8 w-8 text-secondary" />
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
               {t('roi.opportunity.title')}
             </h2>
-            <p className="text-xl text-muted-foreground">
+            <p className="text-xl text-white/70">
               {t('roi.opportunity.subtitle')}
             </p>
           </div>
 
-          <Card className="demo-card p-8 md:p-12 bg-gradient-card animate-fade-in" style={{ animationDelay: '0.2s' }}>
+          <Card className="p-8 md:p-12 bg-white border-0 animate-fade-in" style={{ animationDelay: '0.2s' }}>
             <div className="space-y-6">
               <div className="grid md:grid-cols-2 gap-6 text-muted-foreground">
                 <div className="space-y-2">

@@ -139,21 +139,21 @@ const Demo = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-gradient-to-b from-primary via-primary-dark to-primary">
       <Navigation />
       
       <main className="container mx-auto px-4 pt-24 pb-16">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">
+            <h1 className="text-4xl md:text-5xl font-bold mb-4 text-white">
               {t('demoPage.title')}
             </h1>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-lg text-white/70 max-w-2xl mx-auto">
               {t('demoPage.subtitle')}
             </p>
           </div>
 
-          <Card className="p-8 shadow-lg">
+          <Card className="p-8 shadow-lg bg-white border-0">
             <div className="flex items-center gap-3 mb-6">
               <Clock className="h-6 w-6 text-primary" />
               <h2 className="text-2xl font-semibold">{t('demoPage.formTitle')}</h2>

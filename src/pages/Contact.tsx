@@ -8,6 +8,7 @@ import { useToast } from "@/hooks/use-toast";
 import { Mail, Phone, MapPin, Send } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import Navigation from "@/components/Navigation";
+import Footer from "@/components/Footer";
 
 const Contact = () => {
   const { t } = useLanguage();
@@ -38,25 +39,25 @@ const Contact = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen flex flex-col">
       <Navigation />
       
-      <div className="pt-24 pb-20">
+      <div className="flex-grow bg-gradient-to-b from-primary via-primary-dark to-primary pt-24 pb-20">
         <div className="container mx-auto px-4">
           {/* Header */}
           <div className="text-center mb-16">
-            <h1 className="text-4xl md:text-6xl font-bold mb-6">
+            <h1 className="text-4xl md:text-6xl font-bold mb-6 text-white">
               {t('contact.title')}{" "}
-              <span className="text-gradient">{t('contact.titleHighlight')}</span>
+              <span className="text-secondary">{t('contact.titleHighlight')}</span>
             </h1>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-xl text-white/70 max-w-2xl mx-auto">
               {t('contact.subtitle')}
             </p>
           </div>
 
           <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
             {/* Contact Form */}
-            <Card className="p-8 bg-card border rounded-2xl">
+            <Card className="p-8 bg-white border-0 rounded-2xl">
               <h2 className="text-2xl font-bold mb-6">{t('contact.form.title')}</h2>
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-4">
@@ -139,11 +140,11 @@ const Contact = () => {
 
             {/* Contact Information */}
             <div className="space-y-8">
-              <Card className="demo-card p-8">
+              <Card className="p-8 bg-white border-0 rounded-2xl">
                 <h2 className="text-2xl font-bold mb-6">{t('contact.info.title')}</h2>
                 <div className="space-y-6">
                   <div className="flex items-center space-x-4">
-                    <div className="h-12 w-12 rounded-full bg-gradient-alva flex items-center justify-center">
+                    <div className="h-12 w-12 rounded-full bg-gradient-to-br from-secondary to-primary-glow flex items-center justify-center">
                       <Mail className="h-6 w-6 text-white" />
                     </div>
                     <div>
@@ -158,7 +159,7 @@ const Contact = () => {
                   </div>
 
                   <div className="flex items-center space-x-4">
-                    <div className="h-12 w-12 rounded-full bg-gradient-alva flex items-center justify-center">
+                    <div className="h-12 w-12 rounded-full bg-gradient-to-br from-secondary to-primary-glow flex items-center justify-center">
                       <Phone className="h-6 w-6 text-white" />
                     </div>
                     <div>
@@ -173,7 +174,7 @@ const Contact = () => {
                   </div>
 
                   <div className="flex items-center space-x-4">
-                    <div className="h-12 w-12 rounded-full bg-gradient-alva flex items-center justify-center">
+                    <div className="h-12 w-12 rounded-full bg-gradient-to-br from-secondary to-primary-glow flex items-center justify-center">
                       <MapPin className="h-6 w-6 text-white" />
                     </div>
                     <div>
@@ -184,7 +185,7 @@ const Contact = () => {
                 </div>
               </Card>
 
-              <Card className="demo-card p-8 bg-gradient-card">
+              <Card className="p-8 bg-white/90 border-0 rounded-2xl">
                 <h3 className="text-xl font-bold mb-4">{t('contact.support.title')}</h3>
                 <p className="text-muted-foreground mb-6">
                   {t('contact.support.description')}
@@ -208,6 +209,8 @@ const Contact = () => {
           </div>
         </div>
       </div>
+      
+      <Footer />
     </div>
   );
 };
