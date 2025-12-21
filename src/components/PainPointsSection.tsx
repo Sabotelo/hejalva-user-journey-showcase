@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { Clock, PhoneOff, Wrench, Phone, CheckCircle, XCircle } from "lucide-react";
+import { Clock, Wrench, Phone, CheckCircle, XCircle } from "lucide-react";
 
 const PainPointsSection = () => {
   const { language } = useLanguage();
@@ -16,42 +16,42 @@ const PainPointsSection = () => {
   const painPoints = [
     {
       icon: Clock,
-      title: language === 'sv' ? '"17:05-Problemet"' : 'The "5:05 PM" Problem',
+      title: language === 'sv' ? 'Efter stängning' : 'After Hours',
       oldWay: language === 'sv' 
-        ? 'Stängt kl 17:00. Missat samtal kl 17:05. Förlorad kund.'
-        : 'Closed at 5 PM. Missed call at 5:05 PM. Lost customer.',
+        ? 'Samtalet går till röstbrevlådan.'
+        : 'The call goes to voicemail.',
       newWay: language === 'sv'
-        ? 'Alva jobbar nattskiftet så du slipper.'
-        : 'Alva works the night shift so you don\'t have to.',
+        ? 'Alva svarar och bokar åt dig.'
+        : 'Alva answers and books for you.',
       description: language === 'sv'
-        ? 'Din verkstad stänger kl 17:00. Dina kunder ringer kl 17:05.'
-        : 'Your shop closes at 5 PM. Your customers call at 5:05 PM.',
-    },
-    {
-      icon: PhoneOff,
-      title: language === 'sv' ? '"Telefonångesten"' : 'The "Phone Anxiety" Factor',
-      oldWay: language === 'sv'
-        ? '70% lägger på vid pipet. Ingen bokning.'
-        : '70% hang up at the beep. No booking.',
-      newWay: language === 'sv'
-        ? 'Alva svarar direkt med naturlig konversation.'
-        : 'Alva answers instantly with natural conversation.',
-      description: language === 'sv'
-        ? 'Gen Z hatar att lämna röstmeddelanden.'
-        : 'Gen Z hates leaving voicemails.',
+        ? 'Kunder ringer när det passar dem – inte bara när du har öppet.'
+        : 'Customers call when it suits them – not just during your hours.',
     },
     {
       icon: Wrench,
-      title: language === 'sv' ? '"Upptagna Händer"' : 'The "Busy Hands" Scenario',
+      title: language === 'sv' ? 'Mitt i arbetet' : 'In the Middle of Work',
       oldWay: language === 'sv'
-        ? 'Avbryt ditt arbete. Tappa fokus. Tappa kund.'
-        : 'Interrupt your work. Lose focus. Lose customer.',
+        ? 'Avbryt det du gör för att svara.'
+        : 'Stop what you\'re doing to answer.',
       newWay: language === 'sv'
-        ? 'Fokusera på ditt hantverk. Alva sköter resten.'
-        : 'Focus on your craft. Alva handles the rest.',
+        ? 'Fortsätt fokusera – Alva tar hand om samtalet.'
+        : 'Stay focused – Alva handles the call.',
       description: language === 'sv'
-        ? 'Du får betalt för att fixa bilar/tänder, inte svara i telefon.'
-        : 'You are paid to fix cars/teeth, not to answer phones.',
+        ? 'Du är bäst på ditt hantverk. Låt Alva sköta telefonen.'
+        : 'You\'re best at your craft. Let Alva handle the phone.',
+    },
+    {
+      icon: Phone,
+      title: language === 'sv' ? 'Mer tid för det viktiga' : 'More Time for What Matters',
+      oldWay: language === 'sv'
+        ? 'Kvällar spenderas på att ringa tillbaka.'
+        : 'Evenings spent returning calls.',
+      newWay: language === 'sv'
+        ? 'Gå hem i tid. Alva har redan bokat mötet.'
+        : 'Go home on time. Alva already booked the meeting.',
+      description: language === 'sv'
+        ? 'Familj, hobbies, vila – du förtjänar din fritid.'
+        : 'Family, hobbies, rest – you deserve your time off.',
     },
   ];
 
