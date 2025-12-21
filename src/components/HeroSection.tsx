@@ -2,9 +2,10 @@ import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/contexts/LanguageContext";
 import mimerLogo from "@/assets/mimer-logo.png";
+import { Phone, PhoneOff, TrendingDown } from "lucide-react";
 
 const HeroSection = () => {
-  const { t } = useLanguage();
+  const { language } = useLanguage();
   const [scrollOpacity, setScrollOpacity] = useState(1);
 
   useEffect(() => {
@@ -25,6 +26,10 @@ const HeroSection = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const painPoints = language === 'sv' 
+    ? ['Missade samtal = Förlorade kunder', 'Kunder ringer konkurrenten', 'Du jobbar, inte svarar']
+    : ['Missed calls = Lost customers', 'Customers call your competitor', 'You work, not answer phones'];
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-primary via-primary-dark to-primary">
@@ -50,7 +55,7 @@ const HeroSection = () => {
         <div className="mx-auto max-w-4xl text-center">
           {/* Logo */}
           <div 
-            className="mb-8 flex justify-center transition-all duration-300"
+            className="mb-6 flex justify-center transition-all duration-300"
             style={{ 
               opacity: scrollOpacity,
               transform: `translateY(${(1 - scrollOpacity) * -30}px)`
@@ -59,25 +64,52 @@ const HeroSection = () => {
             <img 
               src={mimerLogo} 
               alt="Mimer Technologies" 
-              className="h-24 md:h-32 w-auto"
+              className="h-20 md:h-24 w-auto"
             />
           </div>
 
+          {/* Pain-focused pre-headline */}
+          <div className="inline-flex items-center gap-2 bg-destructive/20 text-white/90 px-4 py-2 rounded-full mb-6 text-sm md:text-base animate-fade-in">
+            <PhoneOff className="h-4 w-4" />
+            <span>
+              {language === 'sv' 
+                ? '62% av samtal till småföretag förblir obesvarade' 
+                : '62% of calls to small businesses go unanswered'}
+            </span>
+          </div>
+
           <h1 className="mb-6 text-4xl font-bold leading-tight text-white md:text-5xl lg:text-6xl">
-            {t('hero.title')}
+            {language === 'sv' 
+              ? 'Sluta förlora kunder till din röstbrevlåda' 
+              : 'Stop Losing Customers to Your Voicemail'}
           </h1>
           
-          <p className="mb-10 text-lg text-white/80 md:text-xl max-w-2xl mx-auto">
-            {t('hero.subtitle')}
+          <p className="mb-8 text-lg text-white/80 md:text-xl max-w-2xl mx-auto">
+            {language === 'sv' 
+              ? 'Alva svarar på alla dina samtal 24/7, bokar möten och svarar på kundfrågor – så att du kan fokusera på att driva din verksamhet.' 
+              : 'Alva answers all your calls 24/7, books appointments, and answers customer questions – so you can focus on running your business.'}
           </p>
+
+          {/* Pain points */}
+          <div className="flex flex-wrap justify-center gap-3 mb-10">
+            {painPoints.map((point, index) => (
+              <div 
+                key={index}
+                className="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 text-sm text-white/80"
+              >
+                <TrendingDown className="h-4 w-4 text-destructive" />
+                <span>{point}</span>
+              </div>
+            ))}
+          </div>
           
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
             <Button 
               size="lg" 
               className="bg-white text-primary hover:bg-white/90 shadow-lg hover:shadow-xl transition-all duration-300 text-lg px-8 py-6"
               onClick={() => window.location.href = '/demo'}
             >
-              {t('hero.startDemo')}
+              {language === 'sv' ? 'Boka en gratis demo' : 'Book a Free Demo'}
             </Button>
             <Button 
               variant="outline" 
@@ -85,12 +117,14 @@ const HeroSection = () => {
               className="text-lg px-8 py-6 border-white/50 text-white bg-white/10 hover:bg-white/20"
               onClick={() => window.location.href = '/roi'}
             >
-              See the ROI
+              {language === 'sv' ? 'Se vad du förlorar' : 'See What You\'re Losing'}
             </Button>
           </div>
           
           <div className="text-sm text-white/60">
-            {t('hero.noSignup')}
+            {language === 'sv' 
+              ? 'Perfekt för tandläkare, bilverkstäder, frisörer & servicebolag' 
+              : 'Perfect for dentists, mechanics, salons & service businesses'}
           </div>
         </div>
       </div>
@@ -98,14 +132,14 @@ const HeroSection = () => {
       {/* Call Alva card */}
       <div className="absolute bottom-8 right-8 hidden lg:block">
         <div className="bg-primary-dark/80 backdrop-blur-sm rounded-2xl p-6 text-white border border-white/10">
-          <p className="text-sm font-medium mb-2">Try Alva now</p>
+          <p className="text-sm font-medium mb-2">
+            {language === 'sv' ? 'Prova Alva nu' : 'Try Alva now'}
+          </p>
           <a 
             href="tel:+46737587867" 
             className="flex items-center gap-2 text-lg font-semibold hover:text-secondary transition-colors"
           >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-            </svg>
+            <Phone className="h-5 w-5" />
             +46 737 587 867
           </a>
         </div>
