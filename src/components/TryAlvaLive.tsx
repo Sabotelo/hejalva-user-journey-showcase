@@ -14,6 +14,7 @@ interface Scenario {
   descriptionSv: string;
   descriptionEn: string;
   icon: typeof Phone;
+  enabled: boolean;
 }
 
 const scenarios: Scenario[] = [
@@ -24,6 +25,7 @@ const scenarios: Scenario[] = [
     descriptionSv: "Ring och beställ en pizza eller boka bord",
     descriptionEn: "Call to order pizza or book a table",
     icon: Pizza,
+    enabled: false,
   },
   {
     id: "salon",
@@ -32,6 +34,7 @@ const scenarios: Scenario[] = [
     descriptionSv: "Boka tid för klippning eller behandling",
     descriptionEn: "Book an appointment for a haircut or treatment",
     icon: Scissors,
+    enabled: false,
   },
   {
     id: "workshop",
@@ -40,13 +43,14 @@ const scenarios: Scenario[] = [
     descriptionSv: "Boka service eller felsökning",
     descriptionEn: "Book service or diagnostics",
     icon: Car,
+    enabled: true,
   },
 ];
 
 const TryAlvaLive = () => {
   const { language } = useLanguage();
   const { toast } = useToast();
-  const [activeScenario, setActiveScenario] = useState(0);
+  const [activeScenario, setActiveScenario] = useState(2); // Default to workshop (index 2)
   const [isConnecting, setIsConnecting] = useState(false);
 
   const conversation = useConversation({
@@ -73,11 +77,23 @@ const TryAlvaLive = () => {
   const scenario = scenarios[activeScenario];
 
   const startConversation = useCallback(async () => {
+    if (!scenario.enabled) {
+      toast({
+        title: language === 'sv' ? "Kommer snart" : "Coming Soon",
+        description: language === 'sv'
+          ? "Detta scenario är under utveckling."
+          : "This scenario is under development.",
+      });
+      return;
+    }
+
     setIsConnecting(true);
     try {
       await navigator.mediaDevices.getUserMedia({ audio: true });
 
-      const { data, error } = await supabase.functions.invoke('elevenlabs-conversation-token');
+      const { data, error } = await supabase.functions.invoke('elevenlabs-conversation-token', {
+        body: { scenario: scenario.id }
+      });
 
       if (error || !data?.signed_url) {
         throw new Error(error?.message || 'Failed to get signed URL');
@@ -95,7 +111,7 @@ const TryAlvaLive = () => {
         description: error instanceof Error ? error.message : "Unknown error",
       });
     }
-  }, [conversation, language, toast]);
+  }, [conversation, language, toast, scenario]);
 
   const stopConversation = useCallback(async () => {
     await conversation.endSession();
@@ -140,12 +156,21 @@ const TryAlvaLive = () => {
                 setActiveScenario(index);
               }}
               disabled={conversation.status === 'connected'}
-              className={`flex flex-col items-center gap-2 px-8 py-6 rounded-2xl font-medium transition-all duration-300 min-w-[160px] ${
+              className={`relative flex flex-col items-center gap-2 px-8 py-6 rounded-2xl font-medium transition-all duration-300 min-w-[160px] ${
                 activeScenario === index
-                  ? 'bg-[#00F5FF] text-[#0A2342] shadow-[0_0_40px_rgba(0,245,255,0.4)]'
-                  : 'bg-white/5 text-white/70 border border-white/10 hover:bg-white/10 hover:text-white disabled:opacity-50'
+                  ? s.enabled 
+                    ? 'bg-[#00F5FF] text-[#0A2342] shadow-[0_0_40px_rgba(0,245,255,0.4)]'
+                    : 'bg-white/20 text-white/60 border border-white/20'
+                  : s.enabled
+                    ? 'bg-white/5 text-white/70 border border-white/10 hover:bg-white/10 hover:text-white disabled:opacity-50'
+                    : 'bg-white/5 text-white/40 border border-white/10 opacity-60'
               }`}
             >
+              {!s.enabled && (
+                <span className="absolute -top-2 -right-2 px-2 py-0.5 text-[10px] font-semibold bg-white/20 text-white/60 rounded-full">
+                  {language === 'sv' ? 'Snart' : 'Soon'}
+                </span>
+              )}
               <s.icon className="h-8 w-8" />
               <span className="text-base font-semibold">
                 {language === 'sv' ? s.titleSv : s.titleEn}
@@ -226,14 +251,20 @@ const TryAlvaLive = () => {
                 <Button
                   size="lg"
                   onClick={startConversation}
-                  disabled={isConnecting}
-                  className="h-16 px-10 rounded-full bg-[#00F5FF] hover:bg-[#00F5FF]/90 text-[#0A2342] font-semibold text-lg shadow-[0_0_40px_rgba(0,245,255,0.4)] transition-all duration-300 hover:shadow-[0_0_60px_rgba(0,245,255,0.6)]"
+                  disabled={isConnecting || !scenario.enabled}
+                  className={`h-16 px-10 rounded-full font-semibold text-lg transition-all duration-300 ${
+                    scenario.enabled
+                      ? 'bg-[#00F5FF] hover:bg-[#00F5FF]/90 text-[#0A2342] shadow-[0_0_40px_rgba(0,245,255,0.4)] hover:shadow-[0_0_60px_rgba(0,245,255,0.6)]'
+                      : 'bg-white/20 text-white/40 cursor-not-allowed'
+                  }`}
                 >
                   {isConnecting ? (
                     <>
                       <Loader2 className="h-5 w-5 mr-2 animate-spin" />
                       {language === 'sv' ? 'Ansluter...' : 'Connecting...'}
                     </>
+                  ) : !scenario.enabled ? (
+                    <>{language === 'sv' ? 'Kommer snart' : 'Coming Soon'}</>
                   ) : (
                     <>
                       <Phone className="h-5 w-5 mr-2" />
