@@ -14,7 +14,6 @@ interface Scenario {
   descriptionSv: string;
   descriptionEn: string;
   icon: typeof Phone;
-  agentId: string;
 }
 
 const scenarios: Scenario[] = [
@@ -25,7 +24,6 @@ const scenarios: Scenario[] = [
     descriptionSv: "Ring och beställ en pizza eller boka bord",
     descriptionEn: "Call to order pizza or book a table",
     icon: Pizza,
-    agentId: "", // User needs to provide their ElevenLabs agent ID
   },
   {
     id: "salon",
@@ -34,7 +32,6 @@ const scenarios: Scenario[] = [
     descriptionSv: "Boka tid för klippning eller behandling",
     descriptionEn: "Book an appointment for a haircut or treatment",
     icon: Scissors,
-    agentId: "", // User needs to provide their ElevenLabs agent ID
   },
   {
     id: "workshop",
@@ -43,7 +40,6 @@ const scenarios: Scenario[] = [
     descriptionSv: "Boka service eller felsökning",
     descriptionEn: "Book service or diagnostics",
     icon: Car,
-    agentId: "", // User needs to provide their ElevenLabs agent ID
   },
 ];
 
@@ -52,12 +48,6 @@ const TryAlvaLive = () => {
   const { toast } = useToast();
   const [activeScenario, setActiveScenario] = useState(0);
   const [isConnecting, setIsConnecting] = useState(false);
-  const [agentIds, setAgentIds] = useState<Record<string, string>>({
-    pizzeria: "",
-    salon: "",
-    workshop: "",
-  });
-  const [showAgentIdInput, setShowAgentIdInput] = useState(false);
 
   const conversation = useConversation({
     onConnect: () => {
@@ -81,27 +71,13 @@ const TryAlvaLive = () => {
   });
 
   const scenario = scenarios[activeScenario];
-  const currentAgentId = agentIds[scenario.id];
 
   const startConversation = useCallback(async () => {
-    if (!currentAgentId) {
-      setShowAgentIdInput(true);
-      toast({
-        title: language === 'sv' ? "Agent ID krävs" : "Agent ID Required",
-        description: language === 'sv'
-          ? "Ange ditt ElevenLabs Agent ID för att fortsätta."
-          : "Please enter your ElevenLabs Agent ID to continue.",
-      });
-      return;
-    }
-
     setIsConnecting(true);
     try {
       await navigator.mediaDevices.getUserMedia({ audio: true });
 
-      const { data, error } = await supabase.functions.invoke('elevenlabs-conversation-token', {
-        body: { agentId: currentAgentId }
-      });
+      const { data, error } = await supabase.functions.invoke('elevenlabs-conversation-token');
 
       if (error || !data?.signed_url) {
         throw new Error(error?.message || 'Failed to get signed URL');
@@ -119,15 +95,11 @@ const TryAlvaLive = () => {
         description: error instanceof Error ? error.message : "Unknown error",
       });
     }
-  }, [conversation, currentAgentId, language, toast]);
+  }, [conversation, language, toast]);
 
   const stopConversation = useCallback(async () => {
     await conversation.endSession();
   }, [conversation]);
-
-  const handleAgentIdChange = (scenarioId: string, value: string) => {
-    setAgentIds(prev => ({ ...prev, [scenarioId]: value }));
-  };
 
   return (
     <section className="py-20 bg-gradient-to-b from-[#0A2342] to-[#061428] relative overflow-hidden">
@@ -201,33 +173,6 @@ const TryAlvaLive = () => {
               </p>
             </div>
 
-            {/* Agent ID Input (shown if not configured) */}
-            <AnimatePresence>
-              {showAgentIdInput && !currentAgentId && (
-                <motion.div
-                  initial={{ opacity: 0, height: 0 }}
-                  animate={{ opacity: 1, height: 'auto' }}
-                  exit={{ opacity: 0, height: 0 }}
-                  className="mb-6"
-                >
-                  <label className="block text-sm text-white/60 mb-2">
-                    ElevenLabs Agent ID for {language === 'sv' ? scenario.titleSv : scenario.titleEn}
-                  </label>
-                  <input
-                    type="text"
-                    value={currentAgentId}
-                    onChange={(e) => handleAgentIdChange(scenario.id, e.target.value)}
-                    placeholder="Enter your ElevenLabs Agent ID"
-                    className="w-full px-4 py-3 rounded-xl bg-[#0A2342] border border-white/20 text-white placeholder:text-white/40 focus:outline-none focus:border-[#00F5FF] transition-colors"
-                  />
-                  <p className="text-xs text-white/40 mt-2">
-                    {language === 'sv' 
-                      ? 'Skapa din agent på elevenlabs.io/conversational-ai'
-                      : 'Create your agent at elevenlabs.io/conversational-ai'}
-                  </p>
-                </motion.div>
-              )}
-            </AnimatePresence>
 
             {/* Call Status */}
             <div className="flex flex-col items-center gap-6">
