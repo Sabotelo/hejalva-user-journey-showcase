@@ -11,19 +11,21 @@ serve(async (req) => {
   }
 
   try {
-    const { agentId } = await req.json();
     const ELEVENLABS_API_KEY = Deno.env.get('ELEVENLABS_API_KEY');
+    const ELEVENLABS_AGENT_ID = Deno.env.get('ELEVENLABS_AGENT_ID');
 
     if (!ELEVENLABS_API_KEY) {
       throw new Error('ELEVENLABS_API_KEY is not configured');
     }
 
-    if (!agentId) {
-      throw new Error('Agent ID is required');
+    if (!ELEVENLABS_AGENT_ID) {
+      throw new Error('ELEVENLABS_AGENT_ID is not configured');
     }
 
+    console.log('Fetching signed URL for agent:', ELEVENLABS_AGENT_ID);
+
     const response = await fetch(
-      `https://api.elevenlabs.io/v1/convai/conversation/get-signed-url?agent_id=${agentId}`,
+      `https://api.elevenlabs.io/v1/convai/conversation/get-signed-url?agent_id=${ELEVENLABS_AGENT_ID}`,
       {
         headers: {
           'xi-api-key': ELEVENLABS_API_KEY,
