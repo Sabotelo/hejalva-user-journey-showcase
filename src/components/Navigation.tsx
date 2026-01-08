@@ -58,6 +58,11 @@ const Navigation = () => {
           }`}>
             {t('nav.demo')}
           </a>
+          <a href="/how-it-works" className={`text-sm font-medium transition-colors ${
+            isScrolled ? 'text-muted-foreground hover:text-foreground' : 'text-white/80 hover:text-white'
+          }`}>
+            {language === 'sv' ? 'Hur det fungerar' : 'How It Works'}
+          </a>
           <a href="/#benefits" className={`text-sm font-medium transition-colors ${
             isScrolled ? 'text-muted-foreground hover:text-foreground' : 'text-white/80 hover:text-white'
           }`}>
