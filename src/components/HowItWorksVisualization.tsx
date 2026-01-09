@@ -22,15 +22,15 @@ const steps = [
     id: 3,
     titleEn: "Smart Routing",
     titleSv: "Smart Routing",
-    descEn: "Alva checks your calendar availability and drafts a summary.",
-    descSv: "Alva kontrollerar din kalender och skapar en sammanfattning.",
+    descEn: "Alva checks your calendar and proposes a time – never overwrites your schedule.",
+    descSv: "Alva kollar din kalender och föreslår en tid – skriver aldrig över ditt schema.",
   },
   {
     id: 4,
-    titleEn: "Instant Handoff",
-    titleSv: "Omedelbar Överlämning",
-    descEn: "You get a lead notification. You click Accept, and the client gets a confirmation.",
-    descSv: "Du får en avisering. Du klickar Acceptera, och kunden får en bekräftelse.",
+    titleEn: "You Stay in Control",
+    titleSv: "Du Behåller Kontrollen",
+    descEn: "You approve every booking before it's confirmed. Alva proposes, YOU decide.",
+    descSv: "Du godkänner varje bokning innan den bekräftas. Alva föreslår, DU bestämmer.",
   },
 ];
 

@@ -1,19 +1,28 @@
 import { motion, Variants, HTMLMotionProps, useReducedMotion } from "framer-motion";
-import { ReactNode, forwardRef } from "react";
+import { ReactNode, forwardRef, useMemo } from "react";
 import { cn } from "@/lib/utils";
 
 // Memphis-inspired spring config for bouncy, playful animations
+// Optimized for 60fps performance
 const memphisSpring = {
   type: "spring" as const,
   stiffness: 300,
   damping: 20,
+  mass: 0.8, // Lower mass for faster animations
 };
 
 const smoothSpring = {
   type: "spring" as const,
   stiffness: 200,
   damping: 25,
+  mass: 0.8,
 };
+
+// GPU-accelerated transform defaults
+const gpuAcceleratedStyle = {
+  willChange: "transform, opacity",
+  transform: "translateZ(0)",
+} as const;
 
 // ============ SCROLL ANIMATIONS ============
 
@@ -78,17 +87,21 @@ export const ScrollAnimation = ({
 }: ScrollAnimationProps) => {
   const shouldReduceMotion = useReducedMotion();
   
+  // Memoize variants to prevent unnecessary recalculations
+  const selectedVariant = useMemo(() => variants[variant], [variant]);
+  
   if (shouldReduceMotion) {
     return <div className={className}>{children}</div>;
   }
 
   return (
     <motion.div
-      className={className}
+      className={cn("motion-optimized", className)}
       initial="hidden"
       whileInView="visible"
       viewport={{ once, amount }}
-      variants={variants[variant]}
+      variants={selectedVariant}
+      style={gpuAcceleratedStyle}
       transition={{
         duration,
         delay,
@@ -145,10 +158,13 @@ export const StaggerItem = ({
   className?: string;
   variant?: "fadeUp" | "fadeDown" | "fadeLeft" | "fadeRight" | "scale" | "blur" | "bounceUp";
 }) => {
+  const selectedVariant = useMemo(() => variants[variant], [variant]);
+  
   return (
     <motion.div
-      className={className}
-      variants={variants[variant]}
+      className={cn("motion-optimized", className)}
+      variants={selectedVariant}
+      style={gpuAcceleratedStyle}
       transition={smoothSpring}
     >
       {children}
@@ -166,6 +182,8 @@ interface InteractiveCardProps extends HTMLMotionProps<"div"> {
 
 export const InteractiveCard = forwardRef<HTMLDivElement, InteractiveCardProps>(
   ({ children, className, hoverEffect = "lift", ...props }, ref) => {
+    const shouldReduceMotion = useReducedMotion();
+    
     const hoverVariants = {
       lift: {
         y: -8,
@@ -201,10 +219,20 @@ export const InteractiveCard = forwardRef<HTMLDivElement, InteractiveCardProps>(
       memphis: { scale: 0.97, rotate: -0.5, transition: memphisSpring },
     };
 
+    // Disable hover effects if user prefers reduced motion
+    if (shouldReduceMotion) {
+      return (
+        <div ref={ref as React.Ref<HTMLDivElement>} className={className}>
+          {children}
+        </div>
+      );
+    }
+
     return (
       <motion.div
         ref={ref}
-        className={cn("cursor-pointer", className)}
+        className={cn("cursor-pointer motion-optimized", className)}
+        style={gpuAcceleratedStyle}
         whileHover={hoverVariants[hoverEffect]}
         whileTap={tapVariants[hoverEffect]}
         {...props}
