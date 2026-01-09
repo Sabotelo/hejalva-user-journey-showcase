@@ -1,7 +1,7 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { Play } from "lucide-react";
+import HowItWorksVisualization from "@/components/HowItWorksVisualization";
 
 const HowItWorks = () => {
   const { language } = useLanguage();
@@ -26,19 +26,8 @@ const HowItWorks = () => {
 
       {/* Process Section */}
       <section className="py-16 px-4">
-        <div className="container mx-auto max-w-4xl">
-          <div className="bg-white rounded-2xl p-8 shadow-xl">
-            {/* Video Placeholder */}
-            <div className="aspect-video bg-gradient-to-br from-slate-100 to-slate-200 rounded-xl flex flex-col items-center justify-center relative overflow-hidden">
-              {/* Play Button */}
-              <button className="w-20 h-20 rounded-full bg-secondary flex items-center justify-center shadow-lg hover:scale-110 transition-transform duration-300 group">
-                <Play className="w-8 h-8 text-white ml-1 group-hover:scale-110 transition-transform" />
-              </button>
-              <span className="text-slate-500 font-medium text-lg mt-4">
-                {language === 'sv' ? 'Så fungerar Alva' : 'How Alva Works'}
-              </span>
-            </div>
-          </div>
+        <div className="container mx-auto max-w-5xl">
+          <HowItWorksVisualization />
         </div>
       </section>
 
