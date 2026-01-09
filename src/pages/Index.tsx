@@ -5,6 +5,7 @@ import FeatureCards from "@/components/FeatureCards";
 import BenefitsSection from "@/components/BenefitsSection";
 import UseCasesSection from "@/components/UseCasesSection";
 import IntegrationsSection from "@/components/IntegrationsSection";
+import LostRevenueCalculator from "@/components/LostRevenueCalculator";
 import PricingSection from "@/components/PricingSection";
 import PartnersSection from "@/components/PartnersSection";
 import Footer from "@/components/Footer";
@@ -16,6 +17,7 @@ const Index = () => {
       <HeroSection />
       <TrustSection />
       <FeatureCards />
+      <LostRevenueCalculator />
       <BenefitsSection />
       <UseCasesSection />
       <IntegrationsSection />
