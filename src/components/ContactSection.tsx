@@ -114,7 +114,7 @@ const ContactSection = () => {
             </div>
             <h3 className="font-semibold mb-2">{t('contact.info.email')}</h3>
             <p className="text-primary hover:underline">
-              dev@hejalva.com
+              admin@hejalva.com
             </p>
             <p className="text-sm text-muted-foreground mt-2">Click to send message</p>
           </Card>

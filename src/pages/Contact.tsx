@@ -185,10 +185,10 @@ const Contact = () => {
                     <div>
                       <h3 className="font-semibold">{t('contact.info.email')}</h3>
                       <a 
-                        href="mailto:dev@hejalva.com" 
+                        href="mailto:admin@hejalva.com" 
                         className="text-primary hover:underline"
                       >
-                        dev@hejalva.com
+                        admin@hejalva.com
                       </a>
                     </div>
                   </div>
