@@ -8,7 +8,6 @@ import IntegrationsSection from "@/components/IntegrationsSection";
 import LostRevenueCalculator from "@/components/LostRevenueCalculator";
 import PricingSection from "@/components/PricingSection";
 import PartnersSection from "@/components/PartnersSection";
-import CTASection from "@/components/CTASection";
 import Footer from "@/components/Footer";
 
 const Index = () => {
@@ -24,7 +23,6 @@ const Index = () => {
       <IntegrationsSection />
       <PricingSection />
       <PartnersSection />
-      <CTASection />
       <Footer />
     </div>
   );
