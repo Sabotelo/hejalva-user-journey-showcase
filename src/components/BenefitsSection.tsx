@@ -1,6 +1,6 @@
 import { TrendingUp, Clock, Users, DollarSign, Brain, Shield } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { ScrollAnimation, StaggerContainer, StaggerItem } from "@/components/ui/scroll-animation";
+import { ScrollAnimation, StaggerContainer, StaggerItem, InteractiveCard } from "@/components/ui/scroll-animation";
 
 const BenefitsSection = () => {
   const { language } = useLanguage();
@@ -59,7 +59,7 @@ const BenefitsSection = () => {
   return (
     <section className="py-24 bg-gradient-to-b from-primary-dark to-primary">
       <div className="container mx-auto px-4">
-        <ScrollAnimation className="text-center mb-16">
+        <ScrollAnimation className="text-center mb-16" variant="bounceUp">
           <div className="inline-block bg-secondary/20 text-white text-sm font-semibold px-4 py-2 rounded-full mb-4">
             {language === 'sv' ? 'Varför företag väljer Alva' : 'Why Businesses Choose Alva'}
           </div>
@@ -75,30 +75,32 @@ const BenefitsSection = () => {
 
         <StaggerContainer className="grid md:grid-cols-2 lg:grid-cols-3 gap-8" staggerDelay={0.1}>
           {benefits.map((benefit, index) => (
-            <StaggerItem key={index}>
-              <div 
-                className="group p-6 rounded-2xl bg-white hover:shadow-lg transition-all duration-300 border border-white/50 h-full"
-              >
-                <div className="flex items-start gap-4">
-                  <div className="h-12 w-12 rounded-xl bg-gradient-mimer flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
-                    <benefit.icon className="h-6 w-6 text-white" />
-                  </div>
-                  
-                  <div className="flex-1">
-                    <div className="flex items-center justify-between mb-2">
-                      <h3 className="text-xl font-semibold group-hover:text-primary transition-colors">
-                        {benefit.title}
-                      </h3>
+            <StaggerItem key={index} variant="bounceUp">
+              <InteractiveCard hoverEffect="bounce" className="h-full">
+                <div 
+                  className="group p-6 rounded-2xl bg-white hover:shadow-lg transition-all duration-300 border border-white/50 h-full"
+                >
+                  <div className="flex items-start gap-4">
+                    <div className="h-12 w-12 rounded-xl bg-gradient-mimer flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                      <benefit.icon className="h-6 w-6 text-white" />
                     </div>
-                    <p className="text-muted-foreground leading-relaxed mb-3">
-                      {benefit.description}
-                    </p>
-                    <div className="inline-block bg-secondary/10 text-secondary text-sm font-semibold px-3 py-1 rounded-full">
-                      {benefit.stat}
+                    
+                    <div className="flex-1">
+                      <div className="flex items-center justify-between mb-2">
+                        <h3 className="text-xl font-semibold group-hover:text-primary transition-colors">
+                          {benefit.title}
+                        </h3>
+                      </div>
+                      <p className="text-muted-foreground leading-relaxed mb-3">
+                        {benefit.description}
+                      </p>
+                      <div className="inline-block bg-secondary/10 text-secondary text-sm font-semibold px-3 py-1 rounded-full">
+                        {benefit.stat}
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
+              </InteractiveCard>
             </StaggerItem>
           ))}
         </StaggerContainer>

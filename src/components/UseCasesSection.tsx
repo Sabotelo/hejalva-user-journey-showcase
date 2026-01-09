@@ -1,7 +1,7 @@
 import { Stethoscope, Wrench, Scissors, Car, Utensils, Building2 } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { ScrollAnimation, StaggerContainer, StaggerItem } from "@/components/ui/scroll-animation";
+import { ScrollAnimation, StaggerContainer, StaggerItem, InteractiveCard } from "@/components/ui/scroll-animation";
 
 const UseCasesSection = () => {
   const { language } = useLanguage();
@@ -72,7 +72,7 @@ const UseCasesSection = () => {
   return (
     <section className="py-24 bg-gradient-to-b from-primary to-primary-dark">
       <div className="container mx-auto px-4">
-        <ScrollAnimation className="text-center mb-16">
+        <ScrollAnimation className="text-center mb-16" variant="bounceUp">
           <div className="inline-block bg-secondary/20 text-white text-sm font-semibold px-4 py-2 rounded-full mb-4">
             {language === 'sv' ? 'Perfekt för serviceföretag' : 'Perfect for Service Businesses'}
           </div>
@@ -88,32 +88,34 @@ const UseCasesSection = () => {
 
         <StaggerContainer className="grid md:grid-cols-2 lg:grid-cols-3 gap-6" staggerDelay={0.1}>
           {useCases.map((useCase, index) => (
-            <StaggerItem key={index}>
-              <Card 
-                className="p-6 border-0 bg-white hover:shadow-lg transition-all duration-300 group h-full"
-              >
-                <div className="flex flex-col h-full">
-                  <div className="flex items-start gap-4 mb-4">
-                    <div className="h-12 w-12 rounded-xl bg-gradient-mimer flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300 shadow-primary">
-                      <useCase.icon className="h-6 w-6 text-white" />
+            <StaggerItem key={index} variant="bounceUp">
+              <InteractiveCard hoverEffect="lift" className="h-full">
+                <Card 
+                  className="p-6 border-0 bg-white transition-all duration-300 group h-full"
+                >
+                  <div className="flex flex-col h-full">
+                    <div className="flex items-start gap-4 mb-4">
+                      <div className="h-12 w-12 rounded-xl bg-gradient-mimer flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300 shadow-primary">
+                        <useCase.icon className="h-6 w-6 text-white" />
+                      </div>
+                      
+                      <div>
+                        <h3 className="text-xl font-bold group-hover:text-primary transition-colors">
+                          {useCase.title}
+                        </h3>
+                      </div>
                     </div>
                     
-                    <div>
-                      <h3 className="text-xl font-bold group-hover:text-primary transition-colors">
-                        {useCase.title}
-                      </h3>
+                    <p className="text-muted-foreground leading-relaxed mb-4 flex-grow">
+                      {useCase.description}
+                    </p>
+                    
+                    <div className="bg-accent/50 rounded-lg p-3 italic text-sm text-muted-foreground">
+                      {useCase.example}
                     </div>
                   </div>
-                  
-                  <p className="text-muted-foreground leading-relaxed mb-4 flex-grow">
-                    {useCase.description}
-                  </p>
-                  
-                  <div className="bg-accent/50 rounded-lg p-3 italic text-sm text-muted-foreground">
-                    {useCase.example}
-                  </div>
-                </div>
-              </Card>
+                </Card>
+              </InteractiveCard>
             </StaggerItem>
           ))}
         </StaggerContainer>
