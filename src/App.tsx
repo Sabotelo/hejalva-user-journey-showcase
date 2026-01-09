@@ -2,16 +2,11 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 import { LanguageProvider } from "@/contexts/LanguageContext";
 import { AuthProvider } from "@/contexts/AuthContext";
 import ErrorBoundary from "@/components/ErrorBoundary";
-import Index from "./pages/Index";
-import Contact from "./pages/Contact";
-import Dashboard from "./pages/Dashboard";
-import Demo from "./pages/Demo";
-import HowItWorks from "./pages/HowItWorks";
-import NotFound from "./pages/NotFound";
+import AnimatedRoutes from "@/components/AnimatedRoutes";
 
 const queryClient = new QueryClient();
 
@@ -29,15 +24,7 @@ const App = () => {
                   <Toaster />
                   <Sonner />
                   <BrowserRouter>
-                    <Routes>
-                      <Route path="/" element={<Index />} />
-                      <Route path="/contact" element={<Contact />} />
-                      <Route path="/demo" element={<Demo />} />
-                      <Route path="/how-it-works" element={<HowItWorks />} />
-                      <Route path="/dashboard" element={<Dashboard />} />
-                      {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-                      <Route path="*" element={<NotFound />} />
-                    </Routes>
+                    <AnimatedRoutes />
                   </BrowserRouter>
                 </TooltipProvider>
               </LanguageProvider>
