@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Phone, Sparkles } from "lucide-react";
+import { motion } from "framer-motion";
 
 const HeroSection = () => {
   const { language } = useLanguage();
@@ -17,22 +18,42 @@ const HeroSection = () => {
       <div className="container relative z-10 mx-auto px-4 pt-20">
         <div className="mx-auto max-w-4xl text-center">
           {/* Glassmorphism container for better readability */}
-          <div className="glass-panel rounded-3xl p-8 md:p-12 mb-8">
-            <h1 className="mb-6 text-4xl font-bold leading-tight text-white md:text-5xl lg:text-6xl animate-fade-in">
+          <motion.div 
+            className="glass-panel rounded-3xl p-8 md:p-12 mb-8"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: [0.25, 0.4, 0.25, 1] }}
+          >
+            <motion.h1 
+              className="mb-6 text-4xl font-bold leading-tight text-white md:text-5xl lg:text-6xl"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
               {language === 'sv' 
                 ? 'Varje Missat Samtal är en Förlorad Kund.' 
                 : 'Every Missed Call is a Lost Customer.'}
-            </h1>
+            </motion.h1>
             
-            <p className="mb-8 text-lg text-white/80 md:text-xl max-w-2xl mx-auto animate-fade-in" style={{ animationDelay: '0.1s' }}>
+            <motion.p 
+              className="mb-8 text-lg text-white/80 md:text-xl max-w-2xl mx-auto"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+            >
               {language === 'sv' 
                 ? 'Möt Alva. AI-receptionisten som svarar dygnet runt, talar flytande svenska och bokar möten medan du sover.' 
                 : 'Meet Alva. The AI receptionist who answers 24/7, speaks fluent Swedish, and books appointments while you sleep.'}
-            </p>
-          </div>
+            </motion.p>
+          </motion.div>
 
           {/* 3D Sound Wave Visualization */}
-          <div className="relative h-48 md:h-64 mb-12 animate-fade-in" style={{ animationDelay: '0.2s' }}>
+          <motion.div 
+            className="relative h-48 md:h-64 mb-12"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+          >
             {/* Dark pool base */}
             <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full max-w-lg h-16 bg-gradient-to-t from-black/60 to-transparent rounded-[100%] blur-sm"></div>
             
@@ -73,9 +94,14 @@ const HeroSection = () => {
                 );
               })}
             </div>
-          </div>
+          </motion.div>
           
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8 animate-fade-in" style={{ animationDelay: '0.3s' }}>
+          <motion.div 
+            className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
+          >
             <Button 
               size="lg" 
               className="group relative bg-secondary text-primary-dark hover:bg-secondary/90 shadow-[0_0_30px_rgba(0,255,255,0.4)] hover:shadow-[0_0_50px_rgba(0,255,255,0.7)] transition-all duration-300 text-lg px-8 py-6 font-semibold overflow-hidden"
@@ -95,7 +121,7 @@ const HeroSection = () => {
               <Sparkles className="mr-2 h-5 w-5 group-hover:animate-spin" style={{ animationDuration: '2s' }} />
               {language === 'sv' ? 'Boka Demo' : 'Book a Demo'}
             </Button>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

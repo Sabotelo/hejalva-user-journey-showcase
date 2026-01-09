@@ -1,4 +1,5 @@
 import { useLanguage } from "@/contexts/LanguageContext";
+import { ScrollAnimation } from "@/components/ui/scroll-animation";
 
 const PartnersSection = () => {
   const { language } = useLanguage();
@@ -6,7 +7,7 @@ const PartnersSection = () => {
   return (
     <section className="py-16 bg-primary border-t border-white/10">
       <div className="container mx-auto px-4">
-        <div className="text-center max-w-2xl mx-auto">
+        <ScrollAnimation className="text-center max-w-2xl mx-auto">
           <p className="text-sm text-white/60 mb-4">
             {language === 'sv' ? 'Möjliggjort av' : 'Powered by'}
           </p>
@@ -28,7 +29,7 @@ const PartnersSection = () => {
               ? 'Vi vill tacka ElevenLabs för deras generösa bidrag av tokens för testning och utveckling genom deras grant-program. Deras avancerade röst-AI-teknologi driver Alvas naturliga och engagerande konversationer.' 
               : 'We would like to thank ElevenLabs for their generous grant of tokens for testing and development. Their advanced voice AI technology powers Alva\'s natural and engaging conversations.'}
           </p>
-        </div>
+        </ScrollAnimation>
       </div>
     </section>
   );

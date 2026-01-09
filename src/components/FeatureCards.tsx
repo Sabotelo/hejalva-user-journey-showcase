@@ -1,6 +1,7 @@
 import { Phone, Calendar, MessageCircle, Clock, UserCheck, Sparkles } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { ScrollAnimation, StaggerContainer, StaggerItem } from "@/components/ui/scroll-animation";
 
 const FeatureCards = () => {
   const { language } = useLanguage();
@@ -54,7 +55,7 @@ const FeatureCards = () => {
     <section className="py-20 bg-gradient-to-b from-primary to-primary-dark">
       <div className="container mx-auto px-4">
         {/* Section Header */}
-        <div className="text-center mb-12">
+        <ScrollAnimation className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
             {language === 'sv' 
               ? 'Alva blir din virtuella receptionist' 
@@ -65,47 +66,50 @@ const FeatureCards = () => {
               ? 'Som en kollega som alltid är tillgänglig, aldrig blir sjuk och ger fantastisk service varje gång.' 
               : 'Like a colleague who\'s always available, never gets sick, and delivers amazing service every time.'}
           </p>
-        </div>
+        </ScrollAnimation>
 
         {/* Main Feature Cards */}
-        <div className="grid md:grid-cols-3 gap-8 mb-12">
+        <StaggerContainer className="grid md:grid-cols-3 gap-8 mb-12" staggerDelay={0.15}>
           {features.map((feature, index) => (
-            <Card 
-              key={index}
-              className="relative overflow-hidden p-8 border-0 bg-white hover:shadow-elevated transition-all duration-300 group"
-            >
-              <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-secondary/10 to-transparent rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-              
-              <div className="relative z-10">
-                <div className="h-14 w-14 rounded-xl bg-gradient-mimer flex items-center justify-center mb-6 shadow-primary group-hover:scale-110 transition-transform duration-300">
-                  <feature.icon className="h-7 w-7 text-white" />
+            <StaggerItem key={index}>
+              <Card 
+                className="relative overflow-hidden p-8 border-0 bg-white hover:shadow-elevated transition-all duration-300 group h-full"
+              >
+                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-secondary/10 to-transparent rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                
+                <div className="relative z-10">
+                  <div className="h-14 w-14 rounded-xl bg-gradient-mimer flex items-center justify-center mb-6 shadow-primary group-hover:scale-110 transition-transform duration-300">
+                    <feature.icon className="h-7 w-7 text-white" />
+                  </div>
+                  
+                  <div className="inline-block bg-secondary/20 text-secondary-foreground text-xs font-semibold px-3 py-1 rounded-full mb-4">
+                    {feature.highlight}
+                  </div>
+                  
+                  <h3 className="text-2xl font-bold mb-4 text-foreground">
+                    {feature.title}
+                  </h3>
+                  
+                  <p className="text-muted-foreground leading-relaxed">
+                    {feature.description}
+                  </p>
                 </div>
-                
-                <div className="inline-block bg-secondary/20 text-secondary-foreground text-xs font-semibold px-3 py-1 rounded-full mb-4">
-                  {feature.highlight}
-                </div>
-                
-                <h3 className="text-2xl font-bold mb-4 text-foreground">
-                  {feature.title}
-                </h3>
-                
-                <p className="text-muted-foreground leading-relaxed">
-                  {feature.description}
-                </p>
-              </div>
-            </Card>
+              </Card>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerContainer>
 
         {/* Additional Benefits Bar */}
-        <div className="flex flex-wrap justify-center gap-6 md:gap-12">
-          {additionalBenefits.map((benefit, index) => (
-            <div key={index} className="flex items-center gap-2 text-white/80">
-              <benefit.icon className="h-5 w-5 text-secondary" />
-              <span className="font-medium">{benefit.text}</span>
-            </div>
-          ))}
-        </div>
+        <ScrollAnimation delay={0.3}>
+          <div className="flex flex-wrap justify-center gap-6 md:gap-12">
+            {additionalBenefits.map((benefit, index) => (
+              <div key={index} className="flex items-center gap-2 text-white/80">
+                <benefit.icon className="h-5 w-5 text-secondary" />
+                <span className="font-medium">{benefit.text}</span>
+              </div>
+            ))}
+          </div>
+        </ScrollAnimation>
       </div>
     </section>
   );

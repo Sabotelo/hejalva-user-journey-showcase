@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Clock, Wrench, Phone, CheckCircle, XCircle } from "lucide-react";
+import { ScrollAnimation, StaggerContainer, StaggerItem } from "@/components/ui/scroll-animation";
 
 const STORAGE_KEY = 'alva_revenue_saved';
 
@@ -92,7 +93,7 @@ const PainPointsSection = () => {
 
       <div className="container relative z-10 mx-auto px-4">
         {/* Section Header */}
-        <div className="text-center mb-16">
+        <ScrollAnimation className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
             {language === 'sv' ? 'Verkligheten för småföretagare' : 'The Reality of SME Ownership'}
           </h2>
@@ -101,69 +102,72 @@ const PainPointsSection = () => {
               ? 'Varje missat samtal är en förlorad möjlighet. Så här löser Alva dina största frustrationer.'
               : 'Every missed call is a lost opportunity. Here\'s how Alva solves your biggest frustrations.'}
           </p>
-        </div>
+        </ScrollAnimation>
 
         {/* Pain Points Grid */}
-        <div className="grid md:grid-cols-3 gap-6 mb-16 items-stretch">
+        <StaggerContainer className="grid md:grid-cols-3 gap-6 mb-16 items-stretch" staggerDelay={0.15}>
           {painPoints.map((point, index) => (
-            <div 
-              key={index}
-              className="group relative rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl p-6 transition-all duration-300 hover:bg-white/10 hover:border-white/20 flex flex-col"
-            >
-              {/* Icon */}
-              <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-secondary/20 to-secondary/5 border border-secondary/30">
-                <point.icon className="h-7 w-7 text-secondary" />
-              </div>
-
-              {/* Title */}
-              <h3 className="text-xl font-bold text-white mb-2">{point.title}</h3>
-              <p className="text-white/60 text-sm mb-6 flex-grow">{point.description}</p>
-
-              {/* Comparison */}
-              <div className="space-y-3">
-                {/* Old Way */}
-                <div className="flex items-start gap-3 p-3 rounded-lg bg-destructive/10 border border-destructive/20">
-                  <XCircle className="h-5 w-5 text-destructive shrink-0 mt-0.5" />
-                  <div>
-                    <span className="text-destructive text-xs font-semibold uppercase tracking-wide">
-                      {language === 'sv' ? 'Utan Alva' : 'Without Alva'}
-                    </span>
-                    <p className="text-white/70 text-sm mt-1">{point.oldWay}</p>
-                  </div>
+            <StaggerItem key={index}>
+              <div 
+                className="group relative rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl p-6 transition-all duration-300 hover:bg-white/10 hover:border-white/20 flex flex-col h-full"
+              >
+                {/* Icon */}
+                <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-secondary/20 to-secondary/5 border border-secondary/30">
+                  <point.icon className="h-7 w-7 text-secondary" />
                 </div>
 
-                {/* New Way */}
-                <div className="flex items-start gap-3 p-3 rounded-lg bg-secondary/10 border border-secondary/20">
-                  <CheckCircle className="h-5 w-5 text-secondary shrink-0 mt-0.5" />
-                  <div>
-                    <span className="text-secondary text-xs font-semibold uppercase tracking-wide">
-                      {language === 'sv' ? 'Med Alva' : 'With Alva'}
-                    </span>
-                    <p className="text-white/80 text-sm mt-1">{point.newWay}</p>
+                {/* Title */}
+                <h3 className="text-xl font-bold text-white mb-2">{point.title}</h3>
+                <p className="text-white/60 text-sm mb-6 flex-grow">{point.description}</p>
+
+                {/* Comparison */}
+                <div className="space-y-3">
+                  {/* Old Way */}
+                  <div className="flex items-start gap-3 p-3 rounded-lg bg-destructive/10 border border-destructive/20">
+                    <XCircle className="h-5 w-5 text-destructive shrink-0 mt-0.5" />
+                    <div>
+                      <span className="text-destructive text-xs font-semibold uppercase tracking-wide">
+                        {language === 'sv' ? 'Utan Alva' : 'Without Alva'}
+                      </span>
+                      <p className="text-white/70 text-sm mt-1">{point.oldWay}</p>
+                    </div>
+                  </div>
+
+                  {/* New Way */}
+                  <div className="flex items-start gap-3 p-3 rounded-lg bg-secondary/10 border border-secondary/20">
+                    <CheckCircle className="h-5 w-5 text-secondary shrink-0 mt-0.5" />
+                    <div>
+                      <span className="text-secondary text-xs font-semibold uppercase tracking-wide">
+                        {language === 'sv' ? 'Med Alva' : 'With Alva'}
+                      </span>
+                      <p className="text-white/80 text-sm mt-1">{point.newWay}</p>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerContainer>
 
         {/* Revenue Counter */}
-        <div className="text-center">
-          <div className="inline-flex flex-col items-center gap-2 rounded-2xl border border-secondary/30 bg-secondary/10 backdrop-blur-xl px-8 py-6">
-            <span className="text-secondary/80 text-sm font-medium uppercase tracking-wide">
-              {language === 'sv' ? 'Intäkter sparade denna vecka' : 'Revenue Saved This Week'}
-            </span>
-            <div className="flex items-baseline gap-1">
-              <span className="text-4xl md:text-5xl font-bold text-white tabular-nums">
-                {revenueSaved.toLocaleString('sv-SE')}
+        <ScrollAnimation variant="scale" delay={0.3}>
+          <div className="text-center">
+            <div className="inline-flex flex-col items-center gap-2 rounded-2xl border border-secondary/30 bg-secondary/10 backdrop-blur-xl px-8 py-6">
+              <span className="text-secondary/80 text-sm font-medium uppercase tracking-wide">
+                {language === 'sv' ? 'Intäkter sparade denna vecka' : 'Revenue Saved This Week'}
               </span>
-              <span className="text-2xl text-secondary font-semibold">SEK</span>
+              <div className="flex items-baseline gap-1">
+                <span className="text-4xl md:text-5xl font-bold text-white tabular-nums">
+                  {revenueSaved.toLocaleString('sv-SE')}
+                </span>
+                <span className="text-2xl text-secondary font-semibold">SEK</span>
+              </div>
+              <span className="text-white/50 text-xs">
+                {language === 'sv' ? '* Baserat på genomsnittlig bokning' : '* Based on average booking value'}
+              </span>
             </div>
-            <span className="text-white/50 text-xs">
-              {language === 'sv' ? '* Baserat på genomsnittlig bokning' : '* Based on average booking value'}
-            </span>
           </div>
-        </div>
+        </ScrollAnimation>
       </div>
     </section>
   );
