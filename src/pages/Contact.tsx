@@ -5,14 +5,16 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
-import { Mail, Phone, MapPin, Send } from "lucide-react";
+import { Mail, Phone, MapPin, Send, Loader2 } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import { supabase } from "@/integrations/supabase/client";
 
 const Contact = () => {
   const { t } = useLanguage();
   const { toast } = useToast();
+  const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -21,14 +23,37 @@ const Contact = () => {
     message: ""
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Here you would typically send the data to your backend
-    toast({
-      title: t('contact.form.success'),
-      description: t('contact.form.successMessage'),
-    });
-    setFormData({ name: "", email: "", company: "", subject: "", message: "" });
+    setIsLoading(true);
+
+    try {
+      const { data, error } = await supabase.functions.invoke('send-contact-email', {
+        body: {
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+          phone: formData.company // Using company field, can add phone if needed
+        }
+      });
+
+      if (error) throw error;
+
+      toast({
+        title: t('contact.form.success'),
+        description: t('contact.form.successMessage'),
+      });
+      setFormData({ name: "", email: "", company: "", subject: "", message: "" });
+    } catch (error) {
+      console.error('Error sending message:', error);
+      toast({
+        title: "Error",
+        description: "Failed to send message. Please try again.",
+        variant: "destructive"
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -71,6 +96,7 @@ const Contact = () => {
                        placeholder={t('contact.form.namePlaceholder')}
                        required
                        autoComplete="off"
+                       disabled={isLoading}
                      />
                   </div>
                   <div className="space-y-2">
@@ -84,6 +110,7 @@ const Contact = () => {
                        placeholder={t('contact.form.emailPlaceholder')}
                        required
                        autoComplete="off"
+                       disabled={isLoading}
                      />
                   </div>
                 </div>
@@ -98,6 +125,7 @@ const Contact = () => {
                        onChange={handleInputChange}
                        placeholder={t('contact.form.companyPlaceholder')}
                        autoComplete="off"
+                       disabled={isLoading}
                      />
                   </div>
                   <div className="space-y-2">
@@ -110,6 +138,7 @@ const Contact = () => {
                        placeholder={t('contact.form.subjectPlaceholder')}
                        required
                        autoComplete="off"
+                       disabled={isLoading}
                      />
                   </div>
                 </div>
@@ -124,6 +153,7 @@ const Contact = () => {
                     placeholder={t('contact.form.messagePlaceholder')}
                     rows={6}
                     required
+                    disabled={isLoading}
                   />
                 </div>
 
@@ -131,9 +161,14 @@ const Contact = () => {
                   type="submit" 
                   size="lg" 
                   className="w-full bg-gradient-primary text-white shadow-primary hover:shadow-elevated transition-all duration-300"
+                  disabled={isLoading}
                 >
-                  <Send className="mr-2 h-5 w-5" />
-                  {t('contact.form.send')}
+                  {isLoading ? (
+                    <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                  ) : (
+                    <Send className="mr-2 h-5 w-5" />
+                  )}
+                  {isLoading ? "Sending..." : t('contact.form.send')}
                 </Button>
               </form>
             </Card>
@@ -150,10 +185,10 @@ const Contact = () => {
                     <div>
                       <h3 className="font-semibold">{t('contact.info.email')}</h3>
                       <a 
-                        href="mailto:dev@heyalva.com" 
+                        href="mailto:dev@hejalva.com" 
                         className="text-primary hover:underline"
                       >
-                        dev@heyalva.com
+                        dev@hejalva.com
                       </a>
                     </div>
                   </div>
@@ -173,13 +208,14 @@ const Contact = () => {
                     </div>
                   </div>
 
-                  <div className="flex items-center space-x-4">
-                    <div className="h-12 w-12 rounded-full bg-gradient-to-br from-secondary to-primary-glow flex items-center justify-center">
+                  <div className="flex items-start space-x-4">
+                    <div className="h-12 w-12 rounded-full bg-gradient-to-br from-secondary to-primary-glow flex items-center justify-center flex-shrink-0">
                       <MapPin className="h-6 w-6 text-white" />
                     </div>
                     <div>
                       <h3 className="font-semibold">{t('contact.info.location')}</h3>
-                      <p className="text-muted-foreground">Stockholm, Sverige</p>
+                      <p className="text-muted-foreground">Stockholm, Sweden</p>
+                      <p className="text-muted-foreground">Karlskrona, Sweden</p>
                     </div>
                   </div>
                 </div>
