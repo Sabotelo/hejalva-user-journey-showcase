@@ -73,9 +73,7 @@ const CTASection = () => {
                 size="lg"
                 variant="outline"
                 className="border-white/30 text-white hover:bg-white/10 text-lg px-10 py-7"
-                onClick={() => {
-                  window.location.href = 'tel:+46737587867';
-                }}
+                onClick={() => window.location.href = '/demo#try-alva'}
               >
                 <Phone className="mr-2 h-5 w-5" />
                 {language === 'sv' ? 'Ring Alva nu' : 'Call Alva Now'}

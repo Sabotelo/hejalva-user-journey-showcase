@@ -79,7 +79,7 @@ const HeroSection = () => {
             <Button 
               size="lg" 
               className="group relative bg-secondary text-primary-dark hover:bg-secondary/90 shadow-[0_0_30px_rgba(0,255,255,0.4)] hover:shadow-[0_0_50px_rgba(0,255,255,0.7)] transition-all duration-300 text-lg px-8 py-6 font-semibold overflow-hidden"
-              onClick={() => window.location.href = 'tel:+46737587867'}
+              onClick={() => window.location.href = '/demo#try-alva'}
             >
               <span className="relative z-10 flex items-center">
                 <Phone className="mr-2 h-5 w-5 group-hover:animate-bounce" />

@@ -118,7 +118,7 @@ const TryAlvaLive = () => {
   }, [conversation]);
 
   return (
-    <section className="py-20 bg-gradient-to-b from-[#0A2342] to-[#061428] relative overflow-hidden">
+    <section id="try-alva" className="py-20 bg-gradient-to-b from-[#0A2342] to-[#061428] relative overflow-hidden">
       {/* Background effects */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-1/4 right-1/4 w-80 h-80 bg-[#00F5FF]/5 rounded-full blur-3xl" />
