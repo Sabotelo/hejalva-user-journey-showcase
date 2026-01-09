@@ -12,16 +12,9 @@ const LostRevenueCalculator = () => {
   const [avgPrice, setAvgPrice] = useState(800);
   const [displayedRevenue, setDisplayedRevenue] = useState(0);
   
-  // Calculate yearly lost revenue
-  // Assuming 30% of missed calls would have converted to bookings
-  const conversionRate = 0.3;
+  // Simple calculation: missed calls × price × 52 weeks
   const weeksPerYear = 52;
-  
-  // Formula: (missed calls per week) × (average price) × (conversion rate) × (weeks per year)
-  // Example: 10 calls × 800 SEK × 30% × 52 weeks = 124,800 SEK/year
-  const potentialBookingsPerYear = missedCalls * weeksPerYear;
-  const convertedBookingsPerYear = Math.round(potentialBookingsPerYear * conversionRate);
-  const yearlyLostRevenue = convertedBookingsPerYear * avgPrice;
+  const yearlyLostRevenue = missedCalls * avgPrice * weeksPerYear;
   
   // Animate the revenue counter
   useEffect(() => {
@@ -225,19 +218,6 @@ const LostRevenueCalculator = () => {
                     <p className="text-white/60 text-lg">
                       {language === 'sv' ? 'per år i missade bokningar' : 'per year in missed bookings'}
                     </p>
-                    
-                    <div className="text-white/40 text-sm mt-4 space-y-1">
-                      <p>
-                        {language === 'sv' 
-                          ? `* ${missedCalls} samtal/vecka × 52 veckor × 30% konvertering = ${convertedBookingsPerYear} bokningar/år`
-                          : `* ${missedCalls} calls/week × 52 weeks × 30% conversion = ${convertedBookingsPerYear} bookings/year`}
-                      </p>
-                      <p>
-                        {language === 'sv' 
-                          ? `* ${convertedBookingsPerYear} bokningar × ${formatCurrency(avgPrice)} kr = ${formatCurrency(yearlyLostRevenue)} kr`
-                          : `* ${convertedBookingsPerYear} bookings × ${formatCurrency(avgPrice)} SEK = ${formatCurrency(yearlyLostRevenue)} SEK`}
-                      </p>
-                    </div>
                   </div>
                 </motion.div>
               </div>
