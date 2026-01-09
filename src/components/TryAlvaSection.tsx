@@ -147,16 +147,16 @@ const TryAlvaSection = () => {
           <div className="text-center mt-8">
             <p className="text-white/70 mb-4">
               {language === 'sv' 
-                ? 'Vill du testa live? Ring Alva direkt.'
-                : 'Want to try live? Call Alva directly.'}
+                ? 'Vill du testa live? Prova Alva direkt.'
+                : 'Want to try live? Try Alva directly.'}
             </p>
             <Button 
               variant="outline" 
               size="lg"
-              onClick={() => window.location.href = 'tel:+46737587867'}
+              onClick={() => window.location.href = '/demo#try-alva'}
               className="border-white/30 text-white hover:bg-white/10"
             >
-              +46 737 587 867
+              {language === 'sv' ? 'Testa Alva Live' : 'Try Alva Live'}
             </Button>
           </div>
         </div>
