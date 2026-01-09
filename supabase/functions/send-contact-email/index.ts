@@ -66,7 +66,7 @@ serve(async (req) => {
       },
       body: JSON.stringify({
         from: 'Hej Alva <hej@hejalva.com>',
-        to: ['admin@hejalva.com'],
+        to: ['damianarango58@gmail.com'],
         subject: `New Contact Message from ${name}`,
         text: emailContent,
         reply_to: email,
