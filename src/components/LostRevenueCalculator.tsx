@@ -16,7 +16,12 @@ const LostRevenueCalculator = () => {
   // Assuming 30% of missed calls would have converted to bookings
   const conversionRate = 0.3;
   const weeksPerYear = 52;
-  const yearlyLostRevenue = Math.round(missedCalls * avgPrice * conversionRate * weeksPerYear);
+  
+  // Formula: (missed calls per week) × (average price) × (conversion rate) × (weeks per year)
+  // Example: 10 calls × 800 SEK × 30% × 52 weeks = 124,800 SEK/year
+  const potentialBookingsPerYear = missedCalls * weeksPerYear;
+  const convertedBookingsPerYear = Math.round(potentialBookingsPerYear * conversionRate);
+  const yearlyLostRevenue = convertedBookingsPerYear * avgPrice;
   
   // Animate the revenue counter
   useEffect(() => {
@@ -221,11 +226,18 @@ const LostRevenueCalculator = () => {
                       {language === 'sv' ? 'per år i missade bokningar' : 'per year in missed bookings'}
                     </p>
                     
-                    <p className="text-white/40 text-sm mt-4">
-                      {language === 'sv' 
-                        ? '* Baserat på 30% konverteringsgrad från samtal till bokning'
-                        : '* Based on 30% conversion rate from calls to bookings'}
-                    </p>
+                    <div className="text-white/40 text-sm mt-4 space-y-1">
+                      <p>
+                        {language === 'sv' 
+                          ? `* ${missedCalls} samtal/vecka × 52 veckor × 30% konvertering = ${convertedBookingsPerYear} bokningar/år`
+                          : `* ${missedCalls} calls/week × 52 weeks × 30% conversion = ${convertedBookingsPerYear} bookings/year`}
+                      </p>
+                      <p>
+                        {language === 'sv' 
+                          ? `* ${convertedBookingsPerYear} bokningar × ${formatCurrency(avgPrice)} kr = ${formatCurrency(yearlyLostRevenue)} kr`
+                          : `* ${convertedBookingsPerYear} bookings × ${formatCurrency(avgPrice)} SEK = ${formatCurrency(yearlyLostRevenue)} SEK`}
+                      </p>
+                    </div>
                   </div>
                 </motion.div>
               </div>
