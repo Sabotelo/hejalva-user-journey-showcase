@@ -2,7 +2,7 @@ import { useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useConversation } from "@elevenlabs/react";
-import { Phone, PhoneOff, Mic, Pizza, Scissors, Car, Loader2 } from "lucide-react";
+import { Phone, PhoneOff, Mic, Pizza, Gift, Car, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
@@ -28,12 +28,12 @@ const scenarios: Scenario[] = [
     enabled: false,
   },
   {
-    id: "salon",
-    titleSv: "Frisörsalong",
-    titleEn: "Hair Salon",
-    descriptionSv: "Boka tid för klippning eller behandling",
-    descriptionEn: "Book an appointment for a haircut or treatment",
-    icon: Scissors,
+    id: "toystore",
+    titleSv: "Leksaksbutik",
+    titleEn: "Toy Store",
+    descriptionSv: "Fråga om produkter eller öppettider",
+    descriptionEn: "Ask about products or opening hours",
+    icon: Gift,
     enabled: false,
   },
   {
