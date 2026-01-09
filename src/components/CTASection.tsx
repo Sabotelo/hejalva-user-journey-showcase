@@ -1,8 +1,9 @@
-import { Button } from "@/components/ui/button";
+import { MemphisButton } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { ArrowRight, Check, Phone, Clock, Calendar } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { ScrollAnimation, StaggerContainer, StaggerItem } from "@/components/ui/scroll-animation";
+import { ScrollAnimation, StaggerContainer, StaggerItem, PulseElement } from "@/components/ui/scroll-animation";
+import { motion } from "framer-motion";
 
 const CTASection = () => {
   const { language } = useLanguage();
@@ -40,13 +41,20 @@ const CTASection = () => {
             <div className="text-center text-white">
               {/* Urgency badge */}
               <ScrollAnimation delay={0.1}>
-                <div className="inline-flex items-center gap-2 bg-destructive/30 text-white px-4 py-2 rounded-full mb-6 text-sm animate-pulse">
-                  <span>⚡</span>
-                  <span>{urgencyText}</span>
-                </div>
+                <PulseElement scale={1.03} duration={1.5}>
+                  <div className="inline-flex items-center gap-2 bg-destructive/30 text-white px-4 py-2 rounded-full mb-6 text-sm">
+                    <motion.span
+                      animate={{ rotate: [0, 15, -15, 0] }}
+                      transition={{ duration: 0.5, repeat: Infinity, repeatDelay: 1 }}
+                    >
+                      ⚡
+                    </motion.span>
+                    <span>{urgencyText}</span>
+                  </div>
+                </PulseElement>
               </ScrollAnimation>
               
-              <ScrollAnimation delay={0.2}>
+              <ScrollAnimation delay={0.2} variant="bounceUp">
                 <h2 className="text-3xl md:text-5xl font-bold mb-6">
                   {language === 'sv' 
                     ? 'Sluta förlora kunder idag' 
@@ -65,35 +73,40 @@ const CTASection = () => {
               <StaggerContainer className="flex flex-wrap justify-center gap-6 mb-10" staggerDelay={0.1}>
                 {benefits.map((benefit, index) => (
                   <StaggerItem key={index} variant="scale">
-                    <div 
+                    <motion.div 
                       className="flex items-center gap-2 bg-white/10 rounded-full px-5 py-2"
+                      whileHover={{ scale: 1.05, backgroundColor: "rgba(255,255,255,0.15)" }}
+                      whileTap={{ scale: 0.95 }}
+                      transition={{ type: "spring", stiffness: 400, damping: 15 }}
                     >
                       <benefit.icon className="h-4 w-4 text-secondary" />
                       <span className="text-sm">{benefit.text}</span>
-                    </div>
+                    </motion.div>
                   </StaggerItem>
                 ))}
               </StaggerContainer>
               
               <ScrollAnimation delay={0.5}>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-                  <Button 
+                  <MemphisButton 
+                    variant="primary"
                     size="lg"
-                    className="bg-white text-primary hover:bg-white/90 text-lg px-10 py-7 shadow-lg hover:shadow-xl transition-all"
+                    className="bg-white text-primary hover:bg-white/90 px-10 py-7"
                     onClick={() => window.location.href = '/demo'}
                   >
                     {language === 'sv' ? 'Boka gratis demo' : 'Book Free Demo'}
-                    <ArrowRight className="ml-2 h-5 w-5" />
-                  </Button>
-                  <Button 
-                    size="lg"
+                    <ArrowRight className="h-5 w-5" />
+                  </MemphisButton>
+                  
+                  <MemphisButton 
                     variant="outline"
-                    className="border-white/30 text-white hover:bg-white/10 text-lg px-10 py-7"
+                    size="lg"
+                    className="px-10 py-7"
                     onClick={() => window.location.href = '/demo#try-alva'}
                   >
-                    <Phone className="mr-2 h-5 w-5" />
+                    <Phone className="h-5 w-5" />
                     {language === 'sv' ? 'Ring Alva nu' : 'Call Alva Now'}
-                  </Button>
+                  </MemphisButton>
                 </div>
               </ScrollAnimation>
 
@@ -101,10 +114,13 @@ const CTASection = () => {
               <StaggerContainer className="flex flex-wrap justify-center gap-6 text-sm text-white/60" staggerDelay={0.1}>
                 {trustSignals.map((signal, index) => (
                   <StaggerItem key={index}>
-                    <div className="flex items-center gap-2">
+                    <motion.div 
+                      className="flex items-center gap-2"
+                      whileHover={{ scale: 1.05, color: "rgba(255,255,255,0.9)" }}
+                    >
                       <Check className="h-4 w-4 text-secondary" />
                       <span>{signal.text}</span>
-                    </div>
+                    </motion.div>
                   </StaggerItem>
                 ))}
               </StaggerContainer>

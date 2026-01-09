@@ -1,6 +1,7 @@
 import * as React from "react"
 import { Slot } from "@radix-ui/react-slot"
 import { cva, type VariantProps } from "class-variance-authority"
+import { motion, HTMLMotionProps } from "framer-motion"
 
 import { cn } from "@/lib/utils"
 
@@ -53,4 +54,58 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 )
 Button.displayName = "Button"
 
-export { Button, buttonVariants }
+// Memphis-style animated button with bouncy, playful interactions
+interface MemphisButtonProps extends Omit<HTMLMotionProps<"button">, "ref"> {
+  variant?: "primary" | "secondary" | "outline" | "ghost" | "cta"
+  size?: "sm" | "md" | "lg"
+  children: React.ReactNode
+  className?: string
+}
+
+const MemphisButton = React.forwardRef<HTMLButtonElement, MemphisButtonProps>(
+  ({ variant = "primary", size = "md", className, children, ...props }, ref) => {
+    const baseStyles = "relative inline-flex items-center justify-center gap-2 font-semibold rounded-xl overflow-hidden transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+    
+    const variantStyles = {
+      primary: "bg-primary text-primary-foreground",
+      secondary: "bg-secondary text-primary-dark",
+      outline: "border-2 border-white/30 text-white bg-transparent hover:bg-white/10",
+      ghost: "text-white hover:bg-white/10",
+      cta: "bg-gradient-to-r from-secondary to-primary-glow text-primary-dark shadow-[0_0_30px_rgba(0,255,255,0.4)]",
+    }
+    
+    const sizeStyles = {
+      sm: "text-sm px-4 py-2",
+      md: "text-base px-6 py-3",
+      lg: "text-lg px-8 py-4",
+    }
+
+    return (
+      <motion.button
+        ref={ref}
+        className={cn(baseStyles, variantStyles[variant], sizeStyles[size], className)}
+        whileHover={{ 
+          scale: 1.05,
+          transition: { type: "spring", stiffness: 400, damping: 10 }
+        }}
+        whileTap={{ 
+          scale: 0.95,
+          transition: { type: "spring", stiffness: 400, damping: 10 }
+        }}
+        {...props}
+      >
+        {/* Shimmer effect on hover */}
+        <motion.span 
+          className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
+          initial={{ x: "-100%" }}
+          whileHover={{ x: "100%" }}
+          transition={{ duration: 0.5 }}
+        />
+        <span className="relative z-10 flex items-center gap-2">{children}</span>
+      </motion.button>
+    )
+  }
+)
+MemphisButton.displayName = "MemphisButton"
+
+export { Button, MemphisButton, buttonVariants }
