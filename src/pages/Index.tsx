@@ -1,6 +1,5 @@
 import Navigation from "@/components/Navigation";
 import HeroSection from "@/components/HeroSection";
-import PainPointsSection from "@/components/PainPointsSection";
 import TrustSection from "@/components/TrustSection";
 import FeatureCards from "@/components/FeatureCards";
 import BenefitsSection from "@/components/BenefitsSection";
@@ -17,7 +16,6 @@ const Index = () => {
     <div className="min-h-screen">
       <Navigation />
       <HeroSection />
-      <PainPointsSection />
       <TrustSection />
       <FeatureCards />
       <LostRevenueCalculator />
