@@ -2,6 +2,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { useLanguage } from "@/contexts/LanguageContext";
 import HowItWorksVisualization from "@/components/HowItWorksVisualization";
+import IssuesWeSolveVisualization from "@/components/IssuesWeSolveVisualization";
 
 const HowItWorks = () => {
   const { language } = useLanguage();
@@ -28,6 +29,23 @@ const HowItWorks = () => {
       <section className="py-16 px-4">
         <div className="container mx-auto max-w-5xl">
           <HowItWorksVisualization />
+        </div>
+      </section>
+
+      {/* Issues We Solve Section */}
+      <section className="py-16 px-4">
+        <div className="container mx-auto max-w-5xl">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+              {language === 'sv' ? 'Problemen Vi Löser' : 'The Issues We Solve'}
+            </h2>
+            <p className="text-lg text-white/70 max-w-2xl mx-auto">
+              {language === 'sv' 
+                ? 'Hovra över korten för att se hur Alva löser varje problem'
+                : 'Hover over the cards to see how Alva solves each problem'}
+            </p>
+          </div>
+          <IssuesWeSolveVisualization />
         </div>
       </section>
 
