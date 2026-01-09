@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { Phone, Scissors, Clock, Calendar, Monitor, Check, MessageSquare, Sparkles } from "lucide-react";
+import { Phone, Scissors, Clock, Calendar, Monitor, Check, MessageSquare, Sparkles, ShieldCheck } from "lucide-react";
 
 const steps = [
   {
@@ -27,10 +27,10 @@ const steps = [
   },
   {
     id: 4,
-    titleEn: "You Stay in Control",
-    titleSv: "Du Behåller Kontrollen",
-    descEn: "You approve every booking before it's confirmed. Alva proposes, YOU decide.",
-    descSv: "Du godkänner varje bokning innan den bekräftas. Alva föreslår, DU bestämmer.",
+    titleEn: "You Have the Final Say",
+    titleSv: "Du Har Sista Ordet",
+    descEn: "Alva drafts the appointment and summarizes the call, but nothing is confirmed until you click Approve. You maintain 100% control.",
+    descSv: "Alva skapar ett utkast och sammanfattar samtalet, men ingenting bekräftas förrän du klickar Godkänn. Du har 100% kontroll.",
   },
 ];
 
@@ -282,13 +282,20 @@ const SceneRouting = () => (
   </motion.div>
 );
 
-// Scene 4: Handoff
+// Scene 4: Human Control - You Have the Final Say
 const SceneHandoff = () => {
-  const [clicked, setClicked] = useState(false);
+  const [phase, setPhase] = useState<'draft' | 'hovering' | 'approved'>('draft');
   
   useEffect(() => {
-    const timer = setTimeout(() => setClicked(true), 1500);
-    return () => clearTimeout(timer);
+    // Phase 1: Show draft state (pause for 2 seconds to emphasize review)
+    const hoverTimer = setTimeout(() => setPhase('hovering'), 2000);
+    // Phase 2: Cursor hovers, then clicks after 1.5 more seconds
+    const approveTimer = setTimeout(() => setPhase('approved'), 3500);
+    
+    return () => {
+      clearTimeout(hoverTimer);
+      clearTimeout(approveTimer);
+    };
   }, []);
   
   return (
@@ -299,61 +306,96 @@ const SceneHandoff = () => {
       className="flex items-center justify-center h-full"
     >
       <div className="relative">
+        {/* Human-in-the-Loop Trust Badge */}
+        <motion.div
+          className="absolute -top-2 -right-2 z-20 flex items-center gap-1.5 px-3 py-1.5 bg-[#CCFF00] rounded-full shadow-lg"
+          initial={{ scale: 0, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ delay: 0.5, type: 'spring' }}
+        >
+          <ShieldCheck className="w-4 h-4 text-[#2D1B69]" />
+          <span className="text-[#2D1B69] text-xs font-bold whitespace-nowrap">Human-in-the-Loop</span>
+        </motion.div>
+        
         {/* Monitor */}
         <motion.div
-          className="w-64 h-44 rounded-xl bg-slate-800 border-4 border-slate-600 overflow-hidden shadow-2xl"
+          className="w-72 h-52 rounded-xl bg-slate-800 border-4 border-slate-600 overflow-hidden shadow-2xl"
           initial={{ y: 30, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
         >
           {/* Screen content */}
           <div className="h-full bg-gradient-to-b from-slate-700 to-slate-800 p-3 relative">
-            {!clicked ? (
+            {phase !== 'approved' ? (
               <>
-                {/* Notification popup */}
+                {/* Draft Booking Card */}
                 <motion.div
-                  className="absolute top-3 right-3 left-3 bg-white rounded-lg p-3 shadow-lg"
+                  className={`absolute top-3 right-3 left-3 rounded-lg p-3 shadow-lg border-2 transition-colors duration-300 ${
+                    phase === 'hovering' ? 'bg-white border-[#CCFF00]' : 'bg-amber-50 border-amber-400'
+                  }`}
                   initial={{ y: -20, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ delay: 0.3 }}
                 >
-                  <div className="text-xs text-slate-500 mb-1">New Booking Request</div>
-                  <div className="text-sm font-bold text-slate-800">Haircut - Tuesday 2PM</div>
-                  
-                  <motion.button
-                    className="mt-2 w-full py-2 bg-blue-500 text-white rounded-md text-sm font-bold flex items-center justify-center gap-1"
-                    animate={{ scale: [1, 1.02, 1] }}
-                    transition={{ duration: 0.5, repeat: Infinity }}
+                  {/* Draft Badge */}
+                  <motion.div 
+                    className={`inline-flex items-center gap-1 px-2 py-0.5 rounded text-xs font-bold mb-2 ${
+                      phase === 'hovering' ? 'bg-[#CCFF00]/20 text-[#2D1B69]' : 'bg-amber-200 text-amber-800'
+                    }`}
+                    animate={phase === 'draft' ? { scale: [1, 1.05, 1] } : {}}
+                    transition={{ duration: 1, repeat: Infinity }}
                   >
-                    Accept
+                    {phase === 'draft' ? '⏳ DRAFT - AWAITING APPROVAL' : '✓ READY TO CONFIRM'}
+                  </motion.div>
+                  
+                  <div className="text-xs text-slate-500 mb-0.5">Call Summary</div>
+                  <div className="text-sm font-bold text-slate-800">Haircut - Tuesday 2PM</div>
+                  <div className="text-xs text-slate-500 mt-1">Customer: Maria S.</div>
+                  
+                  {/* Review & Confirm Button */}
+                  <motion.button
+                    className={`mt-3 w-full py-2.5 rounded-md text-sm font-bold flex items-center justify-center gap-2 transition-all duration-300 ${
+                      phase === 'hovering' 
+                        ? 'bg-[#CCFF00] text-[#2D1B69] shadow-lg scale-105' 
+                        : 'bg-slate-200 text-slate-600'
+                    }`}
+                    animate={phase === 'draft' ? {} : { scale: [1.05, 1.08, 1.05] }}
+                    transition={{ duration: 0.6, repeat: Infinity }}
+                  >
+                    <Check className="w-4 h-4" />
+                    Review & Confirm
                   </motion.button>
                 </motion.div>
                 
-                {/* Cursor */}
-                <motion.div
-                  className="absolute w-4 h-4"
-                  initial={{ x: 150, y: 100 }}
-                  animate={{ x: 120, y: 80 }}
-                  transition={{ duration: 1, delay: 0.8 }}
-                >
-                  <svg viewBox="0 0 24 24" fill="white" className="drop-shadow-md">
-                    <path d="M5.5 3.21V20.8l5.5-5.5h7.21L5.5 3.21z" />
-                  </svg>
-                </motion.div>
+                {/* Cursor - appears and hovers over button */}
+                {phase === 'hovering' && (
+                  <motion.div
+                    className="absolute w-6 h-6 z-10"
+                    initial={{ x: 180, y: 120 }}
+                    animate={{ x: 130, y: 115 }}
+                    transition={{ duration: 0.8, ease: 'easeOut' }}
+                  >
+                    <svg viewBox="0 0 24 24" fill="white" className="drop-shadow-lg" style={{ filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.3))' }}>
+                      <path d="M5.5 3.21V20.8l5.5-5.5h7.21L5.5 3.21z" />
+                    </svg>
+                  </motion.div>
+                )}
               </>
             ) : (
               <motion.div
-                className="h-full flex items-center justify-center"
+                className="h-full flex flex-col items-center justify-center"
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
                 transition={{ type: 'spring', stiffness: 200 }}
               >
                 <motion.div
-                  className="w-20 h-20 rounded-full bg-[#CCFF00] flex items-center justify-center"
+                  className="w-16 h-16 rounded-full bg-[#CCFF00] flex items-center justify-center mb-3"
                   animate={{ scale: [1, 1.1, 1] }}
                   transition={{ duration: 0.5, repeat: 2 }}
                 >
-                  <Check className="w-10 h-10 text-[#2D1B69]" strokeWidth={3} />
+                  <Check className="w-8 h-8 text-[#2D1B69]" strokeWidth={3} />
                 </motion.div>
+                <div className="text-white text-sm font-medium">Booking Confirmed!</div>
+                <div className="text-white/60 text-xs mt-1">SMS sent to customer</div>
               </motion.div>
             )}
           </div>
@@ -363,17 +405,17 @@ const SceneHandoff = () => {
         <div className="mx-auto w-16 h-4 bg-slate-600 rounded-b-lg" />
         <div className="mx-auto w-24 h-2 bg-slate-500 rounded-full" />
         
-        {/* Success text */}
-        {clicked && (
-          <motion.div
-            className="absolute -bottom-12 left-1/2 -translate-x-1/2 text-[#CCFF00] font-bold text-lg whitespace-nowrap"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
-          >
-            ✓ Confirmation Sent!
-          </motion.div>
-        )}
+        {/* Bottom text */}
+        <motion.div
+          className="absolute -bottom-14 left-1/2 -translate-x-1/2 text-center"
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.5 }}
+        >
+          <div className="text-[#CCFF00] font-bold text-sm whitespace-nowrap">
+            {phase === 'approved' ? '✓ You approved it!' : '👆 Nothing happens without YOUR click'}
+          </div>
+        </motion.div>
       </div>
     </motion.div>
   );
