@@ -46,19 +46,6 @@ const TRANSCRIPT_SFX: Record<string, Record<number, string>> = {
   //Lägg till andra scenarios här
 };
 
-function playTranscriptSfx(scenarioId: string, transcriptIndex: number) {
-  const src = TRANSCRIPT_SFX[scenarioId]?.[transcriptIndex];
-  if (!src) return;
-
-  const a = new Audio(src);
-  a.volume = 1;
-  a.muted = false;
-
-  a.play().catch((e) => {
-    console.log("PLAY BLOCKED/FAILED:", e, src);
-  });
-}
-
 const scenarios: Scenario[] = [
   {
     id: "booking",
@@ -180,10 +167,14 @@ const LiveDemoSection = () => {
   const [activeScenario, setActiveScenario] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
-  const [visibleTranscripts, setVisibleTranscripts] = useState<number[]>([]);
+  const [transcriptCursor, setTranscriptCursor] = useState(0); // 0..transcript.length
   const [visibleActions, setVisibleActions] = useState<number[]>([]);
   const transcriptRef = useRef<HTMLDivElement>(null);
-  const lastPlayedTranscriptIndexRef = useRef<number>(-1);
+
+  // Audio + kontroll
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const cursorRef = useRef(0);
+  const isPlayingRef = useRef(false);
 
   const scenario = scenarios[activeScenario];
   const duration =
@@ -191,11 +182,14 @@ const LiveDemoSection = () => {
 
   // Reset when scenario changes
   useEffect(() => {
+    stopAudio();
+    isPlayingRef.current = false;
+    cursorRef.current = 0;
+
     setIsPlaying(false);
     setCurrentTime(0);
-    setVisibleTranscripts([]);
+    setTranscriptCursor(0);
     setVisibleActions([]);
-    lastPlayedTranscriptIndexRef.current = -1;
   }, [activeScenario]);
 
   // Playback timer
@@ -216,57 +210,112 @@ const LiveDemoSection = () => {
     return () => clearInterval(interval);
   }, [isPlaying, currentTime, duration]);
 
-  // Update visible items based on current time
+  // Update visible items
   useEffect(() => {
-    const newVisibleTranscripts = scenario.transcript
-      .map((t, i) => (t.timestamp <= currentTime ? i : -1))
-      .filter((i) => i !== -1);
-    setVisibleTranscripts(newVisibleTranscripts);
-
     const newVisibleActions = scenario.actions
       .map((a, i) => (a.timestamp <= currentTime ? i : -1))
       .filter((i) => i !== -1);
     setVisibleActions(newVisibleActions);
   }, [currentTime, scenario]);
 
-  // Play audio when a new transcript line becomes visible
-  useEffect(() => {
-    if (!isPlaying) return;
-    if (visibleTranscripts.length === 0) return;
-
-    const newestIndex = visibleTranscripts[visibleTranscripts.length - 1];
-    if (newestIndex === lastPlayedTranscriptIndexRef.current) return;
-
-    lastPlayedTranscriptIndexRef.current = newestIndex;
-    playTranscriptSfx(scenario.id, newestIndex);
-  }, [isPlaying, visibleTranscripts, scenario.id]);
-
   // Auto-scroll transcript
   useEffect(() => {
-    if (transcriptRef.current && visibleTranscripts.length > 0) {
-      const lastIndex = visibleTranscripts[visibleTranscripts.length - 1];
+    if (transcriptRef.current && transcriptCursor > 0) {
+      const lastIndex = transcriptCursor - 1;
       const element = transcriptRef.current.children[lastIndex] as HTMLElement;
-      if (element) {
-        element.scrollIntoView({ behavior: "smooth", block: "nearest" });
-      }
+      element?.scrollIntoView({ behavior: "smooth", block: "nearest" });
     }
-  }, [visibleTranscripts]);
+  }, [transcriptCursor]);
+
+  function stopAudio() {
+    if (!audioRef.current) return;
+    audioRef.current.pause();
+    audioRef.current.currentTime = 0;
+    audioRef.current = null;
+  }
+
+  function playLine(lineIndex: number) {
+    const src = TRANSCRIPT_SFX[scenario.id]?.[lineIndex];
+
+    // visa rader t.o.m denna
+    setTranscriptCursor(lineIndex + 1);
+    cursorRef.current = lineIndex + 1;
+
+    // synka "currentTime" så actions hänger med ungefär
+    const ts = scenario.transcript[lineIndex]?.timestamp ?? 0;
+    setCurrentTime(ts);
+
+    // om ingen ljudfil -> fortsätt efter kort delay
+    if (!src) {
+      window.setTimeout(() => {
+        if (!isPlayingRef.current) return;
+        const next = lineIndex + 1;
+        if (next < scenario.transcript.length) playLine(next);
+        else {
+          setIsPlaying(false);
+          isPlayingRef.current = false;
+        }
+      }, 500);
+      return;
+    }
+
+    // stoppa ev tidigare ljud
+    stopAudio();
+
+    const a = new Audio(src);
+    a.volume = 1;
+    a.muted = false;
+    audioRef.current = a;
+
+    a.onended = () => {
+      if (!isPlayingRef.current) return;
+      const next = lineIndex + 1;
+
+      if (next < scenario.transcript.length) {
+        playLine(next);
+      } else {
+        setIsPlaying(false);
+        isPlayingRef.current = false;
+      }
+    };
+
+    a.play().catch((e) => console.log("PLAY BLOCKED/FAILED:", e, src));
+  }
 
   const togglePlay = () => {
-    if (currentTime >= duration) {
-      setCurrentTime(0);
-      setVisibleTranscripts([]);
-      setVisibleActions([]);
+    const nextPlaying = !isPlaying;
+    setIsPlaying(nextPlaying);
+    isPlayingRef.current = nextPlaying;
+
+    if (!nextPlaying) {
+      // PAUSE
+      audioRef.current?.pause();
+      return;
     }
-    setIsPlaying(!isPlaying);
+
+    // PLAY / RESUME
+    if (audioRef.current && audioRef.current.paused) {
+      audioRef.current.play().catch(() => {});
+      return;
+    }
+
+    // Starta (eller fortsätt) från nuvarande cursor
+    playLine(cursorRef.current);
   };
 
   const restart = () => {
+    stopAudio();
+
     setCurrentTime(0);
-    setVisibleTranscripts([]);
+    setTranscriptCursor(0);
     setVisibleActions([]);
-    lastPlayedTranscriptIndexRef.current = -1;
+
+    cursorRef.current = 0;
+
     setIsPlaying(true);
+    isPlayingRef.current = true;
+
+    playLine(0);
   };
 
   // Generate waveform bars
@@ -399,11 +448,11 @@ const LiveDemoSection = () => {
                         key={index}
                         initial={{ opacity: 0, y: 10 }}
                         animate={{
-                          opacity: visibleTranscripts.includes(index) ? 1 : 0.2,
-                          y: visibleTranscripts.includes(index) ? 0 : 10,
+                          opacity: index < transcriptCursor ? 1 : 0.2,
+                          y: index < transcriptCursor ? 0 : 10,
                         }}
                         transition={{ duration: 0.3 }}
-                        className={`mb-3 ${!visibleTranscripts.includes(index) && "hidden"}`}
+                        className={`mb-3 ${index >= transcriptCursor && "hidden"}`}
                       >
                         <div className={`flex gap-2 ${line.speaker === "alva" ? "justify-start" : "justify-end"}`}>
                           <div
@@ -427,7 +476,7 @@ const LiveDemoSection = () => {
                     ))}
                   </AnimatePresence>
 
-                  {visibleTranscripts.length === 0 && (
+                  {transcriptCursor === 0 && (
                     <div className="h-full flex items-center justify-center">
                       <p className="text-white/30 text-sm">
                         {language === "sv" ? "Tryck på play för att starta..." : "Press play to start..."}
