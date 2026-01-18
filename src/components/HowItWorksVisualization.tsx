@@ -430,36 +430,10 @@ const SceneHandoff = () => {
 
 const scenes = [SceneCall, SceneAnalysis, SceneRouting, SceneHandoff];
 
-const STEP_SFX: Record<number, string> = {
-  0: "/audio/Hairdresser_1.mp3",
-  1: "/audio/Hairdresser_2.mp3",
-  2: "/audio/Hairdresser_3.mp3",
-  3: "/audio/Hairdresser_4.mp3",
-};
-
-function playStepSfx(activeStep: number) {
-  const src = STEP_SFX[activeStep];
-  if (!src) return;
-
-  const audio = new Audio(src);
-
-  audio.volume = 1;
-  audio.muted = false;
-
-  audio.currentTime = 0;
-  audio.play().catch((e) => {
-    console.log("Audio play blocked:", e);
-  });
-}
-
 const HowItWorksVisualization = () => {
   const { language } = useLanguage();
   const [activeStep, setActiveStep] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
-
-  useEffect(() => {
-    playStepSfx(activeStep);
-  }, [activeStep]);
 
   // Auto-play through steps
   useEffect(() => {
