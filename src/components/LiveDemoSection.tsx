@@ -361,16 +361,6 @@ const LiveDemoSection = () => {
                         <Play className="h-6 w-6 text-[#0A2342] ml-1" />
                       )}
                     </Button>
-
-                    {/* Delete this*/}
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      onClick={() => playTranscriptSfx(scenario.id, 0)}
-                      className="mt-2 text-white/70 hover:text-white"
-                    >
-                      TEST AUDIO (line 1)
-                    </Button>
                   </div>
                 </div>
 
