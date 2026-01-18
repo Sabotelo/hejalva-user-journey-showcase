@@ -35,6 +35,30 @@ interface Scenario {
   };
 }
 
+// 1) Vilket ljud som spelas per scenario + transcript-rad (index)
+const TRANSCRIPT_SFX: Record<string, Record<number, string>> = {
+  booking: {
+    0: "/audio/Hairdresser_1.mp3",
+    1: "/audio/Hairdresser_2.mp3",
+    2: "/audio/Hairdresser_3.mp3",
+    3: "/audio/Hairdresser_4.mp3",
+  },
+  //Lägg till andra scenarios här
+};
+
+function playTranscriptSfx(scenarioId: string, transcriptIndex: number) {
+  const src = TRANSCRIPT_SFX[scenarioId]?.[transcriptIndex];
+  if (!src) return;
+
+  const a = new Audio(src);
+  a.volume = 1;
+  a.muted = false;
+
+  a.play().catch((e) => {
+    console.log("PLAY BLOCKED/FAILED:", e, src);
+  });
+}
+
 const scenarios: Scenario[] = [
   {
     id: "booking",
@@ -151,44 +175,6 @@ const scenarios: Scenario[] = [
   },
 ];
 
-// 🔊 Audio per transcript line (scenario -> line index -> file)
-const TRANSCRIPT_SFX: Record<string, Record<number, string>> = {
-  booking: {
-    0: "/audio/Hairdresser_1.mp3",
-    1: "/audio/Hairdresser_2.mp3",
-    2: "/audio/Hairdresser_3.mp3",
-    3: "/audio/Hairdresser_4.mp3",
-  },
-};
-
-// Cache: skapa inte new Audio varje gång (minskar freeze)
-const AUDIO_CACHE = new Map<string, HTMLAudioElement>();
-
-function getCachedAudio(src: string) {
-  let a = AUDIO_CACHE.get(src);
-  if (!a) {
-    a = new Audio(src);
-    a.preload = "auto";
-    a.volume = 0.7;
-    AUDIO_CACHE.set(src, a);
-  }
-  return a;
-}
-
-function playTranscriptSfx(scenarioId: string, lineIndex: number) {
-  const src = TRANSCRIPT_SFX[scenarioId]?.[lineIndex];
-  if (!src) return;
-
-  const a = getCachedAudio(src);
-
-  try {
-    a.pause();
-    a.currentTime = 0;
-  } catch {}
-
-  a.play().catch(() => {});
-}
-
 const LiveDemoSection = () => {
   const { language } = useLanguage();
   const [activeScenario, setActiveScenario] = useState(0);
@@ -198,15 +184,6 @@ const LiveDemoSection = () => {
   const [visibleActions, setVisibleActions] = useState<number[]>([]);
   const transcriptRef = useRef<HTMLDivElement>(null);
   const lastPlayedTranscriptIndexRef = useRef<number>(-1);
-
-  //  Preload audio files once
-  useEffect(() => {
-    Object.values(TRANSCRIPT_SFX.booking).forEach((src) => {
-      try {
-        getCachedAudio(src);
-      } catch {}
-    });
-  }, []);
 
   const scenario = scenarios[activeScenario];
   const duration =
@@ -252,6 +229,18 @@ const LiveDemoSection = () => {
     setVisibleActions(newVisibleActions);
   }, [currentTime, scenario]);
 
+  // Play audio when a new transcript line becomes visible
+  useEffect(() => {
+    if (!isPlaying) return;
+    if (visibleTranscripts.length === 0) return;
+
+    const newestIndex = visibleTranscripts[visibleTranscripts.length - 1];
+    if (newestIndex === lastPlayedTranscriptIndexRef.current) return;
+
+    lastPlayedTranscriptIndexRef.current = newestIndex;
+    playTranscriptSfx(scenario.id, newestIndex);
+  }, [isPlaying, visibleTranscripts, scenario.id]);
+
   // Auto-scroll transcript
   useEffect(() => {
     if (transcriptRef.current && visibleTranscripts.length > 0) {
@@ -276,6 +265,7 @@ const LiveDemoSection = () => {
     setCurrentTime(0);
     setVisibleTranscripts([]);
     setVisibleActions([]);
+    lastPlayedTranscriptIndexRef.current = -1;
     setIsPlaying(true);
   };
 
@@ -370,6 +360,16 @@ const LiveDemoSection = () => {
                       ) : (
                         <Play className="h-6 w-6 text-[#0A2342] ml-1" />
                       )}
+                    </Button>
+
+                    {/* Delete this*/}
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={() => playTranscriptSfx(scenario.id, 0)}
+                      className="mt-2 text-white/70 hover:text-white"
+                    >
+                      TEST AUDIO (line 1)
                     </Button>
                   </div>
                 </div>
