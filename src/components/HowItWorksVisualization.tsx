@@ -437,13 +437,31 @@ const STEP_SFX: Record<number, string> = {
   3: "/audio/Hairdresser_4.mp3",
 };
 
+const STEP_AUDIO_CACHE = new Map<string, HTMLAudioElement>();
+
+//Audio player
+function getStepAudio(src: string) {
+  let a = STEP_AUDIO_CACHE.get(src);
+  if (!a) {
+    a = new Audio(src);
+    a.preload = "auto";
+    a.volume = 0.6;
+    STEP_AUDIO_CACHE.set(src, a);
+  }
+  return a;
+}
+
 function playStepSfx(activeStep: number) {
   const src = STEP_SFX[activeStep];
   if (!src) return;
 
-  const audio = new Audio(src);
-  audio.volume = 0.6;
-  audio.play().catch(() => {});
+  const a = getStepAudio(src);
+  try {
+    a.pause();
+    a.currentTime = 0;
+  } catch {}
+
+  a.play().catch(() => {});
 }
 
 const HowItWorksVisualization = () => {

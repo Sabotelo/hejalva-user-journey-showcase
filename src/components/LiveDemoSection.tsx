@@ -151,6 +151,7 @@ const scenarios: Scenario[] = [
   },
 ];
 
+// 🔊 Audio per transcript line (scenario -> line index -> file)
 const TRANSCRIPT_SFX: Record<string, Record<number, string>> = {
   booking: {
     0: "/audio/Hairdresser_1.mp3",
@@ -160,12 +161,31 @@ const TRANSCRIPT_SFX: Record<string, Record<number, string>> = {
   },
 };
 
-function playTranscriptSfx(scenarioID: string, lineIndex: number) {
-  const src = TRANSCRIPT_SFX[scenarioID]?.[lineIndex];
+// Cache: skapa inte new Audio varje gång (minskar freeze)
+const AUDIO_CACHE = new Map<string, HTMLAudioElement>();
+
+function getCachedAudio(src: string) {
+  let a = AUDIO_CACHE.get(src);
+  if (!a) {
+    a = new Audio(src);
+    a.preload = "auto";
+    a.volume = 0.7;
+    AUDIO_CACHE.set(src, a);
+  }
+  return a;
+}
+
+function playTranscriptSfx(scenarioId: string, lineIndex: number) {
+  const src = TRANSCRIPT_SFX[scenarioId]?.[lineIndex];
   if (!src) return;
 
-  const a = new Audio(src);
-  a.volume = 0.7;
+  const a = getCachedAudio(src);
+
+  try {
+    a.pause();
+    a.currentTime = 0;
+  } catch {}
+
   a.play().catch(() => {});
 }
 
@@ -178,6 +198,15 @@ const LiveDemoSection = () => {
   const [visibleActions, setVisibleActions] = useState<number[]>([]);
   const transcriptRef = useRef<HTMLDivElement>(null);
   const lastPlayedTranscriptIndexRef = useRef<number>(-1);
+
+  //  Preload audio files once
+  useEffect(() => {
+    Object.values(TRANSCRIPT_SFX.booking).forEach((src) => {
+      try {
+        getCachedAudio(src);
+      } catch {}
+    });
+  }, []);
 
   const scenario = scenarios[activeScenario];
   const duration =
@@ -192,18 +221,23 @@ const LiveDemoSection = () => {
     lastPlayedTranscriptIndexRef.current = -1;
   }, [activeScenario]);
 
-  // Play audio when a new transcript line becomes visible
+  // Playback timer
   useEffect(() => {
-    if (!isPlaying) return;
-    if (visibleTranscripts.length === 0) return;
-
-    const newestIndex = visibleTranscripts[visibleTranscripts.length - 1];
-
-    if (newestIndex === lastPlayedTranscriptIndexRef.current) return;
-
-    lastPlayedTranscriptIndexRef.current = newestIndex;
-    playTranscriptSfx(scenario.id, newestIndex);
-  }, [isPlaying, visibleTranscripts, scenario]);
+    let interval: NodeJS.Timeout;
+    if (isPlaying && currentTime < duration) {
+      interval = setInterval(() => {
+        setCurrentTime((prev) => {
+          const newTime = prev + 0.1;
+          if (newTime >= duration) {
+            setIsPlaying(false);
+            return duration;
+          }
+          return newTime;
+        });
+      }, 100);
+    }
+    return () => clearInterval(interval);
+  }, [isPlaying, currentTime, duration]);
 
   // Update visible items based on current time
   useEffect(() => {
@@ -217,19 +251,6 @@ const LiveDemoSection = () => {
       .filter((i) => i !== -1);
     setVisibleActions(newVisibleActions);
   }, [currentTime, scenario]);
-
-  // Play audio when a new transcript line becomes visible
-  useEffect(() => {
-    if (!isPlaying) return;
-    if (visibleTranscripts.length === 0) return;
-
-    const newestIndex = visibleTranscripts[visibleTranscripts.length - 1];
-
-    if (newestIndex === lastPlayedTranscriptIndexRef.current) return;
-
-    lastPlayedTranscriptIndexRef.current = newestIndex;
-    playTranscriptSfx(scenario.id, newestIndex);
-  }, [isPlaying, visibleTranscripts, scenario]);
 
   // Auto-scroll transcript
   useEffect(() => {
@@ -255,7 +276,6 @@ const LiveDemoSection = () => {
     setCurrentTime(0);
     setVisibleTranscripts([]);
     setVisibleActions([]);
-    lastPlayedTranscriptIndexRef.current = -1;
     setIsPlaying(true);
   };
 
