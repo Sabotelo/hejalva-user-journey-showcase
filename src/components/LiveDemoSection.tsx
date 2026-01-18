@@ -184,6 +184,13 @@ const LiveDemoSection = () => {
   const [visibleActions, setVisibleActions] = useState<number[]>([]);
   const transcriptRef = useRef<HTMLDivElement>(null);
   const lastPlayedTranscriptIndexRef = useRef<number>(-1);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const stopAudio = () => {
+    if (!audioRef.current) return;
+    audioRef.current.pause();
+    audioRef.current.currentTime = 0;
+    audioRef.current = null;
+  };
 
   const scenario = scenarios[activeScenario];
   const duration =
@@ -191,6 +198,7 @@ const LiveDemoSection = () => {
 
   // Reset when scenario changes
   useEffect(() => {
+    stopAudio();
     setIsPlaying(false);
     setCurrentTime(0);
     setVisibleTranscripts([]);
@@ -200,8 +208,7 @@ const LiveDemoSection = () => {
 
   // Playback timer
   useEffect(() => {
-    let interval: ReturnType<typeof setInterval> | undefined;
-
+    let interval: NodeJS.Timeout;
     if (isPlaying && currentTime < duration) {
       interval = setInterval(() => {
         setCurrentTime((prev) => {
@@ -214,10 +221,7 @@ const LiveDemoSection = () => {
         });
       }, 100);
     }
-
-    return () => {
-      if (interval) clearInterval(interval);
-    };
+    return () => clearInterval(interval);
   }, [isPlaying, currentTime, duration]);
 
   // Update visible items based on current time
@@ -242,7 +246,19 @@ const LiveDemoSection = () => {
     if (newestIndex === lastPlayedTranscriptIndexRef.current) return;
 
     lastPlayedTranscriptIndexRef.current = newestIndex;
-    playTranscriptSfx(scenario.id, newestIndex);
+
+    const src = TRANSCRIPT_SFX[scenario.id]?.[newestIndex];
+    if (!src) return;
+
+    // stoppa förra repliken så den inte kan krocka
+    stopAudio();
+
+    const a = new Audio(src);
+    a.volume = 1;
+    a.muted = false;
+    audioRef.current = a;
+
+    a.play().catch((e) => console.log("PLAY BLOCKED/FAILED:", e, src));
   }, [isPlaying, visibleTranscripts, scenario.id]);
 
   // Auto-scroll transcript
@@ -262,10 +278,16 @@ const LiveDemoSection = () => {
       setVisibleTranscripts([]);
       setVisibleActions([]);
     }
-    setIsPlaying(!isPlaying);
+
+    setIsPlaying((prev) => {
+      const next = !prev;
+      if (!next) stopAudio(); // <-- lägg till
+      return next;
+    });
   };
 
   const restart = () => {
+    stopAudio();
     setCurrentTime(0);
     setVisibleTranscripts([]);
     setVisibleActions([]);
