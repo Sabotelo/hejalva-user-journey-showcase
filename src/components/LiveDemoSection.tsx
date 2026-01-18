@@ -180,8 +180,11 @@ const LiveDemoSection = () => {
   const [activeScenario, setActiveScenario] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
+  const [visibleTranscripts, setVisibleTranscripts] = useState<number[]>([]);
   const [visibleActions, setVisibleActions] = useState<number[]>([]);
   const transcriptRef = useRef<HTMLDivElement>(null);
+  const lastPlayedTranscriptIndexRef = useRef<number>(-1);
+
   const scenario = scenarios[activeScenario];
   const duration =
     Math.max(...scenario.transcript.map((t) => t.timestamp), ...scenario.actions.map((a) => a.timestamp)) + 5;
@@ -190,12 +193,15 @@ const LiveDemoSection = () => {
   useEffect(() => {
     setIsPlaying(false);
     setCurrentTime(0);
+    setVisibleTranscripts([]);
     setVisibleActions([]);
+    lastPlayedTranscriptIndexRef.current = -1;
   }, [activeScenario]);
 
   // Playback timer
   useEffect(() => {
-    let interval: NodeJS.Timeout;
+    let interval: ReturnType<typeof setInterval> | undefined;
+
     if (isPlaying && currentTime < duration) {
       interval = setInterval(() => {
         setCurrentTime((prev) => {
@@ -208,21 +214,52 @@ const LiveDemoSection = () => {
         });
       }, 100);
     }
-    return () => clearInterval(interval);
+
+    return () => {
+      if (interval) clearInterval(interval);
+    };
   }, [isPlaying, currentTime, duration]);
 
   // Update visible items based on current time
   useEffect(() => {
+    const newVisibleTranscripts = scenario.transcript
+      .map((t, i) => (t.timestamp <= currentTime ? i : -1))
+      .filter((i) => i !== -1);
+    setVisibleTranscripts(newVisibleTranscripts);
+
     const newVisibleActions = scenario.actions
       .map((a, i) => (a.timestamp <= currentTime ? i : -1))
       .filter((i) => i !== -1);
     setVisibleActions(newVisibleActions);
   }, [currentTime, scenario]);
 
+  // Play audio when a new transcript line becomes visible
+  useEffect(() => {
+    if (!isPlaying) return;
+    if (visibleTranscripts.length === 0) return;
+
+    const newestIndex = visibleTranscripts[visibleTranscripts.length - 1];
+    if (newestIndex === lastPlayedTranscriptIndexRef.current) return;
+
+    lastPlayedTranscriptIndexRef.current = newestIndex;
+    playTranscriptSfx(scenario.id, newestIndex);
+  }, [isPlaying, visibleTranscripts, scenario.id]);
+
+  // Auto-scroll transcript
+  useEffect(() => {
+    if (transcriptRef.current && visibleTranscripts.length > 0) {
+      const lastIndex = visibleTranscripts[visibleTranscripts.length - 1];
+      const element = transcriptRef.current.children[lastIndex] as HTMLElement;
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      }
+    }
+  }, [visibleTranscripts]);
 
   const togglePlay = () => {
     if (currentTime >= duration) {
       setCurrentTime(0);
+      setVisibleTranscripts([]);
       setVisibleActions([]);
     }
     setIsPlaying(!isPlaying);
@@ -230,7 +267,9 @@ const LiveDemoSection = () => {
 
   const restart = () => {
     setCurrentTime(0);
+    setVisibleTranscripts([]);
     setVisibleActions([]);
+    lastPlayedTranscriptIndexRef.current = -1;
     setIsPlaying(true);
   };
 
@@ -354,50 +393,40 @@ const LiveDemoSection = () => {
                 </div>
 
                 {/* Transcript */}
-            <div
-  className="rounded-xl bg-[#0A2342]/60 border border-white/10 p-4 h-48 overflow-y-auto"
-  ref={transcriptRef}
->
-  <AnimatePresence>
-    {scenario.transcript.map((line, index) => (
-      <motion.div
-        key={index}
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.3 }}
-        className="mb-3"
-      >
-        <div className={`flex gap-2 ${line.speaker === "alva" ? "justify-start" : "justify-end"}`}>
-          <div
-            className={`max-w-[85%] rounded-2xl px-4 py-2 ${
-              line.speaker === "alva"
-                ? "bg-[#00F5FF]/20 text-white rounded-tl-sm"
-                : "bg-white/10 text-white/80 rounded-tr-sm"
-            }`}
-          >
-            <span
-              className={`text-[10px] font-medium block mb-1 ${
-                line.speaker === "alva" ? "text-[#00F5FF]" : "text-white/50"
-              }`}
-            >
-              {line.speaker === "alva" ? "Alva" : language === "sv" ? "Kund" : "Customer"}
-            </span>
-            <p className="text-sm leading-relaxed">{line.text}</p>
-          </div>
-        </div>
-      </motion.div>
-    ))}
-  </AnimatePresence>
-
-  {!isPlaying && currentTime === 0 && (
-    <div className="h-full flex items-center justify-center">
-      <p className="text-white/30 text-sm">
-        {language === "sv" ? "Tryck på play för att starta..." : "Press play to start..."}
-      </p>
-    </div>
-  )}
-</div>
-
+                <div
+                  className="rounded-xl bg-[#0A2342]/60 border border-white/10 p-4 h-48 overflow-y-auto"
+                  ref={transcriptRef}
+                >
+                  <AnimatePresence>
+                    {scenario.transcript.map((line, index) => (
+                      <motion.div
+                        key={index}
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{
+                          opacity: visibleTranscripts.includes(index) ? 1 : 0.2,
+                          y: visibleTranscripts.includes(index) ? 0 : 10,
+                        }}
+                        transition={{ duration: 0.3 }}
+                        className={`mb-3 ${!visibleTranscripts.includes(index) && "hidden"}`}
+                      >
+                        <div className={`flex gap-2 ${line.speaker === "alva" ? "justify-start" : "justify-end"}`}>
+                          <div
+                            className={`max-w-[85%] rounded-2xl px-4 py-2 ${
+                              line.speaker === "alva"
+                                ? "bg-[#00F5FF]/20 text-white rounded-tl-sm"
+                                : "bg-white/10 text-white/80 rounded-tr-sm"
+                            }`}
+                          >
+                            <span
+                              className={`text-[10px] font-medium block mb-1 ${
+                                line.speaker === "alva" ? "text-[#00F5FF]" : "text-white/50"
+                              }`}
+                            >
+                              {line.speaker === "alva" ? "Alva" : language === "sv" ? "Kund" : "Customer"}
+                            </span>
+                            <p className="text-sm leading-relaxed">{line.text}</p>
+                          </div>
+                        </div>
                       </motion.div>
                     ))}
                   </AnimatePresence>
