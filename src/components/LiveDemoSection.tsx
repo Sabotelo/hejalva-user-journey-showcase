@@ -38,10 +38,10 @@ interface Scenario {
 // 1) Vilket ljud som spelas per scenario + transcript-rad (index)
 const TRANSCRIPT_SFX: Record<string, Record<number, string>> = {
   booking: {
-    0: "/audio/Hairdresser_1.mp3",
-    1: "/audio/Hairdresser_2.mp3",
-    2: "/audio/Hairdresser_3.mp3",
-    3: "/audio/Hairdresser_4.mp3",
+    0: "/audio/Hairdresser/Hairdresser_1.mp3",
+    1: "/audio/Hairdresser/Hairdresser_2.mp3",
+    2: "/audio/Hairdresser/Hairdresser_3.mp3",
+    3: "/audio/Hairdresser/Hairdresser_4.mp3",
   },
   //Lägg till andra scenarios här
 };
