@@ -159,7 +159,7 @@ const scenarios: Scenario[] = [
       { speaker: "caller", text: "Ja snälla.", timestamp: 12 },
       {
         speaker: "alva",
-        text: "Det är ordnat. Jag har flaggat detta som akut. Håll utkik i mobilen, du får bekräftelse så fort personalen är på plats imorgon bitti.",
+        text: "Det är ordnat. Jag har flaggat detta som akut. Håll utkik i mobilen, där får du en bekräftelse så fort personalen är på plats imorgon bitti.",
         timestamp: 15,
       },
     ],
