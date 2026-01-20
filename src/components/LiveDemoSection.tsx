@@ -163,18 +163,18 @@ const scenarios: Scenario[] = [
         text: "Kliniken är stängd för kvällen, men jag ser en möjlig akuttid imorgon klockan 07:30. Ska jag skicka en akut-förfrågan till tandläkaren om den tiden?",
         timestamp: 3,
       },
-      { speaker: "caller", text: "Ja snälla.", timestamp: 12 },
+      { speaker: "caller", text: "Ja snälla.", timestamp: 14 },
       {
         speaker: "alva",
         text: "Det är ordnat. Jag har flaggat detta som akut. Håll utkik i mobilen, där får du en bekräftelse så fort personalen är på plats imorgon bitti.",
-        timestamp: 15,
+        timestamp: 17,
       },
     ],
     actions: [
       { label: "Time", value: "23:15 (After Hours)", status: "info", timestamp: 0 },
       { label: "Priority", value: "HIGH (Acute pain)", status: "pending", timestamp: 3 },
-      { label: "Action", value: "Provisional Booking 07:30", status: "processing", timestamp: 12 },
-      { label: "Status", value: "Awaiting Morning Approval", status: "pending", timestamp: 15 },
+      { label: "Action", value: "Provisional Booking 07:30", status: "processing", timestamp: 14 },
+      { label: "Status", value: "Awaiting Morning Approval", status: "pending", timestamp: 17 },
     ],
     outcome: {
       type: "sms",
