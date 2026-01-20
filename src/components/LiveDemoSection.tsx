@@ -90,9 +90,9 @@ const scenarios: Scenario[] = [
     actions: [
       { label: "User Input", value: "Thursday 10:00", status: "info", timestamp: 0 },
       { label: "Action", value: "Check Availability", status: "processing", timestamp: 3 },
-      { label: "Result", value: "→ Slot Open", status: "success", timestamp: 6 },
+      { label: "Result", value: "→ Slot Open", status: "success", timestamp: 8 },
       { label: "Output", value: "Create Request #402", status: "processing", timestamp: 13 },
-      { label: "Status", value: "Pending SME Approval", status: "pending", timestamp: 16 },
+      { label: "Status", value: "Pending SME Approval", status: "pending", timestamp: 15 },
     ],
     outcome: {
       type: "sms",
@@ -128,9 +128,9 @@ const scenarios: Scenario[] = [
     actions: [
       { label: "Intent", value: "Price Inquiry", status: "info", timestamp: 0 },
       { label: "Action", value: "Explain Policy", status: "processing", timestamp: 3 },
-      { label: "Note", value: "(Diagnostics first)", status: "info", timestamp: 6 },
-      { label: "Output", value: "Draft Case Request", status: "processing", timestamp: 15 },
-      { label: "Status", value: "Sent to Workshop Dashboard", status: "success", timestamp: 18 },
+      { label: "Note", value: "(Diagnostics first)", status: "info", timestamp: 10 },
+      { label: "Output", value: "Draft Case Request", status: "processing", timestamp: 17 },
+      { label: "Status", value: "Sent to Workshop Dashboard", status: "success", timestamp: 19 },
     ],
     outcome: {
       type: "email",
@@ -167,7 +167,7 @@ const scenarios: Scenario[] = [
       { label: "Time", value: "23:15 (After Hours)", status: "info", timestamp: 0 },
       { label: "Priority", value: "HIGH (Acute pain)", status: "pending", timestamp: 3 },
       { label: "Action", value: "Provisional Booking 07:30", status: "processing", timestamp: 12 },
-      { label: "Status", value: "Awaiting Morning Approval", status: "pending", timestamp: 18 },
+      { label: "Status", value: "Awaiting Morning Approval", status: "pending", timestamp: 15 },
     ],
     outcome: {
       type: "sms",
