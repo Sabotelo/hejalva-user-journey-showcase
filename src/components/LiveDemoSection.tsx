@@ -80,11 +80,11 @@ const scenarios: Scenario[] = [
         text: "Hej! Fredag ser fullbokad ut i systemet, men jag ser en lucka klockan 10:00 på torsdag. Skulle den tiden passa dig?",
         timestamp: 3,
       },
-      { speaker: "caller", text: "Ja, torsdag blir bra.", timestamp: 10 },
+      { speaker: "caller", text: "Ja, torsdag blir bra.", timestamp: 13 },
       {
         speaker: "alva",
         text: "Utmärkt. Jag skickar en förfrågan till frisören om torsdag klockan 10:00. Så fort de har godkänt bokningen får du en bekräftelse via SMS!",
-        timestamp: 13,
+        timestamp: 15,
       },
     ],
     actions: [
