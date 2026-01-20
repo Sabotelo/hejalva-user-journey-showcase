@@ -118,11 +118,11 @@ const scenarios: Scenario[] = [
         text: "Hej, det kan tyda på flera olika saker. Eftersom priset beror på felet behöver verkstaden titta på den först. Jag kan skicka en förfrågan om felsökning imorgon bitti?",
         timestamp: 3,
       },
-      { speaker: "caller", text: "Ja, gör det.", timestamp: 16 },
+      { speaker: "caller", text: "Ja, gör det.", timestamp: 17 },
       {
         speaker: "alva",
         text: "Fixat. Jag har skickat ärendet till mekanikern. Om tiden fungerar för dem får du ett SMS med bokningsbekräftelse strax.",
-        timestamp: 18,
+        timestamp: 19,
       },
     ],
     actions: [
