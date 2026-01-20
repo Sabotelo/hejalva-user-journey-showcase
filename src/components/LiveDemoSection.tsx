@@ -43,7 +43,8 @@ const TRANSCRIPT_SFX: Record<string, Record<number, string>> = {
     2: "/audio/Hairdresser/Hairdresser_3.mp3",
     3: "/audio/Hairdresser/Hairdresser_4.mp3",
   },
-  //Lägg till andra scenarios här
+
+  workshop: {},
 };
 
 function playTranscriptSfx(scenarioId: string, transcriptIndex: number) {
