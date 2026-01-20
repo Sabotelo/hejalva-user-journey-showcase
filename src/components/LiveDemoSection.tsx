@@ -99,7 +99,7 @@ const scenarios: Scenario[] = [
     },
   },
   {
-    id: "difficult",
+    id: "workshop",
     titleSv: "Svår Kund",
     titleEn: "Tricky Customer",
     subtitleSv: "Bilverkstad",
