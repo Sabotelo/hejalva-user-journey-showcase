@@ -243,30 +243,6 @@ const LiveDemoSection = () => {
     setVisibleActions(newVisibleActions);
   }, [currentTime, scenario]);
 
-  // Play audio when a new transcript line becomes visible
-  useEffect(() => {
-    if (!isPlaying) return;
-    if (visibleTranscripts.length === 0) return;
-
-    const newestIndex = visibleTranscripts[visibleTranscripts.length - 1];
-    if (newestIndex === lastPlayedTranscriptIndexRef.current) return;
-
-    lastPlayedTranscriptIndexRef.current = newestIndex;
-
-    const src = TRANSCRIPT_SFX[scenario.id]?.[newestIndex];
-    if (!src) return;
-
-    // stoppa förra repliken så den inte kan krocka
-    stopAudio();
-
-    const a = new Audio(src);
-    a.volume = 1;
-    a.muted = false;
-    audioRef.current = a;
-
-    a.play().catch((e) => console.log("PLAY BLOCKED/FAILED:", e, src));
-  }, [isPlaying, visibleTranscripts, scenario.id]);
-
   // Auto-scroll transcript
   useEffect(() => {
     if (transcriptRef.current && visibleTranscripts.length > 0) {
@@ -277,6 +253,54 @@ const LiveDemoSection = () => {
       }
     }
   }, [visibleTranscripts]);
+
+  // Play audio when a new transcript line becomes visible
+  useEffect(() => {
+    if (!isPlaying) return;
+    if (visibleTranscripts.length === 0) return;
+
+    const newestIndex = visibleTranscripts[visibleTranscripts.length - 1];
+    if (newestIndex === lastPlayedTranscriptIndexRef.current) return;
+
+    const src = TRANSCRIPT_SFX[scenario.id]?.[newestIndex];
+    if (!src) return;
+
+    // Om ett ljud redan spelar -> vänta (så 2 och 3 inte krockar)
+    if (audioRef.current && !audioRef.current.paused) {
+      const pendingIndex = newestIndex;
+
+      // Undvik att stapla flera onended
+      audioRef.current.onended = () => {
+        if (!isPlaying) return;
+        if (pendingIndex === lastPlayedTranscriptIndexRef.current) return;
+
+        const pendingSrc = TRANSCRIPT_SFX[scenario.id]?.[pendingIndex];
+        if (!pendingSrc) return;
+
+        lastPlayedTranscriptIndexRef.current = pendingIndex;
+
+        const a = new Audio(pendingSrc);
+        a.volume = 1;
+        a.muted = false;
+        audioRef.current = a;
+
+        a.play().catch((e) => console.log("PLAY BLOCKED/FAILED:", e, pendingSrc));
+      };
+
+      return;
+    }
+
+    // Ingen audio spelar -> spela direkt
+    stopAudio();
+    lastPlayedTranscriptIndexRef.current = newestIndex;
+
+    const a = new Audio(src);
+    a.volume = 1;
+    a.muted = false;
+    audioRef.current = a;
+
+    a.play().catch((e) => console.log("PLAY BLOCKED/FAILED:", e, src));
+  }, [isPlaying, visibleTranscripts, scenario.id]);
 
   const togglePlay = () => {
     if (currentTime >= duration) {
