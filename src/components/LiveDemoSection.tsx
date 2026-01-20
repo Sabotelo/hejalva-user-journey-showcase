@@ -44,7 +44,12 @@ const TRANSCRIPT_SFX: Record<string, Record<number, string>> = {
     3: "/audio/Hairdresser/Hairdresser_4.mp3",
   },
 
-  workshop: {},
+  workshop: {
+    0: "/audio/Workshop/Workshop_1.mp3",
+    1: "/audio/Workshop/Workshop_2.mp3",
+    2: "/audio/Workshop/Workshop_3.mp3",
+    3: "/audio/Workshop/Workshop_4.mp3",
+  },
 };
 
 function playTranscriptSfx(scenarioId: string, transcriptIndex: number) {
