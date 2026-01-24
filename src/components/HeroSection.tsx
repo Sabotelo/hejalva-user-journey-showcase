@@ -33,7 +33,7 @@ const HeroSection = () => {
         <div className="mx-auto max-w-4xl text-center">
           {/* Glassmorphism container for better readability */}
           <motion.div 
-            className="relative z-20 rounded-3xl p-8 md:p-12 mb-8 bg-white/5 backdrop-blur-xl border border-white/10"
+            className="relative z-20 rounded-3xl p-8 md:p-12 mb-8 bg-primary-dark/80 backdrop-blur-sm border border-white/5"
             initial={{ opacity: 0, y: 50, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ 
@@ -103,9 +103,9 @@ const HeroSection = () => {
                     animate={{
                       height: [`${height * 0.5}px`, `${height}px`, `${height * 0.5}px`],
                       boxShadow: [
-                        "0 0 10px rgba(0,255,255,0.3), 0 0 20px rgba(0,255,255,0.2)",
-                        "0 0 25px rgba(0,255,255,0.6), 0 0 50px rgba(0,255,255,0.4), 0 0 80px rgba(0,255,255,0.2)",
-                        "0 0 10px rgba(0,255,255,0.3), 0 0 20px rgba(0,255,255,0.2)",
+                        "0 0 8px rgba(0,255,255,0.2), 0 0 16px rgba(0,255,255,0.1)",
+                        "0 0 15px rgba(0,255,255,0.4), 0 0 30px rgba(0,255,255,0.2)",
+                        "0 0 8px rgba(0,255,255,0.2), 0 0 16px rgba(0,255,255,0.1)",
                       ],
                     }}
                     transition={{
