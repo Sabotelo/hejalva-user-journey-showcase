@@ -33,7 +33,7 @@ const HeroSection = () => {
         <div className="mx-auto max-w-4xl text-center">
           {/* Glassmorphism container for better readability */}
           <motion.div 
-            className="glass-panel rounded-3xl p-8 md:p-12 mb-8"
+            className="relative z-20 rounded-3xl p-8 md:p-12 mb-8 bg-white/5 backdrop-blur-xl border border-white/10"
             initial={{ opacity: 0, y: 50, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ 
@@ -78,7 +78,7 @@ const HeroSection = () => {
 
           {/* 3D Sound Wave Visualization */}
           <motion.div 
-            className="relative h-48 md:h-64 mb-12"
+            className="relative z-10 h-48 md:h-64 mb-12 overflow-hidden"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ 
