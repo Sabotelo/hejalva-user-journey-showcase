@@ -7,18 +7,6 @@ const Footer = () => {
   const { language } = useLanguage();
 
   const links = {
-    developers: {
-      label: language === 'sv' ? 'För utvecklare' : 'For Developers',
-      href: '#developers',
-    },
-    sme: {
-      label: language === 'sv' ? 'För småföretag' : 'For SMEs',
-      href: '#sme',
-    },
-    ethics: {
-      label: language === 'sv' ? 'Etisk AI' : 'Ethical AI Statement',
-      href: '#ethics',
-    },
     terms: {
       label: language === 'sv' ? 'Villkor & Integritet' : 'Terms & Privacy',
       href: '/terms',
