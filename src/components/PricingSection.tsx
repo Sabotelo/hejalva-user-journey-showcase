@@ -11,29 +11,29 @@ const PricingSection = () => {
   const features = [
     {
       icon: Phone,
-      text: language === 'sv' ? '24/7 samtalshantering med mänsklig touch' : '24/7 call handling with human touch'
+      text: language === 'sv' ? '24/7 samtalshantering med naturlig röst' : '24/7 call handling with natural voice'
     },
     {
       icon: Calendar,
-      text: language === 'sv' ? 'Automatisk mötesbokning synkad med din kalender' : 'Automatic appointment booking synced with your calendar'
+      text: language === 'sv' ? 'Integrerar med bokningssystem och kalender' : 'Integrates with booking systems and calendar'
     },
     {
-      icon: User,
-      text: language === 'sv' ? 'Personligt konto med samtalsdata och insikter' : 'Personal account with call data and insights'
+      icon: MessageSquare,
+      text: language === 'sv' ? 'Samtalssammanfattningar via SMS och e-post' : 'Call summaries via SMS and email'
     },
     {
       icon: Clock,
       text: language === 'sv' ? '500 samtalsminuter ingår' : '500 call minutes included'
     },
     {
-      icon: MessageSquare,
+      icon: User,
       text: language === 'sv' ? 'Svarar på frågor om era tjänster och öppettider' : 'Answers questions about your services and hours'
     },
   ];
 
   const industries = language === 'sv' 
-    ? ['Bilverkstäder', 'Restauranger', 'Frisörer', 'Tandläkare', 'Butiker']
-    : ['Auto shops', 'Restaurants', 'Hair salons', 'Dental clinics', 'Retail stores'];
+    ? ['Pizzerior', 'Restauranger', 'Frisörer', 'Bilverkstäder', 'VVS & El']
+    : ['Pizzerias', 'Restaurants', 'Hair salons', 'Auto shops', 'Plumbers & HVAC'];
 
   return (
     <section className="py-24 bg-gradient-to-b from-primary-dark to-primary">
