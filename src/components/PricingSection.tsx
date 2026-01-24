@@ -23,7 +23,7 @@ const PricingSection = () => {
     },
     {
       icon: Clock,
-      text: language === 'sv' ? '500 samtalsminuter ingår' : '500 call minutes included'
+      text: language === 'sv' ? 'Obegränsad användning' : 'Unlimited usage'
     },
     {
       icon: User,
@@ -66,7 +66,7 @@ const PricingSection = () => {
                   transition={{ type: "spring", stiffness: 200, damping: 15, delay: 0.3 }}
                   viewport={{ once: true }}
                 >
-                  <span className="text-5xl font-bold">2 999 kr</span>
+                  <span className="text-5xl font-bold">3 500 kr</span>
                   <span className="text-muted-foreground">{language === 'sv' ? '/mån' : '/mo'}</span>
                 </motion.div>
                 <p className="text-muted-foreground">
