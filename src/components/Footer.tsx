@@ -31,8 +31,6 @@ const Footer = () => {
 
   const trustSignals = [
     { color: 'bg-green-400', text: language === 'sv' ? 'GDPR-kompatibel' : 'GDPR Compliant' },
-    { color: 'bg-secondary', text: language === 'sv' ? 'Svenska servrar' : 'Swedish Servers' },
-    { color: 'bg-gold', text: language === 'sv' ? '99.9% Drifttid' : '99.9% Uptime' },
   ];
 
   const linkItems = Object.values(links);
