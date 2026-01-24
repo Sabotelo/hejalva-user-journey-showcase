@@ -222,7 +222,7 @@ const Terms = () => {
                   </p>
                   <p className="flex items-center gap-2">
                     <Mail className="h-4 w-4 text-secondary" />
-                    {language === 'sv' ? 'Vår kontaktepost för integritetsrelaterade frågor är' : 'Our contact email for any privacy-related matters is'} <a href="mailto:support@hejalva.com" className="text-secondary hover:underline">support@hejalva.com</a>
+                    {language === 'sv' ? 'Vår kontaktepost för integritetsrelaterade frågor är' : 'Our contact email for any privacy-related matters is'} <a href="mailto:dev@hejalva.com" className="text-secondary hover:underline">dev@hejalva.com</a>
                   </p>
                   <p>{language === 'sv' ? 'Vi agerar i två distinkta roller enligt GDPR:' : 'We act in two distinct roles under GDPR:'}</p>
                   <ul className="list-disc list-inside space-y-2 ml-4">
@@ -352,7 +352,7 @@ const Terms = () => {
                   </p>
                   <p>{language === 'sv'
                     ? 'För att göra en begäran gällande dina personuppgifter eller en slutanvändares uppgifter, vänligen kontakta oss på'
-                    : 'To make a request regarding your personal data or the data of an End-User, please contact us at'} <a href="mailto:support@hejalva.com" className="text-secondary hover:underline">support@hejalva.com</a>{language === 'sv' ? ', så hjälper vi dig att uppfylla din begäran.' : ', and we will assist you in fulfilling your request.'}
+                    : 'To make a request regarding your personal data or the data of an End-User, please contact us at'} <a href="mailto:dev@hejalva.com" className="text-secondary hover:underline">dev@hejalva.com</a>{language === 'sv' ? ', så hjälper vi dig att uppfylla din begäran.' : ', and we will assist you in fulfilling your request.'}
                   </p>
                 </div>
               </div>
