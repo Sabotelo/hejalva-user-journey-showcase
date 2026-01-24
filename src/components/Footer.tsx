@@ -19,12 +19,8 @@ const Footer = () => {
       label: language === 'sv' ? 'Etisk AI' : 'Ethical AI Statement',
       href: '#ethics',
     },
-    privacy: {
-      label: language === 'sv' ? 'Integritetspolicy' : 'Privacy Policy',
-      href: '/terms#privacy',
-    },
     terms: {
-      label: language === 'sv' ? 'Användarvillkor' : 'Terms of Service',
+      label: language === 'sv' ? 'Villkor & Integritet' : 'Terms & Privacy',
       href: '/terms',
     },
   };
