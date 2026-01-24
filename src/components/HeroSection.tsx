@@ -2,9 +2,11 @@ import { MemphisButton } from "@/components/ui/button";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Phone, Sparkles } from "lucide-react";
 import { motion } from "framer-motion";
+import { useId } from "react";
 
 const HeroSection = () => {
   const { language } = useLanguage();
+  const animationKey = useId();
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-primary via-primary-dark to-primary">
@@ -98,8 +100,9 @@ const HeroSection = () => {
                 const delay = i * 0.05;
                 return (
                   <motion.div
-                    key={i}
+                    key={`${animationKey}-bar-${i}`}
                     className="w-2 md:w-3 rounded-full bg-gradient-to-t from-secondary via-secondary to-white/80"
+                    initial={{ height: `${height * 0.5}px` }}
                     animate={{
                       height: [`${height * 0.5}px`, `${height}px`, `${height * 0.5}px`],
                       boxShadow: [
@@ -126,8 +129,9 @@ const HeroSection = () => {
                 const delay = i * 0.05;
                 return (
                   <motion.div
-                    key={i}
+                    key={`${animationKey}-reflection-${i}`}
                     className="w-2 md:w-3 rounded-full bg-gradient-to-t from-secondary to-transparent"
+                    initial={{ height: `${height * 0.25}px` }}
                     animate={{
                       height: [`${height * 0.25}px`, `${height * 0.5}px`, `${height * 0.25}px`],
                     }}
