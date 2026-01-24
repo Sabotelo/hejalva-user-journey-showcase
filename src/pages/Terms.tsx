@@ -58,8 +58,8 @@ const Terms = () => {
 
               <p className="text-muted-foreground mb-8 leading-relaxed">
                 {language === 'sv' 
-                  ? 'Dessa användarvillkor ("Villkor") är ett juridiskt bindande avtal mellan dig, kunden ("Kund", "du"), och Alva AI ("Alva", "vi", "oss"), ett företag registrerat i Sverige. Genom att skapa ett konto, komma åt eller använda tjänsten bekräftar du att du har läst, förstått och samtycker till att vara bunden av dessa villkor.'
-                  : 'These Terms of Service ("Terms") are a legally binding agreement between you, the customer ("Customer," "you"), and Alva AI ("Alva," "we," "us"), a company registered in Sweden. By creating an account, accessing, or using the Service, you acknowledge that you have read, understood, and agree to be bound by these Terms.'}
+                  ? 'Dessa användarvillkor ("Villkor") är ett juridiskt bindande avtal mellan dig, kunden ("Kund", "du"), och Mimer Technologies AB ("Mimer", "vi", "oss"), ett företag registrerat i Sverige. Genom att skapa ett konto, komma åt eller använda Alva AI-tjänsten ("Alva", "Tjänsten") bekräftar du att du har läst, förstått och samtycker till att vara bunden av dessa villkor.'
+                  : 'These Terms of Service ("Terms") are a legally binding agreement between you, the customer ("Customer," "you"), and Mimer Technologies AB ("Mimer," "we," "us"), a company registered in Sweden. By creating an account, accessing, or using the Alva AI service ("Alva," "the Service"), you acknowledge that you have read, understood, and agree to be bound by these Terms.'}
               </p>
 
               {/* Section 1 */}
@@ -70,8 +70,8 @@ const Terms = () => {
                 </h3>
                 <p className="text-muted-foreground leading-relaxed pl-10">
                   {language === 'sv'
-                    ? 'Alva tillhandahåller en prenumerationsbaserad SaaS-plattform som erbjuder en AI-driven virtuell receptionist ("Tjänsten"). Tjänsten är utformad för att hantera ditt företags telefonsamtal, svara på kundfrågor, boka möten och tillhandahålla relaterade tjänster. Tjänsten erbjuds i olika prenumerationsnivåer som bestämmer de specifika funktionerna, kapaciteterna och användningsgränserna som är tillgängliga för dig.'
-                    : 'Alva provides a subscription-based software-as-a-service (SaaS) platform that offers an AI-powered virtual receptionist ("the Service"). The Service is designed to handle your business\'s phone calls, answer customer inquiries, book appointments, and provide related services. The Service is offered in various subscription tiers, which determine the specific features, capabilities, and usage limits available to you.'}
+                    ? 'Mimer Technologies tillhandahåller Alva, en prenumerationsbaserad SaaS-plattform som erbjuder en AI-driven virtuell receptionist ("Tjänsten"). Tjänsten är utformad för att hantera ditt företags telefonsamtal, svara på kundfrågor, boka möten och tillhandahålla relaterade tjänster. Tjänsten erbjuds i olika prenumerationsnivåer som bestämmer de specifika funktionerna, kapaciteterna och användningsgränserna som är tillgängliga för dig.'
+                    : 'Mimer Technologies provides Alva, a subscription-based software-as-a-service (SaaS) platform that offers an AI-powered virtual receptionist ("the Service"). The Service is designed to handle your business\'s phone calls, answer customer inquiries, book appointments, and provide related services. The Service is offered in various subscription tiers, which determine the specific features, capabilities, and usage limits available to you.'}
                 </p>
               </div>
 
@@ -143,7 +143,7 @@ const Terms = () => {
                     ? 'Du kan när som helst säga upp din prenumeration via din kontopanel. Uppsägningen träder i kraft i slutet av din nuvarande månatliga faktureringsperiod.'
                     : 'You may cancel your subscription at any time through your account dashboard. The cancellation will take effect at the end of your current monthly billing period.'}
                   </p>
-                  <p><strong>{language === 'sv' ? 'Uppsägning av Alva:' : 'Termination by Alva:'}</strong> {language === 'sv'
+                  <p><strong>{language === 'sv' ? 'Uppsägning av Mimer:' : 'Termination by Mimer:'}</strong> {language === 'sv'
                     ? 'Vi kan stänga av eller avsluta din tillgång till tjänsten med omedelbar verkan om du väsentligt bryter mot dessa villkor, inklusive vid utebliven betalning av avgifter eller brott mot policyn för acceptabel användning.'
                     : 'We may suspend or terminate your access to the Service with immediate effect if you are in material breach of these Terms, including for non-payment of fees or for a breach of the Acceptable Use Policy.'}
                   </p>
@@ -163,8 +163,8 @@ const Terms = () => {
                     : 'Our collection and use of personal data in connection with the Service is described in our Privacy Policy, which is incorporated by reference into these Terms.'}
                   </p>
                   <p>{language === 'sv'
-                    ? 'Du bekräftar att du är "Personuppgiftsansvarig" för personuppgifterna för dina uppringare, och Alva agerar som "Personuppgiftsbiträde" för din räkning. Du ansvarar för att ha en rättslig grund för att samla in och behandla dessa uppgifter.'
-                    : 'You acknowledge that you are the "Data Controller" for the personal data of your callers, and Alva acts as the "Data Processor" on your behalf. You are responsible for having a legal basis to collect and process this data.'}
+                    ? 'Du bekräftar att du är "Personuppgiftsansvarig" för personuppgifterna för dina uppringare, och Mimer Technologies agerar som "Personuppgiftsbiträde" för din räkning. Du ansvarar för att ha en rättslig grund för att samla in och behandla dessa uppgifter.'
+                    : 'You acknowledge that you are the "Data Controller" for the personal data of your callers, and Mimer Technologies acts as the "Data Processor" on your behalf. You are responsible for having a legal basis to collect and process this data.'}
                   </p>
                 </div>
               </div>
@@ -177,8 +177,8 @@ const Terms = () => {
                 </h3>
                 <p className="text-muted-foreground leading-relaxed pl-10">
                   {language === 'sv'
-                    ? 'Tjänsten tillhandahålls "i befintligt skick". I den utsträckning som lagen tillåter ska Alva inte vara ansvarig för indirekta, tillfälliga eller följdskador (inklusive förlorad vinst eller förlorade data) som uppstår från din användning av tjänsten. Under inga omständigheter ska Alvas totala sammanlagda ansvar överstiga beloppet av de avgifter du har betalat till oss under de tolv (12) månaderna före händelsen som gav upphov till anspråket.'
-                    : 'The Service is provided "as-is." To the maximum extent permitted by law, Alva shall not be liable for any indirect, incidental, or consequential damages (including lost profits or lost data) arising from your use of the Service. In no event shall Alva\'s total aggregate liability exceed the amount of fees you have paid to us in the twelve (12) months preceding the event giving rise to the claim.'}
+                    ? 'Tjänsten tillhandahålls "i befintligt skick". I den utsträckning som lagen tillåter ska Mimer Technologies inte vara ansvarig för indirekta, tillfälliga eller följdskador (inklusive förlorad vinst eller förlorade data) som uppstår från din användning av tjänsten. Under inga omständigheter ska Mimer Technologies totala sammanlagda ansvar överstiga beloppet av de avgifter du har betalat till oss under de tolv (12) månaderna före händelsen som gav upphov till anspråket.'
+                    : 'The Service is provided "as-is." To the maximum extent permitted by law, Mimer Technologies shall not be liable for any indirect, incidental, or consequential damages (including lost profits or lost data) arising from your use of the Service. In no event shall Mimer Technologies\' total aggregate liability exceed the amount of fees you have paid to us in the twelve (12) months preceding the event giving rise to the claim.'}
                 </p>
               </div>
 
@@ -217,8 +217,8 @@ const Terms = () => {
                 </h3>
                 <div className="text-muted-foreground leading-relaxed pl-10 space-y-3">
                   <p>{language === 'sv'
-                    ? 'Alva AI ("Alva", "vi", "oss") är engagerade i att skydda din integritet. Denna integritetspolicy förklarar hur vi samlar in, använder och skyddar personuppgifter i enlighet med den allmänna dataskyddsförordningen (GDPR).'
-                    : 'Alva AI ("Alva," "we," "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, and protect personal data in compliance with the General Data Protection Regulation (GDPR).'}
+                    ? 'Mimer Technologies AB ("Mimer", "vi", "oss"), skaparna av Alva AI, är engagerade i att skydda din integritet. Denna integritetspolicy förklarar hur vi samlar in, använder och skyddar personuppgifter i enlighet med den allmänna dataskyddsförordningen (GDPR).'
+                    : 'Mimer Technologies AB ("Mimer," "we," "us"), the creators of Alva AI, is committed to protecting your privacy. This Privacy Policy explains how we collect, use, and protect personal data in compliance with the General Data Protection Regulation (GDPR).'}
                   </p>
                   <p className="flex items-center gap-2">
                     <Mail className="h-4 w-4 text-secondary" />
