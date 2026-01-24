@@ -99,9 +99,14 @@ const HeroSection = () => {
                 return (
                   <motion.div
                     key={i}
-                    className="w-2 md:w-3 rounded-full bg-gradient-to-t from-secondary via-secondary to-white/80 shadow-[0_0_20px_rgba(0,255,255,0.5)]"
+                    className="w-2 md:w-3 rounded-full bg-gradient-to-t from-secondary via-secondary to-white/80"
                     animate={{
                       height: [`${height * 0.5}px`, `${height}px`, `${height * 0.5}px`],
+                      boxShadow: [
+                        "0 0 10px rgba(0,255,255,0.3), 0 0 20px rgba(0,255,255,0.2)",
+                        "0 0 25px rgba(0,255,255,0.6), 0 0 50px rgba(0,255,255,0.4), 0 0 80px rgba(0,255,255,0.2)",
+                        "0 0 10px rgba(0,255,255,0.3), 0 0 20px rgba(0,255,255,0.2)",
+                      ],
                     }}
                     transition={{
                       duration: 1.5,
