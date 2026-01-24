@@ -18,6 +18,7 @@ const Contact = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
+    phone: "",
     company: "",
     subject: "",
     message: ""
@@ -32,8 +33,8 @@ const Contact = () => {
         body: {
           name: formData.name,
           email: formData.email,
+          phone: formData.phone,
           message: formData.message,
-          phone: formData.company // Using company field, can add phone if needed
         }
       });
 
@@ -43,7 +44,7 @@ const Contact = () => {
         title: t('contact.form.success'),
         description: t('contact.form.successMessage'),
       });
-      setFormData({ name: "", email: "", company: "", subject: "", message: "" });
+      setFormData({ name: "", email: "", phone: "", company: "", subject: "", message: "" });
     } catch (error) {
       console.error('Error sending message:', error);
       toast({
@@ -117,6 +118,19 @@ const Contact = () => {
                 
                 <div className="grid md:grid-cols-2 gap-4">
                   <div className="space-y-2">
+                    <Label htmlFor="phone">{t('contact.info.phone')}</Label>
+                     <Input
+                       id="phone"
+                       name="phone"
+                       type="tel"
+                       value={formData.phone}
+                       onChange={handleInputChange}
+                       placeholder="+46 70 123 4567"
+                       autoComplete="off"
+                       disabled={isLoading}
+                     />
+                  </div>
+                  <div className="space-y-2">
                     <Label htmlFor="company">{t('contact.form.company')}</Label>
                      <Input
                        id="company"
@@ -128,19 +142,20 @@ const Contact = () => {
                        disabled={isLoading}
                      />
                   </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="subject">{t('contact.form.subject')}</Label>
-                     <Input
-                       id="subject"
-                       name="subject"
-                       value={formData.subject}
-                       onChange={handleInputChange}
-                       placeholder={t('contact.form.subjectPlaceholder')}
-                       required
-                       autoComplete="off"
-                       disabled={isLoading}
-                     />
-                  </div>
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="subject">{t('contact.form.subject')}</Label>
+                   <Input
+                     id="subject"
+                     name="subject"
+                     value={formData.subject}
+                     onChange={handleInputChange}
+                     placeholder={t('contact.form.subjectPlaceholder')}
+                     required
+                     autoComplete="off"
+                     disabled={isLoading}
+                   />
                 </div>
 
                 <div className="space-y-2">
