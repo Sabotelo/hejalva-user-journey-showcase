@@ -66,29 +66,18 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   };
 
   useEffect(() => {
-    // Get initial session
-    const getInitialSession = async () => {
-      const { data: { session } } = await supabase.auth.getSession();
-      setSession(session);
-      setUser(session?.user ?? null);
-      
-      if (session?.user) {
-        await fetchProfile(session.user.id);
-      }
-      
-      setLoading(false);
-    };
-
-    getInitialSession();
-
-    // Listen for auth changes
+    // Set up auth state listener FIRST (prevents missing auth events)
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      async (event, session) => {
+      (event, session) => {
+        // Only synchronous state updates in callback
         setSession(session);
         setUser(session?.user ?? null);
         
+        // Defer Supabase calls with setTimeout to prevent deadlocks
         if (session?.user) {
-          await fetchProfile(session.user.id);
+          setTimeout(() => {
+            fetchProfile(session.user.id);
+          }, 0);
         } else {
           setProfile(null);
         }
@@ -97,30 +86,50 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       }
     );
 
+    // THEN check for existing session
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setSession(session);
+      setUser(session?.user ?? null);
+      
+      if (session?.user) {
+        fetchProfile(session.user.id);
+      }
+      
+      setLoading(false);
+    });
+
     return () => subscription.unsubscribe();
   }, []);
 
   const signUp = async (email: string, password: string, userData: Partial<UserProfile>) => {
     try {
+      const redirectUrl = `${window.location.origin}/`;
+      
       const { data, error } = await supabase.auth.signUp({
         email,
         password,
+        options: {
+          emailRedirectTo: redirectUrl
+        }
       });
 
       if (error) return { error };
 
-      // Create profile after successful signup
-      if (data.user) {
+      // Profile is auto-created by database trigger, but we can update with additional data
+      if (data.user && Object.keys(userData).length > 0) {
+        // Wait briefly for trigger to create profile
+        await new Promise(resolve => setTimeout(resolve, 500));
+        
         const { error: profileError } = await supabase
           .from('profiles')
-          .insert([{
-            id: data.user.id,
-            email: data.user.email,
+          .update({
             ...userData,
-          }]);
+            updated_at: new Date().toISOString(),
+          })
+          .eq('id', data.user.id);
 
         if (profileError) {
-          console.error('Error creating profile:', profileError);
+          console.error('Error updating profile:', profileError);
         }
       }
 
