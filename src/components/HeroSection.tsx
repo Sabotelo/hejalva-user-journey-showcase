@@ -2,11 +2,9 @@ import { MemphisButton } from "@/components/ui/button";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Phone, Sparkles } from "lucide-react";
 import { motion } from "framer-motion";
-import { useId } from "react";
 
 const HeroSection = () => {
   const { language } = useLanguage();
-  const animationKey = useId();
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-primary via-primary-dark to-primary">
@@ -93,29 +91,23 @@ const HeroSection = () => {
             {/* Dark pool base */}
             <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full max-w-lg h-16 bg-gradient-to-t from-black/60 to-transparent rounded-[100%] blur-sm"></div>
             
-            {/* Sound wave bars */}
+            {/* Sound wave bars - using CSS animation for reliable restart */}
             <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex items-end justify-center gap-1 md:gap-2">
               {[...Array(20)].map((_, i) => {
-                const height = Math.sin((i / 19) * Math.PI) * 100 + 20;
+                const baseHeight = Math.sin((i / 19) * Math.PI) * 100 + 20;
+                const minHeight = baseHeight * 0.5;
+                const maxHeight = baseHeight;
                 const delay = i * 0.05;
+                
                 return (
-                  <motion.div
-                    key={`${animationKey}-bar-${i}`}
+                  <div
+                    key={`bar-${i}`}
                     className="w-2 md:w-3 rounded-full bg-gradient-to-t from-secondary via-secondary to-white/80"
-                    initial={{ height: `${height * 0.5}px` }}
-                    animate={{
-                      height: [`${height * 0.5}px`, `${height}px`, `${height * 0.5}px`],
-                      boxShadow: [
-                        "0 0 8px rgba(0,255,255,0.2), 0 0 16px rgba(0,255,255,0.1)",
-                        "0 0 15px rgba(0,255,255,0.4), 0 0 30px rgba(0,255,255,0.2)",
-                        "0 0 8px rgba(0,255,255,0.2), 0 0 16px rgba(0,255,255,0.1)",
-                      ],
-                    }}
-                    transition={{
-                      duration: 1.5,
-                      repeat: Infinity,
-                      ease: "easeInOut",
-                      delay,
+                    style={{
+                      height: `${minHeight}px`,
+                      animation: `soundwave-${i} 1.5s ease-in-out infinite`,
+                      animationDelay: `${delay}s`,
+                      boxShadow: "0 0 10px rgba(0,255,255,0.3), 0 0 20px rgba(0,255,255,0.2)",
                     }}
                   />
                 );
@@ -125,26 +117,44 @@ const HeroSection = () => {
             {/* Reflection */}
             <div className="absolute bottom-0 left-1/2 -translate-x-1/2 flex items-start justify-center gap-1 md:gap-2 opacity-30 scale-y-[-0.5] blur-[2px]">
               {[...Array(20)].map((_, i) => {
-                const height = Math.sin((i / 19) * Math.PI) * 100 + 20;
+                const baseHeight = Math.sin((i / 19) * Math.PI) * 100 + 20;
                 const delay = i * 0.05;
+                
                 return (
-                  <motion.div
-                    key={`${animationKey}-reflection-${i}`}
+                  <div
+                    key={`reflection-${i}`}
                     className="w-2 md:w-3 rounded-full bg-gradient-to-t from-secondary to-transparent"
-                    initial={{ height: `${height * 0.25}px` }}
-                    animate={{
-                      height: [`${height * 0.25}px`, `${height * 0.5}px`, `${height * 0.25}px`],
-                    }}
-                    transition={{
-                      duration: 1.5,
-                      repeat: Infinity,
-                      ease: "easeInOut",
-                      delay,
+                    style={{
+                      height: `${baseHeight * 0.25}px`,
+                      animation: `soundwave-reflection-${i} 1.5s ease-in-out infinite`,
+                      animationDelay: `${delay}s`,
                     }}
                   />
                 );
               })}
             </div>
+            
+            {/* CSS Keyframes for soundwave animations */}
+            <style>{`
+              ${[...Array(20)].map((_, i) => {
+                const baseHeight = Math.sin((i / 19) * Math.PI) * 100 + 20;
+                const minHeight = baseHeight * 0.5;
+                const maxHeight = baseHeight;
+                const reflectionMin = baseHeight * 0.25;
+                const reflectionMax = baseHeight * 0.5;
+                
+                return `
+                  @keyframes soundwave-${i} {
+                    0%, 100% { height: ${minHeight}px; box-shadow: 0 0 8px rgba(0,255,255,0.2), 0 0 16px rgba(0,255,255,0.1); }
+                    50% { height: ${maxHeight}px; box-shadow: 0 0 15px rgba(0,255,255,0.4), 0 0 30px rgba(0,255,255,0.2); }
+                  }
+                  @keyframes soundwave-reflection-${i} {
+                    0%, 100% { height: ${reflectionMin}px; }
+                    50% { height: ${reflectionMax}px; }
+                  }
+                `;
+              }).join('')}
+            `}</style>
           </motion.div>
           
           <motion.div 
