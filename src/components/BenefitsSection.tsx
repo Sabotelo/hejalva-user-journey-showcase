@@ -1,4 +1,4 @@
-import { TrendingUp, Clock, Users, DollarSign, Brain, Shield } from "lucide-react";
+import { TrendingUp, Clock, Users, MessageSquare, Brain, Shield } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { ScrollAnimation, StaggerContainer, StaggerItem, InteractiveCard } from "@/components/ui/scroll-animation";
 
@@ -12,7 +12,7 @@ const BenefitsSection = () => {
       description: language === 'sv' 
         ? 'Varje missat samtal är en kund som ringer din konkurrent. Alva ser till att det aldrig händer.' 
         : 'Every missed call is a customer calling your competitor. Alva ensures that never happens.',
-      stat: language === 'sv' ? '+40% fler bokningar' : '+40% more bookings'
+      stat: language === 'sv' ? 'Ökade affärsmöjligheter' : 'Increased opportunities'
     },
     {
       icon: Clock,
@@ -20,7 +20,7 @@ const BenefitsSection = () => {
       description: language === 'sv' 
         ? 'Sluta avbryta ditt arbete för att svara i telefon. Fokusera på det du gör bäst.' 
         : 'Stop interrupting your work to answer the phone. Focus on what you do best.',
-      stat: language === 'sv' ? '2+ timmar/dag' : '2+ hours/day'
+      stat: language === 'sv' ? 'Minskad stress' : 'Reduced stress'
     },
     {
       icon: Users,
@@ -31,12 +31,12 @@ const BenefitsSection = () => {
       stat: language === 'sv' ? '24/7 tillgänglighet' : '24/7 availability'
     },
     {
-      icon: DollarSign,
-      title: language === 'sv' ? 'Öka din omsättning' : 'Increase Your Revenue',
+      icon: MessageSquare,
+      title: language === 'sv' ? 'Samtalssammanfattningar' : 'Call Summaries',
       description: language === 'sv' 
-        ? 'Varje samtal är en möjlighet. Fler samtal besvarade = fler kunder = mer intäkter.' 
-        : 'Every call is an opportunity. More calls answered = more customers = more revenue.',
-      stat: language === 'sv' ? 'Upp till 200k kr/år' : 'Up to $20k/year'
+        ? 'Få sammanfattningar av varje samtal via SMS och e-post. Håll koll utan att behöva lyssna på röstmeddelanden.' 
+        : 'Get summaries of every call via SMS and email. Stay informed without listening to voicemails.',
+      stat: language === 'sv' ? 'SMS & e-post' : 'SMS & email'
     },
     {
       icon: Brain,
@@ -48,11 +48,11 @@ const BenefitsSection = () => {
     },
     {
       icon: Shield,
-      title: language === 'sv' ? 'Professionellt intryck' : 'Professional Impression',
+      title: language === 'sv' ? 'Naturlig svensk röst' : 'Natural Swedish Voice',
       description: language === 'sv' 
-        ? 'Varje kund möts av en varm, professionell röst. Ditt företag får det intryck det förtjänar.' 
-        : 'Every customer is greeted with a warm, professional voice. Your business gets the impression it deserves.',
-      stat: language === 'sv' ? 'Alltid perfekt service' : 'Always perfect service'
+        ? 'Varje kund möts av en varm, naturlig röst på svenska. Ditt företag får det intryck det förtjänar.' 
+        : 'Every customer is greeted with a warm, natural Swedish voice. Your business gets the impression it deserves.',
+      stat: language === 'sv' ? 'Mänsklig touch' : 'Human-like touch'
     }
   ];
 
