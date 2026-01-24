@@ -2,7 +2,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { ScrollAnimation } from "@/components/ui/scroll-animation";
-import { FileText, Shield, CreditCard, Scale, Clock, Lock, Users, Mail } from "lucide-react";
+import { FileText, Shield, Scale, Clock, Lock, Users, Mail } from "lucide-react";
 
 const Terms = () => {
   const { language } = useLanguage();
@@ -58,8 +58,8 @@ const Terms = () => {
 
               <p className="text-muted-foreground mb-8 leading-relaxed">
                 {language === 'sv' 
-                  ? 'Dessa användarvillkor ("Villkor") är ett juridiskt bindande avtal mellan dig, kunden ("Kund", "du"), och Mimer Technologies AB ("Mimer", "vi", "oss"), ett företag registrerat i Sverige. Genom att skapa ett konto, komma åt eller använda Alva AI-tjänsten ("Alva", "Tjänsten") bekräftar du att du har läst, förstått och samtycker till att vara bunden av dessa villkor.'
-                  : 'These Terms of Service ("Terms") are a legally binding agreement between you, the customer ("Customer," "you"), and Mimer Technologies AB ("Mimer," "we," "us"), a company registered in Sweden. By creating an account, accessing, or using the Alva AI service ("Alva," "the Service"), you acknowledge that you have read, understood, and agree to be bound by these Terms.'}
+                  ? 'Dessa användarvillkor ("Villkor") är ett juridiskt bindande avtal mellan dig, kunden ("Kund", "du"), och Mimer Technologies AB ("Mimer", "vi", "oss"), ett företag registrerat i Sverige. Genom att komma åt eller använda Alva AI-tjänsten ("Alva", "Tjänsten") bekräftar du att du har läst, förstått och samtycker till att vara bunden av dessa villkor.'
+                  : 'These Terms of Service ("Terms") are a legally binding agreement between you, the customer ("Customer," "you"), and Mimer Technologies AB ("Mimer," "we," "us"), a company registered in Sweden. By accessing or using the Alva AI service ("Alva," "the Service"), you acknowledge that you have read, understood, and agree to be bound by these Terms.'}
               </p>
 
               {/* Section 1 */}
@@ -79,14 +79,9 @@ const Terms = () => {
               <div className="mb-8">
                 <h3 className="text-xl font-semibold text-foreground mb-4 flex items-center gap-2">
                   <span className="flex items-center justify-center w-8 h-8 rounded-full bg-secondary/20 text-secondary text-sm font-bold">2</span>
-                  {language === 'sv' ? 'Användarkonton & Ansvar' : 'User Accounts & Responsibilities'}
+                  {language === 'sv' ? 'Kundansvar' : 'Customer Responsibilities'}
                 </h3>
                 <div className="text-muted-foreground leading-relaxed pl-10 space-y-3">
-                  <p>{language === 'sv' ? 'För att använda tjänsten måste du skapa ett konto. Du samtycker till att:' : 'To use the Service, you must create an account. You agree to:'}</p>
-                  <ul className="list-disc list-inside space-y-2 ml-4">
-                    <li>{language === 'sv' ? 'Hålla ditt kontolösenord och inloggningsuppgifter säkra och konfidentiella.' : 'Keep your account password and login credentials secure and confidential.'}</li>
-                    <li>{language === 'sv' ? 'Vara ensam ansvarig för all aktivitet som sker under ditt konto.' : 'Be solely responsible for all activities that occur under your account.'}</li>
-                  </ul>
                   <p>{language === 'sv' 
                     ? 'Kunden är ensam ansvarig för att säkerställa att all företagsinformation som tillhandahålls tjänsten (t.ex. öppettider, tjänstebeskrivningar, prissättning) är korrekt och uppdaterad. Alvas förmåga att tillhandahålla en korrekt tjänst är direkt beroende av denna information.'
                     : 'The Customer is solely responsible for ensuring that all business information provided to the Service (e.g., opening hours, service descriptions, pricing) is accurate and up-to-date. Alva\'s ability to provide an accurate service is directly dependent on this information.'}
@@ -98,15 +93,10 @@ const Terms = () => {
               <div className="mb-8">
                 <h3 className="text-xl font-semibold text-foreground mb-4 flex items-center gap-2">
                   <span className="flex items-center justify-center w-8 h-8 rounded-full bg-secondary/20 text-secondary text-sm font-bold">3</span>
-                  <CreditCard className="h-5 w-5 text-secondary" />
-                  {language === 'sv' ? 'Prenumeration, Avgifter och Betalning' : 'Subscription, Fees, and Payment'}
+                  {language === 'sv' ? 'Prenumeration och Avgifter' : 'Subscription and Fees'}
                 </h3>
                 <ul className="text-muted-foreground leading-relaxed pl-10 space-y-3 list-disc list-inside">
                   <li>{language === 'sv' ? 'Tjänsten faktureras månadsvis, i förskott.' : 'The Service is billed on a monthly basis, in advance.'}</li>
-                  <li>{language === 'sv' 
-                    ? 'Du ger oss och vår tredjepartsbetalningsprocessor, Mollie, rätt att debitera din valda betalningsmetod (t.ex. kreditkort) för alla tillämpliga prenumerationsavgifter.'
-                    : 'You authorize us and our third-party payment processor, Mollie, to charge your selected payment method (e.g., Credit Card) for all applicable subscription fees.'}
-                  </li>
                   <li>{language === 'sv' 
                     ? 'Prenumerationsavgifter återbetalas inte. Det ges inga återbetalningar eller krediter för delar av månader eller för oanvända månader med ett öppet konto.'
                     : 'Subscription fees are non-refundable. There will be no refunds or credits for partial months of service or for months unused with an open account.'}
@@ -122,7 +112,7 @@ const Terms = () => {
                   {language === 'sv' ? 'Policy för Acceptabel Användning' : 'Acceptable Use Policy'}
                 </h3>
                 <div className="text-muted-foreground leading-relaxed pl-10 space-y-3">
-                  <p>{language === 'sv' ? 'Du samtycker till att inte (och inte tillåta dina användare att) använda tjänsten för att:' : 'You agree not to (and not to allow your users to) use the Service to:'}</p>
+                  <p>{language === 'sv' ? 'Du samtycker till att inte använda tjänsten för att:' : 'You agree not to use the Service to:'}</p>
                   <ul className="list-disc list-inside space-y-2 ml-4">
                     <li>{language === 'sv' ? 'Delta i olaglig, bedräglig eller skadlig verksamhet.' : 'Engage in any illegal, fraudulent, or harmful activities.'}</li>
                     <li>{language === 'sv' ? 'Försöka dekompilera, bakåtkonstruera eller på annat sätt kopiera tjänstens programvara, AI-modeller eller underliggande teknik.' : 'Attempt to decompile, reverse-engineer, or otherwise copy the Service\'s software, AI models, or underlying technology.'}</li>
@@ -140,8 +130,8 @@ const Terms = () => {
                 </h3>
                 <div className="text-muted-foreground leading-relaxed pl-10 space-y-3">
                   <p><strong>{language === 'sv' ? 'Uppsägning av dig:' : 'Termination by You:'}</strong> {language === 'sv' 
-                    ? 'Du kan när som helst säga upp din prenumeration via din kontopanel. Uppsägningen träder i kraft i slutet av din nuvarande månatliga faktureringsperiod.'
-                    : 'You may cancel your subscription at any time through your account dashboard. The cancellation will take effect at the end of your current monthly billing period.'}
+                    ? 'Du kan när som helst säga upp din prenumeration genom att kontakta oss. Uppsägningen träder i kraft i slutet av din nuvarande månatliga faktureringsperiod.'
+                    : 'You may cancel your subscription at any time by contacting us. The cancellation will take effect at the end of your current monthly billing period.'}
                   </p>
                   <p><strong>{language === 'sv' ? 'Uppsägning av Mimer:' : 'Termination by Mimer:'}</strong> {language === 'sv'
                     ? 'Vi kan stänga av eller avsluta din tillgång till tjänsten med omedelbar verkan om du väsentligt bryter mot dessa villkor, inklusive vid utebliven betalning av avgifter eller brott mot policyn för acceptabel användning.'
@@ -227,8 +217,8 @@ const Terms = () => {
                   <p>{language === 'sv' ? 'Vi agerar i två distinkta roller enligt GDPR:' : 'We act in two distinct roles under GDPR:'}</p>
                   <ul className="list-disc list-inside space-y-2 ml-4">
                     <li><strong>{language === 'sv' ? 'Personuppgiftsansvarig:' : 'Data Controller:'}</strong> {language === 'sv' 
-                      ? 'När du, vår kund, registrerar dig för tjänsten är vi personuppgiftsansvariga för dina personuppgifter (t.ex. din e-post, företagsnamn).'
-                      : 'When you, our Customer, sign up for the Service, we are the Data Controller for your personal data (e.g., your email, company name).'}
+                      ? 'När du, vår kund, använder tjänsten är vi personuppgiftsansvariga för dina personuppgifter (t.ex. din e-post, företagsnamn).'
+                      : 'When you, our Customer, use the Service, we are the Data Controller for your personal data (e.g., your email, company name).'}
                     </li>
                     <li><strong>{language === 'sv' ? 'Personuppgiftsbiträde:' : 'Data Processor:'}</strong> {language === 'sv'
                       ? 'När vi hanterar samtal från dina kunder ("Slutanvändare") för din räkning är du personuppgiftsansvarig och vi agerar som ditt personuppgiftsbiträde.'
@@ -248,12 +238,12 @@ const Terms = () => {
                 <div className="text-muted-foreground leading-relaxed pl-10 space-y-4">
                   <div>
                     <p className="font-semibold text-foreground mb-2">{language === 'sv' ? 'Som Personuppgiftsansvarig (Från våra kunder)' : 'As a Data Controller (From our Customers)'}</p>
-                    <p className="mb-2">{language === 'sv' ? 'När du registrerar dig för Alva samlar vi in:' : 'When you sign up for Alva, we collect:'}</p>
+                    <p className="mb-2">{language === 'sv' ? 'När du använder Alva kan vi samla in:' : 'When you use Alva, we may collect:'}</p>
                     <ul className="list-disc list-inside ml-4 space-y-1">
                       <li>{language === 'sv' ? 'Ditt namn' : 'Your Name'}</li>
                       <li>{language === 'sv' ? 'E-postadress' : 'Email Address'}</li>
                       <li>{language === 'sv' ? 'Företagsnamn' : 'Company Name'}</li>
-                      <li>{language === 'sv' ? 'Betalningsinformation (säkert bearbetad av vår betalningsprocessor)' : 'Payment Information (securely processed by our payment processor)'}</li>
+                      <li>{language === 'sv' ? 'Telefonnummer' : 'Phone Number'}</li>
                     </ul>
                   </div>
                   <div>
@@ -281,7 +271,6 @@ const Terms = () => {
                       ? 'För att svara på samtal, förstå förfrågningar, boka möten och utföra AI-receptionistens kärnfunktioner.'
                       : 'To answer calls, understand requests, book appointments, and perform the core functions of the AI receptionist.'}
                     </li>
-                    <li><strong>{language === 'sv' ? 'För att bearbeta betalningar:' : 'To Process Payments:'}</strong> {language === 'sv' ? 'För att fakturera dig för din prenumeration.' : 'To bill you for your subscription.'}</li>
                     <li><strong>{language === 'sv' ? 'För att kommunicera med dig:' : 'To Communicate with You:'}</strong> {language === 'sv' 
                       ? 'För att skicka samtalssammanfattningar, kontonotifikationer och viktiga tjänsteuppdateringar.'
                       : 'To send you call summaries, account notifications, and important service updates.'}
@@ -298,27 +287,6 @@ const Terms = () => {
               <div className="mb-8">
                 <h3 className="text-xl font-semibold text-foreground mb-4 flex items-center gap-2">
                   <span className="flex items-center justify-center w-8 h-8 rounded-full bg-primary-glow/20 text-primary-glow text-sm font-bold">4</span>
-                  {language === 'sv' ? 'Våra Tredjepartsunderbiträden' : 'Our Third-Party Sub-processors'}
-                </h3>
-                <div className="text-muted-foreground leading-relaxed pl-10 space-y-3">
-                  <p>{language === 'sv' 
-                    ? 'Vi säljer inte dina personuppgifter. Vi använder ett begränsat antal tredjepartsunderbiträden som är nödvändiga för att vi ska kunna tillhandahålla tjänsten. Alla underbiträden är granskade för GDPR-efterlevnad.'
-                    : 'We do not sell your personal data. We use a limited number of third-party sub-processors who are essential for us to provide the Service. All sub-processors are vetted for GDPR compliance.'}
-                  </p>
-                  <ul className="list-disc list-inside space-y-2 ml-4">
-                    <li><strong>{language === 'sv' ? 'Betalningsprocessor:' : 'Payment Processor:'}</strong> Mollie {language === 'sv' ? '(för att bearbeta dina prenumerationsbetalningar)' : '(to process your subscription payments)'}</li>
-                    <li><strong>{language === 'sv' ? 'Telefonileverantör:' : 'Telephony Provider:'}</strong> {language === 'sv' ? 'En leverantör (t.ex. Telnyx) för att hantera samtalsinfrastrukturen.' : 'A provider (e.g., Telnyx) to handle the call infrastructure.'}</li>
-                    <li><strong>{language === 'sv' ? 'Molnvärd:' : 'Cloud Hosting:'}</strong> {language === 'sv' ? 'En leverantör (t.ex. Amazon Web Services) för att säkert vara värd för vår applikation och data inom EU.' : 'A provider (e.g., Amazon Web Services) to securely host our application and data within the EU.'}</li>
-                    <li><strong>{language === 'sv' ? 'AI & Röstleverantör:' : 'AI & Voice Provider:'}</strong> ElevenLabs {language === 'sv' ? '(för AI-driven röstgenerering och förståelse)' : '(for AI-powered voice generation and understanding)'}</li>
-                    <li><strong>{language === 'sv' ? 'AI-agentramverk:' : 'AI Agent Framework:'}</strong> LiveKit {language === 'sv' ? '(för att driva vår realtids-AI-agent)' : '(to power our real-time AI agent)'}</li>
-                  </ul>
-                </div>
-              </div>
-
-              {/* Section 5 */}
-              <div className="mb-8">
-                <h3 className="text-xl font-semibold text-foreground mb-4 flex items-center gap-2">
-                  <span className="flex items-center justify-center w-8 h-8 rounded-full bg-primary-glow/20 text-primary-glow text-sm font-bold">5</span>
                   <Clock className="h-5 w-5 text-primary-glow" />
                   {language === 'sv' ? 'Policy för Datalagring' : 'Data Retention Policy'}
                 </h3>
@@ -332,17 +300,13 @@ const Terms = () => {
                     <li><strong>{language === 'sv' ? 'Samtalsutskrifter:' : 'Call Transcripts:'}</strong> {language === 'sv' ? 'Raderas automatiskt efter 90 dagar.' : 'Automatically deleted after 90 days.'}</li>
                     <li><strong>{language === 'sv' ? 'AI-genererade sammanfattningar:' : 'AI-Generated Summaries:'}</strong> {language === 'sv' ? 'Bevaras i 12 månader för dina affärsregister.' : 'Retained for 12 months for your business records.'}</li>
                   </ul>
-                  <p>{language === 'sv' 
-                    ? 'Som kund kan du manuellt radera vilken samtalspost som helst från din instrumentpanel när som helst.'
-                    : 'As a Customer, you can manually delete any call record from your dashboard at any time.'}
-                  </p>
                 </div>
               </div>
 
-              {/* Section 6 */}
+              {/* Section 5 */}
               <div className="mb-8">
                 <h3 className="text-xl font-semibold text-foreground mb-4 flex items-center gap-2">
-                  <span className="flex items-center justify-center w-8 h-8 rounded-full bg-primary-glow/20 text-primary-glow text-sm font-bold">6</span>
+                  <span className="flex items-center justify-center w-8 h-8 rounded-full bg-primary-glow/20 text-primary-glow text-sm font-bold">5</span>
                   {language === 'sv' ? 'Dina Datarättigheter Enligt GDPR' : 'Your Data Rights Under GDPR'}
                 </h3>
                 <div className="text-muted-foreground leading-relaxed pl-10 space-y-3">
@@ -357,10 +321,10 @@ const Terms = () => {
                 </div>
               </div>
 
-              {/* Section 7 */}
+              {/* Section 6 */}
               <div>
                 <h3 className="text-xl font-semibold text-foreground mb-4 flex items-center gap-2">
-                  <span className="flex items-center justify-center w-8 h-8 rounded-full bg-primary-glow/20 text-primary-glow text-sm font-bold">7</span>
+                  <span className="flex items-center justify-center w-8 h-8 rounded-full bg-primary-glow/20 text-primary-glow text-sm font-bold">6</span>
                   <Shield className="h-5 w-5 text-primary-glow" />
                   {language === 'sv' ? 'Datasäkerhet' : 'Data Security'}
                 </h3>
