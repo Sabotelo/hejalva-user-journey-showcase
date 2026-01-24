@@ -2,7 +2,6 @@ import { Routes, Route, useLocation } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import Index from "@/pages/Index";
 import Contact from "@/pages/Contact";
-import Dashboard from "@/pages/Dashboard";
 import Demo from "@/pages/Demo";
 import HowItWorks from "@/pages/HowItWorks";
 import NotFound from "@/pages/NotFound";
@@ -85,14 +84,6 @@ const AnimatedRoutes = () => {
           element={
             <AnimatedPage>
               <HowItWorks />
-            </AnimatedPage>
-          }
-        />
-        <Route
-          path="/dashboard"
-          element={
-            <AnimatedPage>
-              <Dashboard />
             </AnimatedPage>
           }
         />
