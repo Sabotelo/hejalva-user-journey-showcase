@@ -21,11 +21,11 @@ const Footer = () => {
     },
     privacy: {
       label: language === 'sv' ? 'Integritetspolicy' : 'Privacy Policy',
-      href: '#privacy',
+      href: '/terms#privacy',
     },
     terms: {
       label: language === 'sv' ? 'Användarvillkor' : 'Terms of Service',
-      href: '#terms',
+      href: '/terms',
     },
   };
 
