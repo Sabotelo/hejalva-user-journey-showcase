@@ -4,6 +4,7 @@ import Index from "@/pages/Index";
 import Contact from "@/pages/Contact";
 import Demo from "@/pages/Demo";
 import HowItWorks from "@/pages/HowItWorks";
+import Terms from "@/pages/Terms";
 import NotFound from "@/pages/NotFound";
 
 // Memphis-inspired spring transition
@@ -84,6 +85,14 @@ const AnimatedRoutes = () => {
           element={
             <AnimatedPage>
               <HowItWorks />
+            </AnimatedPage>
+          }
+        />
+        <Route
+          path="/terms"
+          element={
+            <AnimatedPage>
+              <Terms />
             </AnimatedPage>
           }
         />
