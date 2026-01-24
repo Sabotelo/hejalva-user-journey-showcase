@@ -101,7 +101,7 @@ const HeroSection = () => {
                     key={i}
                     className="w-2 md:w-3 rounded-full bg-gradient-to-t from-secondary via-secondary to-white/80 shadow-[0_0_20px_rgba(0,255,255,0.5)]"
                     animate={{
-                      height: [height * 0.5, height, height * 0.5],
+                      height: [`${height * 0.5}px`, `${height}px`, `${height * 0.5}px`],
                     }}
                     transition={{
                       duration: 1.5,
@@ -109,7 +109,6 @@ const HeroSection = () => {
                       ease: "easeInOut",
                       delay,
                     }}
-                    style={{ height: `${height}px` }}
                   />
                 );
               })}
@@ -125,7 +124,7 @@ const HeroSection = () => {
                     key={i}
                     className="w-2 md:w-3 rounded-full bg-gradient-to-t from-secondary to-transparent"
                     animate={{
-                      height: [height * 0.25, height * 0.5, height * 0.25],
+                      height: [`${height * 0.25}px`, `${height * 0.5}px`, `${height * 0.25}px`],
                     }}
                     transition={{
                       duration: 1.5,
@@ -133,7 +132,6 @@ const HeroSection = () => {
                       ease: "easeInOut",
                       delay,
                     }}
-                    style={{ height: `${height * 0.5}px` }}
                   />
                 );
               })}
