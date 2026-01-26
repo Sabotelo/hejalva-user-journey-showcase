@@ -175,7 +175,7 @@ const Contact = () => {
                 <Button 
                   type="submit" 
                   size="lg" 
-                  className="w-full bg-gradient-primary text-white shadow-primary hover:shadow-elevated transition-all duration-300"
+                  className="w-full bg-muted text-muted-foreground hover:bg-gradient-primary hover:text-white hover:shadow-elevated transition-all duration-300"
                   disabled={isLoading}
                 >
                   {isLoading ? (
