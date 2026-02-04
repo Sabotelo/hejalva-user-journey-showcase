@@ -157,26 +157,6 @@ const HeroSection = () => {
             `}</style>
           </motion.div>
           
-          <motion.div 
-            className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8"
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ 
-              type: "spring",
-              stiffness: 200,
-              damping: 20,
-              delay: 0.5 
-            }}
-          >
-            <MemphisButton 
-              variant="cta"
-              size="lg"
-              onClick={() => window.location.href = '/contact'}
-            >
-              <Phone className="h-5 w-5" />
-              {language === 'sv' ? 'Kontakta Oss' : 'Contact Us'}
-            </MemphisButton>
-          </motion.div>
         </div>
       </div>
     </section>
