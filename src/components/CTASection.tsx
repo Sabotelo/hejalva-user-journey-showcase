@@ -92,20 +92,10 @@ const CTASection = () => {
                     variant="primary"
                     size="lg"
                     className="bg-white text-primary hover:bg-white/90 px-10 py-7"
-                    onClick={() => window.location.href = '/demo'}
+                    onClick={() => window.location.href = '/contact'}
                   >
-                    {language === 'sv' ? 'Boka gratis demo' : 'Book Free Demo'}
+                    {language === 'sv' ? 'Kontakta Oss' : 'Contact Us'}
                     <ArrowRight className="h-5 w-5" />
-                  </MemphisButton>
-                  
-                  <MemphisButton 
-                    variant="outline"
-                    size="lg"
-                    className="px-10 py-7"
-                    onClick={() => window.location.href = '/demo#try-alva'}
-                  >
-                    <Phone className="h-5 w-5" />
-                    {language === 'sv' ? 'Ring Alva nu' : 'Call Alva Now'}
                   </MemphisButton>
                 </div>
               </ScrollAnimation>
