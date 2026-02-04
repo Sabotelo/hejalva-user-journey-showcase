@@ -115,7 +115,7 @@ const PricingSection = () => {
                 variant="cta"
                 size="lg"
                 className="w-full"
-                onClick={() => window.location.href = '/demo'}
+                onClick={() => window.location.href = '/contact'}
               >
                 {language === 'sv' ? 'Boka en demo' : 'Book a Demo'}
               </MemphisButton>
