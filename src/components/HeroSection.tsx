@@ -171,20 +171,10 @@ const HeroSection = () => {
             <MemphisButton 
               variant="cta"
               size="lg"
-              onClick={() => window.location.href = '/demo#try-alva'}
+              onClick={() => window.location.href = '/contact'}
             >
               <Phone className="h-5 w-5" />
-              {language === 'sv' ? 'Ring Alva Nu' : 'Call Alva Now'}
-            </MemphisButton>
-            
-            <MemphisButton 
-              variant="outline"
-              size="lg"
-              className="border-gold/50 text-gold hover:bg-gold/20 shadow-[0_0_20px_rgba(255,215,0,0.2)]"
-              onClick={() => window.location.href = '/demo'}
-            >
-              <Sparkles className="h-5 w-5" />
-              {language === 'sv' ? 'Boka Demo' : 'Book a Demo'}
+              {language === 'sv' ? 'Kontakta Oss' : 'Contact Us'}
             </MemphisButton>
           </motion.div>
         </div>
