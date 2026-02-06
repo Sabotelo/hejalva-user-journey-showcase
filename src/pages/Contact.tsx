@@ -247,8 +247,8 @@ const Contact = () => {
                   </h3>
                   <p className="text-muted-foreground text-sm mb-5">
                     {language === 'sv' 
-                      ? 'Ring Alva och upplev vår AI-receptionist live.'
-                      : 'Call Alva and experience our AI receptionist live.'}
+                      ? 'Ring Alva och upplev vår AI-receptionist live. Du kan även boka en demo direkt genom samtalet.'
+                      : 'Call Alva and experience our AI receptionist live. You can also book a demo directly through the call.'}
                   </p>
                   <Button
                     size="lg"
