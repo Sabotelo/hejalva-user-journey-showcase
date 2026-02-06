@@ -591,7 +591,7 @@ const IssuesWeSolveVisualization = () => {
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
-      <div className="flex flex-col lg:flex-row min-h-[500px]">
+      <div className="flex flex-col lg:flex-row min-h-[auto] lg:min-h-[500px]">
         {/* Left Side - Navigation */}
         <div className="lg:w-1/3 p-6 bg-slate-50 border-b lg:border-b-0 lg:border-r border-slate-200">
           <div className="space-y-3">
@@ -661,11 +661,11 @@ const IssuesWeSolveVisualization = () => {
           </div>
         </div>
         
-        {/* Right Side - The Stage */}
-        <div className="lg:w-2/3 relative" style={{ backgroundColor: '#2D1B69' }}>
+        {/* Right Side - The Stage (hidden on mobile) */}
+        <div className="hidden lg:block lg:w-2/3 relative" style={{ backgroundColor: '#2D1B69' }}>
           <FloatingElements />
           
-          <div className="relative z-10 h-full min-h-[350px] lg:min-h-[500px] p-8">
+          <div className="relative z-10 h-full min-h-[500px] p-8">
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeStep}

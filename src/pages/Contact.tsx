@@ -5,14 +5,14 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
-import { Mail, Phone, MapPin, Send, Loader2 } from "lucide-react";
+import { Mail, Phone, MapPin, Send, Loader2, PhoneCall } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { supabase } from "@/integrations/supabase/client";
 
 const Contact = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
@@ -233,6 +233,31 @@ const Contact = () => {
                       <p className="text-muted-foreground">Karlskrona, Sweden</p>
                     </div>
                   </div>
+                </div>
+              </Card>
+
+              {/* Try Alva - Call Demo */}
+              <Card className="p-8 bg-gradient-to-br from-secondary/10 to-primary-glow/10 border-2 border-secondary/30 rounded-2xl">
+                <div className="text-center">
+                  <div className="h-14 w-14 rounded-full bg-gradient-to-br from-secondary to-primary-glow flex items-center justify-center mx-auto mb-4">
+                    <PhoneCall className="h-7 w-7 text-primary-dark" />
+                  </div>
+                  <h3 className="text-xl font-bold mb-2">
+                    {language === 'sv' ? 'Testa Alva direkt' : 'Try Alva directly'}
+                  </h3>
+                  <p className="text-muted-foreground text-sm mb-5">
+                    {language === 'sv' 
+                      ? 'Ring Alva och upplev vår AI-receptionist live.'
+                      : 'Call Alva and experience our AI receptionist live.'}
+                  </p>
+                  <Button
+                    size="lg"
+                    className="w-full bg-gradient-to-r from-secondary to-primary-glow text-primary-dark hover:from-secondary/90 hover:to-primary-glow/90 font-bold shadow-[0_0_20px_rgba(0,245,255,0.3)]"
+                    onClick={() => window.location.href = 'tel:+46766866572'}
+                  >
+                    <Phone className="h-5 w-5 mr-2" />
+                    +46 76 686 65 72
+                  </Button>
                 </div>
               </Card>
 
