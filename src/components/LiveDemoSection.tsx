@@ -618,13 +618,15 @@ const LiveDemoSection = () => {
                           ? "Alva hanterade samtalet och skickade förfrågan till företaget. Du godkänner eller ombokar – du har alltid kontrollen."
                           : "Alva handled the call and sent the request to the business. You approve or reschedule – you're always in control."}
                       </p>
-                      <Button
-                        className="bg-gradient-to-r from-secondary to-primary-glow text-primary-dark hover:from-secondary/90 hover:to-primary-glow/90 shadow-[0_0_20px_rgba(0,245,255,0.3)]"
-                        onClick={() => (window.location.href = "tel:+46766866572")}
-                      >
-                        <Phone className="h-4 w-4 mr-2" />
-                        {language === "sv" ? "Testa själv: Ring Alva" : "Try it yourself: Call Alva"}
-                      </Button>
+                      <a href="tel:+46766866572" className="inline-block md:pointer-events-none">
+                        <Button
+                          className="bg-gradient-to-r from-secondary to-primary-glow text-primary-dark hover:from-secondary/90 hover:to-primary-glow/90 shadow-[0_0_20px_rgba(0,245,255,0.3)] md:cursor-default"
+                          tabIndex={-1}
+                        >
+                          <Phone className="h-4 w-4 mr-2" />
+                          {language === "sv" ? "Testa själv: Ring Alva" : "Try it yourself: Call Alva"}
+                        </Button>
+                      </a>
                     </div>
                   </div>
                 </motion.div>

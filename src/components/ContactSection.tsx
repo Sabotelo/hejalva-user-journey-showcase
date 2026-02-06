@@ -136,7 +136,7 @@ const ContactSection = () => {
               </p>
               <a 
                 href="tel:+46766866572" 
-                className="inline-flex items-center gap-1.5 text-sm font-medium text-secondary hover:underline"
+                className="inline-flex items-center gap-1.5 text-sm font-medium text-secondary hover:underline md:pointer-events-none md:cursor-default"
               >
                 <Phone className="h-3.5 w-3.5" />
                 +46 76 686 65 72

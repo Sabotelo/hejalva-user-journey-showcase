@@ -150,14 +150,16 @@ const TryAlvaSection = () => {
                 ? 'Vill du testa live? Ring Alva direkt och prova själv.'
                 : 'Want to try live? Call Alva directly and try it yourself.'}
             </p>
-            <Button 
-              size="lg"
-              onClick={() => window.location.href = 'tel:+46766866572'}
-              className="bg-gradient-to-r from-secondary to-primary-glow text-primary-dark hover:from-secondary/90 hover:to-primary-glow/90 shadow-[0_0_30px_rgba(0,255,255,0.3)]"
-            >
-              <Phone className="h-5 w-5 mr-2" />
-              {language === 'sv' ? 'Ring Alva: +46 76 686 65 72' : 'Call Alva: +46 76 686 65 72'}
-            </Button>
+            <a href="tel:+46766866572" className="inline-block md:pointer-events-none">
+              <Button 
+                size="lg"
+                className="bg-gradient-to-r from-secondary to-primary-glow text-primary-dark hover:from-secondary/90 hover:to-primary-glow/90 shadow-[0_0_30px_rgba(0,255,255,0.3)] md:cursor-default"
+                tabIndex={-1}
+              >
+                <Phone className="h-5 w-5 mr-2" />
+                {language === 'sv' ? 'Ring Alva: +46 76 686 65 72' : 'Call Alva: +46 76 686 65 72'}
+              </Button>
+            </a>
           </div>
         </div>
       </div>
