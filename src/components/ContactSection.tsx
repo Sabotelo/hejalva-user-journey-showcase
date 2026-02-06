@@ -10,7 +10,7 @@ import { useState } from "react";
 import { supabase } from "@/lib/supabase";
 
 const ContactSection = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const { toast } = useToast();
   const [messageForm, setMessageForm] = useState({
     name: '',
@@ -130,6 +130,18 @@ const ContactSection = () => {
             >
               +46 737 587 867
             </a>
+            <div className="mt-3 pt-3 border-t border-border">
+              <p className="text-xs text-muted-foreground mb-2">
+                {language === 'sv' ? 'Boka demo via Alva:' : 'Book a demo via Alva:'}
+              </p>
+              <a 
+                href="tel:+46766866572" 
+                className="inline-flex items-center gap-1.5 text-sm font-medium text-secondary hover:underline"
+              >
+                <Phone className="h-3.5 w-3.5" />
+                +46 76 686 65 72
+              </a>
+            </div>
           </Card>
 
           <Card className="demo-card p-6 text-center">

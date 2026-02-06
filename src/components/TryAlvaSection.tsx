@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { Play, Pause, Volume2 } from "lucide-react";
+import { Play, Pause, Volume2, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const TryAlvaSection = () => {
@@ -147,16 +147,16 @@ const TryAlvaSection = () => {
           <div className="text-center mt-8">
             <p className="text-white/70 mb-4">
               {language === 'sv' 
-                ? 'Vill du testa live? Prova Alva direkt.'
-                : 'Want to try live? Try Alva directly.'}
+                ? 'Vill du testa live? Ring Alva direkt och prova själv.'
+                : 'Want to try live? Call Alva directly and try it yourself.'}
             </p>
             <Button 
-              variant="outline" 
               size="lg"
-              onClick={() => window.location.href = '/demo#try-alva'}
-              className="border-white/30 text-white hover:bg-white/10"
+              onClick={() => window.location.href = 'tel:+46766866572'}
+              className="bg-gradient-to-r from-secondary to-primary-glow text-primary-dark hover:from-secondary/90 hover:to-primary-glow/90 shadow-[0_0_30px_rgba(0,255,255,0.3)]"
             >
-              {language === 'sv' ? 'Testa Alva Live' : 'Try Alva Live'}
+              <Phone className="h-5 w-5 mr-2" />
+              {language === 'sv' ? 'Ring Alva: +46 76 686 65 72' : 'Call Alva: +46 76 686 65 72'}
             </Button>
           </div>
         </div>
