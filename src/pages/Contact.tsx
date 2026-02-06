@@ -250,14 +250,17 @@ const Contact = () => {
                       ? 'Ring Alva och upplev vår AI-receptionist live. Du kan även boka en demo direkt genom samtalet.'
                       : 'Call Alva and experience our AI receptionist live. You can also book a demo directly through the call.'}
                   </p>
-                  <Button
-                    size="lg"
-                    className="w-full bg-gradient-to-r from-secondary to-primary-glow text-primary-dark hover:from-secondary/90 hover:to-primary-glow/90 font-bold shadow-[0_0_20px_rgba(0,245,255,0.3)]"
-                    onClick={() => window.location.href = 'tel:+46766866572'}
-                  >
-                    <Phone className="h-5 w-5 mr-2" />
-                    +46 76 686 65 72
-                  </Button>
+                  {/* Only link to tel: on mobile, no action on desktop */}
+                  <a href="tel:+46766866572" className="block md:pointer-events-none">
+                    <Button
+                      size="lg"
+                      className="w-full bg-gradient-to-r from-secondary to-primary-glow text-primary-dark hover:from-secondary/90 hover:to-primary-glow/90 font-bold shadow-[0_0_20px_rgba(0,245,255,0.3)] md:cursor-default"
+                      tabIndex={-1}
+                    >
+                      <Phone className="h-5 w-5 mr-2" />
+                      +46 76 686 65 72
+                    </Button>
+                  </a>
                 </div>
               </Card>
 
