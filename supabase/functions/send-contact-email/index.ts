@@ -74,7 +74,7 @@ serve(async (req) => {
         cc: ['zeda21h@pm.me', 'lavolbrian@gmail.com', 'danyakreyg20@gmail.com'],
         subject: `New Contact Message from ${name}`,
         text: emailContent,
-        reply_to: email,
+        ...(isValidEmail ? { reply_to: email } : {}),
       }),
     })
 
