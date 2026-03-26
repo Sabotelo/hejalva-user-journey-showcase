@@ -15,6 +15,10 @@ serve(async (req) => {
   try {
     const { name, email, message, phone } = await req.json()
 
+    // Validate email format before using as reply_to
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    const isValidEmail = emailRegex.test(email)
+
     // Initialize Supabase client
     const supabaseClient = createClient(
       Deno.env.get('SUPABASE_URL') ?? '',
