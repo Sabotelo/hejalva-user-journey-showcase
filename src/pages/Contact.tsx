@@ -236,33 +236,6 @@ const Contact = () => {
                 </div>
               </Card>
 
-              {/* Try Alva - Call Demo */}
-              <Card className="p-8 bg-gradient-to-br from-secondary/10 to-primary-glow/10 border-2 border-secondary/30 rounded-2xl">
-                <div className="text-center">
-                  <div className="h-14 w-14 rounded-full bg-gradient-to-br from-secondary to-primary-glow flex items-center justify-center mx-auto mb-4">
-                    <PhoneCall className="h-7 w-7 text-primary-dark" />
-                  </div>
-                  <h3 className="text-xl font-bold mb-2">
-                    {language === 'sv' ? 'Testa Alva direkt' : 'Try Alva directly'}
-                  </h3>
-                  <p className="text-muted-foreground text-sm mb-5">
-                    {language === 'sv' 
-                      ? 'Ring Alva och upplev vår AI-receptionist live. Du kan även boka en demo direkt genom samtalet.'
-                      : 'Call Alva and experience our AI receptionist live. You can also book a demo directly through the call.'}
-                  </p>
-                  {/* Only link to tel: on mobile, no action on desktop */}
-                  <a href="tel:+46766866572" className="block md:pointer-events-none">
-                    <Button
-                      size="lg"
-                      className="w-full bg-gradient-to-r from-secondary to-primary-glow text-primary-dark hover:from-secondary/90 hover:to-primary-glow/90 font-bold shadow-[0_0_20px_rgba(0,245,255,0.3)] md:cursor-default"
-                      tabIndex={-1}
-                    >
-                      <Phone className="h-5 w-5 mr-2" />
-                      +46 76 686 65 72
-                    </Button>
-                  </a>
-                </div>
-              </Card>
 
               <Card className="p-8 bg-white/90 border-0 rounded-2xl">
                 <h3 className="text-xl font-bold mb-4">{t('contact.support.title')}</h3>
