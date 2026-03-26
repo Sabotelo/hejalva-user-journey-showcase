@@ -221,7 +221,7 @@ const LiveDemoSection = () => {
 
   // Playback timer
   useEffect(() => {
-    let interval: NodeJS.Timeout;
+    let interval: ReturnType<typeof setInterval>;
     if (isPlaying && currentTime < duration) {
       interval = setInterval(() => {
         setCurrentTime((prev) => {
