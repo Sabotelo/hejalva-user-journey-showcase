@@ -15,6 +15,10 @@ serve(async (req) => {
   try {
     const { name, email, message, phone } = await req.json()
 
+    // Validate email format before using as reply_to
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    const isValidEmail = emailRegex.test(email)
+
     // Initialize Supabase client
     const supabaseClient = createClient(
       Deno.env.get('SUPABASE_URL') ?? '',
@@ -70,7 +74,7 @@ serve(async (req) => {
         cc: ['zeda21h@pm.me', 'lavolbrian@gmail.com', 'danyakreyg20@gmail.com'],
         subject: `New Contact Message from ${name}`,
         text: emailContent,
-        reply_to: email,
+        ...(isValidEmail ? { reply_to: email } : {}),
       }),
     })
 

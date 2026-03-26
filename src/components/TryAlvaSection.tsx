@@ -12,7 +12,7 @@ const TryAlvaSection = () => {
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
-    let interval: NodeJS.Timeout;
+    let interval: ReturnType<typeof setInterval>;
     if (isPlaying && currentTime < duration) {
       interval = setInterval(() => {
         setCurrentTime(prev => Math.min(prev + 0.1, duration));
