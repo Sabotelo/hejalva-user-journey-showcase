@@ -499,7 +499,7 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
         return saved;
       }
     }
-    return 'en';
+    return 'sv';
   });
 
   // Persist language changes to localStorage
