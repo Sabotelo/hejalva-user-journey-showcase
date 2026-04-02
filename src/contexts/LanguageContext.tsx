@@ -491,16 +491,7 @@ interface LanguageContextType {
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 export const LanguageProvider = ({ children }: { children: ReactNode }) => {
-  const [language, setLanguageState] = useState<Language>(() => {
-    // Initialize from localStorage if available
-    if (typeof window !== 'undefined') {
-      const saved = localStorage.getItem('language');
-      if (saved === 'sv' || saved === 'en') {
-        return saved;
-      }
-    }
-    return 'sv';
-  });
+  const [language, setLanguageState] = useState<Language>('sv');
 
   // Persist language changes to localStorage
   const setLanguage = (lang: Language) => {
