@@ -62,6 +62,37 @@ const ChatBubble = () => {
     setMessages((prev) => [...prev, { from: "bot", text }]);
   };
 
+  const extractName = (raw: string): string => {
+    const lower = raw.toLowerCase();
+    // Remove common greeting phrases to isolate the name
+    const cleaned = lower
+      .replace(/^(hej|hallå|tjena|tja|hi|hello|hey|hejsan|god\s*(dag|morgon|kväll))[,!.\s]*/i, "")
+      .replace(/^(jag\s+heter|mitt\s+namn\s+är|i'm|my\s+name\s+is|i\s+am|det\s+är)[,.\s]*/i, "")
+      .trim();
+    // Capitalize each word
+    if (cleaned) {
+      return cleaned.split(/\s+/).map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
+    }
+    // Fallback: capitalize the raw input
+    return raw.split(/\s+/).map(w => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase()).join(" ");
+  };
+
+  const extractEmail = (raw: string): string | null => {
+    const match = raw.match(/[^\s@]+@[^\s@]+\.[^\s@]+/);
+    return match ? match[0].toLowerCase() : null;
+  };
+
+  const extractCompany = (raw: string): string => {
+    const lower = raw.toLowerCase();
+    const cleaned = lower
+      .replace(/^(jag\s+(jobbar|arbetar)\s+(på|hos|för|vid)|i\s+(work\s+)?(at|for)|det\s+är|vi\s+heter|företaget\s+(heter|är))[,.\s]*/i, "")
+      .trim();
+    if (cleaned) {
+      return cleaned.split(/\s+/).map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
+    }
+    return raw.trim();
+  };
+
   const handleSend = async () => {
     const value = input.trim();
     if (!value) return;
@@ -70,21 +101,23 @@ const ChatBubble = () => {
     setInput("");
 
     switch (step) {
-      case "name":
-        setFormData((d) => ({ ...d, name: value }));
+      case "name": {
+        const name = extractName(value);
+        setFormData((d) => ({ ...d, name }));
         setTimeout(() => {
-          addBotMessage(t.askEmail.replace("{name}", value));
+          addBotMessage(t.askEmail.replace("{name}", name));
           setStep("email");
         }, 400);
         break;
+      }
 
       case "email": {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(value)) {
+        const email = extractEmail(value);
+        if (!email) {
           setTimeout(() => addBotMessage(t.invalidEmail), 400);
           return;
         }
-        setFormData((d) => ({ ...d, email: value }));
+        setFormData((d) => ({ ...d, email }));
         setTimeout(() => {
           addBotMessage(t.askCompany);
           setStep("company");
@@ -92,13 +125,15 @@ const ChatBubble = () => {
         break;
       }
 
-      case "company":
-        setFormData((d) => ({ ...d, company: value }));
+      case "company": {
+        const company = extractCompany(value);
+        setFormData((d) => ({ ...d, company }));
         setTimeout(() => {
           addBotMessage(t.askMessage);
           setStep("message");
         }, 400);
         break;
+      }
 
       case "message": {
         const finalData = { ...formData, message: value };
