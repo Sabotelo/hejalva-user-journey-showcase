@@ -1,70 +1,45 @@
 import { useLanguage } from "@/contexts/LanguageContext";
-import { Phone, Settings, Sparkles } from "lucide-react";
 import { ScrollAnimation, StaggerContainer, StaggerItem } from "@/components/ui/scroll-animation";
 
 const HowItWorksSimple = () => {
   const { language } = useLanguage();
 
-  const steps = [
-    {
-      icon: Settings,
-      number: "1",
-      title: language === 'sv' ? 'Vi konfigurerar Alva' : 'We Configure Alva',
-      description: language === 'sv'
-        ? 'Berätta om ditt företag, tjänster och öppettider. Vi tränar Alva att bli din perfekta receptionist.'
-        : 'Tell us about your business, services and hours. We train Alva to be your perfect receptionist.',
-    },
-    {
-      icon: Phone,
-      number: "2",
-      title: language === 'sv' ? 'Koppla ditt nummer' : 'Connect Your Number',
-      description: language === 'sv'
-        ? 'Alva kopplas till ditt befintliga företagsnummer. Inga nya nummer behövs.'
-        : 'Alva connects to your existing business number. No new numbers needed.',
-    },
-    {
-      icon: Sparkles,
-      number: "3",
-      title: language === 'sv' ? 'Alva tar emot samtal' : 'Alva Takes Calls',
-      description: language === 'sv'
-        ? 'Alva svarar dygnet runt, bokar möten och skickar sammanfattningar. Du fokuserar på jobbet.'
-        : 'Alva answers 24/7, books appointments and sends summaries. You focus on work.',
-    },
+  const steps = language === 'sv' ? [
+    { num: '1', title: 'Kunden ringer', desc: 'En kund ringer din företagslinje. Alva svarar direkt — oavsett tid på dygnet.' },
+    { num: '2', title: 'Alva hanterar samtalet', desc: 'Alva lyssnar, förstår vad kunden vill, och föreslår en tid utifrån ditt schema.' },
+    { num: '3', title: 'Du godkänner', desc: 'Du får en sammanfattning. Klicka godkänn eller omboka. Du har alltid kontrollen.' },
+  ] : [
+    { num: '1', title: 'Customer calls', desc: 'A customer calls your business line. Alva answers immediately — regardless of time.' },
+    { num: '2', title: 'Alva handles the call', desc: 'Alva listens, understands what the customer wants, and suggests a time based on your schedule.' },
+    { num: '3', title: 'You approve', desc: 'You get a summary. Click approve or reschedule. You always have control.' },
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-b from-primary to-primary-dark">
-      <div className="container mx-auto px-4">
-        <ScrollAnimation className="text-center mb-14">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-            {language === 'sv' ? 'Så enkelt fungerar det' : 'How It Works'}
-          </h2>
-          <p className="text-white/60 text-lg max-w-xl mx-auto">
-            {language === 'sv'
-              ? 'Tre steg. Ingen teknik krävs av dig.'
-              : 'Three steps. No tech required from you.'}
-          </p>
-        </ScrollAnimation>
+    <section id="hur" className="py-20 px-6 bg-sand">
+      <ScrollAnimation className="text-center mb-14">
+        <h2 className="font-serif text-[clamp(2rem,4vw,3rem)] text-night mb-3">
+          {language === 'sv' ? 'Tre steg. Noll krångel.' : 'Three steps. Zero hassle.'}
+        </h2>
+        <p className="text-bark text-lg max-w-[500px] mx-auto">
+          {language === 'sv'
+            ? 'Från inkommande samtal till godkänd bokning på sekunder.'
+            : 'From incoming call to approved booking in seconds.'}
+        </p>
+      </ScrollAnimation>
 
-        <StaggerContainer className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto" staggerDelay={0.15}>
-          {steps.map((step, index) => (
-            <StaggerItem key={index} variant="bounceUp">
-              <div className="text-center">
-                <div className="relative mx-auto mb-6">
-                  <div className="h-16 w-16 rounded-2xl bg-secondary/20 flex items-center justify-center mx-auto">
-                    <step.icon className="h-8 w-8 text-secondary" />
-                  </div>
-                  <div className="absolute -top-2 -right-2 h-7 w-7 rounded-full bg-secondary flex items-center justify-center text-white text-sm font-bold">
-                    {step.number}
-                  </div>
-                </div>
-                <h3 className="text-xl font-bold text-white mb-3">{step.title}</h3>
-                <p className="text-white/60 leading-relaxed">{step.description}</p>
+      <StaggerContainer className="grid md:grid-cols-3 gap-8 max-w-[960px] mx-auto" staggerDelay={0.15}>
+        {steps.map((step, i) => (
+          <StaggerItem key={i} variant="fadeUp">
+            <div className="text-center px-4 py-8">
+              <div className="inline-flex items-center justify-center w-12 h-12 rounded-full border-2 border-stone bg-cream font-serif text-xl text-earth mb-5">
+                {step.num}
               </div>
-            </StaggerItem>
-          ))}
-        </StaggerContainer>
-      </div>
+              <h3 className="font-serif text-xl text-night mb-3">{step.title}</h3>
+              <p className="text-sm text-bark leading-relaxed">{step.desc}</p>
+            </div>
+          </StaggerItem>
+        ))}
+      </StaggerContainer>
     </section>
   );
 };

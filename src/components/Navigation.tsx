@@ -1,8 +1,6 @@
 import { useState, useEffect } from "react";
-import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Globe, Menu, X } from "lucide-react";
-import MimerLogo from "@/components/MimerLogo";
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -18,64 +16,73 @@ const Navigation = () => {
   const toggleLanguage = () => setLanguage(language === 'sv' ? 'en' : 'sv');
 
   const navLinks = [
+    { href: "#hur", label: language === 'sv' ? 'Hur det fungerar' : 'How it works' },
+    { href: "#pris", label: language === 'sv' ? 'Pris' : 'Pricing' },
     { href: "/about", label: language === 'sv' ? 'Om oss' : 'About' },
   ];
 
   return (
-    <nav className={`fixed top-0 z-50 w-full transition-all duration-300 ${
+    <nav className={`fixed top-0 left-0 right-0 z-50 flex justify-between items-center px-6 md:px-8 py-4 transition-all duration-300 ${
       isScrolled
-        ? 'bg-background/95 backdrop-blur-md border-b border-border/40 shadow-sm'
-        : 'bg-transparent'
+        ? 'bg-cream/85 backdrop-blur-xl border-b border-sand-dark/30 shadow-sm'
+        : 'bg-cream/85 backdrop-blur-xl'
     }`}>
-      <div className="container mx-auto flex h-16 items-center justify-between px-4">
-        <a href="/" className="flex items-center cursor-pointer hover:opacity-80 transition-opacity">
-          <MimerLogo size={40} />
+      <a href="/" className="font-serif text-2xl text-earth hover:opacity-80 transition-opacity tracking-tight">
+        Alva <span className="text-moss">AI</span>
+      </a>
+
+      {/* Desktop */}
+      <div className="hidden md:flex items-center gap-8">
+        {navLinks.map((link) => (
+          <a
+            key={link.href}
+            href={link.href}
+            className="text-sm font-medium text-bark hover:text-earth transition-colors"
+          >
+            {link.label}
+          </a>
+        ))}
+        <a
+          href="#kontakt"
+          className="bg-earth text-cream px-5 py-2 rounded-full text-sm font-semibold hover:bg-night transition-colors"
+        >
+          {language === 'sv' ? 'Kom igång' : 'Get started'}
         </a>
-
-        <div className="hidden md:flex items-center space-x-6">
-          {navLinks.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className={`text-sm font-medium transition-colors ${
-                isScrolled ? 'text-muted-foreground hover:text-foreground' : 'text-white/80 hover:text-white'
-              }`}
-            >
-              {link.label}
-            </a>
-          ))}
-        </div>
-
-        <div className="flex items-center space-x-3">
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={toggleLanguage}
-            className={`text-xs ${isScrolled ? '' : 'text-white hover:bg-white/10'}`}
-          >
-            <Globe className="h-4 w-4 mr-1" />
-            {language.toUpperCase()}
-          </Button>
-
-          <Button
-            variant="ghost"
-            size="sm"
-            className={`md:hidden ${isScrolled ? '' : 'text-white hover:bg-white/10'}`}
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          >
-            {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-          </Button>
-        </div>
+        <button
+          onClick={toggleLanguage}
+          className="text-xs font-medium text-bark hover:text-earth transition-colors flex items-center gap-1"
+        >
+          <Globe className="h-3.5 w-3.5" />
+          {language.toUpperCase()}
+        </button>
       </div>
 
+      {/* Mobile */}
+      <div className="flex md:hidden items-center gap-3">
+        <button onClick={toggleLanguage} className="text-xs font-medium text-bark flex items-center gap-1">
+          <Globe className="h-3.5 w-3.5" />
+          {language.toUpperCase()}
+        </button>
+        <a
+          href="#kontakt"
+          className="bg-earth text-cream px-4 py-2 rounded-full text-sm font-semibold hover:bg-night transition-colors"
+        >
+          {language === 'sv' ? 'Kom igång' : 'Get started'}
+        </a>
+        <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="text-earth">
+          {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+        </button>
+      </div>
+
+      {/* Mobile menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-background/95 backdrop-blur-md border-b border-border/40">
-          <div className="container mx-auto px-4 py-4 flex flex-col space-y-4">
+        <div className="absolute top-full left-0 right-0 bg-cream/95 backdrop-blur-xl border-b border-sand-dark/30 md:hidden">
+          <div className="px-6 py-4 flex flex-col space-y-4">
             {navLinks.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
-                className="text-sm font-medium text-foreground hover:text-primary transition-colors py-2"
+                className="text-sm font-medium text-bark hover:text-earth transition-colors py-2"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {link.label}

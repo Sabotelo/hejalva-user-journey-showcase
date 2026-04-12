@@ -3,7 +3,6 @@ import Footer from "@/components/Footer";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Shield, Users, Eye, Handshake, Globe } from "lucide-react";
 import { ScrollAnimation, StaggerContainer, StaggerItem } from "@/components/ui/scroll-animation";
-import MimerLogo from "@/components/MimerLogo";
 
 const About = () => {
   const { language } = useLanguage();
@@ -16,141 +15,136 @@ const About = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-primary via-primary-dark to-primary">
+    <div className="min-h-screen bg-cream">
       <Navigation />
 
       {/* Hero */}
-      <section className="pt-32 pb-16">
-        <div className="container mx-auto px-4 text-center">
+      <section className="pt-32 pb-16 px-6">
+        <div className="max-w-[800px] mx-auto text-center">
           <ScrollAnimation>
-            <div className="flex items-center justify-center gap-4 mb-6">
-              <MimerLogo size={64} />
-              <h1 className="text-4xl md:text-5xl font-bold text-white">Mimer Technologies</h1>
-            </div>
-            <p className="text-white/60 text-lg max-w-2xl mx-auto">
+            <h1 className="font-serif text-[clamp(2.5rem,5vw,4rem)] text-night mb-4">
+              Mimer Technologies
+            </h1>
+            <p className="text-bark text-lg max-w-xl mx-auto">
               {language === 'sv'
-                ? 'Vi bygger AI-verktyg som hjälper svenska småföretag att ge fantastisk kundservice – dygnet runt.'
-                : 'We build AI tools that help Swedish small businesses deliver amazing customer service – 24/7.'}
+                ? 'Vi bygger AI-verktyg som hjälper svenska småföretag att ge fantastisk kundservice — dygnet runt.'
+                : 'We build AI tools that help Swedish small businesses deliver amazing customer service — 24/7.'}
             </p>
           </ScrollAnimation>
         </div>
       </section>
 
       {/* Vision */}
-      <section className="py-12">
-        <div className="container mx-auto px-4 max-w-3xl">
+      <section className="py-12 px-6">
+        <div className="max-w-[720px] mx-auto">
           <ScrollAnimation>
-            <div className="flex items-center gap-3 mb-6">
-              <Eye className="h-7 w-7 text-secondary" />
-              <h2 className="text-2xl md:text-3xl font-bold text-white">
+            <div className="flex items-center gap-3 mb-5">
+              <Eye className="h-6 w-6 text-moss" />
+              <h2 className="font-serif text-2xl text-night">
                 {language === 'sv' ? 'Vår vision' : 'Our Vision'}
               </h2>
             </div>
-            <p className="text-white/70 leading-relaxed text-lg mb-4">
+            <p className="text-bark leading-relaxed text-base mb-4">
               {language === 'sv'
                 ? 'Varje småföretag i Sverige förtjänar samma professionella telefonservice som de stora kedjorna. Men att anställa en receptionist kostar hundratusentals kronor per år.'
                 : 'Every small business in Sweden deserves the same professional phone service as the big chains. But hiring a receptionist costs hundreds of thousands per year.'}
             </p>
-            <p className="text-white/70 leading-relaxed text-lg">
+            <p className="text-bark leading-relaxed text-base">
               {language === 'sv'
-                ? 'Med Alva AI ger vi alla företag – från frisörer till bilverkstäder – en AI-receptionist som svarar dygnet runt, talar flytande svenska och aldrig missar ett samtal. Uråldrig visdom möter modern AI.'
-                : 'With Alva AI, we give every business – from hairdressers to auto workshops – an AI receptionist that answers 24/7, speaks fluent Swedish and never misses a call. Ancient wisdom meets modern AI.'}
+                ? 'Med Alva AI ger vi alla företag — från frisörer till bilverkstäder — en AI-receptionist som svarar dygnet runt, talar flytande svenska och aldrig missar ett samtal.'
+                : 'With Alva AI, we give every business — from hairdressers to auto workshops — an AI receptionist that answers 24/7, speaks fluent Swedish and never misses a call.'}
             </p>
-            <div className="w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent mt-12" />
+            <div className="w-full h-px bg-sand-dark mt-10" />
           </ScrollAnimation>
         </div>
       </section>
 
       {/* ElevenLabs Partnership */}
-      <section className="py-12">
-        <div className="container mx-auto px-4 max-w-3xl">
+      <section className="py-12 px-6">
+        <div className="max-w-[720px] mx-auto">
           <ScrollAnimation>
-            <div className="flex items-center gap-3 mb-6">
-              <Handshake className="h-7 w-7 text-secondary" />
-              <h2 className="text-2xl md:text-3xl font-bold text-white">
+            <div className="flex items-center gap-3 mb-5">
+              <Handshake className="h-6 w-6 text-moss" />
+              <h2 className="font-serif text-2xl text-night">
                 {language === 'sv' ? 'Partnerskap med ElevenLabs' : 'ElevenLabs Partnership'}
               </h2>
             </div>
-            <div className="flex items-center gap-3 mb-4">
-              <svg viewBox="0 0 100 100" className="h-7 w-7 text-white" fill="none">
-                <circle cx="50" cy="50" r="45" stroke="currentColor" strokeWidth="6" className="text-white/30" />
-                <circle cx="50" cy="50" r="20" fill="currentColor" className="text-white" />
-              </svg>
-              <span className="text-lg font-bold text-white">ElevenLabs</span>
-            </div>
-            <p className="text-white/70 leading-relaxed text-lg">
+            <p className="text-bark leading-relaxed text-base">
               {language === 'sv'
-                ? 'Vi vill tacka ElevenLabs för deras generösa bidrag av tokens för testning och utveckling genom deras grant-program. Deras avancerade röst-AI-teknologi driver Alvas naturliga och engagerande konversationer, vilket gör det möjligt för oss att leverera en röstupplevelse i världsklass.'
-                : 'We would like to thank ElevenLabs for their generous grant of tokens for testing and development. Their advanced voice AI technology powers Alva\'s natural and engaging conversations, enabling us to deliver a world-class voice experience.'}
+                ? 'Vi vill tacka ElevenLabs för deras generösa bidrag av tokens för testning och utveckling genom deras grant-program. Deras avancerade röst-AI-teknologi driver Alvas naturliga och engagerande konversationer.'
+                : 'We would like to thank ElevenLabs for their generous grant of tokens for testing and development. Their advanced voice AI technology powers Alva\'s natural and engaging conversations.'}
             </p>
-            <div className="w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent mt-12" />
+            <div className="w-full h-px bg-sand-dark mt-10" />
           </ScrollAnimation>
         </div>
       </section>
 
       {/* GDPR */}
-      <section className="py-12">
-        <div className="container mx-auto px-4 max-w-3xl">
+      <section className="py-12 px-6">
+        <div className="max-w-[720px] mx-auto">
           <ScrollAnimation>
-            <div className="flex items-center gap-3 mb-6">
-              <Shield className="h-7 w-7 text-secondary" />
-              <h2 className="text-2xl md:text-3xl font-bold text-white">
+            <div className="flex items-center gap-3 mb-5">
+              <Shield className="h-6 w-6 text-moss" />
+              <h2 className="font-serif text-2xl text-night">
                 {language === 'sv' ? 'GDPR & Datasäkerhet' : 'GDPR & Data Security'}
               </h2>
             </div>
-            <div className="space-y-4 text-white/70 text-lg leading-relaxed">
-              <p>
-                {language === 'sv'
-                  ? 'Mimer Technologies tar datasäkerhet på största allvar. Vi följer GDPR fullt ut och all data behandlas i enlighet med europeisk lagstiftning.'
-                  : 'Mimer Technologies takes data security very seriously. We are fully GDPR compliant and all data is processed in accordance with European legislation.'}
-              </p>
-              <ul className="space-y-2 list-none">
-                {[
-                  language === 'sv' ? '🔒 Samtalsdata krypteras end-to-end' : '🔒 Call data is encrypted end-to-end',
-                  language === 'sv' ? '📋 30 dagars lagring av inspelningar' : '📋 30-day retention for recordings',
-                  language === 'sv' ? '🇪🇺 Data behandlas inom EU' : '🇪🇺 Data processed within the EU',
-                  language === 'sv' ? '📄 Mimer är databehandlare, kunden är personuppgiftsansvarig' : '📄 Mimer is the data processor, customer is the data controller',
-                ].map((item, i) => (
-                  <li key={i}>{item}</li>
-                ))}
-              </ul>
-              <p>
-                <a href="/terms" className="text-secondary hover:text-secondary/80 transition-colors underline">
-                  {language === 'sv' ? 'Läs fullständiga villkor →' : 'Read full terms →'}
-                </a>
-              </p>
-            </div>
-            <div className="w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent mt-12" />
+            <p className="text-bark leading-relaxed text-base mb-4">
+              {language === 'sv'
+                ? 'Mimer Technologies tar datasäkerhet på största allvar. Vi följer GDPR fullt ut.'
+                : 'Mimer Technologies takes data security very seriously. We are fully GDPR compliant.'}
+            </p>
+            <ul className="space-y-2 text-bark text-sm">
+              {(language === 'sv' ? [
+                '🔒 Samtalsdata krypteras end-to-end',
+                '📋 30 dagars lagring av inspelningar',
+                '🇪🇺 Data behandlas inom EU',
+                '📄 Mimer är databehandlare, kunden är personuppgiftsansvarig',
+              ] : [
+                '🔒 Call data is encrypted end-to-end',
+                '📋 30-day retention for recordings',
+                '🇪🇺 Data processed within the EU',
+                '📄 Mimer is the data processor, customer is the data controller',
+              ]).map((item, i) => (
+                <li key={i}>{item}</li>
+              ))}
+            </ul>
+            <p className="mt-4">
+              <a href="/terms" className="text-sm text-moss hover:text-earth transition-colors underline">
+                {language === 'sv' ? 'Läs fullständiga villkor →' : 'Read full terms →'}
+              </a>
+            </p>
+            <div className="w-full h-px bg-sand-dark mt-10" />
           </ScrollAnimation>
         </div>
       </section>
 
       {/* Team */}
-      <section className="py-12">
-        <div className="container mx-auto px-4 max-w-3xl">
+      <section className="py-12 px-6">
+        <div className="max-w-[720px] mx-auto">
           <ScrollAnimation className="text-center mb-10">
-            <div className="flex items-center justify-center gap-3 mb-4">
-              <Users className="h-7 w-7 text-secondary" />
-              <h2 className="text-2xl md:text-3xl font-bold text-white">
+            <div className="flex items-center justify-center gap-3 mb-3">
+              <Users className="h-6 w-6 text-moss" />
+              <h2 className="font-serif text-2xl text-night">
                 {language === 'sv' ? 'Teamet' : 'The Team'}
               </h2>
             </div>
-            <p className="text-white/60">
+            <p className="text-stone text-sm">
               {language === 'sv' ? 'Baserade i Stockholm & Karlskrona' : 'Based in Stockholm & Karlskrona'}
             </p>
           </ScrollAnimation>
 
           <StaggerContainer className="grid grid-cols-2 md:grid-cols-4 gap-6" staggerDelay={0.1}>
             {team.map((member, i) => (
-              <StaggerItem key={i} variant="bounceUp">
+              <StaggerItem key={i} variant="fadeUp">
                 <div className="text-center">
-                  <div className="h-20 w-20 rounded-full bg-secondary/20 flex items-center justify-center mx-auto mb-4">
-                    <span className="text-2xl font-bold text-secondary">
+                  <div className="h-16 w-16 rounded-full bg-moss-pale flex items-center justify-center mx-auto mb-3">
+                    <span className="text-lg font-semibold text-moss">
                       {member.name.split(' ').map(n => n[0]).join('')}
                     </span>
                   </div>
-                  <h3 className="text-base font-bold text-white">{member.name}</h3>
-                  <p className="text-white/50 text-xs mt-1">{member.role}</p>
+                  <h3 className="text-sm font-semibold text-night">{member.name}</h3>
+                  <p className="text-stone text-xs mt-1">{member.role}</p>
                 </div>
               </StaggerItem>
             ))}
@@ -158,13 +152,13 @@ const About = () => {
         </div>
       </section>
 
-      {/* Contact info */}
-      <section className="py-12">
-        <div className="container mx-auto px-4 max-w-3xl text-center">
+      {/* Contact */}
+      <section className="py-12 px-6">
+        <div className="max-w-[720px] mx-auto text-center">
           <ScrollAnimation>
-            <div className="flex items-center justify-center gap-3 mb-4">
-              <Globe className="h-5 w-5 text-secondary" />
-              <span className="text-white/60 text-sm">dev@hejalva.com</span>
+            <div className="flex items-center justify-center gap-2 text-stone text-sm">
+              <Globe className="h-4 w-4" />
+              <span>dev@hejalva.com</span>
             </div>
           </ScrollAnimation>
         </div>
