@@ -9,9 +9,10 @@ const About = () => {
   const { language } = useLanguage();
 
   const team = [
-    { name: "Damian Arango", role: language === 'sv' ? 'Grundare & VD' : 'Founder & CEO', image: null },
-    { name: "Brian Lavol", role: language === 'sv' ? 'Medgrundare & CTO' : 'Co-Founder & CTO', image: null },
-    { name: "Danya Kreyg", role: language === 'sv' ? 'Medgrundare & COO' : 'Co-Founder & COO', image: null },
+    { name: "Damian Rovira", role: language === 'sv' ? 'Medgrundare & Administration' : 'Co-Founder & Administration' },
+    { name: "Zeth Danielsson", role: language === 'sv' ? 'Medgrundare & CTO' : 'Co-Founder & CTO' },
+    { name: "Daniil Vildholm", role: language === 'sv' ? 'Medgrundare & Franchising' : 'Co-Founder & Franchising' },
+    { name: "Brian Bui", role: language === 'sv' ? 'Senior Utvecklare' : 'Senior Developer' },
   ];
 
   return (
