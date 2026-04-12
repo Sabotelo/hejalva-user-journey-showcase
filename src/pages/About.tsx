@@ -3,9 +3,11 @@ import Footer from "@/components/Footer";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Shield, Users, Eye, Handshake, Globe } from "lucide-react";
 import { ScrollAnimation, StaggerContainer, StaggerItem } from "@/components/ui/scroll-animation";
+import { usePageMeta } from "@/hooks/usePageMeta";
 
 const About = () => {
   const { language } = useLanguage();
+  usePageMeta(language);
 
   const team = [
     { name: "Damian Rovira", role: language === 'sv' ? 'Medgrundare & Administration' : 'Co-Founder & Administration' },
