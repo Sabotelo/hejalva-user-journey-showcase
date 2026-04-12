@@ -13,7 +13,7 @@ serve(async (req) => {
   }
 
   try {
-    const { name, email, message, phone } = await req.json()
+    const { name, email, message, phone, company } = await req.json()
 
     // Validate email format before using as reply_to
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
@@ -58,9 +58,10 @@ serve(async (req) => {
 Namn:       ${name}
 Telefon:    ${phone || 'Ej angivet'}
 E-post:     ${email}
+Företag:    ${company || 'Ej angivet'}
 
-Meddelande:
-${message}
+Syfte:
+${message || 'Ej angivet'}
 
 Tidpunkt:   ${new Date().toLocaleString('sv-SE', { timeZone: 'Europe/Stockholm' })}
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━

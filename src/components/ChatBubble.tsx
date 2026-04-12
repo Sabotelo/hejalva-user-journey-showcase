@@ -121,13 +121,8 @@ const ChatBubble = () => {
           name: data.name,
           email: data.email,
           phone: data.phone,
-          message: [
-            `Namn: ${data.name}`,
-            `Telefon: ${data.phone}`,
-            `E-post: ${data.email}`,
-            `Företag: ${data.company}`,
-            `Syfte: ${data.purpose}`,
-          ].join("\n"),
+          company: data.company,
+          message: data.purpose,
         },
       });
       if (error) throw error;
