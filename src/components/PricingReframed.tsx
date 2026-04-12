@@ -1,79 +1,70 @@
 import { useLanguage } from "@/contexts/LanguageContext";
-import { Check, Phone, Calendar, MessageCircle, Clock, UserCheck } from "lucide-react";
 import { ScrollAnimation } from "@/components/ui/scroll-animation";
-import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
 
 const PricingReframed = () => {
   const { language } = useLanguage();
 
-  const features = [
-    language === 'sv' ? 'Svarar på alla samtal 24/7' : 'Answers all calls 24/7',
-    language === 'sv' ? 'Bokar möten automatiskt' : 'Books appointments automatically',
-    language === 'sv' ? 'Sammanfattningar via SMS/e-post' : 'Summaries via SMS/email',
-    language === 'sv' ? 'Tränad på ditt företag' : 'Trained on your business',
-    language === 'sv' ? 'Obegränsade samtal' : 'Unlimited calls',
-    language === 'sv' ? 'Ingen bindningstid' : 'No commitment',
-  ];
+  const features = language === 'sv'
+    ? [
+      '24/7 samtalshantering med naturlig svensk röst',
+      'Integrerar med ditt bokningssystem och kalender',
+      'Samtalssammanfattningar via SMS och e-post',
+      'Obegränsad användning',
+      'Svarar på frågor om dina tjänster och öppettider',
+    ]
+    : [
+      '24/7 call handling with natural Swedish voice',
+      'Integrates with your booking system and calendar',
+      'Call summaries via SMS and email',
+      'Unlimited usage',
+      'Answers questions about your services and hours',
+    ];
 
   return (
-    <section className="py-20 bg-gradient-to-b from-primary-dark to-primary">
-      <div className="container mx-auto px-4">
-        <ScrollAnimation className="text-center mb-10">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-            {language === 'sv' ? 'Billigare än ett missat samtal' : 'Cheaper Than a Missed Call'}
-          </h2>
-          <p className="text-white/60 text-lg max-w-xl mx-auto">
-            {language === 'sv'
-              ? 'Ett enda missat samtal kan kosta dig tusentals kronor. Alva kostar mindre än en kopp kaffe om dagen.'
-              : 'A single missed call can cost you thousands. Alva costs less than a cup of coffee a day.'}
+    <section id="pris" className="py-20 px-6 bg-sand">
+      <ScrollAnimation className="text-center mb-14">
+        <h2 className="font-serif text-[clamp(2rem,4vw,3rem)] text-night mb-3">
+          {language === 'sv' ? 'En enkel plan' : 'One simple plan'}
+        </h2>
+        <p className="text-bark text-lg max-w-[500px] mx-auto">
+          {language === 'sv' ? 'Allt du behöver. Ingen bindningstid.' : 'Everything you need. No commitment.'}
+        </p>
+      </ScrollAnimation>
+
+      <ScrollAnimation delay={0.2}>
+        <div className="max-w-[560px] mx-auto bg-cream rounded-2xl p-8 md:p-10 text-center border border-sand-dark shadow-elevated">
+          <p className="text-bark text-[0.95rem] leading-relaxed mb-8">
+            {language === 'sv' ? (
+              <>En missad kund kostar dig i snitt <strong className="text-accent-warm font-semibold">800 kr</strong>.<br />Alva kostar <strong className="text-accent-warm font-semibold">117 kr om dagen</strong>.</>
+            ) : (
+              <>A missed customer costs you on average <strong className="text-accent-warm font-semibold">800 kr</strong>.<br />Alva costs <strong className="text-accent-warm font-semibold">117 kr per day</strong>.</>
+            )}
           </p>
-        </ScrollAnimation>
 
-        <ScrollAnimation delay={0.2}>
-          <div className="max-w-lg mx-auto">
-            <motion.div
-              className="rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl p-8 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.5)]"
-              whileHover={{ scale: 1.01 }}
-              transition={{ type: "spring", stiffness: 300, damping: 25 }}
-            >
-              <div className="text-center mb-8">
-                <div className="inline-block bg-secondary/20 text-secondary px-4 py-1 rounded-full text-sm font-medium mb-4">
-                  {language === 'sv' ? 'Allt ingår' : 'Everything included'}
-                </div>
-                <div className="flex items-baseline justify-center gap-1 mb-2">
-                  <span className="text-5xl font-bold text-white">3 500 kr</span>
-                  <span className="text-white/50">{language === 'sv' ? '/mån' : '/mo'}</span>
-                </div>
-                <p className="text-white/50 text-sm">
-                  {language === 'sv' ? '≈ 117 kr/dag – billigare än ditt kaffe' : '≈ 117 kr/day – cheaper than your coffee'}
-                </p>
-              </div>
+          <div className="font-serif text-[3.5rem] text-night mb-1">3 500 kr</div>
+          <div className="text-sm text-stone mb-8">{language === 'sv' ? 'per månad' : 'per month'}</div>
 
-              <div className="space-y-3 mb-8">
-                {features.map((feature, i) => (
-                  <div key={i} className="flex items-center gap-3">
-                    <Check className="h-5 w-5 text-secondary flex-shrink-0" />
-                    <span className="text-white/80">{feature}</span>
-                  </div>
-                ))}
-              </div>
+          <ul className="text-left space-y-3 mb-8">
+            {features.map((f, i) => (
+              <li key={i} className="flex items-start gap-3 text-sm text-earth">
+                <span className="w-1.5 h-1.5 rounded-full bg-moss mt-2 flex-shrink-0" />
+                {f}
+              </li>
+            ))}
+          </ul>
 
-              <Button
-                size="lg"
-                className="w-full h-14 rounded-full bg-secondary hover:bg-secondary/90 text-white font-semibold text-lg shadow-[0_0_40px_rgba(0,200,180,0.4)] transition-all"
-                onClick={() => document.getElementById('signup')?.scrollIntoView({ behavior: 'smooth' })}
-              >
-                {language === 'sv' ? 'Prova gratis i 14 dagar' : 'Try Free for 14 Days'}
-              </Button>
+          <a
+            href="#kontakt"
+            className="inline-block bg-earth text-cream px-8 py-4 rounded-full font-semibold text-base hover:bg-night transition-all duration-300 hover:-translate-y-0.5"
+          >
+            {language === 'sv' ? 'Boka en demo' : 'Book a demo'}
+          </a>
 
-              <p className="text-center text-white/30 text-xs mt-4">
-                {language === 'sv' ? 'Ingen bindningstid • Inget kreditkort krävs' : 'No commitment • No credit card required'}
-              </p>
-            </motion.div>
+          <div className="mt-3 text-xs text-stone">
+            {language === 'sv' ? '14 dagars gratis provperiod' : '14-day free trial'}
           </div>
-        </ScrollAnimation>
-      </div>
+        </div>
+      </ScrollAnimation>
     </section>
   );
 };
