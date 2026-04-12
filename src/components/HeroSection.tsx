@@ -1,5 +1,5 @@
 import { useLanguage } from "@/contexts/LanguageContext";
-import { Phone } from "lucide-react";
+
 import { motion } from "framer-motion";
 
 const HeroSection = () => {
@@ -44,23 +44,6 @@ const HeroSection = () => {
           : 'Alva answers your customers, books appointments and summarizes calls — 24/7, in fluent Swedish.'}
       </motion.p>
 
-      <motion.div
-        className="flex flex-col items-center gap-3 relative z-10"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.35 }}
-      >
-        <a
-          href="tel:+46766866572"
-          className="inline-flex items-center gap-3 bg-earth text-cream px-8 py-4 rounded-full text-lg font-semibold hover:bg-night transition-all duration-300 shadow-[0_4px_24px_rgba(92,79,61,0.15)] hover:-translate-y-0.5 hover:shadow-[0_8px_32px_rgba(92,79,61,0.25)] md:pointer-events-none md:cursor-default"
-        >
-          <Phone className="h-5 w-5" />
-          {language === 'sv' ? 'Ring Alva nu' : 'Call Alva now'}
-        </a>
-        <span className="text-xs text-stone">
-          {language === 'sv' ? 'Testa med vår demo — ingen registrering behövs' : 'Try our demo — no signup required'}
-        </span>
-      </motion.div>
     </section>
   );
 };
