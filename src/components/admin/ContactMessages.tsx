@@ -29,17 +29,17 @@ const ContactMessages = () => {
         .order('created_at', { ascending: false });
 
       if (error) {
-        console.error('Error fetching messages:', error);
+        if (import.meta.env.DEV) console.error('Error fetching messages:', error);
         toast({
           title: "Error",
-          description: "Failed to load contact messages. Make sure you're authenticated as an admin.",
+          description: "Failed to load messages. Please try again.",
           variant: "destructive",
         });
       } else {
         setMessages(data || []);
       }
     } catch (error) {
-      console.error('Error:', error);
+      if (import.meta.env.DEV) console.error('Error:', error);
       toast({
         title: "Error",
         description: "Failed to load contact messages.",

@@ -21,12 +21,10 @@ const ContactSection = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
-  console.log('ContactSection rendered, messageForm:', messageForm);
-  console.log('ContactSection isOpen state:', isOpen);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Form submitted:', messageForm);
+    
     
     if (!messageForm.name || !messageForm.email || !messageForm.message) {
       toast({
@@ -51,7 +49,7 @@ const ContactSection = () => {
       });
 
       if (error) {
-        console.error('Supabase function error:', error);
+        if (import.meta.env.DEV) console.error('Function error:', error);
         throw error;
       }
 
@@ -68,7 +66,7 @@ const ContactSection = () => {
         throw new Error(data?.error || 'Failed to send message');
       }
     } catch (error) {
-      console.error('Error sending message:', error);
+      if (import.meta.env.DEV) console.error('Error sending message:', error);
       toast({
         title: "Error",
         description: "Failed to send message. Please try again or contact us directly.",
@@ -81,7 +79,7 @@ const ContactSection = () => {
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
-    console.log('Input changed:', name, value);
+    
     setMessageForm(prev => ({ ...prev, [name]: value }));
   };
 
@@ -104,7 +102,7 @@ const ContactSection = () => {
             onClick={(e) => {
               e.preventDefault();
               e.stopPropagation();
-              console.log('Email card clicked!');
+              
               setIsOpen(true);
             }}
             style={{ pointerEvents: 'auto', zIndex: 1 }}
