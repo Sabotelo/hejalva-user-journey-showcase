@@ -5,19 +5,19 @@ const IndustriesSection = () => {
   const { language } = useLanguage();
 
   const industries = language === 'sv' ? [
-    { icon: '✂️', title: 'Frisörer & Salonger', quote: '"Har ni tid för färgning på fredag?"' },
-    { icon: '⚙️', title: 'Bilverkstäder', quote: '"Vad kostar ett oljebyte för en Volvo V70?"' },
-    { icon: '🦷', title: 'Tandläkare & Vård', quote: '"Jag vill boka en undersökning nästa vecka"' },
-    { icon: '☕', title: 'Restauranger & Caféer', quote: '"Kan vi boka bord för 6 personer kl 19?"' },
-    { icon: '🔧', title: 'Hantverkare & VVS', quote: '"Kan ni komma och titta på mitt element?"' },
-    { icon: '💼', title: 'Småföretag & Konsulter', quote: '"Jag vill boka ett möte för att diskutera mitt projekt"' },
+    { title: 'Frisörer & Salonger', quote: '"Har ni tid för färgning på fredag?"' },
+    { title: 'Bilverkstäder', quote: '"Vad kostar ett oljebyte för en Volvo V70?"' },
+    { title: 'Tandläkare & Vård', quote: '"Jag vill boka en undersökning nästa vecka"' },
+    { title: 'Restauranger & Caféer', quote: '"Kan vi boka bord för 6 personer kl 19?"' },
+    { title: 'Hantverkare & VVS', quote: '"Kan ni komma och titta på mitt element?"' },
+    { title: 'Småföretag & Konsulter', quote: '"Jag vill boka ett möte för att diskutera mitt projekt"' },
   ] : [
-    { icon: '✂️', title: 'Hairdressers & Salons', quote: '"Do you have time for coloring on Friday?"' },
-    { icon: '⚙️', title: 'Auto Workshops', quote: '"How much for an oil change on a Volvo V70?"' },
-    { icon: '🦷', title: 'Dentists & Healthcare', quote: '"I want to book an exam for next week"' },
-    { icon: '☕', title: 'Restaurants & Cafés', quote: '"Can we book a table for 6 at 7 PM?"' },
-    { icon: '🔧', title: 'Plumbers & HVAC', quote: '"Can you come look at my radiator?"' },
-    { icon: '💼', title: 'Small Business & Consultants', quote: '"I want to book a meeting to discuss my project"' },
+    { title: 'Hairdressers & Salons', quote: '"Do you have time for coloring on Friday?"' },
+    { title: 'Auto Workshops', quote: '"How much for an oil change on a Volvo V70?"' },
+    { title: 'Dentists & Healthcare', quote: '"I want to book an exam for next week"' },
+    { title: 'Restaurants & Cafés', quote: '"Can we book a table for 6 at 7 PM?"' },
+    { title: 'Plumbers & HVAC', quote: '"Can you come look at my radiator?"' },
+    { title: 'Small Business & Consultants', quote: '"I want to book a meeting to discuss my project"' },
   ];
 
   return (

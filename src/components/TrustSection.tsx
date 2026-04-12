@@ -37,8 +37,8 @@ const TrustSection = () => {
       name: "Anna K.",
       business: language === 'sv' ? 'Tandläkare, Stockholm' : 'Dentist, Stockholm',
       message: language === 'sv' 
-        ? 'Min kalender var full när jag vaknade! 🎉 Alva hade bokat 3 nya patienter under natten.'
-        : 'My calendar was full when I woke up! 🎉 Alva had booked 3 new patients overnight.',
+        ? 'Min kalender var full när jag vaknade! Alva hade bokat 3 nya patienter under natten.'
+        : 'My calendar was full when I woke up! Alva had booked 3 new patients overnight.',
       time: "07:32",
     },
     {
