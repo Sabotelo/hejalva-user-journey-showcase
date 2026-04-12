@@ -249,30 +249,14 @@ const ChatBubble = () => {
                   transition={{ duration: 0.25 }}
                   className={`flex ${msg.from === "user" ? "justify-end" : "justify-start"}`}
                 >
-                  <div className="max-w-[80%]">
-                    <div
-                      className={`px-4 py-2.5 rounded-2xl text-sm leading-relaxed ${
-                        msg.from === "user"
-                          ? "bg-earth text-cream rounded-br-md"
-                          : "bg-sand text-night rounded-bl-md"
-                      }`}
-                    >
-                      {msg.text}
-                    </div>
-                    {/* Purpose selection buttons */}
-                    {msg.options && step === "purpose" && (
-                      <div className="flex gap-2 mt-2">
-                        {msg.options.map((opt) => (
-                          <button
-                            key={opt.value}
-                            onClick={() => handlePurposeSelect(opt.value)}
-                            className="px-4 py-2 rounded-full border border-sand-dark bg-warm-white text-sm font-medium text-earth hover:bg-earth hover:text-cream transition-colors"
-                          >
-                            {opt.label}
-                          </button>
-                        ))}
-                      </div>
-                    )}
+                  <div
+                    className={`max-w-[80%] px-4 py-2.5 rounded-2xl text-sm leading-relaxed ${
+                      msg.from === "user"
+                        ? "bg-earth text-cream rounded-br-md"
+                        : "bg-sand text-night rounded-bl-md"
+                    }`}
+                  >
+                    {msg.text}
                   </div>
                 </motion.div>
               ))}
