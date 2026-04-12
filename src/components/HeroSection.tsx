@@ -1,5 +1,5 @@
 import { useLanguage } from "@/contexts/LanguageContext";
-import { Phone } from "lucide-react";
+
 import { motion } from "framer-motion";
 
 const HeroSection = () => {
