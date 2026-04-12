@@ -37,7 +37,7 @@ const IndustriesSection = () => {
         {industries.map((item, i) => (
           <StaggerItem key={i} variant="fadeUp">
             <div className="bg-warm-white border border-sand-dark rounded-xl p-6 hover:border-stone hover:-translate-y-1 hover:shadow-elevated transition-all duration-300 cursor-default">
-              <div className="text-2xl mb-3">{item.icon}</div>
+              
               <h3 className="font-serif text-lg text-night mb-2">{item.title}</h3>
               <p className="text-sm text-bark italic">{item.quote}</p>
             </div>
