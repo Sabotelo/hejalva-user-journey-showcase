@@ -46,13 +46,13 @@ const About = () => {
             </div>
             <p className="text-bark leading-relaxed text-base mb-4">
               {language === 'sv'
-                ? 'Varje småföretag i Sverige förtjänar samma professionella telefonservice som de stora kedjorna. Men att anställa en receptionist kostar hundratusentals kronor per år.'
-                : 'Every small business in Sweden deserves the same professional phone service as the big chains. But hiring a receptionist costs hundreds of thousands per year.'}
+                ? 'Varje företag i Sverige — från den lokala frisören till stora organisationer med hundratals inkommande samtal — förtjänar en telefonservice som aldrig missar ett samtal. Att anställa receptionister i skift kostar hundratusentals kronor per år, oavsett företagsstorlek.'
+                : 'Every business in Sweden — from the local hairdresser to large organizations with hundreds of incoming calls — deserves a phone service that never misses a call. Hiring receptionists in shifts costs hundreds of thousands per year, regardless of company size.'}
             </p>
             <p className="text-bark leading-relaxed text-base">
               {language === 'sv'
-                ? 'Med Alva AI ger vi alla företag — från frisörer till bilverkstäder — en AI-receptionist som svarar dygnet runt, talar flytande svenska och aldrig missar ett samtal.'
-                : 'With Alva AI, we give every business — from hairdressers to auto workshops — an AI receptionist that answers 24/7, speaks fluent Swedish and never misses a call.'}
+                ? 'Med Alva AI ger vi företag i alla storlekar en AI-receptionist som svarar dygnet runt, talar flytande svenska och skalar efter behov — en lösning för soloföretagaren som för koncernen.'
+                : 'With Alva AI, we give businesses of all sizes an AI receptionist that answers 24/7, speaks fluent Swedish and scales on demand — a solution for the solo entrepreneur as well as the enterprise.'}
             </p>
             <div className="w-full h-px bg-sand-dark mt-10" />
           </ScrollAnimation>
