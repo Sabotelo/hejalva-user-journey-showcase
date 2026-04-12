@@ -44,7 +44,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [session, setSession] = useState<Session | null>(null);
   const [loading, setLoading] = useState(true);
 
-  console.log('AuthProvider rendering:', { user: !!user, profile: !!profile, loading });
+  
 
   const fetchProfile = async (userId: string) => {
     try {
@@ -55,13 +55,13 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         .single();
       
       if (error && error.code !== 'PGRST116') {
-        console.error('Error fetching profile:', error);
+        if (import.meta.env.DEV) console.error('Error fetching profile:', error);
         return;
       }
       
       setProfile(data);
     } catch (error) {
-      console.error('Error in fetchProfile:', error);
+      if (import.meta.env.DEV) console.error('Error in fetchProfile:', error);
     }
   };
 
@@ -129,7 +129,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
           .eq('id', data.user.id);
 
         if (profileError) {
-          console.error('Error updating profile:', profileError);
+          if (import.meta.env.DEV) console.error('Error updating profile:', profileError);
         }
       }
 
@@ -155,7 +155,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     try {
       await supabase.auth.signOut();
     } catch (error) {
-      console.error('Error signing out:', error);
+      if (import.meta.env.DEV) console.error('Error signing out:', error);
     }
   };
 

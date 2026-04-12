@@ -38,7 +38,7 @@ export default function MeetingScheduler() {
     message: ""
   });
 
-  console.log('MeetingScheduler render:', { isOpen, isLoading });
+  
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -65,7 +65,7 @@ export default function MeetingScheduler() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Form submitted with data:', formData);
+    
     
     if (!formData.date) {
       toast({
@@ -122,7 +122,7 @@ export default function MeetingScheduler() {
       });
       setIsOpen(false);
     } catch (error) {
-      console.error('Error submitting form:', error);
+      if (import.meta.env.DEV) console.error('Error submitting form:', error);
       toast({
         title: "Error",
         description: "Failed to schedule meeting. Please try again.",
@@ -140,7 +140,7 @@ export default function MeetingScheduler() {
   };
 
   const handleButtonClick = () => {
-    console.log('Schedule meeting button clicked!');
+    
     setIsOpen(true);
   };
 
