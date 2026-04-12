@@ -1,13 +1,10 @@
 import { Routes, Route, useLocation } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import Index from "@/pages/Index";
-import Contact from "@/pages/Contact";
-import Demo from "@/pages/Demo";
-import HowItWorks from "@/pages/HowItWorks";
+import About from "@/pages/About";
 import Terms from "@/pages/Terms";
 import NotFound from "@/pages/NotFound";
 
-// Memphis-inspired spring transition
 const pageTransition = {
   type: "spring",
   stiffness: 260,
@@ -15,37 +12,13 @@ const pageTransition = {
 };
 
 const pageVariants = {
-  initial: {
-    opacity: 0,
-    y: 30,
-    scale: 0.98,
-  },
-  animate: {
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    transition: pageTransition,
-  },
-  exit: {
-    opacity: 0,
-    y: -20,
-    scale: 0.99,
-    transition: {
-      duration: 0.25,
-      ease: "easeInOut",
-    },
-  },
+  initial: { opacity: 0, y: 30, scale: 0.98 },
+  animate: { opacity: 1, y: 0, scale: 1, transition: pageTransition },
+  exit: { opacity: 0, y: -20, scale: 0.99, transition: { duration: 0.25, ease: "easeInOut" } },
 };
 
-// Wrapper component for animated pages
 const AnimatedPage = ({ children }: { children: React.ReactNode }) => (
-  <motion.div
-    variants={pageVariants}
-    initial="initial"
-    animate="animate"
-    exit="exit"
-    className="min-h-screen"
-  >
+  <motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit" className="min-h-screen">
     {children}
   </motion.div>
 );
@@ -56,55 +29,14 @@ const AnimatedRoutes = () => {
   return (
     <AnimatePresence mode="wait" initial={false}>
       <Routes location={location} key={location.pathname}>
-        <Route
-          path="/"
-          element={
-            <AnimatedPage>
-              <Index />
-            </AnimatedPage>
-          }
-        />
-        <Route
-          path="/contact"
-          element={
-            <AnimatedPage>
-              <Contact />
-            </AnimatedPage>
-          }
-        />
-        <Route
-          path="/demo"
-          element={
-            <AnimatedPage>
-              <Demo />
-            </AnimatedPage>
-          }
-        />
-        <Route
-          path="/how-it-works"
-          element={
-            <AnimatedPage>
-              <HowItWorks />
-            </AnimatedPage>
-          }
-        />
-        <Route
-          path="/terms"
-          element={
-            <AnimatedPage>
-              <Terms />
-            </AnimatedPage>
-          }
-        />
-        {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-        <Route
-          path="*"
-          element={
-            <AnimatedPage>
-              <NotFound />
-            </AnimatedPage>
-          }
-        />
+        <Route path="/" element={<AnimatedPage><Index /></AnimatedPage>} />
+        <Route path="/about" element={<AnimatedPage><About /></AnimatedPage>} />
+        <Route path="/terms" element={<AnimatedPage><Terms /></AnimatedPage>} />
+        {/* Redirect old routes */}
+        <Route path="/contact" element={<AnimatedPage><Index /></AnimatedPage>} />
+        <Route path="/demo" element={<AnimatedPage><Index /></AnimatedPage>} />
+        <Route path="/how-it-works" element={<AnimatedPage><Index /></AnimatedPage>} />
+        <Route path="*" element={<AnimatedPage><NotFound /></AnimatedPage>} />
       </Routes>
     </AnimatePresence>
   );
