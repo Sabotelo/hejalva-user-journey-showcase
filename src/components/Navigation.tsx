@@ -7,44 +7,36 @@ import MimerLogo from "@/components/MimerLogo";
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const { language, setLanguage, t } = useLanguage();
+  const { language, setLanguage } = useLanguage();
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-
+    const handleScroll = () => setIsScrolled(window.scrollY > 50);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const toggleLanguage = () => {
-    setLanguage(language === 'sv' ? 'en' : 'sv');
-  };
+  const toggleLanguage = () => setLanguage(language === 'sv' ? 'en' : 'sv');
 
   const navLinks = [
-    { href: "/demo", label: t('nav.demo') },
-    { href: "/how-it-works", label: language === 'sv' ? 'Hur det fungerar' : 'How It Works' },
-    { href: "/contact", label: t('nav.contact') },
+    { href: "/about", label: language === 'sv' ? 'Om oss' : 'About' },
   ];
 
   return (
     <nav className={`fixed top-0 z-50 w-full transition-all duration-300 ${
-      isScrolled 
-        ? 'bg-background/95 backdrop-blur-md border-b border-border/40 shadow-sm' 
+      isScrolled
+        ? 'bg-background/95 backdrop-blur-md border-b border-border/40 shadow-sm'
         : 'bg-transparent'
     }`}>
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
         <a href="/" className="flex items-center cursor-pointer hover:opacity-80 transition-opacity">
           <MimerLogo size={40} />
         </a>
-        
-        {/* Desktop Navigation */}
+
         <div className="hidden md:flex items-center space-x-6">
           {navLinks.map((link) => (
-            <a 
+            <a
               key={link.href}
-              href={link.href} 
+              href={link.href}
               className={`text-sm font-medium transition-colors ${
                 isScrolled ? 'text-muted-foreground hover:text-foreground' : 'text-white/80 hover:text-white'
               }`}
@@ -53,11 +45,11 @@ const Navigation = () => {
             </a>
           ))}
         </div>
-        
+
         <div className="flex items-center space-x-3">
-          <Button 
-            variant="ghost" 
-            size="sm" 
+          <Button
+            variant="ghost"
+            size="sm"
             onClick={toggleLanguage}
             className={`text-xs ${isScrolled ? '' : 'text-white hover:bg-white/10'}`}
           >
@@ -65,7 +57,6 @@ const Navigation = () => {
             {language.toUpperCase()}
           </Button>
 
-          {/* Mobile Menu Button */}
           <Button
             variant="ghost"
             size="sm"
@@ -77,7 +68,6 @@ const Navigation = () => {
         </div>
       </div>
 
-      {/* Mobile Menu */}
       {mobileMenuOpen && (
         <div className="md:hidden bg-background/95 backdrop-blur-md border-b border-border/40">
           <div className="container mx-auto px-4 py-4 flex flex-col space-y-4">

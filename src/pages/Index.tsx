@@ -1,10 +1,10 @@
 import Navigation from "@/components/Navigation";
 import HeroSection from "@/components/HeroSection";
-import FeatureCards from "@/components/FeatureCards";
-import UseCasesSection from "@/components/UseCasesSection";
-import LostRevenueCalculator from "@/components/LostRevenueCalculator";
-import PricingSection from "@/components/PricingSection";
-import PartnersSection from "@/components/PartnersSection";
+import AudioDemoSection from "@/components/AudioDemoSection";
+import TryAlvaLive from "@/components/TryAlvaLive";
+import HowItWorksSimple from "@/components/HowItWorksSimple";
+import PricingReframed from "@/components/PricingReframed";
+import SignupForm from "@/components/SignupForm";
 import Footer from "@/components/Footer";
 
 const Index = () => {
@@ -12,11 +12,11 @@ const Index = () => {
     <div className="min-h-screen">
       <Navigation />
       <HeroSection />
-      <FeatureCards />
-      <LostRevenueCalculator />
-      <UseCasesSection />
-      <PricingSection />
-      <PartnersSection />
+      <AudioDemoSection />
+      <TryAlvaLive />
+      <HowItWorksSimple />
+      <PricingReframed />
+      <SignupForm />
       <Footer />
     </div>
   );
