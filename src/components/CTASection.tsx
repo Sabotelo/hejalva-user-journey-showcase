@@ -43,12 +43,6 @@ const CTASection = () => {
               <ScrollAnimation delay={0.1}>
                 <PulseElement scale={1.03} duration={1.5}>
                   <div className="inline-flex items-center gap-2 bg-destructive/30 text-white px-4 py-2 rounded-full mb-6 text-sm">
-                    <motion.span
-                      animate={{ rotate: [0, 15, -15, 0] }}
-                      transition={{ duration: 0.5, repeat: Infinity, repeatDelay: 1 }}
-                    >
-                      ⚡
-                    </motion.span>
                     <span>{urgencyText}</span>
                   </div>
                 </PulseElement>
