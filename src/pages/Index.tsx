@@ -8,8 +8,12 @@ import PricingReframed from "@/components/PricingReframed";
 import SignupForm from "@/components/SignupForm";
 import Footer from "@/components/Footer";
 import ChatBubble from "@/components/ChatBubble";
+import { usePageMeta } from "@/hooks/usePageMeta";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Index = () => {
+  const { language } = useLanguage();
+  usePageMeta(language);
   return (
     <div className="min-h-screen bg-cream">
       <Navigation />
