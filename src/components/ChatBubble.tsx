@@ -5,12 +5,11 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { supabase } from "@/integrations/supabase/client";
 
 type Step = "greeting" | "name" | "email" | "phone" | "company" | "purpose" | "sending" | "done";
-type Purpose = "kundtjänst" | "försäljning" | "";
+
 
 interface ChatMessage {
   from: "bot" | "user";
   text: string;
-  options?: { label: string; value: string }[];
 }
 
 const ChatBubble = () => {
@@ -19,7 +18,7 @@ const ChatBubble = () => {
   const [step, setStep] = useState<Step>("greeting");
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState<ChatMessage[]>([]);
-  const [formData, setFormData] = useState({ name: "", email: "", phone: "", company: "", purpose: "" as Purpose });
+  const [formData, setFormData] = useState({ name: "", email: "", phone: "", company: "", purpose: "" });
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -57,15 +56,6 @@ const ChatBubble = () => {
       phone: language === "sv" ? "+46 70 123 4567" : "+46 70 123 4567",
       company: language === "sv" ? "Företagsnamn..." : "Company name...",
     },
-    purposeOptions: language === "sv"
-      ? [
-          { label: "Kundtjänst", value: "kundtjänst" },
-          { label: "Försäljning", value: "försäljning" },
-        ]
-      : [
-          { label: "Customer Service", value: "kundtjänst" },
-          { label: "Sales", value: "försäljning" },
-        ],
     bubbleLabel: language === "sv" ? "Kontakta oss" : "Contact us",
   };
 
@@ -86,8 +76,8 @@ const ChatBubble = () => {
     if (isOpen) inputRef.current?.focus();
   }, [isOpen, step]);
 
-  const addBotMessage = (text: string, options?: { label: string; value: string }[]) => {
-    setMessages((prev) => [...prev, { from: "bot", text, options }]);
+  const addBotMessage = (text: string) => {
+    setMessages((prev) => [...prev, { from: "bot", text }]);
   };
 
   const extractName = (raw: string): string => {
@@ -136,7 +126,7 @@ const ChatBubble = () => {
             `Telefon: ${data.phone}`,
             `E-post: ${data.email}`,
             `Företag: ${data.company}`,
-            `Syfte: ${purposeLabel}`,
+            `Syfte: ${data.purpose}`,
           ].join("\n"),
         },
       });
@@ -145,14 +135,6 @@ const ChatBubble = () => {
     } catch {
       setTimeout(() => { addBotMessage(t.error); setStep("purpose"); }, 500);
     }
-  };
-
-  const handlePurposeSelect = (value: string) => {
-    const label = t.purposeOptions.find(o => o.value === value)?.label || value;
-    setMessages((prev) => [...prev, { from: "user", text: label }]);
-    const finalData = { ...formData, purpose: value as Purpose };
-    setFormData(finalData);
-    submitForm(finalData);
   };
 
   const handleSend = async () => {
@@ -185,7 +167,13 @@ const ChatBubble = () => {
       case "company": {
         const company = extractCompany(value);
         setFormData((d) => ({ ...d, company }));
-        setTimeout(() => { addBotMessage(t.askPurpose, t.purposeOptions); setStep("purpose"); }, 400);
+        setTimeout(() => { addBotMessage(t.askPurpose); setStep("purpose"); }, 400);
+        break;
+      }
+      case "purpose": {
+        const finalData = { ...formData, purpose: value };
+        setFormData(finalData);
+        submitForm(finalData);
         break;
       }
     }
@@ -196,10 +184,11 @@ const ChatBubble = () => {
     if (step === "email") return t.placeholder.email;
     if (step === "phone") return t.placeholder.phone;
     if (step === "company") return t.placeholder.company;
+    if (step === "purpose") return language === "sv" ? "T.ex. försäljning, support..." : "E.g. sales, support...";
     return "";
   };
 
-  const canType = ["name", "email", "phone", "company"].includes(step);
+  const canType = ["name", "email", "phone", "company", "purpose"].includes(step);
 
   return (
     <>
@@ -251,30 +240,14 @@ const ChatBubble = () => {
                   transition={{ duration: 0.25 }}
                   className={`flex ${msg.from === "user" ? "justify-end" : "justify-start"}`}
                 >
-                  <div className="max-w-[80%]">
-                    <div
-                      className={`px-4 py-2.5 rounded-2xl text-sm leading-relaxed ${
-                        msg.from === "user"
-                          ? "bg-earth text-cream rounded-br-md"
-                          : "bg-sand text-night rounded-bl-md"
-                      }`}
-                    >
-                      {msg.text}
-                    </div>
-                    {/* Purpose selection buttons */}
-                    {msg.options && step === "purpose" && (
-                      <div className="flex gap-2 mt-2">
-                        {msg.options.map((opt) => (
-                          <button
-                            key={opt.value}
-                            onClick={() => handlePurposeSelect(opt.value)}
-                            className="px-4 py-2 rounded-full border border-sand-dark bg-warm-white text-sm font-medium text-earth hover:bg-earth hover:text-cream transition-colors"
-                          >
-                            {opt.label}
-                          </button>
-                        ))}
-                      </div>
-                    )}
+                  <div
+                    className={`max-w-[80%] px-4 py-2.5 rounded-2xl text-sm leading-relaxed ${
+                      msg.from === "user"
+                        ? "bg-earth text-cream rounded-br-md"
+                        : "bg-sand text-night rounded-bl-md"
+                    }`}
+                  >
+                    {msg.text}
                   </div>
                 </motion.div>
               ))}
