@@ -7,6 +7,7 @@ import IndustriesSection from "@/components/IndustriesSection";
 import PricingReframed from "@/components/PricingReframed";
 import SignupForm from "@/components/SignupForm";
 import Footer from "@/components/Footer";
+import ChatBubble from "@/components/ChatBubble";
 
 const Index = () => {
   return (
@@ -20,6 +21,7 @@ const Index = () => {
       <PricingReframed />
       <SignupForm />
       <Footer />
+      <ChatBubble />
     </div>
   );
 };
