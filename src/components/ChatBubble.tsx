@@ -4,11 +4,13 @@ import { MessageCircle, X, Send, Loader2 } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { supabase } from "@/integrations/supabase/client";
 
-type Step = "greeting" | "name" | "email" | "company" | "message" | "sending" | "done";
+type Step = "greeting" | "name" | "email" | "phone" | "company" | "purpose" | "sending" | "done";
+type Purpose = "kundtjänst" | "försäljning" | "";
 
 interface ChatMessage {
   from: "bot" | "user";
   text: string;
+  options?: { label: string; value: string }[];
 }
 
 const ChatBubble = () => {
@@ -17,25 +19,53 @@ const ChatBubble = () => {
   const [step, setStep] = useState<Step>("greeting");
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState<ChatMessage[]>([]);
-  const [formData, setFormData] = useState({ name: "", email: "", company: "", message: "" });
+  const [formData, setFormData] = useState({ name: "", email: "", phone: "", company: "", purpose: "" as Purpose });
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
   const t = {
-    greeting: language === "sv" ? "Hej! Vill du komma i kontakt med oss? Jag hjälper dig. Vad heter du?" : "Hi! Want to get in touch? I'll help you. What's your name?",
-    askEmail: language === "sv" ? "Trevligt, {name}! Vilken e-postadress kan vi nå dig på?" : "Nice to meet you, {name}! What email can we reach you at?",
-    invalidEmail: language === "sv" ? "Hmm, det ser inte ut som en giltig e-post. Kan du ange den igen?" : "Hmm, that doesn't look like a valid email. Could you try again?",
-    askCompany: language === "sv" ? "Vilket företag representerar du?" : "What company do you represent?",
-    askMessage: language === "sv" ? "Vad kan vi hjälpa dig med?" : "What can we help you with?",
-    sending: language === "sv" ? "Tack! Skickar ditt meddelande..." : "Thank you! Sending your message...",
-    done: language === "sv" ? "Meddelandet är skickat! Vi återkommer så snart som möjligt." : "Message sent! We'll get back to you as soon as possible.",
-    error: language === "sv" ? "Något gick fel. Försök igen senare." : "Something went wrong. Please try again later.",
+    greeting: language === "sv"
+      ? "Hej! Vill du komma i kontakt med oss? Jag hjälper dig. Vad heter du?"
+      : "Hi! Want to get in touch? I'll help you. What's your name?",
+    askEmail: language === "sv"
+      ? "Trevligt, {name}! Vilken e-postadress kan vi nå dig på?"
+      : "Nice to meet you, {name}! What email can we reach you at?",
+    invalidEmail: language === "sv"
+      ? "Hmm, det ser inte ut som en giltig e-post. Kan du ange den igen?"
+      : "Hmm, that doesn't look like a valid email. Could you try again?",
+    askPhone: language === "sv"
+      ? "Vad är ditt telefonnummer?"
+      : "What's your phone number?",
+    askCompany: language === "sv"
+      ? "Vilket företag representerar du?"
+      : "What company do you represent?",
+    askPurpose: language === "sv"
+      ? "Vad gäller din förfrågan?"
+      : "What is your inquiry about?",
+    sending: language === "sv"
+      ? "Tack! Skickar din förfrågan..."
+      : "Thank you! Sending your inquiry...",
+    done: language === "sv"
+      ? "Din förfrågan är skickad! Vi återkommer så snart som möjligt."
+      : "Your inquiry has been sent! We'll get back to you as soon as possible.",
+    error: language === "sv"
+      ? "Något gick fel. Försök igen senare."
+      : "Something went wrong. Please try again later.",
     placeholder: {
       name: language === "sv" ? "Ditt namn..." : "Your name...",
       email: language === "sv" ? "din@email.com" : "your@email.com",
+      phone: language === "sv" ? "+46 70 123 4567" : "+46 70 123 4567",
       company: language === "sv" ? "Företagsnamn..." : "Company name...",
-      message: language === "sv" ? "Ditt meddelande..." : "Your message...",
     },
+    purposeOptions: language === "sv"
+      ? [
+          { label: "Kundtjänst", value: "kundtjänst" },
+          { label: "Försäljning", value: "försäljning" },
+        ]
+      : [
+          { label: "Customer Service", value: "kundtjänst" },
+          { label: "Sales", value: "försäljning" },
+        ],
     bubbleLabel: language === "sv" ? "Kontakta oss" : "Contact us",
   };
 
@@ -43,9 +73,7 @@ const ChatBubble = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
-  useEffect(() => {
-    scrollToBottom();
-  }, [messages]);
+  useEffect(() => { scrollToBottom(); }, [messages]);
 
   useEffect(() => {
     if (isOpen && step === "greeting" && messages.length === 0) {
@@ -58,22 +86,16 @@ const ChatBubble = () => {
     if (isOpen) inputRef.current?.focus();
   }, [isOpen, step]);
 
-  const addBotMessage = (text: string) => {
-    setMessages((prev) => [...prev, { from: "bot", text }]);
+  const addBotMessage = (text: string, options?: { label: string; value: string }[]) => {
+    setMessages((prev) => [...prev, { from: "bot", text, options }]);
   };
 
   const extractName = (raw: string): string => {
-    const lower = raw.toLowerCase();
-    // Remove common greeting phrases to isolate the name
-    const cleaned = lower
+    const cleaned = raw.toLowerCase()
       .replace(/^(hej|hallå|tjena|tja|hi|hello|hey|hejsan|god\s*(dag|morgon|kväll))[,!.\s]*/i, "")
       .replace(/^(jag\s+heter|mitt\s+namn\s+är|i'm|my\s+name\s+is|i\s+am|det\s+är)[,.\s]*/i, "")
       .trim();
-    // Capitalize each word
-    if (cleaned) {
-      return cleaned.split(/\s+/).map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
-    }
-    // Fallback: capitalize the raw input
+    if (cleaned) return cleaned.split(/\s+/).map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
     return raw.split(/\s+/).map(w => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase()).join(" ");
   };
 
@@ -82,15 +104,55 @@ const ChatBubble = () => {
     return match ? match[0].toLowerCase() : null;
   };
 
+  const extractPhone = (raw: string): string => {
+    const cleaned = raw.replace(/[^\d+\-\s()]/g, "").trim();
+    return cleaned || raw.trim();
+  };
+
   const extractCompany = (raw: string): string => {
-    const lower = raw.toLowerCase();
-    const cleaned = lower
+    const cleaned = raw.toLowerCase()
       .replace(/^(jag\s+(jobbar|arbetar)\s+(på|hos|för|vid)|i\s+(work\s+)?(at|for)|det\s+är|vi\s+heter|företaget\s+(heter|är))[,.\s]*/i, "")
       .trim();
-    if (cleaned) {
-      return cleaned.split(/\s+/).map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
-    }
+    if (cleaned) return cleaned.split(/\s+/).map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
     return raw.trim();
+  };
+
+  const submitForm = async (data: typeof formData) => {
+    setStep("sending");
+    addBotMessage(t.sending);
+
+    const purposeLabel = data.purpose === "försäljning"
+      ? (language === "sv" ? "Försäljning" : "Sales")
+      : (language === "sv" ? "Kundtjänst" : "Customer Service");
+
+    try {
+      const { error } = await supabase.functions.invoke("send-contact-email", {
+        body: {
+          name: data.name,
+          email: data.email,
+          phone: data.phone,
+          message: [
+            `Namn: ${data.name}`,
+            `Telefon: ${data.phone}`,
+            `E-post: ${data.email}`,
+            `Företag: ${data.company}`,
+            `Syfte: ${purposeLabel}`,
+          ].join("\n"),
+        },
+      });
+      if (error) throw error;
+      setTimeout(() => { addBotMessage(t.done); setStep("done"); }, 500);
+    } catch {
+      setTimeout(() => { addBotMessage(t.error); setStep("purpose"); }, 500);
+    }
+  };
+
+  const handlePurposeSelect = (value: string) => {
+    const label = t.purposeOptions.find(o => o.value === value)?.label || value;
+    setMessages((prev) => [...prev, { from: "user", text: label }]);
+    const finalData = { ...formData, purpose: value as Purpose };
+    setFormData(finalData);
+    submitForm(finalData);
   };
 
   const handleSend = async () => {
@@ -104,63 +166,26 @@ const ChatBubble = () => {
       case "name": {
         const name = extractName(value);
         setFormData((d) => ({ ...d, name }));
-        setTimeout(() => {
-          addBotMessage(t.askEmail.replace("{name}", name));
-          setStep("email");
-        }, 400);
+        setTimeout(() => { addBotMessage(t.askEmail.replace("{name}", name)); setStep("email"); }, 400);
         break;
       }
-
       case "email": {
         const email = extractEmail(value);
-        if (!email) {
-          setTimeout(() => addBotMessage(t.invalidEmail), 400);
-          return;
-        }
+        if (!email) { setTimeout(() => addBotMessage(t.invalidEmail), 400); return; }
         setFormData((d) => ({ ...d, email }));
-        setTimeout(() => {
-          addBotMessage(t.askCompany);
-          setStep("company");
-        }, 400);
+        setTimeout(() => { addBotMessage(t.askPhone); setStep("phone"); }, 400);
         break;
       }
-
+      case "phone": {
+        const phone = extractPhone(value);
+        setFormData((d) => ({ ...d, phone }));
+        setTimeout(() => { addBotMessage(t.askCompany); setStep("company"); }, 400);
+        break;
+      }
       case "company": {
         const company = extractCompany(value);
         setFormData((d) => ({ ...d, company }));
-        setTimeout(() => {
-          addBotMessage(t.askMessage);
-          setStep("message");
-        }, 400);
-        break;
-      }
-
-      case "message": {
-        const finalData = { ...formData, message: value };
-        setFormData(finalData);
-        setStep("sending");
-        addBotMessage(t.sending);
-
-        try {
-          const { error } = await supabase.functions.invoke("send-contact-email", {
-            body: {
-              name: finalData.name,
-              email: finalData.email,
-              message: `Företag: ${finalData.company}\n\n${finalData.message}`,
-              phone: "",
-            },
-          });
-          if (error) throw error;
-          setTimeout(() => {
-            addBotMessage(t.done);
-            setStep("done");
-          }, 500);
-        } catch {
-          setTimeout(() => {
-            addBotMessage(t.error);
-            setStep("message");
-          }, 500);
-        }
+        setTimeout(() => { addBotMessage(t.askPurpose, t.purposeOptions); setStep("purpose"); }, 400);
         break;
       }
     }
@@ -169,16 +194,15 @@ const ChatBubble = () => {
   const getPlaceholder = () => {
     if (step === "name") return t.placeholder.name;
     if (step === "email") return t.placeholder.email;
+    if (step === "phone") return t.placeholder.phone;
     if (step === "company") return t.placeholder.company;
-    if (step === "message") return t.placeholder.message;
     return "";
   };
 
-  const canType = ["name", "email", "company", "message"].includes(step);
+  const canType = ["name", "email", "phone", "company"].includes(step);
 
   return (
     <>
-      {/* Floating button */}
       <AnimatePresence>
         {!isOpen && (
           <motion.button
@@ -194,7 +218,6 @@ const ChatBubble = () => {
         )}
       </AnimatePresence>
 
-      {/* Chat panel */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -213,10 +236,7 @@ const ChatBubble = () => {
                   {language === "sv" ? "Kontaktassistent" : "Contact assistant"}
                 </p>
               </div>
-              <button
-                onClick={() => setIsOpen(false)}
-                className="text-bark hover:text-night transition-colors"
-              >
+              <button onClick={() => setIsOpen(false)} className="text-bark hover:text-night transition-colors">
                 <X className="h-5 w-5" />
               </button>
             </div>
@@ -231,14 +251,30 @@ const ChatBubble = () => {
                   transition={{ duration: 0.25 }}
                   className={`flex ${msg.from === "user" ? "justify-end" : "justify-start"}`}
                 >
-                  <div
-                    className={`max-w-[80%] px-4 py-2.5 rounded-2xl text-sm leading-relaxed ${
-                      msg.from === "user"
-                        ? "bg-earth text-cream rounded-br-md"
-                        : "bg-sand text-night rounded-bl-md"
-                    }`}
-                  >
-                    {msg.text}
+                  <div className="max-w-[80%]">
+                    <div
+                      className={`px-4 py-2.5 rounded-2xl text-sm leading-relaxed ${
+                        msg.from === "user"
+                          ? "bg-earth text-cream rounded-br-md"
+                          : "bg-sand text-night rounded-bl-md"
+                      }`}
+                    >
+                      {msg.text}
+                    </div>
+                    {/* Purpose selection buttons */}
+                    {msg.options && step === "purpose" && (
+                      <div className="flex gap-2 mt-2">
+                        {msg.options.map((opt) => (
+                          <button
+                            key={opt.value}
+                            onClick={() => handlePurposeSelect(opt.value)}
+                            className="px-4 py-2 rounded-full border border-sand-dark bg-warm-white text-sm font-medium text-earth hover:bg-earth hover:text-cream transition-colors"
+                          >
+                            {opt.label}
+                          </button>
+                        ))}
+                      </div>
+                    )}
                   </div>
                 </motion.div>
               ))}
@@ -258,7 +294,7 @@ const ChatBubble = () => {
                 <div className="flex items-center gap-2">
                   <input
                     ref={inputRef}
-                    type={step === "email" ? "email" : "text"}
+                    type={step === "email" ? "email" : step === "phone" ? "tel" : "text"}
                     value={input}
                     onChange={(e) => setInput(e.target.value)}
                     onKeyDown={(e) => e.key === "Enter" && handleSend()}

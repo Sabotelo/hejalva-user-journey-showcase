@@ -51,16 +51,20 @@ serve(async (req) => {
     }
 
     const emailContent = `
-      New Contact Form Submission from ${name}
-      
-      Email: ${email}
-      Phone: ${phone || 'Not provided'}
-      
-      Message:
-      ${message}
-      
-      Submitted at: ${new Date().toLocaleString('sv-SE', { timeZone: 'Europe/Stockholm' })}
-    `
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  Ny kontaktförfrågan
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Namn:       ${name}
+Telefon:    ${phone || 'Ej angivet'}
+E-post:     ${email}
+
+Meddelande:
+${message}
+
+Tidpunkt:   ${new Date().toLocaleString('sv-SE', { timeZone: 'Europe/Stockholm' })}
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    `.trim()
 
     const emailResponse = await fetch('https://api.resend.com/emails', {
       method: 'POST',
