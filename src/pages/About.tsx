@@ -96,15 +96,15 @@ const About = () => {
             </p>
             <ul className="space-y-2 text-bark text-sm">
               {(language === 'sv' ? [
-                '🔒 Samtalsdata krypteras end-to-end',
-                '📋 30 dagars lagring av inspelningar',
-                '🇪🇺 Data behandlas inom EU',
-                '📄 Mimer är databehandlare, kunden är personuppgiftsansvarig',
+                'Samtalsdata krypteras end-to-end',
+                '30 dagars lagring av inspelningar',
+                'Data behandlas inom EU',
+                'Mimer är databehandlare, kunden är personuppgiftsansvarig',
               ] : [
-                '🔒 Call data is encrypted end-to-end',
-                '📋 30-day retention for recordings',
-                '🇪🇺 Data processed within the EU',
-                '📄 Mimer is the data processor, customer is the data controller',
+                'Call data is encrypted end-to-end',
+                '30-day retention for recordings',
+                'Data processed within the EU',
+                'Mimer is the data processor, customer is the data controller',
               ]).map((item, i) => (
                 <li key={i}>{item}</li>
               ))}

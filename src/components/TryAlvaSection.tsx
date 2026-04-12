@@ -138,8 +138,8 @@ const TryAlvaSection = () => {
             {/* Context Label */}
             <p className="text-center text-sm text-muted-foreground mt-6">
               {language === 'sv' 
-                ? '📞 Scenario: Kund vill boka tid utanför ordinarie öppettider'
-                : '📞 Scenario: Customer wants to book outside regular hours'}
+                ? 'Scenario: Kund vill boka tid utanför ordinarie öppettider'
+                : 'Scenario: Customer wants to book outside regular hours'}
             </p>
           </div>
 

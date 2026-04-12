@@ -134,8 +134,8 @@ const TryAlvaLive = () => {
 
             <p className="text-center text-stone text-xs mt-6">
               {language === 'sv'
-                ? '💡 Prata svenska med Alva — hon förstår och svarar på ditt språk!'
-                : '💡 Speak Swedish with Alva — she understands and responds in your language!'}
+                ? 'Prata svenska med Alva — hon förstår och svarar på ditt språk.'
+                : 'Speak Swedish with Alva — she understands and responds in your language.'}
             </p>
           </div>
         </ScrollAnimation>
