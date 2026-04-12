@@ -27,8 +27,8 @@ const About = () => {
             </h1>
             <p className="text-bark text-lg max-w-xl mx-auto">
               {language === 'sv'
-                ? 'Vi bygger AI-verktyg som hjälper svenska småföretag att ge fantastisk kundservice — dygnet runt.'
-                : 'We build AI tools that help Swedish small businesses deliver amazing customer service — 24/7.'}
+                ? 'Vi bygger AI-verktyg som hjälper företag i alla storlekar att ge fantastisk kundservice — dygnet runt.'
+                : 'We build AI tools that help businesses of all sizes deliver amazing customer service — 24/7.'}
             </p>
           </ScrollAnimation>
         </div>
