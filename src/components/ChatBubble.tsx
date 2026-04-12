@@ -56,15 +56,6 @@ const ChatBubble = () => {
       phone: language === "sv" ? "+46 70 123 4567" : "+46 70 123 4567",
       company: language === "sv" ? "Företagsnamn..." : "Company name...",
     },
-    purposeOptions: language === "sv"
-      ? [
-          { label: "Kundtjänst", value: "kundtjänst" },
-          { label: "Försäljning", value: "försäljning" },
-        ]
-      : [
-          { label: "Customer Service", value: "kundtjänst" },
-          { label: "Sales", value: "försäljning" },
-        ],
     bubbleLabel: language === "sv" ? "Kontakta oss" : "Contact us",
   };
 
@@ -85,8 +76,8 @@ const ChatBubble = () => {
     if (isOpen) inputRef.current?.focus();
   }, [isOpen, step]);
 
-  const addBotMessage = (text: string, options?: { label: string; value: string }[]) => {
-    setMessages((prev) => [...prev, { from: "bot", text, options }]);
+  const addBotMessage = (text: string) => {
+    setMessages((prev) => [...prev, { from: "bot", text }]);
   };
 
   const extractName = (raw: string): string => {
