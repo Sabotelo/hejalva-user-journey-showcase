@@ -122,7 +122,7 @@ const ChatBubble = () => {
       : (language === "sv" ? "Kundtjänst" : "Customer Service");
 
     try {
-      const { error } = await supabase.functions.invoke("send-contact-email", {
+      const { data: result, error } = await supabase.functions.invoke("send-contact-email", {
         body: {
           name: data.name,
           email: data.email,
@@ -132,9 +132,12 @@ const ChatBubble = () => {
         },
       });
       if (error) throw error;
+      if (result && result.success === false) throw new Error(result.error || 'Unknown error');
       setTimeout(() => { addBotMessage(t.done); setStep("done"); }, 500);
-    } catch {
-      setTimeout(() => { addBotMessage(t.error); setStep("purpose"); }, 500);
+    } catch (err) {
+      const errorMsg = err instanceof Error ? err.message : 'unknown';
+      console.error('Chat submit error:', err, 'Data:', data);
+      setTimeout(() => { addBotMessage(`${t.error} (${errorMsg})`); setStep("purpose"); }, 500);
     }
   };
 
