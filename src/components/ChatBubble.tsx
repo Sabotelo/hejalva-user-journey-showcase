@@ -73,6 +73,12 @@ const ChatBubble = () => {
   }, [isOpen]);
 
   useEffect(() => {
+    const handler = () => setIsOpen(true);
+    window.addEventListener('open-chat-bubble', handler);
+    return () => window.removeEventListener('open-chat-bubble', handler);
+  }, []);
+
+  useEffect(() => {
     if (isOpen) inputRef.current?.focus();
   }, [isOpen, step]);
 

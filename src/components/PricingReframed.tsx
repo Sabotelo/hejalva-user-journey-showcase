@@ -52,12 +52,12 @@ const PricingReframed = () => {
             ))}
           </ul>
 
-          <a
-            href="#kontakt"
+          <button
+            onClick={() => window.dispatchEvent(new CustomEvent('open-chat-bubble'))}
             className="inline-block bg-earth text-cream px-8 py-4 rounded-full font-semibold text-base hover:bg-night transition-all duration-300 hover:-translate-y-0.5"
           >
             {language === 'sv' ? 'Kontakta oss för prisförslag' : 'Contact us for a quote'}
-          </a>
+          </button>
 
           <div className="mt-3 text-xs text-stone">
             {language === 'sv' ? 'Ingen bindningstid — 14 dagars gratis provperiod' : 'No commitment — 14-day free trial'}
