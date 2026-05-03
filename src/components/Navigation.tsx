@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Globe, Menu, X } from "lucide-react";
 
@@ -6,6 +7,29 @@ const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { language, setLanguage } = useLanguage();
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const isHome = location.pathname === "/";
+
+  const goToSection = (id: string) => (e: React.MouseEvent) => {
+    e.preventDefault();
+    setMobileMenuOpen(false);
+    if (isHome) {
+      document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    } else {
+      navigate(`/#${id}`);
+      setTimeout(() => {
+        document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+      }, 100);
+    }
+  };
+
+  const openChat = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setMobileMenuOpen(false);
+    window.dispatchEvent(new CustomEvent("open-chat-bubble"));
+  };
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
@@ -16,9 +40,9 @@ const Navigation = () => {
   const toggleLanguage = () => setLanguage(language === 'sv' ? 'en' : 'sv');
 
   const navLinks = [
-    { href: "#hur", label: language === 'sv' ? 'Hur det fungerar' : 'How it works' },
-    { href: "#pris", label: language === 'sv' ? 'Pris' : 'Pricing' },
-    { href: "/about", label: language === 'sv' ? 'Om oss' : 'About' },
+    { id: "hur", href: "/#hur", label: language === 'sv' ? 'Hur det fungerar' : 'How it works' },
+    { id: "pris", href: "/#pris", label: language === 'sv' ? 'Pris' : 'Pricing' },
+    { id: null, href: "/about", label: language === 'sv' ? 'Om oss' : 'About' },
   ];
 
   return (
@@ -37,6 +61,7 @@ const Navigation = () => {
           <a
             key={link.href}
             href={link.href}
+            onClick={link.id ? goToSection(link.id) : undefined}
             className="text-sm font-medium text-bark hover:text-earth transition-colors"
           >
             {link.label}
@@ -44,6 +69,7 @@ const Navigation = () => {
         ))}
         <a
           href="#kontakt"
+          onClick={openChat}
           className="bg-earth text-cream px-5 py-2 rounded-full text-sm font-semibold hover:bg-night transition-colors"
         >
           {language === 'sv' ? 'Kom igång' : 'Get started'}
@@ -65,6 +91,7 @@ const Navigation = () => {
         </button>
         <a
           href="#kontakt"
+          onClick={openChat}
           className="bg-earth text-cream px-4 py-2 rounded-full text-sm font-semibold hover:bg-night transition-colors"
         >
           {language === 'sv' ? 'Kom igång' : 'Get started'}
@@ -82,8 +109,8 @@ const Navigation = () => {
               <a
                 key={link.href}
                 href={link.href}
+                onClick={link.id ? goToSection(link.id) : () => setMobileMenuOpen(false)}
                 className="text-sm font-medium text-bark hover:text-earth transition-colors py-2"
-                onClick={() => setMobileMenuOpen(false)}
               >
                 {link.label}
               </a>
